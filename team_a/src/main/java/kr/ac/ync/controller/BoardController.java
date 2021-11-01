@@ -135,8 +135,8 @@ public class BoardController {
 	}
 
 	@PostMapping("/remove")
-	@PreAuthorize("principal.username == #writer")
-	public String remove(@RequestParam("id") Long bd_idx, Criteria cri, RedirectAttributes rttr, String writer) {
+	@PreAuthorize("principal.username == #bd_writer")
+	public String remove(@RequestParam("id") Long bd_idx, Criteria cri, RedirectAttributes rttr, String bd_writer) {
 
 		log.info("remove..." + bd_idx);
 		if (service.remove(bd_idx)) {

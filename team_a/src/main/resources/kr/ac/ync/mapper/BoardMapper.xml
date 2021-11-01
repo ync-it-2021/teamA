@@ -26,7 +26,7 @@
 
 	<select id="getList" resultType="kr.ac.ync.domain.BoardVO">
 	<![CDATA[
-		SELECT * FROM board WHERE bno > 0 
+		SELECT * FROM board WHERE bd_idx > 0 
 		]]>
 	</select>
  
@@ -37,7 +37,7 @@
 
 	<insert id="insertSelectKey">
 
-		<selectKey keyProperty="bno" order="BEFORE"
+		<selectKey keyProperty="bd_idx" order="BEFORE"
 			resultType="long">
 			select seq_board.nextval from dual
 		</selectKey>
@@ -57,14 +57,14 @@
  
 	<update id="update">
 		UPDATE board SET 	bd_title= #{bd_title},
-								bd_contents=#{bd_contents},
-								bd_writer = #{bd_writer},
-								bd_file_1 = #{bd_file_1},
-								bd_file_2 = #{bd_file_2},
-								bd_file_3 = #{bd_file_3},
-								bd_file_4 = #{bd_file_4},
-								bd_file_5 = #{bd_file_5},
-								bd_updateDate = sysdate
+							bd_contents=#{bd_contents},
+							bd_writer = #{bd_writer},
+							bd_file_1 = #{bd_file_1},
+							bd_file_2 = #{bd_file_2},
+							bd_file_3 = #{bd_file_3},
+							bd_file_4 = #{bd_file_4},
+							bd_file_5 = #{bd_file_5},
+							bd_date = sysdate
 		WHERE bd_idx =	#{bd_idx}
 	</update>
 	
@@ -74,17 +74,23 @@
 				bd_title,
 				bd_contents,
 				bd_writer,
-				bd_regdate,
-				bd_updatedate,
-				replycnt
+				bd_img1,
+				bd_date,
+				bd_good_cnt,
+				bd_bad_cnt,
+				bd_cnt,
+				bd_comment_cnt
 		FROM	(SELECT /*+INDEX_DESC(board pk_board) */
         				rownum rn,
         				bd_idx,
         				bd_title,
         				bd_contents,
         				bd_writer,
-        				,
+        				bd_img1,
         				bd_date,
+        				bd_good_cnt,
+        				bd_bad_cnt,
+        				bd_cnt,
         				bd_comment_cnt
       			FROM	board
 				WHERE 
@@ -102,11 +108,11 @@
 	<select id="getTotalCount" resultType="int">
 		SELECT count(*) FROM board WHERE 
 		<include refid="criteria"></include> 
-		bno > 0
+		bd_idx > 0
 	</select>
 	
 	<update id="updateReplyCnt">
-		UPDATE board SET replycnt = replycnt + #{amount} WHERE bno = #{bno}
+		UPDATE board SET replycnt = bd_comment_cnt + #{amount} WHERE bd_idx = #{bd_idx}
 	</update> 
 	
 </mapper>
