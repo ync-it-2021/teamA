@@ -6,7 +6,7 @@
 <%@include file="../includes/header.jsp"%>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">Tables</h1>
+		<h1 class="page-header">상품</h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -16,34 +16,46 @@
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				Board List Page
+				Product List Page
 				<button id='regBtn' type="button" class="btn btn-xs pull-right">Register
-					New Board</button>
+					New Product</button>
 			</div>
 
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
-						<tr>
-							<th>#번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
+						<tr align="center">
+							<th width="6%" >상품번호</th>
+							<th width="40%">상품명</th>
+							<th width="10%">제작사</th>
+							<th width="10%">등록일</th>
+							<th width="10%">할인기간</th>
+							<th width="5%">원가</th>
+							<th width="5%">할인금액</th>
+							<th width="5%">판매금액</th>
+							<th width="3%">재고</th>
+							<th width="3%">주문</th>
+							<th width="3%">리뷰</th>
+							<th></th>
 						</tr>
 					</thead>
 
-					<!--<c:forEach items="${list}" var="board">
+					<c:forEach items="${list}" var="prd">
 						<tr>
-							<td><c:out value="${board.bd_idx}" /></td>
-							<%-- <td><a href='/board/get?bno=<c:out value="${board.bno}"/>'><c:out value="${board.title}"/></a></td> --%>
-							<td><a class='move' href='<c:out value="${board.bd_idx}"/>'><c:out value="${board.bd_title}" />
-							<b>[<c:out value="${board.bd_comment_cnt}" />]</b></a> 
-							</td>
-							<td><c:out value="${board.member_id}" /></td>
-							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.bd_date}" /></td>
+							<td><c:out value="${prd.prd_idx}"/></td>
+							<td><a class='move' href='<c:out value="${prd.prd_idx}"/>'><c:out value="${prd.prd_name}"/></a></td>
+							<td><c:out value="${prd.prd_company}"/></td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${prd.prd_register_date}" /></td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${prd.prd_discount_date}" /></td>
+							<td><fmt:formatNumber type = "currency" value="${prd.prd_cost_price}" /></td>
+							<td><fmt:formatNumber type = "currency" value="${prd.prd_sale_prices}" /></td>
+							<td><fmt:formatNumber type = "currency" value="${prd.prd_amount}" /></td>
+							<td><c:out value="${prd.prd_inventory}" /></td>
+							<td>0</td>
+							<td>0</td>
 						</tr>
-					</c:forEach>-->
+					</c:forEach>
 					
 				</table>
 				
@@ -51,7 +63,7 @@
 				<div class='row'>
 					<div class="col-lg-12">
 
-						<form id='searchForm' action="/board/list" method='get'>
+						<form id='searchForm' action="/product/list" method='get'>
 							<select name='type'>
 								<option value=""
 									<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>
@@ -103,7 +115,7 @@
 				<!--  Pagination 끝 -->
 				
 				<!-- 페이징 Form 시작 -->
-				<form id='actionForm' action="/board/list" method='get'>
+				<form id='actionForm' action="/product/list" method='get'>
 				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
 				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 				<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
@@ -171,7 +183,7 @@
 		}
 		
 		$("#regBtn").on("click", function() {
-			self.location = "/board/register";
+			self.location = "/product/register";
 		});
 		
 		var actionForm = $("#actionForm");
@@ -188,7 +200,7 @@
 		$(".move").on("click",function(e) {
 			e.preventDefault();
 			actionForm.append("<input type='hidden' name='bno' value='" + $(this).attr("href")	+ "'>");
-			actionForm.attr("action", "/board/get");
+			actionForm.attr("action", "/product/get");
 			actionForm.submit();
 		});
 		
