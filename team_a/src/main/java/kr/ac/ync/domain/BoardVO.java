@@ -24,6 +24,7 @@ public class BoardVO {
 	private String bd_code;
 	private String bd_title;
 	private String bd_contents;
+	private String bd_writer;
 	private String member_id;
 	private Date bd_date;
 	private String bd_img1;
