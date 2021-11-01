@@ -62,13 +62,19 @@ public class BoardController {
 			if(multipartFile.getSize() > 0) {
 				switch (index) {
 				case 0:
-					board.setFile_1(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					board.setBd_img1(UploadUtils.uploadFormPost(multipartFile, uploadPath));
 					break;
 				case 1:
-					board.setFile_2(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					board.setBd_img2(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					break;
+				case 2:
+					board.setBd_img3(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					break;
+				case 3:
+					board.setBd_img4(UploadUtils.uploadFormPost(multipartFile, uploadPath));
 					break;
 				default:
-					board.setFile_3(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					board.setBd_img5(UploadUtils.uploadFormPost(multipartFile, uploadPath));
 					break;
 				}
 			}
@@ -77,17 +83,17 @@ public class BoardController {
 		
 		log.info("register: " + board);
 		service.register(board);
-		rttr.addFlashAttribute("result", board.getBno());
+		rttr.addFlashAttribute("result", board.getBd_idx());
 
 		return "redirect:/board/list";
 	}
 
 	// @ModelAttribute 는 model.addAttribute("cri", cri) 해주는거와 동일하다.
 	@GetMapping({ "/get", "/modify" })
-	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("id") Long bd_idx, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("/get or modify");
-		model.addAttribute("board", service.get(bno));
+		model.addAttribute("board", service.get(bd_idx));
 	}
 
 	@PostMapping("/modify")
@@ -100,13 +106,19 @@ public class BoardController {
 			if (multipartFile.getSize() > 0) {
 				switch (index) {
 				case 0:
-					board.setFile_1(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					board.setBd_img1(UploadUtils.uploadFormPost(multipartFile, uploadPath));
 					break;
 				case 1:
-					board.setFile_2(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					board.setBd_img2(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					break;
+				case 2:
+					board.setBd_img3(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					break;
+				case 3:
+					board.setBd_img4(UploadUtils.uploadFormPost(multipartFile, uploadPath));
 					break;
 				default:
-					board.setFile_3(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					board.setBd_img5(UploadUtils.uploadFormPost(multipartFile, uploadPath));
 					break;
 				}
 			}
@@ -124,10 +136,10 @@ public class BoardController {
 
 	@PostMapping("/remove")
 	@PreAuthorize("principal.username == #writer")
-	public String remove(@RequestParam("bno") Long bno, Criteria cri, RedirectAttributes rttr, String writer) {
+	public String remove(@RequestParam("id") Long bd_idx, Criteria cri, RedirectAttributes rttr, String writer) {
 
-		log.info("remove..." + bno);
-		if (service.remove(bno)) {
+		log.info("remove..." + bd_idx);
+		if (service.remove(bd_idx)) {
 			rttr.addFlashAttribute("result", "success");
 		}
 

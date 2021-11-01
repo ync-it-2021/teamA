@@ -26,13 +26,13 @@
 
 	<select id="getList" resultType="kr.ac.ync.domain.BoardVO">
 	<![CDATA[
-		SELECT * FROM tbl_board WHERE bno > 0 
+		SELECT * FROM board WHERE bno > 0 
 		]]>
 	</select>
  
 	<insert id="insert">
-		INSERT INTO tbl_board (bno, title, content, writer, file_1, file_2, file_3)
-		VALUES (seq_board.nextval, #{title}, #{content}, #{writer}, #{file_1}, #{file_2}, #{file_3})
+		INSERT INTO board (bd_idx, bd_code, bd_title, bd_content, member_id, bd_img1, bd_img2, bd_img3, bd_img4, bd_img5, )
+		VALUES (seq_board.nextval, #{bd_code}, #{bd_title}, #{bd_content}, #{member}, #{bd_img1}, ,#{bd_img2}, #{bd_img3}, #{file_4}, #{file_5})
 	</insert>
 
 	<insert id="insertSelectKey">
@@ -42,49 +42,51 @@
 			select seq_board.nextval from dual
 		</selectKey>
 
-		INSERT INTO tbl_board (bno,title,content, writer, file_1, file_2, file_3)
-		VALUES (#{bno},	#{title}, #{content}, #{writer}, #{file_1}, #{file_2}, #{file_3})
+		INSERT INTO board (bd_idx, bd_code, bd_title, bd_content, member_id, bd_img1, bd_img2, bd_img3, bd_img4, bd_img5, )
+		VALUES (seq_board.nextval, #{bd_code}, #{bd_title}, #{bd_content}, #{member}, #{bd_img1}, ,#{bd_img2}, #{bd_img3}, #{file_4}, #{file_5})
 	</insert>
 
 	<select id="read" resultType="kr.ac.ync.domain.BoardVO">
-		SELECT * from tbl_board WHERE bno =	#{bno}
+		SELECT * from board WHERE bd_idx =	#{bd_idx}
 	</select>
 
 
 	<delete id="delete">
-		DELETE tbl_board WHERE bno = #{bno}
+		DELETE board WHERE bd_idx = #{bd_idx}
 	</delete>
  
 	<update id="update">
-		UPDATE tbl_board SET 	title= #{title},
-								content=#{content},
-								writer = #{writer},
-								file_1 = #{file_1},
-								file_2 = #{file_2},
-								file_3 = #{file_3},
-								updateDate = sysdate
-		WHERE bno =	#{bno}
+		UPDATE board SET 	bd_title= #{bd_title},
+								bd_contents=#{bd_contents},
+								bd_writer = #{bd_writer},
+								bd_file_1 = #{bd_file_1},
+								bd_file_2 = #{bd_file_2},
+								bd_file_3 = #{bd_file_3},
+								bd_file_4 = #{bd_file_4},
+								bd_file_5 = #{bd_file_5},
+								bd_updateDate = sysdate
+		WHERE bd_idx =	#{bd_idx}
 	</update>
 	
 	<select id="getListWithPaging" resultType="kr.ac.ync.domain.BoardVO">
 		<![CDATA[
-		SELECT	bno,
-				title,
-				content,
-				writer,
-				regdate,
-				updatedate,
+		SELECT	bd_idx,
+				bd_title,
+				bd_contents,
+				bd_writer,
+				bd_regdate,
+				bd_updatedate,
 				replycnt
-		FROM	(SELECT /*+INDEX_DESC(tbl_board pk_board) */
+		FROM	(SELECT /*+INDEX_DESC(board pk_board) */
         				rownum rn,
-        				bno,
-        				title,
-        				content,
-        				writer,
-        				regdate,
-        				updatedate,
-        				replycnt
-      			FROM	tbl_board
+        				bd_idx,
+        				bd_title,
+        				bd_contents,
+        				bd_writer,
+        				,
+        				bd_date,
+        				bd_comment_cnt
+      			FROM	board
 				WHERE 
   		]]>
 		<include refid="criteria"></include> 
@@ -98,13 +100,13 @@
 
 
 	<select id="getTotalCount" resultType="int">
-		SELECT count(*) FROM tbl_board WHERE 
+		SELECT count(*) FROM board WHERE 
 		<include refid="criteria"></include> 
 		bno > 0
 	</select>
 	
 	<update id="updateReplyCnt">
-		UPDATE tbl_board SET replycnt = replycnt + #{amount} WHERE bno = #{bno}
+		UPDATE board SET replycnt = replycnt + #{amount} WHERE bno = #{bno}
 	</update> 
 	
 </mapper>
