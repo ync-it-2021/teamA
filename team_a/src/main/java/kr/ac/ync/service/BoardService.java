@@ -11,13 +11,13 @@ public interface BoardService {
 	public void register(BoardVO board);
 	
 	// 글 상세보기
-	public BoardVO get(Long bno);
+	public BoardVO get(int bd_idx);
 	
 	// 글 수정
 	public boolean modify(BoardVO board);
 	
 	// 글 삭제
-	public boolean remove(Long bno);
+	public boolean remove(int bd_idx);
 	
 	// 전체 글 목록
 	public List<BoardVO> getList();
