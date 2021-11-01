@@ -2,8 +2,11 @@ package kr.ac.ync.domain;
 
 import java.util.Date;
 
-public class ProductVO {
+import lombok.Data;
 
+@Data
+public class ProductVO {
+	
 	private int prd_idx;				//상품번호
 	private String prd_name;			//상품이름
 	private Date prd_register_date;		//출시일
