@@ -17,14 +17,14 @@ public interface BoardMapper {
 
 	public Integer insertSelectKey(BoardVO board);
 
-	public BoardVO read(Long bno);
+	public BoardVO read(int bd_idx);
 
-	public int delete(Long bno);
+	public int delete(int bd_idx);
 
 	public int update(BoardVO board);
 
 	public int getTotalCount(Criteria cri);
 	
 	// 2개 이상의 파라미터를 넘기기위해 @Param 사용. 댓글 추가/삭제 시 amount에 1/-1 값
-	public void updateReplyCnt(@Param("bno") Long bno, @Param("amount") int amount);
+	public void updateReplyCnt(@Param("bd_idx") int bd_idx, @Param("amount") int amount);
 }
