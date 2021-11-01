@@ -36,7 +36,7 @@ public class BoardController {
 	public void register() {
 
 	}
-
+	//	list 출력
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model) {
 
@@ -88,14 +88,14 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 
-	// @ModelAttribute 는 model.addAttribute("cri", cri) 해주는거와 동일하다.
+	
 	@GetMapping({ "/get", "/modify" })
-	public void get(@RequestParam("id") Long bd_idx, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("id") int bd_idx, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("/get or modify");
 		model.addAttribute("board", service.get(bd_idx));
 	}
-
+	//글 수정
 	@PostMapping("/modify")
 	@PreAuthorize("principal.username == #board.writer")
 	public String modify(MultipartFile[] uploadFile, BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
@@ -136,7 +136,7 @@ public class BoardController {
 
 	@PostMapping("/remove")
 	@PreAuthorize("principal.username == #bd_writer")
-	public String remove(@RequestParam("id") Long bd_idx, Criteria cri, RedirectAttributes rttr, String bd_writer) {
+	public String remove(@RequestParam("id") int bd_idx, Criteria cri, RedirectAttributes rttr, String bd_writer) {
 
 		log.info("remove..." + bd_idx);
 		if (service.remove(bd_idx)) {
