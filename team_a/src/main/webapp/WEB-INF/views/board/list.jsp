@@ -30,20 +30,18 @@
 							<th>제목</th>
 							<th>작성자</th>
 							<th>작성일</th>
-							<th>수정일</th>
 						</tr>
 					</thead>
 
 					<c:forEach items="${list}" var="board">
 						<tr>
-							<td><c:out value="${board.bno}" /></td>
+							<td><c:out value="${board.bd_idx}" /></td>
 							<%-- <td><a href='/board/get?bno=<c:out value="${board.bno}"/>'><c:out value="${board.title}"/></a></td> --%>
-							<td><a class='move' href='<c:out value="${board.bno}"/>'><c:out value="${board.title}" />
-							<b>[<c:out value="${board.replyCnt}" />]</b></a> 
+							<td><a class='move' href='<c:out value="${board.bd_idx}"/>'><c:out value="${board.bd_title}" />
+							<b>[<c:out value="${board.bd_comment_cnt}" />]</b></a> 
 							</td>
-							<td><c:out value="${board.writer}" /></td>
-							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate}" /></td>
-							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate}" /></td>
+							<td><c:out value="${board.member_id}" /></td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.bd_date}" /></td>
 						</tr>
 					</c:forEach>
 					
