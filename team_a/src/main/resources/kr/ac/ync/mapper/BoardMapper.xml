@@ -9,13 +9,13 @@
 				<trim prefix="OR">
 					<choose>
 						<when test="type == 'T'.toString()">
-							title LIKE '%'||#{keyword}||'%'
+							bd_title LIKE '%'||#{keyword}||'%'
 						</when>
 						<when test="type == 'C'.toString()">
-							content LIKE '%'||#{keyword}||'%'
+							bd_contents LIKE '%'||#{keyword}||'%'
 						</when>
-						<when test="type == 'W'.toString()">
-							writer LIKE '%'||#{keyword}||'%'
+						<when test="type == 'M'.toString()">
+							member_id LIKE '%'||#{keyword}||'%'
 						</when>
 					</choose>
 				</trim>
@@ -32,7 +32,7 @@
  
 	<insert id="insert">
 		INSERT INTO board (bd_idx, bd_code, bd_title, bd_content, member_id, bd_img1, bd_img2, bd_img3, bd_img4, bd_img5, )
-		VALUES (seq_board.nextval, #{bd_code}, #{bd_title}, #{bd_content}, #{member}, #{bd_img1}, ,#{bd_img2}, #{bd_img3}, #{file_4}, #{file_5})
+		VALUES (seq_board.nextval, #{bd_code}, #{bd_title}, #{bd_content}, #{member_id}, #{bd_img1}, ,#{bd_img2}, #{bd_img3}, #{file_4}, #{file_5})
 	</insert>
 
 	<insert id="insertSelectKey">
@@ -43,7 +43,7 @@
 		</selectKey>
 
 		INSERT INTO board (bd_idx, bd_code, bd_title, bd_content, member_id, bd_img1, bd_img2, bd_img3, bd_img4, bd_img5, )
-		VALUES (seq_board.nextval, #{bd_code}, #{bd_title}, #{bd_content}, #{member}, #{bd_img1}, ,#{bd_img2}, #{bd_img3}, #{file_4}, #{file_5})
+		VALUES (seq_board.nextval, #{bd_code}, #{bd_title}, #{bd_content}, #{member_id}, #{bd_img1}, ,#{bd_img2}, #{bd_img3}, #{file_4}, #{file_5})
 	</insert>
 
 	<select id="read" resultType="kr.ac.ync.domain.BoardVO">
@@ -58,7 +58,7 @@
 	<update id="update">
 		UPDATE board SET 	bd_title= #{bd_title},
 							bd_contents=#{bd_contents},
-							bd_writer = #{bd_writer},
+							member_id = #{member_id},
 							bd_file_1 = #{bd_file_1},
 							bd_file_2 = #{bd_file_2},
 							bd_file_3 = #{bd_file_3},
@@ -73,7 +73,7 @@
 		SELECT	bd_idx,
 				bd_title,
 				bd_contents,
-				bd_writer,
+				member_id,
 				bd_img1,
 				bd_date,
 				bd_good_cnt,
@@ -85,7 +85,7 @@
         				bd_idx,
         				bd_title,
         				bd_contents,
-        				bd_writer,
+        				member_id,
         				bd_img1,
         				bd_date,
         				bd_good_cnt,
