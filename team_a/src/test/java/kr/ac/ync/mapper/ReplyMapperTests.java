@@ -1,7 +1,8 @@
 package kr.ac.ync.mapper;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import java.util.List;
-import java.util.stream.IntStream;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,8 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import kr.ac.ync.domain.Criteria;
-import kr.ac.ync.domain.ReplyVO;
-import kr.ac.ync.mapper.ReplyMapper;
+import kr.ac.ync.domain.ReviewVO;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringRunner.class)
@@ -23,7 +23,7 @@ public class ReplyMapperTests {
 	private Long[] bnoArr = { 4L, 5L, 6L, 7L, 8L };
 
 	@Autowired
-	private ReplyMapper mapper;
+	private ReviewMapper mapper;
 
 //	@Test
 //	public void testCreate() {
@@ -81,16 +81,16 @@ public class ReplyMapperTests {
 //		log.info("UPDATE COUNT: " + count);
 //	}
 
-	@Test
-	public void testList() {
-
-		Criteria cri = new Criteria();
-
-		List<ReplyVO> replies = mapper.getListWithPaging(cri, bnoArr[0]);
-
-		replies.forEach(reply -> log.info(reply));
-
-	}
+//	@Test
+//	public void testList() {
+//
+//		Criteria cri = new Criteria();
+//
+//		List<ReviewVO> replies = mapper.getListWithPaging(cri, bnoArr[0]);
+//
+//		replies.forEach(reply -> log.info(reply));
+//
+//	}
 	
 //	@Test
 //	public void testList2() {
