@@ -63,4 +63,52 @@
 		]]>
 	</select>
 	
+	<insert id="insertSelectKey">
+
+		<selectKey keyProperty="prd_idx" order="BEFORE"
+			resultType="int">
+			select seq_product.nextval from dual
+		</selectKey>
+
+		INSERT INTO product (	prd_idx,
+								prd_name,
+								prd_inventory,
+								prd_cost_price,
+								prd_company,
+								prd_kind,
+								prd_amount, 
+								prd_img1, 
+								prd_img2, 
+								prd_img3, 
+								prd_img4, 
+								prd_img5, 
+								prd_img6, 
+								prd_img7,
+								prd_img8, 
+								prd_img9, 
+								prd_img10 
+								)
+					VALUES (	seq_product.nextval,
+								#{prd_name}, 
+								#{prd_inventory}, 
+								#{prd_cost_price},
+								#{prd_company},
+								#{prd_kind},
+								#{prd_amount}, 
+								#{prd_img1}, 
+								#{prd_img2}, 
+								#{prd_img3}, 
+								#{prd_img4}, 
+								#{prd_img5}, 
+								#{prd_img6}, 
+								#{prd_img7}, 
+								#{prd_img8}, 
+								#{prd_img9}, 
+								#{prd_img10}
+								 )
+	</insert>
+	
+	<select id="imgTest" resultType="kr.ac.ync.domain.ProductVO">
+		SELECT * FROM product WHERE prd_idx = #{prd_idx}
+	</select>
 </mapper>
