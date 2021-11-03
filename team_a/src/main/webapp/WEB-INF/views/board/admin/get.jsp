@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-<%@include file="../includes/header.jsp"%>
+<%@include file="../../includes/admin/header.jsp"%>
 
 
 <div class="row">
@@ -23,34 +23,34 @@
       <div class="panel-body">
 
           <div class="form-group">
-          <label>Bno</label> <input class="form-control" name='bno'
-            value='<c:out value="${board.bno }"/>' readonly="readonly">
+          <label>글번호</label> <input class="form-control" name='bno'
+            value='<c:out value="${board.bd_idx }"/>' readonly="readonly">
         </div>
 
         <div class="form-group">
-          <label>Title</label> <input class="form-control" name='title'
-            value='<c:out value="${board.title }"/>' readonly="readonly">
+          <label>제목</label> <input class="form-control" name='title'
+            value='<c:out value="${board.bd_title }"/>' readonly="readonly">
         </div>
 
         <div class="form-group">
           <label>Text area</label>
           <textarea class="form-control" rows="3" name='content'
-            readonly="readonly"><c:out value="${board.content}" /></textarea>
+            readonly="readonly"><c:out value="${board.bd_contents}" /></textarea>
         </div>
 
         <div class="form-group">
-          <label>Writer</label> <input class="form-control" name='writer'
-            value='<c:out value="${board.writer }"/>' readonly="readonly">
+          <label>작성자</label> <input class="form-control" name='writer'
+            value='<c:out value="${board.member_id }"/>' readonly="readonly">
         </div>
         
         <!-- 업로드 이미지나 파일을 출력 -->
-        <c:forEach var="i" begin="1" end="3">
-			<c:set var="t" value="file_${i}" />
+        <c:forEach var="i" begin="1" end="5">
+			<c:set var="t" value="bd_img${i}" />
 				<c:if test="${not empty board[t]}">
 					<div class="form-group">
 			          <label>이미지${i}</label>
-						<a href="/resources/upload/${board[t]}" target="_blank">
-						<img src="/resources/upload/${board[t]}" id="thumb_${i}" width="200" height="200"></a>
+						<a href="/resources/upload/board/${board[t]}" target="_blank">
+						<img src="/resources/upload/board/${board[t]}" id="thumb_${i}" width="200" height="200"></a>
 			        </div>
 			        <script>
 			        //document.getElementById('thumb_${i}').src="/resources/upload/" + getThumbFileName('${board[t]}');
@@ -60,7 +60,7 @@
 
 	<sec:authentication property="principal" var="pinfo"/>
 	<sec:authorize access="isAuthenticated()">
-		<c:if test="${pinfo.username eq board.writer}">
+		<c:if test="${pinfo.username eq board.member_id}">
 			<button data-oper='modify' class="btn btn-default">Modify</button>
 		</c:if>
 	</sec:authorize>
@@ -68,7 +68,7 @@
 <button data-oper='list' class="btn btn-info">List</button>
 
 <form id='operForm' action="/boad/modify" method="get">
-  <input type='hidden' id='bno' name='bno' value='<c:out value="${board.bno}"/>'>
+  <input type='hidden' id='bno' name='bno' value='<c:out value="${board.bd_idx}"/>'>
   <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
   <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
   <input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
@@ -166,7 +166,7 @@
 <script type="text/javascript">
 $(document).ready(function () {
 	  
-	let bnoValue = '<c:out value="${board.bno}"/>';
+	let bnoValue = '<c:out value="${board.bd_idx}"/>';
 	let replyUL = $(".chat");
 	  
 	showList(1);
@@ -398,4 +398,4 @@ $(document).ready(function() {
 </script>
 
 
-<%@include file="../includes/footer.jsp"%>
+<%@include file="../../includes/admin/footer.jsp"%>
