@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
-<%@include file="../includes/header.jsp"%>
+<%@include file="../../includes/admin/header.jsp"%>
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">게시글</h1>
@@ -36,7 +36,7 @@
 					<c:forEach items="${list}" var="board">
 						<tr>
 							<td><c:out value="${board.bd_idx}" /></td>
-							<%-- <td><a href='/board/get?bno=<c:out value="${board.bno}"/>'><c:out value="${board.title}"/></a></td> --%>
+							<%-- <td><a href='/board/get?bd_idx=<c:out value="${board.}"/>'><c:out value="${board.title}"/></a></td> --%>
 							<td><a class='move' href='<c:out value="${board.bd_idx}"/>'><c:out value="${board.bd_title}" />
 							<b>[<c:out value="${board.bd_comment_cnt}" />]</b></a> 
 							</td>
@@ -212,4 +212,4 @@
 	});
 </script>
 
-<%@include file="../includes/footer.jsp"%>
+<%@include file="../../includes/admin/footer.jsp"%>
