@@ -13,7 +13,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @Service
 @AllArgsConstructor
-public class ProductServicempl implements ProductService {
+public class ProductServiceImpl implements ProductService {
 	
 	private ProductMapper mapper;
 
@@ -29,6 +29,19 @@ public class ProductServicempl implements ProductService {
 	public int getTotal(Criteria cri) {
 		log.info("get total count");
 		return mapper.getTotalCount(cri);
+	}
+
+	public void register(ProductVO prd) {
+
+		log.info("register......" + prd);
+
+		mapper.insertSelectKey(prd);
+		
+	}
+	
+	public ProductVO imgTest(int prd_idx) {
+		log.info("img " + prd_idx);
+		return mapper.imgTest(prd_idx);
 	}
 
 }
