@@ -22,7 +22,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/board/*")
+@RequestMapping("/admin/board/*")
 public class BoardController {
 
 	@Value("${globalConfig.uploadPath}")
@@ -88,16 +88,16 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 
-	
+	//보기
 	@GetMapping({ "/get", "/modify" })
-	public void get(@RequestParam("id") int bd_idx, @ModelAttribute("cri") Criteria cri, Model model) {
+	public void get(@RequestParam("bno") int bd_idx, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("/get or modify");
 		model.addAttribute("board", service.get(bd_idx));
 	}
 	//글 수정
 	@PostMapping("/modify")
-	@PreAuthorize("principal.username == #board.writer")
+//	@PreAuthorize("principal.username == #board.writer")
 	public String modify(MultipartFile[] uploadFile, BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		
 		int index = 0;
