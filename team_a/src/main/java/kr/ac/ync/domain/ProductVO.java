@@ -17,6 +17,7 @@ public class ProductVO {
 	private String prd_company;			//제작사(회사명)
 	private String prd_kind;			//분류(종류)
 	private int prd_amount;				//판매가격
+	private int prd_review_cnt;
 	private String prd_img1;			//이미지1(대표이미지)
 	private String prd_img2;			//이미지2~10(상품이미지, 상품 소개이미지)
 	private String prd_img3;
