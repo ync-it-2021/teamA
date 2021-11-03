@@ -6,7 +6,7 @@
 <meta charset="EUC-KR">
 <title>login</title>
 </head>
-<jsp:include page="../includes/front/header.jsp"/>
+<jsp:include page="includes/header.jsp"/>
 <body>
 
 	<script language="javascript">

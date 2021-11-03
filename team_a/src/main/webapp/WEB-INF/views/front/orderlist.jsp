@@ -22,7 +22,7 @@
 
 	<meta id="viewport" name="viewport" content="width=device-width" >
 
-<jsp:include page="../includes/front/header.jsp"/>
+<jsp:include page="includes/header.jsp"/>
 
 
 <script language="javascript">

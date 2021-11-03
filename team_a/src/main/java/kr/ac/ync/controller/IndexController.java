@@ -29,6 +29,12 @@ public class IndexController {
 		
 	}
 	
+	@GetMapping("/includes/header/")
+	public void linkTest(Model model) {
+		
+		model.addAttribute("test", service.imgTest(1));
+	}
+	
 
 
 

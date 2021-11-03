@@ -20,7 +20,7 @@
 	
 
 
-<jsp:include page="../includes/front/header.jsp"/>
+<jsp:include page="includes/header.jsp"/>
 
 
 

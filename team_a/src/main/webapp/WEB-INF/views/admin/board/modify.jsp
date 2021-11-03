@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-<%@include file="../../includes/admin/header.jsp"%>
+<%@include file="../includes/header.jsp"%>
 
 <script>
 //썸네일 파일명을 가져오는 함수
@@ -158,4 +158,4 @@ $(document).ready(function() {
 
 
 
-<%@include file="../../includes/admin/footer.jsp"%>
+<%@include file="../includes/footer.jsp"%>

@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
-<%@include file="../../includes/admin/header.jsp"%>
+<%@include file="../includes/header.jsp"%>
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">게시글</h1>
@@ -212,4 +212,4 @@
 	});
 </script>
 
-<%@include file="../../includes/admin/footer.jsp"%>
+<%@include file="../includes/footer.jsp"%>
