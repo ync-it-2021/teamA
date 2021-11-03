@@ -53,7 +53,7 @@
 							<td><fmt:formatNumber type = "currency" value="${prd.prd_amount}" /></td>
 							<td><c:out value="${prd.prd_inventory}" /></td>
 							<td>0</td>
-							<td>0</td>
+							<td><c:out value="${prd.prd_review_cnt}"/></td>
 						</tr>
 					</c:forEach>
 					
