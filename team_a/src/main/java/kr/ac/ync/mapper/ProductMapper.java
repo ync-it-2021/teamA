@@ -8,6 +8,8 @@ import kr.ac.ync.domain.Criteria;
 import kr.ac.ync.domain.ProductVO;
 
 public interface ProductMapper {
+	
+	public ProductVO imgTest(int prd_idx);
 
 	public List<ProductVO> getListWithPaging(Criteria cri);
 	
@@ -16,5 +18,7 @@ public interface ProductMapper {
 	public int getTotalCount(Criteria cri);
 	
 	public void updateReviewCnt(@Param("prd_idx") int prd_idx, @Param("amount") int amount);
+	
+	public Integer insertSelectKey(ProductVO prd);
 
 }
