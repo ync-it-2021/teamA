@@ -1,0 +1,273 @@
+
+/* Main Visual Banner */
+#main-banner { height: 500px; position: relative; margin-bottom: 30px; }
+#main-banner .item .image { background-position: center; background-size: cover; width: 100%; height: 500px;}
+#main-banner .owl-controls .owl-dots { width: 300px; margin-left: auto; margin-right: auto; text-align: center; margin-top: 20px; position: relative; top: -70px; }
+
+/*** 메인롤링배너 개선으로 owl-dot 가려놓음_170208_최문영작업
+#main-banner .owl-controls .owl-dots .owl-dot { width: 8px; height: 8px; display: inline-block; margin: 5px; border: 2px solid #000; border-radius: 8px; }
+#main-banner .owl-controls .owl-dots .owl-dot.active { background-color: #fff; } ***/
+
+#main-banner .owl-controls .owl-nav .owl-prev {width: 36px;height: 72px;background-color: transparent;border: none;background: url("btn_prev_slide.png") no-repeat;left: 30px !important;overflow: hidden;float: left;position: relative;top: -310px;}
+#main-banner .owl-controls .owl-nav .owl-next {width: 36px;height: 72px;background-color: transparent;border: none;background: url("btn_next_slide.png") no-repeat;right: 30px !important;float: right;overflow: hidden;position: relative;top: -310px;}
+
+/** 메인 모바일 중카테 영역(PC-비노출) 170620_최문영작업 **/
+#main-cate-wrapper {display:none;}
+
+/* Twobanner */
+.twobanner-wrapper { clear:both; }
+.twobanner-wrapper { margin-bottom: 270px; }
+.twobanner-wrapper li {float:left; margin-bottom:10px;margin-right:10px;}
+.twobanner-wrapper li.twobanner1 {width:550px;height:180px;margin-right:10px; background:url("../html/ws_twobanner1_550x180_160726.html")no-repeat;background-size:100% 100%;}
+.twobanner-wrapper li.twobanner1 p{	width:100%;display:block;}
+.twobanner-wrapper li.twobanner1 img {height:165px; padding:7px;}
+
+
+.twobanner-wrapper li img {height:180px; }
+
+.best-seller-wrapper h2,.best-seller-wrapper2 h2 { font-family: "Nanum Gothic","나눔고딕"; font-weight: 700; font-size: 30px; text-align: center; margin-bottom: -35px; position: relative; margin-top: 50px; }
+.best-seller-wrapper #best-seller .item{ width: 48%; float: left; margin-right: 0px; }
+.best-seller-wrapper #best-seller .item:last-child { margin-right: 0 }
+#best-seller,#best-seller2 { position: relative; padding-top: 70px; margin-bottom: 30px; }
+#best-seller .owl-controls .owl-dots, #best-seller2 .owl-controls .owl-dots { margin-right: 10; text-align: right; position:absolute; top: 0px; right: 0; }
+#best-seller .owl-controls .owl-dots .owl-dot, #best-seller2 .owl-controls .owl-dots .owl-dot { width: 8px; height: 8px; display: inline-block; margin: 5px; border: 2px solid #000; border-radius: 8px; }
+#best-seller .owl-controls .owl-dots .owl-dot.active,#best-seller2 .owl-controls .owl-dots .owl-dot.active { background-color: #000; }
+
+/*160412 코딩수정 끝*/
+
+
+/* Brand Story */
+.brand-story-wrapper { margin-bottom: 50px; }
+.brand-story-wrapper .title-wrapper { border-bottom: 1px solid #000; position: relative; height: 20px;  text-align: center; }
+.brand-story-wrapper h2 { font-family: "Nanum Gothic","나눔고딕"; font-weight: 500; font-size: 30px; margin-bottom: 30px; display: inline-block; background-color: #fff; margin-left: auto; margin-right: auto; padding: 0px 1em; }
+.brand-story-wrapper #brand-story { margin-top: 40px; }
+.brand-story-wrapper #brand-story .item { width: 48%; float: left; margin-right: 20px; }
+.brand-story-wrapper #brand-story .item:last-child { margin-right: 0 }
+.brand-story-wrapper #brand-story .item p { text-align: center; }
+.brand-story-wrapper #brand-story .item p.item-title { font-family: "Nanum Gothic","나눔고딕"; font-weight: 500; font-size: 16px; color: #010101; padding-top: 10px; }
+.brand-story-wrapper #brand-story .item p.item-description { color: #888; }
+
+/* Prev, Next 버튼의 간격은 아래 width 값으로 조정 */ 
+#brand-story .owl-controls { width: 100px; margin-top: 20px; margin-left: auto; margin-right: auto; text-align: center; position: relative; }
+#brand-story .owl-controls .owl-dots .owl-dot { width: 8px; height: 8px; display: inline-block; margin: 5px; border: 2px solid #000; border-radius: 8px; }
+#brand-story .owl-controls .owl-dots .owl-dot.active { background-color: #000; }
+#brand-story .owl-controls .owl-nav .owl-prev { position: absolute; padding-top: 5px; }
+#brand-story .owl-controls .owl-nav .owl-next { position: absolute; right: 0px; padding-top: 5px; }
+
+/* Category */
+#main-category {
+	padding: 20px 0px 30px 0px;
+	background-image: url("bg_main_bottom.jpg");
+	background-position: center;
+	text-align: center; 
+}
+
+#main-category .category-name { text-align: center;}
+
+#main-category .category-name li {
+	display: inline-block;
+	padding: 20px; 
+	font-family: "Nanum Gothic","나눔고딕"; font-weight: 300; font-size: 25px; 
+	text-shadow: 2px 2px #555;
+	color: #fff; 
+	cursor: pointer; 
+	transition: all 0.3s ease-in-out;
+}
+
+#main-category .btn-more { 
+	width: 73px; height: 37px; display: inline-block; 
+	background-image: url("btn_more.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	cursor: pointer; 
+	transition: all 0.2s ease-in-out;
+	transition-delay: 0.3s;
+	opacity: 0.5;
+}
+
+#main-category #category-item { 
+	margin-top: 15px; 
+	overflow-y: hidden;
+	position: absolute;
+	top: 360px;
+}
+
+#main-category #category-item .item { width:190px; float:left; margin-right:10px;background-color: #fff; padding: 10px 40px 20px 40px; } /* 내부 이미지 사이즈에 따라 조정 필요 */
+#main-category #category-item .item .item-image { padding:0 5px 5px 5px; width: 195px; text-align: center; }
+#main-category #category-item .item p.item-title { font-family: "Nanum Gothic","나눔고딕"; font-weight: 700; font-size: 16px; color: #010101; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; } 
+#main-category #category-item .item p.item-description { color: #555; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+#main-category .category-item-wrapper {
+	margin-top: 0px; 
+	position: relative; 
+	height: 0px; overflow: hidden;
+	transition: all 0.2s ease-in-out;
+}
+
+/* Prev, Next 버튼의 간격은 아래 width 값으로 조정 */ 
+#main-category .owl-controls { width: 100px; margin-top: 10px; margin-left: auto; margin-right: auto; text-align: center; position: relative; }
+#main-category .owl-controls .owl-dots .owl-dot { width: 8px; height: 8px; display: inline-block; margin: 5px; border: 2px solid #000; border-radius: 8px; }
+#main-category .owl-controls .owl-dots .owl-dot.active { background-color: #000; }
+#main-category .owl-controls .owl-nav .owl-prev { position: absolute; padding-top: 5px; }
+#main-category .owl-controls .owl-nav .owl-next { position: absolute; right: 0px; padding-top: 5px; }
+
+#main-category.open { padding-top: 5px; }
+#main-category.open .btn-more { background-image: url("btn_less.png"); opacity: 1; }
+#main-category.open .category-name { height: 110px; }
+#main-category.open .category-name p {opacity: 1;font-size: 30px;text-shadow: 1px 1px #555;color:#fff;font-family: "Nanum Gothic","나눔고딕";line-height: 110px;font-weight: 500;}
+#main-category.open .category-item-wrapper { height: 330px; display: block; }
+#main-category.open .category-name li { opacity: 0.7; font-size: 25px; text-shadow: none; }
+#main-category .category-name li.active { opacity: 1; font-size: 48px; text-shadow: 2px 2px #555; letter-spacing:-1.0;}
+
+
+#main-category.show-items #category-item {
+	top: 0px;
+	transition: top 0.3s ease-in-out;
+}
+
+#page-main .cs-wrapper div.ico {
+	float: left;
+	width: 25%;
+	height: 190px;
+	text-align: center;
+	border-left: 1px solid #ccc;
+	box-sizing: border-box;
+	background-repeat: no-repeat;
+	background-position: center 20px;
+	padding-top: 130px;
+	font-family: "Nanum Gothic","나눔고딕"; font-weight: 500; font-size: 23px;
+}
+#page-main .cs-wrapper_topline{border-top:1px solid #cccccc;}/*160412 코딩수정*/
+#page-main .cs-wrapper div.ico-membership { background-image: url("img_cs_icons_01.png"); }
+#page-main .cs-wrapper div.ico-qna { background-image: url("img_cs_icons_02.png"); }
+#page-main .cs-wrapper div.ico-review { background-image: url("img_cs_icons_03.png"); }
+#page-main .cs-wrapper div.ico-faq { background-image: url("img_cs_icons_05.png"); }
+#page-main .cs-wrapper div.ico-news { background-image: url("img_news.png"); }
+#page-main .cs-wrapper div.notice { padding: 10px 10px; text-align: center;
+	float: left; 
+	width: 25%;
+	height: 190px;
+	box-sizing: border-box;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+#page-main .cs-wrapper div.notice .title { font-family: "Nanum Gothic","나눔고딕"; font-weight: 500; font-size: 23px; padding: 10px; }
+#page-main .cs-wrapper div.notice .item { line-height: 1.8; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+#page-main .cs-wrapper div.notice .item a { color:#555;}
+#page-main .cs-wrapper div.notice .more { font-size: 26px; padding-top: 10px; }
+
+/* 메인 띠배너 */ 
+.wide_twobanner_01{background-image: url( "main_wide_banner_01_bg.jpg" );background-repeat: repeat;}
+.wide_twobanner_01 .contents-wrapper{width:1120px;margin:0 auto;}
+.wide_twobanner_01 .contents-wrapper a{overflow:hidden;}
+
+.wide_twobanner_02{background-image: url( "main_wide_banner_02_bg.jpg" );background-repeat: repeat;}
+.wide_twobanner_02 .contents-wrapper{width:1120px;margin:0 auto;}
+.wide_twobanner_02 .contents-wrapper a{overflow:hidden;}
+
+.wide_twobanner_03{background-image: url( "main_wide_banner_03_bg.jpg" );background-repeat: repeat;}
+.wide_twobanner_03 .contents-wrapper{width:1120px;margin:0 auto;}
+.wide_twobanner_03 .contents-wrapper a{overflow:hidden;}
+
+.wide_twobanner_04{background-image: url( "main_wide_banner_04_bg.jpg" );background-repeat: repeat;}
+.wide_twobanner_04 .contents-wrapper{width:1120px;margin:0 auto;}
+.wide_twobanner_04 .contents-wrapper a{overflow:hidden;}
+
+@media (max-width: 420px) {
+	#page-main .pc-width { width: 100%; }
+	
+	
+	
+	#main-banner { height: 280px; }
+	#main-banner .item .image { height: 280px; }
+    #main-banner .owl-controls .owl-dots { position: relative; top: -50px; }
+	#main-banner .owl-controls .owl-dots .owl-dot { width: 8px; height: 8px; display: inline-block; margin: 5px; border: 2px solid #000; border-radius: 8px; }
+    #main-banner .owl-controls .owl-dots .owl-dot.active { background-color: #fff; }
+	#main-banner .owl-controls .owl-nav .owl-prev {position: absolute;}
+    #main-banner .owl-controls .owl-nav .owl-next {position: absolute;}
+
+	.twobanner-wrapper { padding: 0px 10px; }
+	.twobanner-wrapper li.twobanner1 img {width:29%; height:auto; padding:7px;}
+	.twobanner-wrapper li.twobanner1 {margin-bottom:5px;margin-right:0px; width:96%; height:auto; background-size:100%;}
+	.twobanner-wrapper li img { width: 96%; height:auto;}
+
+
+	/** 메인 모바일 중카테 영역 - 170620_최문영작업 **/
+	#main-cate-wrapper {display:block;height: 220px;position: relative;top: -30px;background-color: #fff;}
+	#main-cate-wrapper .category-list { display: block; overflow: auto; border-top: 1px solid #ededed;}
+	#main-cate-wrapper .category-list div.ico {float: left; width: 33%; font-size: 12px; font-weight: normal; color:#555; height: 70px;	background-size: 36%;background-position: top 2em;text-align: center; border-left: 1px solid #ededed;box-sizing: border-box; background-repeat: no-repeat; background-position: 17px 14px; padding-top: 30px; text-indent: 48px;}
+	#main-cate-wrapper .category-list div.ico-bedding { background-image: url("main_icon_16.jpg"); }
+	#main-cate-wrapper .category-list div.ico-skin { background-image: url("main_icon_17.jpg"); }
+	#main-cate-wrapper .category-list div.ico-outing { background-image: url("main_icon_18.png"); }
+	#main-cate-wrapper .category-list div.ico-bath { background-image: url("main_icon_04.png"); }
+	#main-cate-wrapper .category-list div.ico-feedding { background-image: url("main_icon_05.png"); }
+	#main-cate-wrapper .category-list div.ico-detergent { background-image: url("main_icon_20.png"); }
+	#main-cate-wrapper .category-list div.ico-toy { background-image: url("main_icon_07.png"); }
+	#main-cate-wrapper .category-list div.ico-clothes { background-image: url("main_icon_08.png"); }
+	#main-cate-wrapper .category-list div.ico-gift { background-image: url("main_icon_09.png"); }
+	#main-cate-wrapper .category-list div.ico-event { background-image: url("main_icon_10.png"); }
+	#main-cate-wrapper .category-list div.ico-gold { background-image: url("main_icon_11.png"); }
+	#main-cate-wrapper .category-list div.ico-cat { background-image: url("main_icon_21.png"); }
+	#main-cate-wrapper .category-list div.ico-wc { background-image: url("main_icon_13.png"); }
+	#main-cate-wrapper .category-list div.ico-snack { background-image: url("main_icon_19.png"); }
+	#main-cate-wrapper .category-list div.ico-sample { background-image: url("main_icon_15.png"); }
+
+
+
+	.best-seller-wrapper,.best-seller-wrapper2 { margin-bottom: 50px; }
+	.best-seller-wrapper h2, .best-seller-wrapper2 h2 { font-size: 1.5em; margin-top: 0px; margin-bottom: 0.5em; }
+	.best-seller-wrapper #best-seller .item, .best-seller-wrapper2 #best-seller2 .item{ width: 47%; }/*160412 코딩수정*/
+	.best-seller-wrapper #best-seller .item .item-image, .best-seller-wrapper2 #best-seller2 .item .item-image { border: 1px solid #eee; width: 170px; }
+	.best-seller-wrapper #best-seller .item p.item-title, .best-seller-wrapper2 #best-seller2 .item p.item-title { font-size: 12px; }
+	#best-seller, #best-seller2 { padding-top: 30px; margin-bottom: 20px; }
+	#best-seller .owl-controls, #best-seller2 .owl-controls { width: 100px; margin-top: 0px; margin-bottom: 5px; margin-left: auto; margin-right: auto; text-align: center; position: relative; }	
+	#best-seller .owl-controls .owl-dots, #best-seller2 .owl-controls .owl-dots { margin-left: auto; margin-right: auto; margin-top: 0; text-align: center; position: static; }
+	#page-main .owl-controls .owl-dots .owl-dot { width: 5px; height: 5px; border: 1px solid #000; border-radius: 5px; margin: 0px 3px 1px; }
+	
+	#best-seller .owl-controls .owl-nav .owl-prev, #best-seller2 .owl-controls .owl-nav .owl-prev { position: absolute; padding-top: 3px; }
+	#best-seller .owl-controls .owl-nav .owl-next, #best-seller2 .owl-controls .owl-nav .owl-next { position: absolute; right: 0px; padding-top: 3px; }
+	
+	
+	.brand-story-wrapper .title-wrapper { height: 16px; margin: 0px 0.8em; }
+	.brand-story-wrapper h2 { font-size: 1.5em; margin-bottom: 0.5em; }
+	.brand-story-wrapper #brand-story ul { width: 95%; margin-left: 1em; margin-right: 1em; }
+	.brand-story-wrapper #brand-story .item { width: 99%; margin-right: 0px; text-align: center; margin-bottom: 20px; }
+	.brand-story-wrapper #brand-story .item p.item-title { font-size: 12px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+	.brand-story-wrapper #brand-story .item p.item-description { font-size: 10px; line-height: 1.5;letter-spacing:-0.5px;  }
+	.brand-story-wrapper #brand-story .owl-controls { margin-top: 0px; }
+	
+	#brand-story .owl-controls .owl-nav .owl-prev { padding-top: 0px; }
+	#brand-story .owl-controls .owl-nav .owl-next { padding-top: 0px; }
+	
+	#main-category { padding: 20px 0px; background-image: url("bg_main_bottom_m.jpg");}/*160412 코딩수정*/
+	#main-category.show-items #category-item {transition: none;}/*160412 코딩수정*/
+	#main-category.open .category-name p {font-size:1.5em;line-height:50px;text-shadow: none;}
+	#main-category .category-item-wrapper { margin: 0 0 0 0px; }
+	#main-category.open .category-item-wrapper { height: 450px; }/*160412 코딩수정*/
+	#main-category .category-name { margin-bottom: 0 }
+	#main-category .category-name li { font-size: 20px; display: block; padding: 0px; }
+	#main-category.open .category-name li { opacity: 0.7; font-size: 14px; text-shadow: none; }/*160412 코딩수정*/
+	#main-category .category-name li.active { opacity: 1; font-size: 23px; }/*160412 코딩수정*/
+	#main-category.open { padding: 20px 10px 5px 0px; margin-bottom:30px;}/*160412 코딩수정*/
+	#main-category.open .category-name { height: auto; }
+	#main-category.open #category-item .item { margin-left: 10px; padding:5px 5px 15px 5px; }/*160412 코딩수정*/
+	#main-category .btn-more { display: none; }
+	#main-category .item-title { font-size: 14px; }
+	#main-category #category-item { margin-top: 15px; overflow-y: hidden;	position: absolute;	top: 0px;}/*160412 코딩수정*/
+	#main-category #category-item .item{ width:92%;margin-bottom:5px;}/*160412 코딩수정*/
+	#main-category #category-item .item .item-image { width: 75%; text-align: center; margin-left: auto; margin-right: auto; }
+	#main-category #category-item .item p.item-title { font-size: 13px; }
+	#main-category #category-item .item p.item-description { font-size: 12px }
+	
+	#page-main .cs-wrapper div.ico { width: 50%; font-size: 18px; height: 130px; background-size: 35%; background-position: top 2em; font-size: 17px; padding-top:80px;}
+	#page-main .cs-wrapper .ico-qna { display: none; }
+	#page-main .cs-wrapper .notice { display: none; }
+	
+	#page-main .cs-wrapper { display: none; }
+
+
+	/* 메인 띠배너 */ 
+	.wide_twobanner_01{background:none;margin:40px 0;}
+	.wide_twobanner_02{background:none;margin:0 0 50px 0;}
+	.wide_twobanner{background:none;margin:40px 0;}
+	.mobile_twobanner{width:100%;}
+}

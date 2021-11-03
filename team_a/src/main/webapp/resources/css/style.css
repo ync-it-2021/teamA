@@ -1,0 +1,115 @@
+/*---------------------
+/* 작업완료 21/10/29일 헤더  우축상단  by 김건범  */
+/* 기존 css 넣어두됩니다 . 오류발생시  말해주세요 */
+-----------------------*/ .inner-header .nav-right li.cart-icon {
+  margin-top: 20px;
+  margin-left: 60px;
+  right: 60px;
+  position: relative;
+}
+
+.inner-header .nav-right li.cart-icon:hover .cart-hover {
+  opacity: 1;
+  visibility: visible;
+  top: 60px;
+}
+
+.inner-header .nav-right li.cart-icon a {
+  color: #252525;
+  position: relative;
+  display: inline-block;
+}
+
+.inner-header .nav-right li.cart-icon a span {
+  /*position: absolute; */
+  right: -8px;
+  top: -1px;
+  height: 15px;
+  width: 15px;
+  background: #e7ab3c;
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 15px;
+}
+.inner-header .nav-right li.cart-icon .cart-hover {
+  position: absolute;
+
+  top: 100px;
+  width: 150px;
+  margin-top: 80px;
+  background: #ffffff;
+  z-index: 99;
+  text-align: left;
+  padding: 30px;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-box-shadow: 0 13px 32px rgba(51, 51, 51, 0.1);
+  box-shadow: 0 13px 32px rgba(51, 51, 51, 0.1);
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  border: 0.001em solid black;
+}
+
+.inner-header .nav-right li.cart-icon .cart-hover .select-items table {
+  width: 10%;
+}
+
+.inner-header .nav-right li.cart-icon .cart-hover .select-items table tr td {
+  padding-bottom: 20px;
+}
+
+.inner-header
+  .nav-right
+  li.cart-icon
+  .cart-hover
+  .select-items
+  table
+  tr
+  td.si-pic
+  img {
+  border: 1px solid #ebebeb;
+}
+
+/* 장바구니 가격 부분 구현 입니다  */
+
+.inner-header .nav-right li.cart-icon .cart-hover .select-total {
+  overflow: hidden;
+  border-top: 1px solid #e5e5e5;
+  padding-top: 26px;
+  margin-bottom: 30px;
+}
+
+.inner-header .nav-right li.cart-icon .cart-hover .select-total span {
+  font-size: 14px;
+  color: #e7ab3c;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  float: left;
+}
+
+.inner-header .nav-right li.cart-icon .cart-hover .select-total h5 {
+  color: #e7ab3c;
+  float: right;
+}
+
+.inner-header .nav-right li.cart-icon .cart-hover .select-button .view-card {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-align: center;
+  background: whitesmoke;
+  color: black;
+  padding: 6px 50px 6px;
+  margin-bottom: 10px;
+  border-radius: 10%;
+  border: 2px solid black;
+}
+
+.inner-header .nav-right li.cart-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #252525;
+}
