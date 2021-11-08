@@ -10,8 +10,12 @@
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	<bean id="customUserDetailsService"	class="kr.ac.ync.security.CustomUserDetailsService"></bean>
 	
+	
 	<security:http>
-		<security:form-login login-page="/customLogin" />
+	<!--	<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>       uri가 /admin/*인 경우 어드민 권한을 가진 회원만 사용가능 -->
+	
+	
+		<security:form-login login-page="/login/" />
 		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800" />
 		<security:logout logout-url="/customLogout"	invalidate-session="true" delete-cookies="remember-me,JSESSION_ID" />
 		<security:access-denied-handler ref="customAccessDenied" />
