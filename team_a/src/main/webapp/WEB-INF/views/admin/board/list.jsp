@@ -171,7 +171,7 @@
 		}
 		
 		$("#regBtn").on("click", function() {
-			self.location = "/board/register";
+			self.location = "admin/board/register";
 		});
 		
 		var actionForm = $("#actionForm");
@@ -187,8 +187,8 @@
 		// 상세보기 클릭 이벤트
 		$(".move").on("click",function(e) {
 			e.preventDefault();
-			actionForm.append("<input type='hidden' name='bno' value='" + $(this).attr("href")	+ "'>");
-			actionForm.attr("action", "/board/get");
+			actionForm.append("<input type='hidden' name='bd' value='" + $(this).attr("href")	+ "'>");
+			actionForm.attr("action", "/admin/board/get");
 			actionForm.submit();
 		});
 		

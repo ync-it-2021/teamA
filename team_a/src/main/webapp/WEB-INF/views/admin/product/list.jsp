@@ -183,7 +183,7 @@
 		}
 		
 		$("#regBtn").on("click", function() {
-			self.location = "/product/register";
+			self.location = "../register";
 		});
 		
 		var actionForm = $("#actionForm");
@@ -199,8 +199,8 @@
 		// 상세보기 클릭 이벤트
 		$(".move").on("click",function(e) {
 			e.preventDefault();
-			actionForm.append("<input type='hidden' name='bno' value='" + $(this).attr("href")	+ "'>");
-			actionForm.attr("action", "/product/get");
+			actionForm.append("<input type='hidden' name='prd' value='" + $(this).attr("href")	+ "'>");
+			actionForm.attr("action", "/admin/product/get");
 			actionForm.submit();
 		});
 		
