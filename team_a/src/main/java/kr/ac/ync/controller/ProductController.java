@@ -6,8 +6,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -20,7 +22,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/product/*")
+@RequestMapping({"/product/*","/admin/product/*"})
 public class ProductController {
 
 	@Value("${globalConfig.uploadPath}")
@@ -41,10 +43,20 @@ public class ProductController {
 		model.addAttribute("list", service.getListWithPaging(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
-		// 글 등록
-		// file upload가 추가된 게시판 등록
-		@PostMapping("/register")
-		@PreAuthorize("isAuthenticated()")
+	@GetMapping({ "/get", "/modify" })
+	public void get(@RequestParam("prd") int prd_idx, @ModelAttribute("cri") Criteria cri, Model model) {
+
+		log.info("/get or modify");
+		model.addAttribute("prd", service.get(prd_idx));
+	}
+	
+	@GetMapping("/register")
+	public void register() {
+
+	}
+		
+		@PostMapping("/register_insert")
+//		@PreAuthorize("isAuthenticated()")
 		public String register(MultipartFile[] uploadFile, ProductVO prd, RedirectAttributes rttr) {
 			
 			int index = 0;
@@ -85,11 +97,10 @@ public class ProductController {
 				}
 				index++;
 			}
-			
 			log.info("register: " + prd);
 			service.register(prd);
 			rttr.addFlashAttribute("result", prd.getPrd_idx());
 
-			return "redirect:/board/list";
+			return "redirect:/admin/product/list/";
 		}
 }
