@@ -21,6 +21,13 @@
 		</trim>
 	</sql>
 	
+	<select id="read" resultType="kr.ac.ync.domain.ProductVO">
+		SELECT	*
+		FROM 	product
+		WHERE 	prd_idx = #{prd_idx}
+	</select>
+	
+	
 	<select id="getTotalCount" resultType="int">
 		SELECT count(*) FROM product WHERE 
 		<include refid="criteria"></include> 
@@ -72,7 +79,6 @@
 
 		INSERT INTO product (	prd_idx,
 								prd_name,
-								prd_inventory,
 								prd_cost_price,
 								prd_company,
 								prd_kind,
@@ -90,21 +96,20 @@
 								)
 					VALUES (	seq_product.nextval,
 								#{prd_name}, 
-								#{prd_inventory}, 
 								#{prd_cost_price},
 								#{prd_company},
 								#{prd_kind},
 								#{prd_amount}, 
-								#{prd_img1}, 
-								#{prd_img2}, 
-								#{prd_img3}, 
-								#{prd_img4}, 
-								#{prd_img5}, 
-								#{prd_img6}, 
-								#{prd_img7}, 
-								#{prd_img8}, 
-								#{prd_img9}, 
-								#{prd_img10}
+								#{prd_img1,jdbcType=VARCHAR}, 
+								#{prd_img2,jdbcType=VARCHAR}, 
+								#{prd_img3,jdbcType=VARCHAR}, 
+								#{prd_img4,jdbcType=VARCHAR}, 
+								#{prd_img5,jdbcType=VARCHAR}, 
+								#{prd_img6,jdbcType=VARCHAR}, 
+								#{prd_img7,jdbcType=VARCHAR}, 
+								#{prd_img8,jdbcType=VARCHAR}, 
+								#{prd_img9,jdbcType=VARCHAR}, 
+								#{prd_img10,jdbcType=VARCHAR}
 								 )
 	</insert>
 	
