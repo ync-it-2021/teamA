@@ -44,7 +44,7 @@
 			<div class="tab-content">
 				<!-- 회원 로그인 -->
 				<div class="content1 active">
-					<form name="mainFrm" method="post" action="https://www.montraum.com/common/all_site/member/login_process.asp">
+					<form name="mainFrm" method="post" action="/login">
 					<input type="hidden" name="refer_page" value="">					
 					<div class="clearfix">
 						<ul class="input-items">
@@ -61,6 +61,8 @@
 							<input type="button" class="btn-login" value="LOGIN" onclick="javascript:SendLoginMain();" style="cursor:pointer;" />
 						</div>
 					</div>
+					<!--홈페이지 토큰  -->
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					</form>						
 					<div class="page-link">
 						<ul>
