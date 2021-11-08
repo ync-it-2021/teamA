@@ -44,4 +44,10 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.imgTest(prd_idx);
 	}
 
+	@Override
+	public ProductVO get(int prd_idx) {
+		// TODO Auto-generated method stub
+		return mapper.read(prd_idx);
+	}
+
 }
