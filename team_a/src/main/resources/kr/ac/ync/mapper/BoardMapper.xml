@@ -8,12 +8,15 @@
 			<foreach item='type' collection="typeArr">
 				<trim prefix="OR">
 					<choose>
+						<!--제목 검색-->
 						<when test="type == 'T'.toString()">
 							bd_title LIKE '%'||#{keyword}||'%'
 						</when>
+						<!--내용 검색-->
 						<when test="type == 'C'.toString()">
 							bd_contents LIKE '%'||#{keyword}||'%'
 						</when>
+						<!--작성자 검색-->
 						<when test="type == 'M'.toString()">
 							member_id LIKE '%'||#{keyword}||'%'
 						</when>
@@ -26,13 +29,35 @@
 
 	<select id="getList" resultType="kr.ac.ync.domain.BoardVO">
 	<![CDATA[
-		SELECT * FROM board WHERE bd_idx > 0 
+		SELECT 	* 
+		FROM 	board 
+		WHERE 	bd_idx > 0 
 		]]>
 	</select>
  
 	<insert id="insert">
-		INSERT INTO board (bd_idx, bd_code, bd_title, bd_content, member_id, bd_img1, bd_img2, bd_img3, bd_img4, bd_img5, )
-		VALUES (seq_board.nextval, #{bd_code}, #{bd_title}, #{bd_content}, #{member_id}, #{bd_img1}, ,#{bd_img2}, #{bd_img3}, #{file_4}, #{file_5})
+		INSERT INTO board	(bd_idx, 
+							bd_code, 
+							bd_title, 
+							bd_content, 
+							member_id, 
+							bd_img1, 
+							bd_img2, 
+							bd_img3, 
+							bd_img4,
+							bd_img5 
+							)
+					VALUES (seq_board.nextval, 
+							#{bd_code},
+							#{bd_title}, 
+							#{bd_content}, 
+							#{member_id}, 
+							#{bd_img1},
+							#{bd_img2}, 
+							#{bd_img3}, 
+							#{bd_img4}, 
+							#{bd_img5}
+							)
 	</insert>
 
 	<insert id="insertSelectKey">
@@ -42,31 +67,54 @@
 			select seq_board.nextval from dual
 		</selectKey>
 
-		INSERT INTO board (bd_idx, bd_code, bd_title, bd_content, member_id, bd_img1, bd_img2, bd_img3, bd_img4, bd_img5, )
-		VALUES (seq_board.nextval, #{bd_code}, #{bd_title}, #{bd_content}, #{member_id}, #{bd_img1}, ,#{bd_img2}, #{bd_img3}, #{bd_img4}, #{bd_img5})
+		INSERT INTO board (	bd_idx,
+							bd_code,
+							bd_title, 
+							bd_content, 
+							member_id, 
+							bd_img1, 
+							bd_img2, 
+							bd_img3,
+							bd_img4, 
+							bd_img5, )
+					VALUES (seq_board.nextval, 
+							#{bd_code}, 
+							#{bd_title}, 
+							#{bd_content}, 
+							#{member_id}, 
+							#{bd_img1}, 
+							#{bd_img2}, 
+							#{bd_img3}, 
+							#{bd_img4}, 
+							#{bd_img5})
 	</insert>
 
 	<select id="read" resultType="kr.ac.ync.domain.BoardVO">
-		SELECT * from board WHERE bd_idx =	#{bd_idx}
+		SELECT 	* 
+		FROM	board 
+		WHERE 	bd_idx = #{bd_idx}
 	</select>
 
 
 	<delete id="delete">
-		DELETE board WHERE bd_idx = #{bd_idx}
+		UPDATE 	board 
+		SET 	bd_del = 'Y' 
+		WHERE 	bd_idx = #{bd_idx}
 	</delete>
  
 	<update id="update">
-		UPDATE board SET 	bd_title= #{bd_title},
-							bd_contents=#{bd_contents},
-							member_id = #{member_id},
-							bd_img_1 = #{bd_img_1},
-							bd_img_2 = #{bd_img_2},
-							bd_img_3 = #{bd_img_3},
-							bd_img_4 = #{bd_img_4},
-							bd_img_5 = #{bd_img_5},
-							bd_date = sysdate
-		WHERE bd_idx =	#{bd_idx}
-	</update>
+		UPDATE 	board 
+		SET 	bd_title= #{bd_title},
+				bd_contents=#{bd_contents},
+				member_id = #{member_id},
+				bd_img_1 = #{bd_img_1},
+				bd_img_2 = #{bd_img_2},
+				bd_img_3 = #{bd_img_3},
+				bd_img_4 = #{bd_img_4},
+				bd_img_5 = #{bd_img_5},
+				bd_date = sysdate
+		WHERE 	bd_idx =	#{bd_idx}
+	</update>	
 	
 	<select id="getListWithPaging" resultType="kr.ac.ync.domain.BoardVO">
 		<![CDATA[
@@ -106,13 +154,17 @@
 
 
 	<select id="getTotalCount" resultType="int">
-		SELECT count(*) FROM board WHERE 
+		SELECT 	count(*) 
+		FROM 	board 
+		WHERE 
 		<include refid="criteria"></include> 
 		bd_idx > 0
 	</select>
 	
 	<update id="updateReplyCnt">
-		UPDATE board SET replycnt = bd_comment_cnt + #{amount} WHERE bd_idx = #{bd_idx}
+		UPDATE 	board 
+		SET 	replycnt = bd_comment_cnt + #{amount} 
+		WHERE 	bd_idx = #{bd_idx}
 	</update> 
 	
 </mapper>
