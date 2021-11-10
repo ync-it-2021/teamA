@@ -97,7 +97,7 @@ public class BoardController {
 	}
 	//글 수정
 	@PostMapping("/modify")
-	@PreAuthorize("principal.username == #board.writer")
+//	@PreAuthorize("principal.username == #board.writer")
 	public String modify(MultipartFile[] uploadFile, BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		
 		int index = 0;
@@ -135,8 +135,8 @@ public class BoardController {
 	}
 
 	@PostMapping("/remove")
-	@PreAuthorize("principal.username == #bd_writer")
-	public String remove(@RequestParam("id") int bd_idx, Criteria cri, RedirectAttributes rttr, String bd_writer) {
+//	@PreAuthorize("principal.username == #bd_writer")
+	public String remove(@RequestParam("id") int bd_idx, Criteria cri, RedirectAttributes rttr, String member_id) {
 
 		log.info("remove..." + bd_idx);
 		if (service.remove(bd_idx)) {
