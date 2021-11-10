@@ -15,6 +15,8 @@ public interface ProductMapper {
 	
 	public int getTotal(Criteria cri);
 	
+	public ProductVO read(int prd_idx);
+	
 	public int getTotalCount(Criteria cri);
 	
 	public void updateReviewCnt(@Param("prd_idx") int prd_idx, @Param("amount") int amount);
