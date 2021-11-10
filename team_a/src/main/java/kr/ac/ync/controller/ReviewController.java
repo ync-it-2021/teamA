@@ -21,9 +21,10 @@ import kr.ac.ync.domain.ReviewVO;
 import kr.ac.ync.service.ReviewService;
 import lombok.extern.log4j.Log4j;
 
-@RequestMapping("/replies/")
+
 @RestController
 @Log4j
+@RequestMapping("/replies/")
 public class ReviewController {
 	
 	@Autowired
