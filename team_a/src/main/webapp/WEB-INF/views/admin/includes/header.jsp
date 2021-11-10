@@ -270,7 +270,7 @@
 		
 		<sec:authorize access="isAnonymous()">
 		
-		<li><a href="/customLogin"><i class="fa fa-sign-out fa-fw"></i>
+		<li><a href="/admin/customLogin"><i class="fa fa-sign-out fa-fw"></i>
 		    Login</a></li>
 		</sec:authorize>
 </ul>
