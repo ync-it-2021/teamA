@@ -1,7 +1,5 @@
 package kr.ac.ync.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import kr.ac.ync.domain.AuthVO;
 import kr.ac.ync.domain.Criteria;
 import kr.ac.ync.domain.MemberVO;
 import kr.ac.ync.domain.PageDTO;
@@ -62,23 +59,36 @@ public class MemberController {
 		return "redirect:/admin/member/list";
 	}
 	
-	// 글 등록
-	// file upload가 추가된 게시판 등록
+	// 글 등록 페이징
 	@GetMapping("/register")
 	public void register() {
 	}
 	
 	
-	@GetMapping({ "/get", "/modify" })
+	@GetMapping({ "/get" })
 	public void get(@RequestParam("mb_id") String member_id, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("/get or modify");
 		model.addAttribute("member", this.mapper.read(member_id));
 	}
+	
+	
 
+	@GetMapping({ "/modify" })
+	public String modify(MemberVO member, @ModelAttribute("cri") Criteria cri, Model model) {
+
+		log.info("/modify");
+		this.mapper.update(member);
+		return "redirect:/admin/member/get?mb_id="+member.getMember_id();
+	}
 	
-	
-	
+	@GetMapping({ "/delete" })
+	public String delete(@RequestParam("mb_id") String member_id, @ModelAttribute("cri") Criteria cri, Model model) {
+
+		log.info("/delete");
+		this.mapper.delete(member_id);
+		return "redirect:/admin/member/list";
+	}
 	
 
 }
