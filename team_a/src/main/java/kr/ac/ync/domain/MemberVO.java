@@ -8,13 +8,15 @@ import lombok.Data;
 @Data
 public class MemberVO {
 
-	private String userid;
-	private String userpw;
-	private String userName;
-	private boolean enabled;
-
-	private Date regDate;
-	private Date updateDate;
+	private String member_id;
+	private String member_pass;
+	private String member_name;
+	private String member_email;
+	private String member_phone;
+	private Date member_birthday;
+	private String member_address;
+	private int member_grade;
+	private int member_mileage;
 	private List<AuthVO> authList;
 
 }
