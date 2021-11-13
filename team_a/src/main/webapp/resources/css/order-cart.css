@@ -1,15 +1,15 @@
 #page-order-cart .order-step { background-color: #f8f8f8; padding: 10px 0px; border-top: 1px solid #000; border-bottom: 1px solid #ccc; margin-bottom: 40px; text-align: center; }
 #page-order-cart .step { 
 	width: 150px; text-align: center; display: inline-block; color: #888; line-height: 2; padding: 20px; vertical-align: middle;
-	background-image: url('blt_next_step_off.png'); background-position: right center; background-repeat: no-repeat;
+	background-image: url('../images/blt_next_step_off.png'); background-position: right center; background-repeat: no-repeat;
 }
-#page-order-cart .step .step-no { font-size: 16px; font-family: "Nanum Gothic","³ª´®°íµñ"; font-weight: 500;}
+#page-order-cart .step .step-no { font-size: 16px; font-family: "Nanum Gothic","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"; font-weight: 500;}
 #page-order-cart .step .step-name { font-size: 16px; display: inline;}
 #page-order-cart .step.no-next { background-image: none }
 
 #page-order-cart .step.current { color: #000; }
 #page-order-cart .step.current .step-name { border-bottom: 1px solid #000 ; font-size:18px; }
-#page-order-cart .step.current { background-image: url('blt_next_step_on.png'); }
+#page-order-cart .step.current { background-image: url('../images/blt_next_step_on.png'); }
 #page-order-cart .step.current.no-next { background-image: none }
 
 #page-order-cart .ms-banner {margin-bottom:62px;}
@@ -82,17 +82,17 @@
 #page-order-cart.page-order-complete .action-buttons { margin-bottom: 50px; }
 #page-order-cart iframe#popup { top:1700px; }
 
-/*** ÃßÃµ»óÇ° ¼­ºñ½º ¿µ¿ª Ãß°¡ === 170213_ÃÖ¹®¿µÀÛ¾÷ ***/
+/*** ï¿½ï¿½Ãµï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ === 170213_ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½Û¾ï¿½ ***/
 .recommend-items .title-wrapper {border-bottom: 1px solid #000;position: relative;height: 23px;text-align: center;margin-bottom: 63px;margin-top: 30px;}
 .recommend-items .title-wrapper .title {font-size: 26px; margin-bottom: 30px; display: inline-block; background-color: #fff; margin-left: auto; margin-right: auto; padding: 0px 1em; }
 .recommend-items .title-wrapper .desc {font-weight: 100;}
 .recommend-items .recommend-items-list {border-bottom: 1px solid #ccc;padding-bottom: 30px;}
 
 
-.recommend-items .recommend-items-list1 .sel-recom {background: url('recommend_arrow.png')no-repeat;background-position: top center;background-size: 251px 109px;}
+.recommend-items .recommend-items-list1 .sel-recom {background: url('../images/recommend_arrow.png')no-repeat;background-position: top center;background-size: 251px 109px;}
 .recommend-items .recommend-items-list ul li {float:left;width: 241px;padding: 5px;height: 100px;float: right;margin-right:15px;}
 .recommend-items .recommend-items-list ul li .pro-img {width: 89px;height:89px;clear:both;float:left;padding-right: 6px;}
-.recommend-items .recommend-items-list ul li .brand-name {width: 140px;text-align:left;float:right;font-size:12px;font-family: "Nanum Gothic","³ª´®°íµñ";font-weight: 700;margin-top: 29px;}
+.recommend-items .recommend-items-list ul li .brand-name {width: 140px;text-align:left;float:right;font-size:12px;font-family: "Nanum Gothic","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";font-weight: 700;margin-top: 29px;}
 .recommend-items .recommend-items-list ul li .pro-name {width: 140px;text-align:left;float:right;font-size:12px; overflow: hidden;text-overflow: ellipsis; height:34px;}
 
 .recommend-items .recom-arrow-btn {width:1120px;overflow:hidden;position: relative;top: -66px;height:14px;}
@@ -195,7 +195,7 @@
 	#page-order-cart.page-order-complete .action-buttons { margin-bottom: 60px; }
 	#page-order-cart.page-order-complete .action-buttons span.ok{ padding: 10px; width: 50px; }
 	
-	/*** ÃßÃµ»óÇ° ¼­ºñ½º ¿µ¿ª Ãß°¡ === 170213_ÃÖ¹®¿µÀÛ¾÷ ***/
+	/*** ï¿½ï¿½Ãµï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ === 170213_ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½Û¾ï¿½ ***/
 	.recommend-items .title-wrapper {position: relative;text-align: center;margin-top: 70px;width: 100%;margin-bottom: 40px;}
 	.recommend-items .title-wrapper .title {font-size: 20px;line-height: 22px;}
 	.recommend-items .title-wrapper .desc {font-size: 13px; color:#888;}

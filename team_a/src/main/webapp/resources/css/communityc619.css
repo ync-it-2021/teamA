@@ -1,5 +1,5 @@
 .section-community .community-nav { border-top: 1px solid #000; border-bottom: 1px solid #ccc; padding: 20px; text-align: center; }
-.section-community .community-nav li { display: inline-block; padding: 0px 20px; font-size: 15px; background-image: url('blt_sep.png'); background-repeat: no-repeat; background-position: right center;font-weight:700; }
+.section-community .community-nav li { display: inline-block; padding: 0px 20px; font-size: 15px; background-image: url('../images/blt_sep.png'); background-repeat: no-repeat; background-position: right center;font-weight:700; }
 .section-community .community-nav li:last-child { background-image: none; }
 .section-community .community-nav li.active a { font-weight: bold; border-bottom: 1px solid #000 }
 
@@ -9,13 +9,13 @@
 
 
 #page-community-review .contents-wrapper { margin-bottom: 70px; margin-top:50px; }
-#page-community-review .top-intro { background-image: url('img_gift.png'); background-repeat: no-repeat; background-position: 280px center; center; background-size: 100px; }
+#page-community-review .top-intro { background-image: url('../images/img_gift.png'); background-repeat: no-repeat; background-position: 280px center; center; background-size: 100px; }
 #page-community-review .page-content-desc { position: relative; }
 #page-community-review .select-brand { border-top: 1px solid #000; border-bottom: 1px solid #000; padding: 5px; text-align: center; margin-bottom: 50px; }
 #page-community-review .select-brand li { display: inline-block; padding: 10px 50px; font-size: 13px;  }
 
 #page-community-review .review-kind { margin: 0px; float: left; }
-#page-community-review .review-kind li { font-size: 15px; display: inline-block; color: #888; padding-right: 15px; margin-right: 7px; background-image: url('blt_sep.png'); background-repeat: no-repeat; background-position: right center;font-weight: bold; }
+#page-community-review .review-kind li { font-size: 15px; display: inline-block; color: #888; padding-right: 15px; margin-right: 7px; background-image: url('../images/blt_sep.png'); background-repeat: no-repeat; background-position: right center;font-weight: bold; }
 #page-community-review .review-kind li:last-child { background-image: none; }
 #page-community-review .review-kind li a { color: #888; padding-bottom: 2px; }
 #page-community-review .review-kind li.active a { color: #000; border-bottom: 1px solid #000; }
@@ -94,8 +94,8 @@
 
 .section-community .next-prev-article { border-top: 1px solid #000; margin-bottom: 80px; }
 .section-community .next-prev-article li { border-bottom: 1px solid #ccc; padding: 15px 0px; overflow: auto; }
-.section-community .next-prev-article li .prev { float: left; background-image: url('blt_prev.png'); background-repeat: no-repeat; background-position: left center; padding-left: 25px; padding-right: 50px; }
-.section-community .next-prev-article li .next { float: left; background-image: url('blt_next.png'); background-repeat: no-repeat; background-position: left center; padding-left: 25px; padding-right: 50px; }
+.section-community .next-prev-article li .prev { float: left; background-image: url('../images/blt_prev.png'); background-repeat: no-repeat; background-position: left center; padding-left: 25px; padding-right: 50px; }
+.section-community .next-prev-article li .next { float: left; background-image: url('../images/blt_next.png'); background-repeat: no-repeat; background-position: left center; padding-left: 25px; padding-right: 50px; }
 .section-community .next-prev-article li .subject { float: left; display: inline-block; width: 850px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
 .section-community .next-prev-article li .regdate{ float: right; display: inline-block; width: 100px; color: #888; font-family: "Nanum Gothic","나눔고딕"; font-weight: 0; font-size: 12px; }
 
@@ -127,7 +127,7 @@
 #page-community-faq .search-form .query-q { border: 2px solid #000; width: 400px; }
 #page-community-faq .search-form .submit { background-color: #000; color: #fff; border: none; font-size: 15px; padding: 10px 30px; }
 #page-community-faq .category { margin-top: 50px; margin-bottom: 20px; }
-#page-community-faq .category li { font-weight: bold; display: inline-block; background-image: url('blt_sep.png'); background-repeat: no-repeat; background-position: right center; padding-right: 15px; margin-right: 15px; }
+#page-community-faq .category li { font-weight: bold; display: inline-block; background-image: url('../images/blt_sep.png'); background-repeat: no-repeat; background-position: right center; padding-right: 15px; margin-right: 15px; }
 #page-community-faq .category li.last { background-image: none; }
 #page-community-faq .category li a { color: #888; font-size: 16px; padding-bottom: 1px; }
 #page-community-faq .category li.active a { border-bottom: 1px solid #000; color: #000; }
@@ -148,10 +148,10 @@
 #page-community-membership .top-intro { padding: 30px 0px; text-align: center; }
 #page-community-membership .top-intro ul { margin-top: 20px; }
 #page-community-membership .top-intro ul li { display: inline-block; width: 250px; background-repeat: no-repeat; background-position: top center; padding-top: 120px; text-align: center; }
-#page-community-membership .top-intro ul li.item1 { background-image: url('img_item1.png'); }
-#page-community-membership .top-intro ul li.item2 { background-image: url('img_item2.png'); }
-#page-community-membership .top-intro ul li.item3 { background-image: url('img_item3.png'); }
-#page-community-membership .top-intro ul li.item4 { background-image: url('img_item4.png'); }
+#page-community-membership .top-intro ul li.item1 { background-image: url('../images/img_item1.png'); }
+#page-community-membership .top-intro ul li.item2 { background-image: url('../images/img_item2.png'); }
+#page-community-membership .top-intro ul li.item3 { background-image: url('../images/img_item3.png'); }
+#page-community-membership .top-intro ul li.item4 { background-image: url('../images/img_item4.png'); }
 #page-community-membership .top-intro ul li .title { font-size: 16px; line-height: 2.2; font-weight: bold; }
 #page-community-membership .top-intro ul li .title .highlight { color: #e5005a; }
 #page-community-membership .top-intro ul li .desc { color: #888; font-size: 13px; }
@@ -175,10 +175,10 @@
 #page-community-membership .membership-table td .type3 {text-indent: 114px;color:#555;text-align:left;}
 #page-community-membership .membership-table td ul {overflow:hidden;margin: 20px 0px 20px 88px;}
 #page-community-membership .membership-table td ul li {float:left;width: 50%;height: 100px;}
-#page-community-membership .membership-table .icon-img1 {background-image: url('img2_review_1.png');background-repeat: no-repeat;}
-#page-community-membership .membership-table .icon-img2 {background-image: url('img2_review_2.png');background-repeat: no-repeat;}
-#page-community-membership .membership-table .icon-img3 {background-image: url('text_icon.png');background-repeat: no-repeat;}
-#page-community-membership .membership-table .icon-img4 {background-image: url('photo_icon.png');background-repeat: no-repeat;}
+#page-community-membership .membership-table .icon-img1 {background-image: url('../images/img2_review_1.png');background-repeat: no-repeat;}
+#page-community-membership .membership-table .icon-img2 {background-image: url('../images/img2_review_2.png');background-repeat: no-repeat;}
+#page-community-membership .membership-table .icon-img3 {background-image: url('../images/text_icon.png');background-repeat: no-repeat;}
+#page-community-membership .membership-table .icon-img4 {background-image: url('../images/photo_icon.png');background-repeat: no-repeat;}
 #page-community-membership .membership-table .notice-decs {text-align:left;font-size: 13px;color:#555;padding: 30px 69px;line-height: 21px;}
 #page-community-membership .membership-table .notice { font-weight:bold;}
 #page-community-membership .membership-table .no-left { border-left: none; }
@@ -195,7 +195,7 @@
 #page-community-membership .family-brands ul li .name { color: #000; font-size: 16px; font-weight: bold; padding: 10px 0px 1px 0px; }
 #page-community-membership .family-brands ul li .desc { color: #888; /* padding: 0px 20px; */ }
 
-/** 패밀리브랜드 PC 160205-최문영작업 **/
+
 #page-community-membership .family-brands .fb {overflow:hidden;}
 #page-community-membership .family-brands .fb .brand {float:left;border: none;display: block;width: 380px;height: 270px;margin-right: 0px;text-align: center;}
 #page-community-membership .family-brands .fb .tep {float:left;border: none;display: block;width: 740px;height: 270px;margin-right: 0px;text-align: center;}
@@ -347,19 +347,19 @@
 	#page-community-membership .membership-table-mobile { display: block; padding: 0px 10px; margin-bottom: 10px; }
 	#page-community-membership .membership-table-mobile li { background-repeat: no-repeat; background-position: left 20px; background-size: 13%; }
 	#page-community-membership .membership-table-mobile li:first-child { border-top: 1px solid #000; }
-	#page-community-membership .membership-table-mobile li.member-bronze { background-image: url('img_em_bronze.png'); }
-	#page-community-membership .membership-table-mobile li.member-silver { background-image: url('img_em_silver.png'); }
-	#page-community-membership .membership-table-mobile li.member-gold { background-image: url('img_em_gold.png'); }
-	#page-community-membership .membership-table-mobile li.member-platinum { background-image: url('img_em_platinum.png'); }
+	#page-community-membership .membership-table-mobile li.member-bronze { background-image: url('../images/img_em_bronze.png'); }
+	#page-community-membership .membership-table-mobile li.member-silver { background-image: url('../images/img_em_silver.png'); }
+	#page-community-membership .membership-table-mobile li.member-gold { background-image: url('../images/img_em_gold.png'); }
+	#page-community-membership .membership-table-mobile li.member-platinum { background-image: url('../images/img_em_platinum.png'); }
 
-	#page-community-membership .membership-table-mobile li.member-bronze2 { background-image: url('img_em2_bronze.png'); }
-	#page-community-membership .membership-table-mobile li.member-silver2 { background-image: url('img_em2_silver.png'); }
-	#page-community-membership .membership-table-mobile li.member-gold2 { background-image: url('img_em2_gold.png'); }
-	#page-community-membership .membership-table-mobile li.member-platinum2 { background-image: url('img_em2_platinum.png'); }
-	#page-community-membership .membership-table-mobile li.member-diamond2 { background-image: url('img_em2_diamond.png'); }
+	#page-community-membership .membership-table-mobile li.member-bronze2 { background-image: url('../images/img_em2_bronze.png'); }
+	#page-community-membership .membership-table-mobile li.member-silver2 { background-image: url('../images/img_em2_silver.png'); }
+	#page-community-membership .membership-table-mobile li.member-gold2 { background-image: url('../images/img_em2_gold.png'); }
+	#page-community-membership .membership-table-mobile li.member-platinum2 { background-image: url('../images/img_em2_platinum.png'); }
+	#page-community-membership .membership-table-mobile li.member-diamond2 { background-image: url('../images/img_em2_diamond.png'); }
 
-	#page-community-membership .membership-table-mobile li .membership-header { border-bottom: 1px solid #dcdcdc; padding: 15px 0px; background-image: url('blt_open.png'); background-repeat: no-repeat; background-position: 97% center; background-size: 15px; }
-	#page-community-membership .membership-table-mobile li.open .membership-header { background-image: url('blt_close.png'); }
+	#page-community-membership .membership-table-mobile li .membership-header { border-bottom: 1px solid #dcdcdc; padding: 15px 0px; background-image: url('../images/blt_open.png'); background-repeat: no-repeat; background-position: 97% center; background-size: 15px; }
+	#page-community-membership .membership-table-mobile li.open .membership-header { background-image: url('../images/blt_close.png'); }
 	#page-community-membership .membership-table-mobile li .membership-header .name { font-family: "Nanum Gothic","나눔고딕"; font-weight: 500; font-size: 25px; padding-left: 60px; line-height: 1.2; }
 	#page-community-membership .membership-table-mobile li .membership-header .name2 { font-weight: bold; font-size: 25px; padding-left: 5px; line-height: 1.2; }
 	#page-community-membership .membership-table-mobile li .membership-header .desc { color: #555; padding-left: 60px; }

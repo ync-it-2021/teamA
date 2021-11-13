@@ -350,13 +350,13 @@ section {
     margin-top: 0px;
   }
   #sidebar2 .block-1 ul li.ico-best {
-    background-image: url("side-icon_01.png");
+    background-image: url("../images/side-icon_01.png");
   }
   #sidebar2 .block-1 ul li.ico-event {
-    background-image: url("side-icon_02.png");
+    background-image: url("../images/side-icon_02.png");
   }
   #sidebar2 .block-1 ul li.ico-membership {
-    background-image: url("side-icon_03.png");
+    background-image: url("../images/side-icon_03.png");
   }
 
   #sidebar2 .tab-contents {
@@ -438,14 +438,14 @@ section {
     font-size: 13px;
     font-weight: bold;
     color: #000;
-    background-image: url("sidemenu_arrow-down.png");
+    background-image: url("../images/sidemenu_arrow-down.png");
     background-repeat: no-repeat;
     background-position: 100% center;
     background-size: 12px;
     padding: 8px 0px;
   }
   #sidebar2 .tab-contents .tab-content div ul li.open .depth-1 {
-    background-image: url("sidemenu_arrow-up.png");
+/*     background-image: url("../images/sidemenu_arrow-up.png"); */
   }
   #sidebar2 .tab-contents .tab-content div ul li.open .depth-2 {
     display: block;
