@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 인증관련 빈 설정 -->
+	<bean id="customAccessDenied" class="kr.ac.ync.security.CustomAccessDeniedHandler"></bean>
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<bean id="customUserDetailsService"	class="kr.ac.ync.security.CustomUserDetailsService"></bean>
+	
+	
+	<security:http>
+	<!--	<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>       uri가 /admin/*인 경우 어드민 권한을 가진 회원만 사용가능 -->
+	
+	
+		<security:form-login login-page="/login/" />
+		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800" />
+		<security:logout logout-url="/customLogout"	invalidate-session="true" delete-cookies="remember-me,JSESSION_ID" />
+		<security:access-denied-handler ref="customAccessDenied" />
+	</security:http>
+	
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="customUserDetailsService">
+			<security:password-encoder ref="bcryptPasswordEncoder" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+</beans>
