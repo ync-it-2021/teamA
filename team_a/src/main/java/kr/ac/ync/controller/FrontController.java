@@ -23,14 +23,14 @@ public class FrontController {
 	@GetMapping("/index/")
 	public void test(Model model) {
 		
-		model.addAttribute("test", service.imgTest(1));
+//		model.addAttribute("test", service.imgTest(1));
 		
 	}
 	//해더 이미지 호출
 	@GetMapping("/includes/header/")
 	public void linkTest(Model model) {
 		
-		model.addAttribute("test", service.imgTest(1));
+//		model.addAttribute("test", service.imgTest(1));
 	}
 	
 	@GetMapping("/login/")
