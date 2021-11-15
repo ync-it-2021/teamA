@@ -50,11 +50,13 @@
 						<ul class="input-items">
 							<li>
 								<span class="input-name">아이디</span>
-								<input type="text" class="input1" name="LoginId" onKeyDown="javascript:acceptEnter12();" />
+								<input type="text" class="input1" placeholder="userid"
+										name="username" onKeyDown="javascript:acceptEnter12();" />
 							</li>
 							<li>
 								<span class="input-name">비밀번호</span>
-								<input type="password" class="input1" name="LoginPwd" onKeyDown="javascript:acceptEnter22()" />
+								<input type="password" class="input1" placeholder="Password"
+										name="password" onKeyDown="javascript:acceptEnter22()" />
 							</li>
 						</ul>
 						<div class="btn-wrapper">
