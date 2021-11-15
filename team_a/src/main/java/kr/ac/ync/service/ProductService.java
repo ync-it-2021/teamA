@@ -15,6 +15,10 @@ public interface ProductService {
 	// 글 등록
 	public void register(ProductVO prd);
 	
-	public ProductVO imgTest(int prd_idx);
+	// 글 수정
+	public boolean modify(ProductVO board);
+		
+	// 글 삭제
+	public boolean remove(int prd_idx);
 
 }

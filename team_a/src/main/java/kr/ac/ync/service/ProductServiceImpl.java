@@ -39,15 +39,23 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 	
-	public ProductVO imgTest(int prd_idx) {
-		log.info("img " + prd_idx);
-		return mapper.imgTest(prd_idx);
-	}
 
 	@Override
 	public ProductVO get(int prd_idx) {
 		// TODO Auto-generated method stub
 		return mapper.read(prd_idx);
+	}
+
+	@Override
+	public boolean modify(ProductVO prd) {
+		log.info("modify......" + prd);
+		return mapper.update(prd) == 1;
+	}
+
+	@Override
+	public boolean remove(int prd_idx) {
+		log.info("remove...." + prd_idx);
+		return mapper.delete(prd_idx) == 1;
 	}
 
 }
