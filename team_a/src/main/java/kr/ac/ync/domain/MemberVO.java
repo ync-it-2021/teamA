@@ -17,6 +17,7 @@ public class MemberVO {
 	private String member_address;
 	private int member_grade;
 	private int member_mileage;
+	private String auth;
 	private List<AuthVO> authList;
 
 }
