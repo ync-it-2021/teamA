@@ -18,20 +18,28 @@
   <div class="col-lg-12">
     <div class="panel panel-default">
 
-      <div class="panel-heading">prd Read Page</div>
+      <div class="panel-heading">prd Read Page
+      		<div style="float: right">
+				<button data-oper='modify' class="btn btn-default">Modify</button>
+				<button data-oper='list' class="btn btn-info">List</button>
+			</div>
+		</div>
       <!-- /.panel-heading -->
       <div class="panel-body">
 
           <div class="form-group">
-          <label>상품번호</label> <input class="form-control" name='prd_idx'
+          <label>상품번호</label> 
+          <input class="form-control" name='prd_idx'
             value='<c:out value="${prd.prd_idx}"/>' readonly="readonly">
         </div>
         <div class="form-group">
-          <label>코드</label> <input class="form-control" name='prd_kind'
+          <label>코드</label> 
+          <input class="form-control" name='prd_kind'
             value='<c:out value="${prd.prd_kind}"/>' >
         </div>
         <div class="form-group">
-          <label>상품명</label> <input class="form-control" name='prd_name'
+          <label>상품명</label> 
+          <input class="form-control" name='prd_name'
             value='<c:out value="${prd.prd_name}"/>' >
         </div>
 
@@ -42,23 +50,28 @@
         </div>
 
         <div class="form-group">
-          <label>원가</label> <input class="form-control" name='prd_cost_price'
+          <label>원가</label> 
+          <input class="form-control" name='prd_cost_price'
             value='<fmt:formatNumber type = "currency" value="${prd.prd_cost_price}" />' >
         </div>
         <div class="form-group">
-          <label>재고</label> <input type="number" min='0' class="form-control" name='prd_inventory'
+          <label>재고</label> 
+          <input type="number" min='0' class="form-control" name='prd_inventory'
             value='<c:out value="${prd.prd_inventory}"/>' >
         </div>
         <div class="form-group">
-          <label>세일기간</label> <input type="date" class="form-control" name='prd_discount_date'
+          <label>세일기간</label> 
+          <input type="date" class="form-control" name='prd_discount_date'
             value='<c:out value="${prd.prd_discount_date}"/>'>
         </div>
         <div class="form-group">
-          <label>세일금액</label> <input class="form-control" name='prd_sale_prices'
+          <label>세일금액</label>
+           <input class="form-control" name='prd_sale_prices'
             value='<fmt:formatNumber type = "currency" value="${prd.prd_sale_prices}" />' >
         </div>
         <div class="form-group">
-          <label>판매금액</label> <input class="form-control" name='prd_amount'
+          <label>판매금액</label> 
+          <input class="form-control" name='prd_amount'
             value='<fmt:formatNumber type = "currency" value="${prd.prd_amount}" />' >
         </div>
         
@@ -67,17 +80,27 @@
 			<c:set var="t" value="prd_img${i}" />
 				<c:if test="${not empty prd[t]}">
 					<div class="form-group" style="float: left;">
-			          <label>이미지${i}</label>
+					<label>이미지${i}</label>
 						<a href="/resources/upload/${prd[t]}" target="_blank">
 						<img src="/resources/upload/${prd[t]}" id="thumb_${i}" width="200" height="200"></a>
 			        </div>
 		        </c:if>
+		        <c:set var="t" value="prd_img${i}" />
+		        <c:if test="${empty prd[t]}">
+					<div class="form-group" >
+           				<label>이미지 등록${i}</label>
+           				 <input type="file" class="form-control" name='uploadFile'>
+			        </div>
+		        </c:if>
+		        
 		</c:forEach>
-		<div>
-			<button data-oper='modify' class="btn btn-default">Modify</button>
-			<button data-oper='list' class="btn btn-info">List</button>
-		</div>
-<form id='operForm' action="/../modify" method="get">
+			<sec:authentication property="principal" var="pinfo"/>
+	<sec:authorize access="isAuthenticated()">
+			<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
+			<button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
+	</sec:authorize>
+
+<form id='operForm' action="/../modify" method="Post">
   <input type='hidden' id='prd' name='prd' value='<c:out value="${prd.prd_idx}"/>'>
   <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
   <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
@@ -394,7 +417,7 @@ $(document).ready(function() {
 	let operForm = $("#operForm");
 
 	$("button[data-oper='modify']").on("click", function(e){
-		operForm.attr("action","/product/modify").submit();
+		operForm.attr("action","/admin/product/modify").submit();
 	});
     
 	$("button[data-oper='list']").on("click", function(e){
