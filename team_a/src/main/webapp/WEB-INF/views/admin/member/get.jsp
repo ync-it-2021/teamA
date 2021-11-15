@@ -22,18 +22,13 @@
       <div class="panel-body">
 
           <div class="form-group">
-          <label>ID  :  </label><c:out value="${member.member_id }"/>
+          <label>아이디  :  </label><c:out value="${member.member_id }"/>
           <input type ="hidden"class="form-control" name='member_id' value='<c:out value="${member.member_id }"/>' readonly="readonly">
         </div>
 
         <div class="form-group">
-          <label>NAME  :  </label><c:out value="${member.member_name }"/>
+          <label>이름  :  </label><c:out value="${member.member_name }"/>
            <input type ="hidden" class="form-control" name='member_name'value='<c:out value="${member.member_name }"/>' readonly="readonly">
-        </div>
-        
-        <div class="form-group">
-          <label>PASSWORD  :  </label><c:out value="${member.member_pass }"/>
-           <input type ="hidden" class="form-control" name='member_pass'value='<c:out value="${member.member_pass }"/>' readonly="readonly">
         </div>
         
         <div class="form-group">
@@ -52,7 +47,7 @@
         </div>
         
         <div class="form-group">
-          <label>등록일  :  </label><c:out value="${member.member_birthday }"/>
+          <label>등록일  :  </label><fmt:formatDate pattern="yyyy-MM-dd" value="${member.member_birthday }" />
            <input type ="hidden" class="form-control" name='member_birthday'value='<c:out value="${member.member_birthday }"/>' readonly="readonly">
         </div>
         
