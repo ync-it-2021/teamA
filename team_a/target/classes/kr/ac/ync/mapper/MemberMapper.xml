@@ -38,7 +38,8 @@
 			member_birthday,
 			member_address,
 			member_mileage,
-			member_grade
+			member_grade,
+			auth
 	FROM	member
 	WHERE	member_id = #{member_id} 
 	</select>
@@ -134,7 +135,7 @@
 							#{member_email},
 							#{member_phone},
 							#{member_address},
-							#{auth})
+							#{auth,jdbcType=VARCHAR})
 	</insert>
 	<!--회원 정보 수정-->
 	<update id="update">

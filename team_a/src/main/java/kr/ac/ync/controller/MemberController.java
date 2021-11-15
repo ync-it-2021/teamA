@@ -1,5 +1,8 @@
 package kr.ac.ync.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.ac.ync.domain.AuthVO;
 import kr.ac.ync.domain.Criteria;
 import kr.ac.ync.domain.MemberVO;
 import kr.ac.ync.domain.PageDTO;
@@ -47,11 +51,19 @@ public class MemberController {
 	
 	
 	// 글 등록
-	// file upload가 추가된 게시판 등록
 	@PostMapping("/register_insert")
 //	@PreAuthorize("isAuthenticated()")
-	public String register_insert( MemberVO member, RedirectAttributes rttr) {
+	public String register_insert( MemberVO member,RedirectAttributes rttr) {
 
+		List<AuthVO> list = new ArrayList<AuthVO>();
+		AuthVO vo = new AuthVO();
+		vo.setMember_id(member.getMember_id());
+		vo.setAuth(member.getAuth());
+		log.info("vo " + vo);
+		list.add(vo);
+		member.setMember_pass(pwencoder.encode(member.getMember_pass()));
+		member.setAuthList(list);
+		
 		log.info("register: " + member);
 		this.mapper.insertSelectKey(member);
 		rttr.addFlashAttribute("result", member.getMember_id());
@@ -65,25 +77,25 @@ public class MemberController {
 	}
 	
 	
-	@GetMapping({ "/get" })
+	@GetMapping( "/get" )
 	public void get(@RequestParam("mb_id") String member_id, @ModelAttribute("cri") Criteria cri, Model model) {
 
-		log.info("/get or modify");
-		model.addAttribute("member", this.mapper.read(member_id));
+		log.info("/get");
+		model.addAttribute("member",  this.mapper.read(member_id));
 	}
 	
 	
 
-	@GetMapping({ "/modify" })
-	public String modify(MemberVO member, @ModelAttribute("cri") Criteria cri, Model model) {
+	@GetMapping( "/modify" )
+	public String modify(MemberVO member, @ModelAttribute("cri") Criteria cri) {
 
 		log.info("/modify");
 		this.mapper.update(member);
 		return "redirect:/admin/member/get?mb_id="+member.getMember_id();
 	}
 	
-	@GetMapping({ "/delete" })
-	public String delete(@RequestParam("mb_id") String member_id, @ModelAttribute("cri") Criteria cri, Model model) {
+	@GetMapping( "/delete" )
+	public String delete(@RequestParam("mb_id") String member_id, @ModelAttribute("cri") Criteria cri) {
 
 		log.info("/delete");
 		this.mapper.delete(member_id);
