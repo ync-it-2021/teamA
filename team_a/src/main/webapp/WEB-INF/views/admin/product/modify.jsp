@@ -17,7 +17,7 @@ function getThumbFileName(fullFilePath) {
 
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header">Board Modify</h1>
+    <h1 class="page-header">Product Modify</h1>
   </div>
   <!-- /.col-lg-12 -->
 </div>
@@ -27,11 +27,11 @@ function getThumbFileName(fullFilePath) {
   <div class="col-lg-12">
     <div class="panel panel-default">
 
-      <div class="panel-heading">Board Modify</div>
+      <div class="panel-heading">Product Modify</div>
       <!-- /.panel-heading -->
       <div class="panel-body">
 
-      <form role="form" action="/board/modify" method="post" enctype="multipart/form-data">
+      <form role="form" action="/admin/product/modify" method="post" enctype="multipart/form-data">
       	<!--
        	controller에서 파라미터 수집시 upload file은 uploadFile 이름으로 server로 넘어간다.(binary data로)
        	하지만 BoardVO에서는 file_1,file_2,file_3의 이름으로 setter를 해줘야 한다.
@@ -40,14 +40,14 @@ function getThumbFileName(fullFilePath) {
        	
        	업로드 파일 삭제 기능 추가시 해당 file의 value="" 로 바꿔주면 된다.
        	-->
-		<c:forEach var="i" begin="1" end="5">
-			<c:set var="t" value="bd_img${i}" />
+		<c:forEach var="i" begin="1" end="10">
+			<c:set var="t" value="prd_img${i}" />
 			<c:choose>
-				<c:when test="${not empty board[t]}">
-		            <input type="hidden" name="bd_img${i}" value="${board[t]}">
+				<c:when test="${not empty prd[t]}">
+		            <input type="hidden" name="prd_img${i}" value="${prd[t]}">
 		        </c:when>
 		        <c:otherwise>
-					<input type="hidden" name="bd_img${i}" value="">		
+					<input type="hidden" name="prd_img${i}" value="">		
 		        </c:otherwise>
 			</c:choose>
 		</c:forEach>
