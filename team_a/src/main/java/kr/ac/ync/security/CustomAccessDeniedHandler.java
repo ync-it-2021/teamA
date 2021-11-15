@@ -23,7 +23,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
     log.error("Redirect....");
 
-    response.sendRedirect("/admin/accessError");
+    response.sendRedirect("/accessError");
 
   }
 
