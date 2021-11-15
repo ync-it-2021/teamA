@@ -13,39 +13,25 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping()
+@RequestMapping
 public class FrontController {
 
 	
 	@Autowired
 	private ProductService service;
+
 	
-	@GetMapping("/index/")
-	public void test(Model model) {
+	@GetMapping("/")
+	public String index(Model model) {
 		
-//		model.addAttribute("test", service.imgTest(1));
-		
+		return"index";
 	}
 	//해더 이미지 호출
 	@GetMapping("/includes/header/")
 	public void linkTest(Model model) {
-		
-//		model.addAttribute("test", service.imgTest(1));
 	}
 	
 	@GetMapping("/login/")
 	public void test1(Model model) {
-		
 	}
-
-	@PostMapping("/login/")
-	public void loginCk(@RequestParam("LoginId") String loginID,
-						@RequestParam("LoginPwd") String loginPW,
-						@RequestParam("_csrf") String a) {
-		
-	log.info("id : "+ loginID);
-	log.info("pw : "+ loginPW);
-	
-	}
-
 }
