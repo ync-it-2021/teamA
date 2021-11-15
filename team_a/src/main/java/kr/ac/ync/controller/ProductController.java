@@ -43,11 +43,64 @@ public class ProductController {
 		model.addAttribute("list", service.getListWithPaging(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
-	@GetMapping({ "/get", "/modify" })
+	@GetMapping( "/get")
 	public void get(@RequestParam("prd") int prd_idx, @ModelAttribute("cri") Criteria cri, Model model) {
 
-		log.info("/get or modify");
+		log.info("/get");
 		model.addAttribute("prd", service.get(prd_idx));
+	}
+	
+	@PostMapping( "/modify")
+	public String modify(MultipartFile[] uploadFile, ProductVO prd, @ModelAttribute("cri") Criteria cri) {
+		int index = 0;
+		for (MultipartFile multipartFile : uploadFile) {
+			if(multipartFile.getSize() > 0) {
+				switch (index) {
+				case 0:
+					prd.setPrd_img1(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					break;
+				case 1:
+					prd.setPrd_img2(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					break;
+				case 2:
+					prd.setPrd_img3(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					break;
+				case 3:
+					prd.setPrd_img4(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					break;
+				case 4:
+					prd.setPrd_img5(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					break;
+				case 5:
+					prd.setPrd_img6(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					break;
+				case 6:
+					prd.setPrd_img7(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					break;
+				case 7:
+					prd.setPrd_img8(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					break;
+				case 8:
+					prd.setPrd_img9(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					break;
+				default:
+					prd.setPrd_img10(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					break;
+				}
+			}
+			index++;
+		}
+		log.info("/modify");
+		this.service.modify(prd);
+		return "redirect:/admin/member/get?prd="+prd.getPrd_idx();
+	}
+	
+	@GetMapping( "/delete" )
+	public String delete(@RequestParam("prd") int prd_id, @ModelAttribute("cri") Criteria cri) {
+
+		log.info("/delete");
+		this.service.remove(prd_id);
+		return "redirect:/admin/product/list";
 	}
 	
 	@GetMapping("/register")
@@ -104,3 +157,7 @@ public class ProductController {
 			return "redirect:/admin/product/list/";
 		}
 }
+
+
+
+
