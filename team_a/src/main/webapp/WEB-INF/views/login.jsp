@@ -44,7 +44,7 @@
 			<div class="tab-content">
 				<!-- 회원 로그인 -->
 				<div class="content1 active">
-					<form name="mainFrm" method="post" action="/login">
+					<form role="form" name="mainFrm" method="post" action="/login">
 					<input type="hidden" name="refer_page" value="">					
 					<div class="clearfix">
 						<ul class="input-items">
@@ -60,7 +60,7 @@
 							</li>
 						</ul>
 						<div class="btn-wrapper">
-							<input type="button" class="btn-login" value="LOGIN" onclick="javascript:SendLoginMain();" style="cursor:pointer;" />
+							<input type="submit" data-oper='login' class="btn-login" value="LOGIN" onclick="javascript:SendLoginMain();" style="cursor:pointer;" />
 						</div>
 					</div>
 					<!--홈페이지 토큰  -->
@@ -828,6 +828,25 @@ adn_mobile_panel_param.push([{
 			$(this).closest('.tab-contents').find('.tab-content div.active').removeClass('active');
 			$(this).closest('.tab-contents').find("."+target).addClass('active');
 		});
+		
+		
+		let formObj = $("form");
+
+		$('button').on("click", function(e){
+		  
+		  e.preventDefault(); 
+		  
+		  var operation = $(this).data("oper");
+		  
+		  console.log(operation);
+		  if(operation === 'login'){
+			      formObj.attr("action", "/login");
+			    }
+		  formObj.submit();
+		});
+
+		
+		
 	});
 
 //멤버쉽모바일
@@ -863,6 +882,7 @@ $(document).ready(function(){
 function fnPopSNSLogin(sns) {
 	var popup = window.open("snsloginpopupec49.html?sns="+sns + "&refer_page=","snsLogin","width=425, height=550, resizable=0, scrollbars=no, status=0, titlebar=0, toolbar=0");
 }
+
 
 
 
