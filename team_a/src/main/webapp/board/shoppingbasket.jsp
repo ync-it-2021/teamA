@@ -16,6 +16,16 @@
 		location.href="login6d1f.html?refer_page=%2Fcommon%2Fall%5Fsite%2Fmember%2Flogin%2Easp"
 	}
 </script> -->
+<script>
+
+httpUrl = "/common/process/order_list.asp?iniCategory=0"
+httpUrl2 = "www.montraum.com"
+
+function loginCheck() {
+	location.href="/common/all_site/member/login.asp?refer_page=%2Fcommon%2Fprocess%2Forder%5Flist%2Easp%3FiniCategory%3D0"
+}
+
+</script>
 <jsp:include page="/include/header.jsp"/>
 <script type="text/javascript" src="../resources/js/top.js"></script>
 <!--Content영역시작-->

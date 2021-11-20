@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -9,16 +10,19 @@
 <jsp:include page="/include/header.jsp" />
 <body>
 
+<script language="javascript">
+	httpUrl = "/common/process/qanda/list.asp"
+	httpUrl2 = "www.montraum.com"
 
-	<script language="javascript">
-		httpUrl = "list.jsp"
-		httpUrl2 = "www.montraum.com"
+	function loginCheck() {
+		location.href="/common/all_site/member/login.asp?refer_page=%2Fcommon%2Fprocess%2Fqanda%2Flist%2Easp"
+	}
 
-		function loginCheck() {
-			location.href = "/common/all_site/member/login.asp?refer_page=%2Fcommon%2Fprocess%2Fqanda%2Flist%2Easp"
-		}
-	</script>
-	<script type="text/javascript" src="../resources/js/top.js"></script>
+</script>
+<script language="javascript" src="../resources/js/top.js"></script>
+
+
+<script language="javascript" src="../resources/js/_vir0001/code.js" charset="utf-8"></script>
 
 	<!--Content영역시작-->
 	<section>
@@ -34,12 +38,7 @@
 				</script>
 			</h2>
 			<!-- mypage 상단 시작 -->
-			<h2 class="page-title">
-				<script>
-					document.write(siteTitle)
-				</script>
-				Mypage
-			</h2>
+			
 			<div class="member-nav-wrapper">
 				<ul class="member-nav">
 					<!-- 나의 쇼핑현황일 때 open-sub-menu class를 추가 -->
@@ -52,7 +51,7 @@
 						</div>
 					</li>
 					<li><a href="member_Modify.jsp">개인정보수정</a></li>
-					<li class="hide-mobile"><a href="qna.jsp">1:1문의</a></li>
+					<li class="hide-mobile active"><a href="qna.jsp">1:1문의</a></li>
 					<li><a href="myreview_view.jsp">나의후기</a></li>
 					<li><a href="member_Withdrawal.jsp">회원탈퇴</a></li>
 				</ul>
@@ -74,7 +73,7 @@
 					<span class="only-pc">제품, 주문, 배송 등에 관한 문의사항을 남겨주세요. 빠르고 친절하게
 						안내해 드립니다.</span> <span class="only-mobile">제품, 주문, 배송 등에 관한 문의사항을
 						남겨주세요.</span> <span class="btn-write btn-up-right"
-						onclick="location.href='write.jsp'" style="cursor: pointer;">작성하기</span>
+						onclick="location.href='qnawrite.jsp'" style="cursor: pointer;">작성하기</span>
 				</div>
 
 				<div class="ask-list">

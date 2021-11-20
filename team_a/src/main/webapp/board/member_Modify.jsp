@@ -8,209 +8,28 @@
 	<title>정보수정/title>
 	<jsp:include page="/include/header.jsp"/>
 
+		<script>
 
+		httpUrl = "/common/all_site/member/member_edit.asp"
+		httpUrl2 = "www.montraum.com"
+
+		function loginCheck() {
+			location.href="/common/all_site/member/login.asp?refer_page=%2Fcommon%2Fall%5Fsite%2Fmember%2Fmember%5Fedit%2Easp"
+		}
+
+		</script>
 
 
 </head>
-
-
-	<!--네비영역종료-->
+	
+   <!--네비영역종료-->
 
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script language="javascript" src="../resources/js/top.js"></script>
 <script language="javascript" src="../resources/js/code.js" charset="utf-8"></script>
 <script language="javascript" src="../resources/js/code_member.js" charset="utf-8"></script>
 <script language="javascript">
-<!--
-	//영문/숫자 체크
-	function check_Alpha_Num(input){
-		var err_cnt=0
-		for (var i = 0; i < input.length; i++) {
-			var val = input.charAt(i);
-			if (!((val >= "0" && val <= "9") || (val >= "a" && val <= "z") || (val >= "A" && val <= "Z")))
-			err_cnt ++
-		}
-		if (err_cnt == 0 ) return true;
-		else return false;
-	}
-	
-	//숫자체크(연락처, 휴대폰번호)
-	function onlyNumber() {
-		if (event.keyCode!=13 && ((event.keyCode < 48) || (event.keyCode > 57))){
-			event.returnValue = false;
-			alert('숫자만 입력하세요.');
-		}
-		return true;
-	}
 
-	//아이디 중복확인 popup 호출
-	function idchk(){
-		var id = document.frmReg.id.value;
-		if( id.length < 6 || id.length > 15 ) {
-			alert("아이디를 입력하세요. (6-15자).");
-			document.frmReg.id.focus();
-			return;
-		}
-		if (! check_Alpha_Num(id.toUpperCase()))	{
-			alert("아이디는 영문/숫자 이외의 문자는 허용되지 않습니다. ");
-			document.frmReg.id.focus();
-			return;
-		}
-		window.open("/common/all_site/member/findid.asp?UserId=" + id,"아이디중복검사","width=450,height=320,top=100,left=100,scrollbars=no,resizable=no");
-	}
-
-	//Submit
-	function WriteCheck2(){
-		var Frm = document.frmReg;
-	
-		if ("아이디" ==  ""){
-			// id check 시작
-			if (isEmpty(Frm.id.value)){	alert("ID를 입력해 주십시오");  Frm.id.focus(); return}
-			if (Frm.id.value.length < 6 || Frm.id.value.length > 15 ){	alert("아이디는 6자이상 15이하로 입력하셔야 합니다");  Frm.id.focus(); return}
-			for(i=0;i<Frm.id.value.length;i++) {
-			var a=Frm.id.value.charCodeAt(i);
-				if (a > 128) {	alert("ID 로 한글은 사용하실수 없습니다.");		Frm.id.value="";	Frm.id.focus();		return;	}
-			}
-			if (!(check_Alpha_Num(Frm.id.value))) {	alert("ID는 반드시 영문과 숫자 조합으로 등록하셔야 합니다.");	Frm.id.focus();		return	}
-			if (Frm.idcheck_ok.value != "ok"){alert("ID 중복확인을 하세요."); return;}
-		}
-
-		// 비밀번호 check
-		var cnt = 0;
-		var str = Frm.pwd1.value;
-		for( var i=0; i < str.length; ++i)
-		{
-			if( str.charAt(0) == str.substring( i, i+1 ) ) ++cnt;
-		}		
-		if (Frm.pwd1.value != ""){ 
-			if( cnt == str.length ) {
-				alert("보안상의 이유로 한 문자로 연속된 비밀번호는 허용하지 않습니다.");
-				Frm.pwd1.value="";
-				Frm.pwd2.value="";
-				Frm.pwd2_mobile.value="";
-				Frm.pwd1.focus();
-				return;
-			}
-		}
-
-		if (isEmpty(Frm.pwd1.value)){ alert("비밀번호를 입력해 주십시오");  Frm.pwd1.focus(); return}
-		if (isEmpty(Frm.pwd2.value)&&isEmpty(Frm.pwd2_mobile.value)){ alert("비밀번호 확인을 입력해 주십시오");  Frm.pwd2.focus(); return}
-		if (Frm.pwd2.value != "" && Frm.pwd1.value != Frm.pwd2.value ){
-			alert("비밀번호가 일치하지 않습니다.");
-			Frm.pwd1.value="";
-			Frm.pwd2.value="";
-			Frm.pwd1.focus();
-			return
-		}
-		if (Frm.pwd2_mobile.value != "" && Frm.pwd1.value != Frm.pwd2_mobile.value ){
-			alert("비밀번호가 일치하지 않습니다.");
-			Frm.pwd1.value="";
-			Frm.pwd2_mobile.value="";
-			Frm.pwd1.focus();
-			return
-		}
-		if (Frm.pwd1.value.length < 6 || Frm.pwd1.value.length > 15 ){	alert("비밀번호는 6자이상 15이하로 입력하셔야 합니다");  Frm.pwd1.focus(); return}
-		if (!(check_Alpha_Num(Frm.pwd1.value) == true )) {	alert("비밀번호는 반드시 영문과 숫자 조합으로 등록하셔야 합니다.");	Frm.pwd1.focus();	return	}
-
-		//email 새로들어가는 부분 시작
-		if (isEmpty(Frm.email.value)){ alert("이메일 주소 앞자리를 입력해 주십시오");  Frm.email.focus(); return}
-		if (isEmpty(Frm.email2.value)){ alert("이메일 주소 뒷부분을 입력 또는 선택해 주십시오");  Frm.SelectEmail.focus(); return}
-
-		//핸드폰번호
-		if (isEmpty(Frm.mobile1.value)){ alert("핸드폰 번호 앞자리를 선택해 주십시오");  Frm.mobile1.focus(); return}
-		if (isEmpty(Frm.mobile2.value)){ alert("핸드폰 번호 가운데자리를 입력해 주십시오");  Frm.mobile2.focus(); return}
-		if (isEmpty(Frm.mobile3.value)){ alert("핸드폰 번호 뒷자리를 입력해 주십시오");  Frm.mobile3.focus(); return}
-
-/*
-		//우편번호 주소
-		if (isEmpty(Frm.zip.value)){ alert("우편번호를 입력해 주십시오");  Frm.zip.focus(); return}
-		if (isEmpty(Frm.addr1.value)){ alert("주소를 입력해 주십시오");  Frm.addr1.focus(); return}
-		if (isEmpty(Frm.addr2.value)){ alert("나머지 주소를 입력해 주십시오");  Frm.addr2.focus(); return}
-*/
-		if(mobileChk()){
-			Frm.action = "member_edit_DB.asp";
-			Frm.target = "_self";
-			Frm.submit();
-		}
-	}
-
-	//메일주소 선택
-	function ChangeEmail()
-	{
-		if (document.getElementsByName("SelectEmail")[0].value == "")
-		{
-			document.getElementsByName("email2")[0].readOnly = false;
-			document.getElementsByName("email2")[0].value = "";
-			document.getElementsByName("email2")[0].style.backgroundColor = "#ffffff";
-    	    document.getElementsByName("email2")[0].style.color = "#000000";
-
-		}else{
-			document.getElementsByName("email2")[0].readOnly = true;
-			document.getElementsByName("email2")[0].value = document.getElementsByName("SelectEmail")[0].value ;
-			document.getElementsByName("email2")[0].style.backgroundColor = "#EEEEEE";
-    	    document.getElementsByName("email2")[0].style.color = "#555555";
-		}
-	}
-
-	//기념일,아이정보
-	function fn_ymd(name){
-
-		rValue = new Array()
-		if(name == "Marry"){
-			field_name2 = name+"Month"
-			field_name3 = name+"Day"
-		}else{
-			field_name1 = "baby"+name+"_birth_1"
-			field_name2 = "baby"+name+"_birth_2"
-			field_name3 = "baby"+name+"_birth_3"
-
-			//년도
-			rValue.push('<select name="'+ field_name1 +'">')
-			rValue.push('<option value="">선택</option>')
-			d = new Date
-			nowYear = d.getFullYear()+1;
-			for (i=1995; i <= nowYear ; i++){
-				rValue.push('<option value="'+i+'">'+i+'</option>')
-			}
-			rValue.push('</select> 년 ')
-		}
-	
-		//월
-		rValue.push('<select name="'+ field_name2 +'">')
-		rValue.push('<option value="">선택</option>')
-		for (i=1; i <= 12 ; i++){
-			val_month = select_zero(i,2)
-			rValue.push('<option value="'+val_month+'">'+val_month+'</option>')
-		}
-		rValue.push('</select> 월 ')
-
-		//일
-		rValue.push('<select name="'+ field_name3 +'">')
-		rValue.push('<option value="">선택</option>')
-		for (i=1; i <= 31 ; i++){
-			val_day = select_zero(i,2)
-			rValue.push('<option value="'+val_day+'">'+val_day+'</option>')
-		}
-		rValue.push('</select> 일')
-		document.writeln (rValue.join(""))
-	}
-
-	//이메일 주소 체크 정규식 - 20130409
-	function EmailCheck(mail) {
-		var sMail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/; 
-		if(sMail.test(mail)===false) {return false;}else{return true;}
-	}
-
-	function nextCodeFnc(chk) {
-		//체크박스 단일선택
-		var obj = document.getElementsByName("exYear");
-		for(var i=0; i<obj.length; i++){
-			if(obj[i].value != chk){
-				obj[i].checked = false;
-			}
-		}
-	}
-//-->
 </SCRIPT>
 <!--Content영역시작-->
 <section>
@@ -222,7 +41,7 @@
 	<div class="member-nav-wrapper">
 	<ul class="member-nav"> <!-- 나의 쇼핑현황일 때 open-sub-menu class를 추가 -->
 		<li>
-			<a href="orderlist.jsp">나의 쇼핑현황</a>
+			<a href="buy_list.jsp">나의 쇼핑현황</a>
 			<div class="member-sub-nav">
 				<a href="orderlist.jsp">주문내역</a>
 				<a href="shoppingbasket.jsp">장바구니</a>
@@ -232,7 +51,7 @@
 			</div>
 		</li>
 		<li class="active"><a href="member_Modify.jsp">개인정보수정</a></li>
-
+	
 		<li class="hide-mobile"><a href="qna.jsp">1:1문의</a></li>
 		<li><a href="myreview_view.jsp">나의후기</a></li>
 		<li><a href="member_Withdrawal.jsp">회원탈퇴</a></li>
@@ -383,7 +202,6 @@
 </section>
 
 
-<!-- 모바일 사이드바 170621-최문영작업 -->
 
 <script>
     // 우편번호 찾기 찾기 화면을 넣을 element

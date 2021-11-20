@@ -3,22 +3,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title> A_team</title>
+<meta charset="UTF-8"
+>
+<title>gift to pet </title>
 </head>
 <body>
 <head> 
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>A_team_project</title>
-	
-	
-	
+	<title>GIFT TO PET</title>
 
 </head>
 <body>
 	
+<!-- 2021/11/19 완료  by geon -->
 
 
 	

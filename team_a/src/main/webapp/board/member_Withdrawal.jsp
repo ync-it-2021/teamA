@@ -42,7 +42,7 @@
 
 		<li class="hide-mobile"><a href="qna.jsp">1:1문의</a></li>
 		<li><a href="myreview_view.jsp">나의후기</a></li>
-		<li class="active"><a href="member_Withdrawal.jsp">회원탈퇴</a></li>
+		<li class="active"><a href="member_Withdrawal.jsp" class="active">회원탈퇴</a></li>
 	</ul>
 	</div>
 

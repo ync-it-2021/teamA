@@ -54,11 +54,12 @@
 								<input type="password" class="input1" name="LoginPwd" onKeyDown="javascript:acceptEnter22()" />
 							</li>
 						</ul>
-						<div class="btn-wrapper">
+						<div class="btn-wrapper" style="float:right; position: relative; top:-110px;">
 							<input type="button" class="btn-login" value="LOGIN" onclick="javascript:SendLoginMain();" style="cursor:pointer;" />
 						</div>
 					</div>
 					</form>						
+					
 					<div class="page-link">
 						<ul>
 							<li><a href="searchidinfo2ce3.html?ProcessGubun=A">아이디 찾기</a></li>

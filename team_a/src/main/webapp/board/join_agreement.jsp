@@ -3,21 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<title>GITF TO PET </title>
 <jsp:include page="/include/header.jsp"/>
 </head>
 <body>
 <!DOCTYPE html>
-
-
-
-
-
 </head>
 <body>
-
-
 <script type="text/javascript" src="../resources/images/top.js"></script>
 <style>
 #popup-member-join-check { max-width: 540px; padding-top:50px;padding-bottom:30px;}
@@ -41,15 +34,11 @@
 
 	<div class="ws-join">
 
-		<h3 class="title" style="padding-top:60px;">몬트라움 회원가입</h3>
-		<p class="desc">몬트라움 멤버십 회원가입을 합니다.<p>
+		<h3 class="title" style="padding-top:60px;">Gift to Pet</h3>
+		<p class="desc">GIFT  TO PET  쇼핑몰에 오신걸 환영합니다 <p>
 		<div class="article-wrapper">
-			<input type="button" class="btn-ws-join" value="회원가입" onclick="location.href='join_write.html'" style="cursor:pointer;" />
+			<input type="button" class="btn-ws-join" value="회원가입" onclick="location.href='join_write.jsp'" style="cursor:pointer;" />
 		</div>
-	
-
-	
-
 </div>
 <div style="height:175px;">
 </section>

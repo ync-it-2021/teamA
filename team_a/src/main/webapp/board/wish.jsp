@@ -8,6 +8,17 @@
 </head>
 <jsp:include page="/include/header.jsp"/>
 <body>
+	<script>
+
+	httpUrl = "/common/process/wish_list.asp"
+	httpUrl2 = "www.montraum.com"
+
+	function loginCheck() {
+		location.href="/common/all_site/member/login.asp?refer_page=%2Fcommon%2Fprocess%2Fwish%5Flist%2Easp"
+	}
+
+	</script>
+
 <section>
 			
 			<div id="page-member-wish" class="section-member pc-width">
@@ -19,8 +30,9 @@
 	<ul class="member-nav open-sub-menu"> <!-- 나의 쇼핑현황일 때 open-sub-menu class를 추가 -->
 		<li class="active">
 			<div class="member-sub-nav">
+				<a href="orderlist.jsp">나의 쇼핑현황</a>
 				<a href="orderlist.jsp">주문내역</a>
-				<a href="shoppingbasket.jsp">장바구니</a>
+				<a href="shoppingbasket">장바구니</a>
 				<a href="wish.jsp" class="active">위시리스트</a>
 				<a href="mycoupon.jsp">쿠폰</a>
 			</div>
@@ -36,6 +48,7 @@
 				
 				<div class="contents-wrapper">
 					<div class="items item-type1">
+					
 						<h2 class="page-sub-title kr">위시리스트</h2>
 						<div class="page-content-desc">
 							<span class="guide">위시리스트는 90일간 보관됩니다.</span>

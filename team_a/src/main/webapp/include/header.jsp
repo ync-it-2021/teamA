@@ -38,21 +38,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<!-- 메뉴바  네비-->
 	<script type="text/javascript">
 		$(document).ready(function () {
@@ -80,18 +65,20 @@
 	</script>
 </head>
 <body>
+<!-- <%-- 	<c:if notlogin = "${member == null}"> --%> 로그인을 구별하여 보여주고 안보여주는 방법 있습니다. 21/11/20 -->
 <header>
 	<header>
 		<div class="only-pc">
 			<div class="top-wrapper">
 				<ul id="header-top" class="pc-width">
-
+	
 					<li><a href="login.jsp">LOGIN</a></li>
 					<li><a href="join_agreement.jsp">JOIN</a></li>
-					<li><a href="orderlist.jsp">MY PAGE</a></li>
+
 					<li><span><img src="../resources/images/mnb_wish_icon.png"></span><a href="wish.jsp">WISH LIST</a></li>
 					<li><span><img src="../resources/images/mnb_cart_icon.png"></span><a
 							href="shoppingbasket.jsp">CART</a></li>
+						
 				</ul>
 			</div>
 			<div class="bottom-wrapper clearfix pc-width">
@@ -158,8 +145,8 @@
 					<!-- 우측 이벤트 부분 제외  -->
 				</div>
 
-				<div style="margin-top: 10px;" id="top-logo" class="float_left"><a href="index.jsp"><img
-							src="../resources/images/img_logo_old2.png" alt="Montraum" /></a></div>
+				<div style="margin-top: -20px;" id="top-logo" class="float_left"><a href="index.jsp"><img
+							src="../resources/images/img_logo_old2.png"   width=140px; alt="Montraum" /></a></div>
 				<!-- 검색바 부분 입니다  -->
 				<div id="header-right" class="float_left">
 					<div class="top-search-wrapper2">
@@ -169,6 +156,9 @@
 							<input type="image" src="../resources/images/blt_search.png" class="btn-search2" alt="검색버튼"
 								onClick="search_submit1()" />
 						</form>
+						
+						
+						
 						<script language="javascript">
 							function search_submit1() {
 								str_search = document.searchForm1.search.value.trim();
@@ -199,9 +189,9 @@
 			alt="BRAND" /></a>
 				</li>
 				<li class="submenu-open menu1"><a href="shopmain95da.html?iniCategory=24&amp;thisCategory="><span
-							class="default">강시</span><span class="hover">강아지 사료</span></a></li>
+							class="default">강아지</span><span class="hover">강아지 사료</span></a></li>
 				<li class="submenu-open menu2"><a href="shopmain6e15.html?iniCategory=107&amp;thisCategory="><span
-							class="default">고양이 사료</span><span class="hover">고양이 사료</span></a></li>
+							class="default">고양이</span><span class="hover">고양이 사료</span></a></li>
 				<li class="submenu-open menu3"><a href="shopmainacb9.html?iniCategory=25&amp;thisCategory="><span
 							class="default">배변용품</span><span class="hover">배변용품</span></a></li>
 				<li class="submenu-open menu4"><a href="shopmain84ed.html?iniCategory=27&amp;thisCategory="><span
@@ -299,9 +289,129 @@
 
 
 		</nav>
+<!-- 상단 따라오는 메뉴   -->
+<!-- <div class="  tata naver ">
+					<div style="margin-top: -20px;" id="top-logo" class="float_left"><a href="index.jsp"><img
+							src="../resources/images/img_logo_old2.png"   width=50px;  />Gift to  Pet </a></div>
+				검색바 부분 입니다 
+
+						<form name="searchForm1" action=""  onSubmit="return false; ">
+							<input  class="inputer"  type="text" id="search" name="search"  placeholder="검색어를 입력하세요."
+								onKeyUp="if(event.keyCode==13) search_submit1()" maxlength="40px" />
+								
+							<input class="port"  type="image"  src="../resources/images/blt_search.png" style=" position: relative;
+
+    top: -35px; left :-200px;"  alt="검색버튼"
+								onClick="search_submit1()" />
+						</form>
+						<script language="javascript">
+							function search_submit1() {
+								str_search = document.searchForm1.search.value.trim();
+								if ('검색어를 입력하세요.' == str_search) {
+									alert('검색어를 입력하세요.')
+									document.searchForm1.search.value = ""
+									document.searchForm1.search.focus();
+									return
+								}
+								if (str_search.length < 2) {
+									alert('2자 이상 검색어를 입력하세요');
+									document.searchForm1.search.focus();
+									return;
+								}
+								document.searchForm1.submit();
+							}
+						</script>
+							<div class="inner-header">
+					<ul style=" position: relative;
+
+    top: -120px; left:650px; " id="header-right" >
+
+						<li class="cart-icon "> <a class="nejongbo" href="orderlist.jsp"><img  src="../resources/images/user.png" ><p style="text-align:center;">MY</p></a>
+
+					<li class="cart-icon "> <a class="nejongbo" href="shoppingbasket.jsp"><img src="../resources/images/shopping-cart.png"style="margin-right:8px;"><p  style="text-align:center;"> cart</p></a>
+				
+						<li><a href="mycoupon.jsp"><img src="../resources/images/cupone.png" style="margin-right:8px;"><p style="text-align:center;">cupon</p></a></li>
+					</ul>
+					우측 이벤트 부분 제외 
+				</div>
+					</div>
+				</div>
+
+			</div>
+ -->
+
+	</head>
+<!-- 따라오는 상단 메뉴 귀찮아서 css 파일 ,스크립트 파일 안만듬 어차피 조절 할거면 여기서 하는게 맞는듯 ?  -->
+<style type="text/css">
+	/* html, body { width:100%; height:100%;  margin:0px; padding:0px; } */
+	.tata { width:100%; height:20px; }
+	.naver { position: fixed;
+    top: -400px;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid #000;
+    background: #fff;
+    z-index: 101;
+    padding: 1.5em 0;
+	transition: top 0.2s ease-in-out;
+	 padding-top: 40px
+
+	</style>
+	
+<!-- input 사이즈 조절 귀찮   -->
+<style>
+.inputer{
+width:500px;height:30px;font-size:10px;
+ position: relative;
+
+    top: -40px;
+    left: -150px;
+    border-radius: 20px;
+    border: 1px solid #bbb;
+    margin: 10px 0;
+    padding: 10px 12px;
+}
+
+}
+
+.port{
+width:500px;height:30px;
+ position: relative;
+     top: -40px;
+    left: -150px;
+}
+</style>
+
+<!--  -->	
+	
+	
+	
+
+	<script type="text/javascript">
+	$(function(){
+	
+	var vi = 60;  // 하단에 메뉴 표시할 스크롤 위치값 지정
+	var nav_y = $(".naver").offset().top + $(".naver").height();
+	
+	$(window).scroll(function(){
+		 var nums = $(window).scrollTop();
+		 if( nums > nav_y ){
+			  if( nums > vi ){
+				   $(".naver").css({"position":"fixed","top":"0px","left":"0px"}).fadeIn();
+			  }else{
+				   $(".naver").fadeOut();
+			 }
+		 }else{
+			  $(".naver").finish().css({"position":"static","display":"block"});
+		 } 
+	});
+	
+	
+	
+	});
+	</script>
+	
 
 
-
-	</header>
 </body>
 </html>

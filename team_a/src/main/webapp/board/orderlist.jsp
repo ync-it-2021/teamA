@@ -17,18 +17,33 @@
 #popup-member-join-check .ws-join .desc {font-size:13px; color:#555;}
 #popup-member-join-check .ws-join .btn-ws-join {font-weight: 700;font-size: 15px;margin-top: 16px;border: none;display: inline-block;background-color: #000;color: #fff;padding: 16px 0px;width: 289px;}
 
+#popup-member-join-check .naver-join {text-align:center; margin-bottom: 26px;}
+#popup-member-join-check .naver-join .title {font-size:26px;}
+#popup-member-join-check .naver-join .desc {font-size:13px; color:#555;}
+#popup-member-join-check .naver-join .btn-login-naver {font-weight: 700;font-size: 15px;margin-top: 16px;border: none;display: inline-block;background-color: #1EC800;color: #fff;padding: 16px 0px;width: 289px;background-image: url('../images/sns_logo_naver.png');background-position: 44px center;background-repeat: no-repeat;text-indent: 35px;}
+#popup-member-join-check .naver-join .btn-login-facebook {font-weight: 700;font-size: 15px;margin-top: 16px;border: none;display: inline-block;background-color: #385898;color: #fff;padding: 16px 0px;width: 289px;background-image: url('../images/sns_logo_facebook.png');background-position: 44px center;background-repeat: no-repeat;text-indent: 35px;}
+#popup-member-join-check .naver-join .btn-login-kakao {font-weight: 700;font-size: 15px;margin-top: 16px;border: none;display: inline-block;background-color: #F9DF33;color: #fff;padding: 16px 0px;width: 289px;background-image: url('../images/sns_logo_kakao.png');background-position: 44px center;background-repeat: no-repeat;text-indent: 35px;}
 
 
 </style>
 
-
-
-
 </head>
 <body>
+<script language="javascript">
 
+	httpUrl = "/common/process/buy_list.asp?iniCategory=0"
+	httpUrl2 = "www.montraum.com"
+	
+	function loginCheck() {
+		location.href="/common/all_site/member/login.asp?refer_page=%2Fcommon%2Fprocess%2Fbuy%5Flist%2Easp%3FiniCategory%3D0"
+	}
+
+	
+</script>
 <script language="javascript" src="../resources/js/top.js"></script>
-<script language="javascript" src="../resources/js/_vir0001/code.js" charset="euc-kr"></script>
+<script language="javascript" src="../resources/js/_vir0001/code.js" charset="utf-8"></script>
+<script language="javascript" src="/top.js"></script>
+<script language="javascript" src="/_vir0001/code.js" charset="euc-kr"></script>
 
 <!--Content영역시작-->
 		<section>
@@ -39,7 +54,7 @@
 	<div class="member-nav-wrapper">
 	<ul class="member-nav open-sub-menu"> <!-- 나의 쇼핑현황일 때 open-sub-menu class를 추가 -->
 		<li class="active">
-			<a href="orderlist.jsp">나의 쇼핑현황</a>
+			<a href="orderlist.jsp" class="active">나의 쇼핑현황</a>
 			<div class="member-sub-nav">
 				<a href="orderlist.jsp" class="active">주문내역</a>
 				<a href="shoppingbasket.jsp">장바구니</a>
@@ -60,7 +75,7 @@
 		<p class="welcome-member"> name 고객님, 환영합니다.</p>
 		<div class="top-infobox2 my-membership">
 			<div class="level-box">
-        <div class="level-blt"><img src="../resources/images/blt2_membership_1.png"/></div>
+        <div class="level-blt"><img src="/static/img/member/blt2_membership_1.png"/></div>
         <div class="level-info">
           <div class="title-name only-pc">11월 회원등급</div>
           <div class="title-name only-mobile">11월<br/>회원등급</div>
@@ -82,29 +97,29 @@
 
 		<div class="top-infobox3" style="text-align: center">
 			<div class="my-infobox my-balance2 my-info">
-			  <img class="only-pc" src="../resources/images/balance.png" style="float: left;margin-top: -11px;">
-			  <img class="only-mobile" src="../resources/images/balance.png" style="float: left;width: 35px;">
+			  <img class="only-pc" src="/static/img/member/balance.png" style="float: left;margin-top: -11px;">
+			  <img class="only-mobile" src="/static/img/member/balance.png" style="float: left;width: 35px;">
 				<div class="name only-pc" style="float: left;padding: 25px 10px;font-size: 15px;">예치금<br/><a href="/common/process/mypoint.asp">0</a> 원</div>
 				<div class="name only-mobile" style="float: left;">예치금<br/><a href="/common/process/mypoint.asp">0</a> 원</div>
 			</div>
 
       <div class="my-infobox my-coupon2 my-info">
-        <img class="only-pc" src="../resources/images/coupon.png" style="float: left;">
-        <img class="only-mobile" src="../resources/images/coupon.png" style="float: left;width: 35px;">
+        <img class="only-pc" src="/static/img/member/coupon.png" style="float: left;">
+        <img class="only-mobile" src="/static/img/member/coupon.png" style="float: left;width: 35px;">
         <div class="name only-pc" style="float: left;padding: 25px 10px;font-size: 15px;">쿠폰<br/><a href="/common/process/mycoupon.asp">0</a> 장</div>
         <div class="name only-mobile" style="float: left;">쿠폰<br/><a href="/common/process/mycoupon.asp">0</a> 장</div>
       </div>
 
 			<div class="my-infobox my-wish2 my-info">
-			  <img class="only-pc" src="../resources/images/wish.png" style="float: left;">
-			  <img class="only-mobile" src="../resources/images/wish.png" style="float: left;width: 35px;">
+			  <img class="only-pc" src="/static/img/member/wish.png" style="float: left;">
+			  <img class="only-mobile" src="/static/img/member/wish.png" style="float: left;width: 35px;">
 				<div class="name only-pc" style="float: left;padding: 25px 10px;font-size: 15px;">위시리스트<br/><a href="/common/process/wish_list.asp">0</a> 개</div>
 				<div class="name only-mobile" style="float: left;">위시리스트<br/><a href="/common/process/wish_list.asp">0</a> 개</div>
 			</div>
 
 			<div class="my-infobox my-cart2 my-info">
-			  <img class="only-pc" src="../resources/images/cart.png" style="float: left;margin-top: -5px;">
-			  <img class="only-mobile" src="../resources/images/cart.png" style="float: left;width: 35px;">
+			  <img class="only-pc" src="/static/img/member/cart.png" style="float: left;margin-top: -5px;">
+			  <img class="only-mobile" src="/static/img/member/cart.png" style="float: left;width: 35px;">
         <div class="name only-pc" style="float: left;padding: 25px 10px;font-size: 15px;">장바구니<br/><a href="/common/process/order_list.asp?iniCategory=0">0</a> 개</div>
         <div class="name only-mobile" style="float: left;">장바구니<br/><a href="/common/process/order_list.asp?iniCategory=0">0</a> 개</div>
       </div>

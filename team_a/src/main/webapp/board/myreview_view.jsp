@@ -11,11 +11,22 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	
+	<script language="javascript">
+
+	httpUrl = "/common/process/productAfter/myreview_view.asp"
+	httpUrl2 = "www.montraum.com"
+
+	function loginCheck() {
+		location.href="/common/all_site/member/login.asp?refer_page=%2Fcommon%2Fprocess%2FproductAfter%2Fmyreview%5Fview%2Easp"
+	}
 
 	
+</script>
+<script language="javascript" src="../resources/js/top.js"></script>
 
 
-
+<script language="javascript" src="../resources/js/_vir0001/code.js" charset="utf-8"></script>
+	
 <section>
 <div id="page-member-my-review" class="section-member pc-width">
 	<div id="navigation-bar"><script>document.write(navistr)</script></div>
@@ -35,9 +46,8 @@
 			</div>
 		</li>
 		<li><a href="member_Whitdrawal.jsp">개인정보수정</a></li>
-		<li><a href="baesong_addr.jsp">주소록관리</a></li>
-		<li class="hide-mobile active"><a href="qna.jsp">1:1문의</a></li>
-		<li><a href="myreview_view.jsp">나의후기</a></li>
+		<li ><a href="qna.jsp">1:1문의</a></li>
+		<li class="active"><a href="myreview_view.jsp" c">나의후기</a></li>
 		<li><a href="member_Withdrawal.jsp">회원탈퇴</a></li>
 	</ul>
 	</div>
@@ -49,7 +59,7 @@
 		<div class="page-content-desc">
 			<span class="only-pc">회원님께서 등록하신 리뷰기 목록입니다. 작성하신 리뷰를 확인하세요.</span>
 			<span class="only-mobile">등록하신 리뷰기 목록입니다.</span>
-			<span class="btn-write btn-up-right"><a href="myreview_input.jsp">리뷰작성</a></span>
+			<span class="btn-write btn-up-right"><a href="review_write.jsp">리뷰작성</a></span>
 		</div>
 
 
