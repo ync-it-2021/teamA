@@ -60,15 +60,16 @@
 
 
 			<!-- 메인베너 스크립트 -->
-			<script type="text/javascript">
+	<script type="text/javascript">
 
+			
 				$('#main-banner').owlCarousel({
 					loop: true,
 					nav: true,
 					autoplay: true,
 					items: 1,
 					dots: true,
-					navText: "",
+					navText: []
 				});
 
 			</script>
