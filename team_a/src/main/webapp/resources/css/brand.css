@@ -1,0 +1,129 @@
+#page-brand .wrapper-brand-list {
+  position: relative;
+  margin-bottom: 100px;
+}
+#page-brand .brand-list {
+  overflow: hidden;
+}
+#page-brand .brand-list .item {
+  position: relative;
+  float: left;
+  width: 280px;
+  height: 260px;
+  text-align: center;
+  font-family: "Nanum Gothic", "��������";
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-right: none;
+  cursor: pointer;
+  margin-top: -1px;
+}
+#page-brand .brand-list .item:nth-of-type(4n) {
+  border-right: 1px solid #ccc;
+}
+#page-brand .brand-list .item:nth-of-type(-n + 4) {
+  margin-top: 0px;
+}
+#page-brand .brand-list .item.last {
+  border-right: 1px solid #ccc;
+}
+
+#page-brand .brand-list .item img {
+  width: 100%;
+}
+#page-brand .brand-list .item-title {
+  font-weight: 500;
+  font-size: 17px;
+  padding: 10px 0px 0px 0px;
+}
+#page-brand .brand-list .item-description {
+  font-weight: 0;
+  font-size: 11px;
+  color: #888;
+}
+#page-brand .brand-list .item.active {
+  border-bottom: 1px solid #000;
+}
+
+#page-brand .wrapper-brand-list .active-cursor {
+  display: none;
+  position: absolute;
+  width: 280px;
+  height: 13px;
+  background-image: url("../images/blt_item_active.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 99;
+  left: 0px;
+}
+#page-brand .brand-detail {
+  padding: 20px 0px;
+  margin-bottom: 50px;
+}
+#page-brand .created-div {
+  display: none;
+  position: relative;
+  clear: both;
+  width: 100%;
+  padding: 30px 0px;
+  text-align: center;
+}
+#page-brand .created-div .btn-close {
+  display: inline-block;
+  position: absolute;
+  z-index: 99;
+  top: 30px;
+  right: 0px;
+  cursor: pointer;
+  margin-right: 0;
+}
+
+@media (max-width: 420px) {
+  #page-brand .wrapper-brand-list {
+    padding: 0 10px;
+    text-align: center;
+  }
+  #page-brand .brand-list .item {
+    width: 170px;
+    height: 180px;
+  }
+  #page-brand .brand-list .item:nth-of-type(4n) {
+    border-right: none;
+  }
+  #page-brand .brand-list .item:nth-of-type(-n + 4) {
+    margin-top: -1px;
+  }
+  #page-brand .brand-list .item:nth-of-type(2n + 0) {
+    border-right: 1px solid #ccc;
+  }
+  #page-brand .brand-list .item.last {
+    border-right: 1px solid #ccc;
+  }
+  #page-brand .brand-list .item:nth-of-type(-n + 2) {
+    margin-top: 0px;
+  }
+  #page-brand .brand-list .item-title {
+    font-size: 12px;
+    padding: 5px 0px 3px 0px;
+  }
+  #page-brand .brand-list .item-description {
+    font-size: 9px;
+    color: #888;
+    letter-spacing: -0.7px;
+  }
+  #page-brand .wrapper-brand-list .active-cursor {
+    width: 170px;
+    height: 13px;
+  }
+  #page-brand .created-div {
+    padding: 40px 0px 20px 0px;
+  }
+  #page-brand .created-div img {
+    width: 100%;
+  }
+  #page-brand .created-div .btn-close {
+    width: 20px;
+    top: 10px;
+    cursor: pointer;
+  }
+}

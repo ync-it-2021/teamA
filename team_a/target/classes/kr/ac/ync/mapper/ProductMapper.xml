@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.ync.mapper.ProductMapper">
+<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'N'.toString()">
+							prd_name LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							prd_company LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'K'.toString()">
+							prd_kind LIKE '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	<select id="read" resultType="kr.ac.ync.domain.ProductVO">
+		SELECT	*
+		FROM 	product
+		WHERE 	prd_idx = #{prd_idx}
+	</select>
+	
+	
+	<select id="getTotalCount" resultType="int">
+		SELECT count(*) FROM product WHERE 
+		<include refid="criteria"></include> 
+		prd_idx > 0
+	</select>
+
+	<select id="getListWithPaging" resultType="kr.ac.ync.domain.ProductVO">
+		<![CDATA[
+		SELECT	prd_idx,				
+  				prd_name,			
+  				prd_register_date,		
+ 				prd_inventory,			
+  				prd_cost_price,			
+  				prd_discount_date,		
+  				prd_sale_prices,		
+  				prd_company,			
+  				prd_kind,			
+ 				prd_amount				
+		FROM	(SELECT /*+INDEX_DESC(product XPKPRODUCT) */
+        				rownum rn,
+        				prd_idx,				
+		  				prd_name,			
+		  				prd_register_date,		
+		 				prd_inventory,			
+		  				prd_cost_price,			
+		  				prd_discount_date,		
+		  				prd_sale_prices,		
+		  				prd_company,			
+		  				prd_kind,			
+		 				prd_amount	
+      			FROM	product
+				WHERE 
+  		]]>
+		<include refid="criteria"></include> 
+      
+		<![CDATA[    
+      			rownum <= #{pageNum} * #{amount}
+      			)
+  		WHERE rn > (#{pageNum} -1) * #{amount}   
+		]]>
+	</select>
+	
+	<insert id="insertSelectKey">
+
+		<selectKey keyProperty="prd_idx" order="BEFORE"
+			resultType="int">
+			select seq_product.nextval from dual
+		</selectKey>
+
+		INSERT INTO product (	prd_idx,
+								prd_name,
+								prd_cost_price,
+								prd_company,
+								prd_kind,
+								prd_amount, 
+								prd_img1, 
+								prd_img2, 
+								prd_img3, 
+								prd_img4, 
+								prd_img5, 
+								prd_img6, 
+								prd_img7,
+								prd_img8, 
+								prd_img9, 
+								prd_img10 
+								)
+					VALUES (	seq_product.nextval,
+								#{prd_name}, 
+								#{prd_cost_price},
+								#{prd_company},
+								#{prd_kind},
+								#{prd_amount}, 
+								#{prd_img1,jdbcType=VARCHAR}, 
+								#{prd_img2,jdbcType=VARCHAR}, 
+								#{prd_img3,jdbcType=VARCHAR}, 
+								#{prd_img4,jdbcType=VARCHAR}, 
+								#{prd_img5,jdbcType=VARCHAR}, 
+								#{prd_img6,jdbcType=VARCHAR}, 
+								#{prd_img7,jdbcType=VARCHAR}, 
+								#{prd_img8,jdbcType=VARCHAR}, 
+								#{prd_img9,jdbcType=VARCHAR}, 
+								#{prd_img10,jdbcType=VARCHAR}
+								 )
+	</insert>
+	
+	<select id="imgTest" resultType="kr.ac.ync.domain.ProductVO">
+		SELECT * FROM product WHERE prd_idx = #{prd_idx}
+	</select>
+</mapper>

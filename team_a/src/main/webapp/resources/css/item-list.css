@@ -1,0 +1,886 @@
+#navigation-bar {
+  text-align: right;
+  margin: 20px 0px 30px;
+}
+#navigation-bar span {
+  padding: 3px;
+  font-family: "Nanum Gothic", "��������";
+  font-weight: 300;
+  font-size: 13px;
+  color: #888;
+}
+#navigation-bar span:after {
+  content: " >";
+}
+#navigation-bar span.current {
+  font-weight: 500;
+}
+#navigation-bar span.current:after {
+  content: "";
+}
+
+/* #page-item-list h2 { text-align: center; font-family: "Nanum Gothic","��������"; font-weight: 500; font-size: 35px; margin-bottom: 30px; } */
+
+/* Main Visual Banner */
+#item-list-top-banner {
+  height: 250px;
+  position: relative;
+  margin-bottom: 30px;
+}
+#item-list-top-banner .item .image {
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 250px;
+}
+#item-list-top-banner .owl-controls .owl-dots {
+  top: 15px;
+  right: 15px;
+  position: absolute;
+}
+#item-list-top-banner .owl-controls .owl-dots .owl-dot {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  margin: 5px;
+  border: 2px solid #000;
+  border-radius: 8px;
+}
+#item-list-top-banner .owl-controls .owl-dots .owl-dot.active {
+  background-color: #000;
+}
+
+#page-item-list .sub-category {
+  text-align: center;
+  border-bottom: 1px solid #000;
+  padding-bottom: 20px;
+}
+#page-item-list .sub-category li {
+  display: inline-block;
+  margin: 0px 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+#page-item-list .sub-category > li {
+  padding-right: 20px;
+  background-image: url("../images/blt_line.png");
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+#page-item-list .sub-category li span {
+  cursor: pointer;
+}
+#page-item-list .sub-category > li:last-child {
+  background: none;
+}
+#page-item-list .sub-category li.active > span {
+  border-bottom: 1px solid #000;
+  font-weight: bold;
+}
+#page-item-list .sub-category .sub-items li {
+}
+#page-item-list .sub-category .sub-items li span a {
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+}
+#page-item-list .sub-category .sub-items {
+  display: inline-block;
+  max-width: 0px;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+#page-item-list .sub-category li.active .sub-items {
+  max-width: 500px;
+  transition: all 0.3s ease-in-out;
+}
+
+#page-item-list .best-seller-wrapper {
+  padding-top: 40px;
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #ccc;
+}
+#page-item-list .best-seller-wrapper h2 {
+  font-size: 28px;
+  padding: 0px;
+  margin: 10px;
+}
+
+#category-best-items {
+  position: relative;
+}
+#category-best-items .owl-controls .owl-dots {
+  margin-right: 10;
+  text-align: right;
+  position: relative;
+  top: -450px;
+}
+#category-best-items .owl-controls .owl-dots .owl-dot {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  margin: 5px;
+  border: 2px solid #000;
+  border-radius: 8px;
+}
+#category-best-items .owl-controls .owl-dots .owl-dot.active {
+  background-color: #000;
+}
+
+#page-item-list .items .item-header .item-order {
+  width: 100px;
+  border-color: #888;
+}
+#page-item-list .items .item-header .total-item-num {
+  float: left;
+  font-family: "Nanum Gothic", "��������";
+  font-weight: 300;
+  font-size: 15px;
+}
+#page-item-list .items .item-header .total-item-num .num {
+  font-weight: 500;
+  font-size: 20px;
+}
+#page-item-list .items .item-header .item-order {
+  float: right;
+}
+#page-item-list .items .item-header .current-order {
+  float: right;
+  padding: 5px 20px;
+}
+
+#page-item-list .items {
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+#page-item-list .items.item-type1 .item-list-type1.no-out-border {
+  border: none;
+}
+#page-item-list .items.item-type1 .item-list-type3.no-out-border {
+  border: none;
+}
+#page-item-list .items.item-type1 .item-header {
+  padding: 20px 0px;
+}
+#page-item-list .items.item-type1 .item-list-type1 {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 30px;
+}
+#page-item-list .items.item-type1 .item-list-type3 {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 30px;
+}
+#page-item-list .items.item-type1 .item-list-description {
+  color: #888;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+#page-item-list .items.item-type1 .select-order {
+  float: right;
+}
+#page-item-list .items.item-type1 .item-list-type1 .item {
+  text-align: center;
+}
+#page-item-list .items.item-type1 .item-list-type1 input.type1 {
+  margin-bottom: 10px;
+}
+#page-item-list .items.item-type1 .item-list-type3 .item {
+  text-align: center;
+}
+#page-item-list .items.item-type1 .item-list-type3 input.type1 {
+  margin-bottom: 10px;
+}
+#page-item-list .items.item-type1 .item-actions {
+  padding: 30px 0px;
+}
+#page-item-list .items.item-type1 .item-actions .btn-deselect {
+  margin: 0 10px;
+  text-align: center;
+  padding: 10px 20px;
+  border: 2px solid #888;
+  background-color: #888;
+  color: #fff;
+  cursor: pointer;
+}
+#page-item-list .items.item-type1 .item-actions .btn-add-cart {
+  float: right;
+  margin: 0 10px;
+  text-align: center;
+  border: 2px solid #000;
+  padding: 8px 20px;
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+#page-item-list .items.item-type1 .action-buttons {
+  padding: 30px;
+}
+
+/* common item list */
+.item-list-type1 {
+  overflow: auto;
+}
+.item-list-type1 .item {
+  padding: 5px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  width: 260px;
+  float: left;
+  text-align: center;
+  position: relative;
+  left: 0px;
+  top: 0px;
+} /*160412 AU��u��oA��*/
+.item-list-type1 .item .sold-out {
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 260px;
+  height: 260px;
+  position: absolute;
+  z-index: 10;
+}
+.item-list-type1 .item .sold-out .sold-out-t {
+  color: #fff;
+  text-align: center;
+  font-size: 22px;
+  line-height: 260px;
+  font-family: "Nanum Gothic", "��������";
+  font-weight: 700;
+  opacity: 0.8;
+}
+.item-list-type1 .item .item-image {
+  padding-bottom: 0px;
+  width: 260px;
+}
+.item-list-type1 .item p {
+  text-align: center;
+  padding: 0px 2em;
+}
+.item-list-type1 .item p.item-title {
+  font-family: "Nanum Gothic", "��������";
+  font-weight: 700;
+  font-size: 14px;
+  color: #010101;
+  padding: 10px 0px 5px 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.item-list-type1 .item p.item-description {
+  color: #555;
+  font-size: 12px;
+  white-space: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  min-height: 35px;
+  max-height: 35px;
+}
+.item-list-type1 .item p.item-price {
+  padding: 0.5em;
+}
+.item-list-type1 .item p.item-price .list-price {
+  text-decoration: line-through;
+  color: #888;
+}
+.item-list-type1 .item p.item-price .now-price {
+  font-size: 15px;
+  padding: 5px;
+  font-weight: bold;
+}
+.item-list-type1 .item p.item-price .now-discount {
+  font-weight: 200;
+  color: #000;
+  font-size: 19px;
+  font-family: Gotham SSm A, Gotham SSm B;
+  margin-left: 20px;
+}
+.item-list-type1 .item p.item-price .discount_no {
+  font-size: 37px;
+  letter-spacing: -2px;
+}
+
+.item-list-type3 {
+  overflow: auto;
+}
+.item-list-type3 .item {
+  padding: 10px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  width: 260px;
+  float: left;
+  text-align: center;
+  position: relative;
+  left: 0px;
+  top: 0px;
+} /*160412 AU��u��oA��*/
+.item-list-type3 .item .sold-out {
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 260px;
+  height: 260px;
+  position: absolute;
+  z-index: 10;
+}
+.item-list-type3 .item .sold-out .sold-out-t {
+  color: #fff;
+  text-align: center;
+  font-size: 22px;
+  line-height: 260px;
+  font-family: "Nanum Gothic", "��������";
+  font-weight: 700;
+  opacity: 0.8;
+}
+.item-list-type3 .item .item-image {
+  padding-bottom: 0px;
+  width: 260px;
+}
+.item-list-type3 .item p {
+  text-align: center;
+  padding: 0px 2em;
+}
+.item-list-type3 .item p.item-title {
+  font-family: "Nanum Gothic", "��������";
+  font-weight: 700;
+  font-size: 14px;
+  color: #010101;
+  padding: 10px 0px 5px 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.item-list-type3 .item p.item-description {
+  color: #555;
+  font-size: 12px;
+  white-space: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  min-height: 35px;
+  max-height: 35px;
+}
+.item-list-type3 .item p.item-price {
+  padding: 0.5em;
+}
+.item-list-type3 .item p.item-price .list-price {
+  text-decoration: line-through;
+  color: #888;
+}
+.item-list-type3 .item p.item-price .now-price {
+  font-size: 15px;
+  padding: 5px;
+  font-weight: bold;
+}
+.item-list-type3 .item p.item-price .now-discount {
+  font-weight: 200;
+  color: #000;
+  font-size: 19px;
+  font-family: Gotham SSm A, Gotham SSm B;
+  margin-left: 20px;
+}
+.item-list-type3 .item p.item-price .discount_no {
+  font-size: 37px;
+  letter-spacing: -2px;
+}
+
+/* BEST SELLER */
+.item-list-type2 {
+  padding: 20px;
+  margin-bottom: 10px;
+}
+.item-list-type2 .item {
+  padding: 5px;
+  width: 350px;
+  margin: 0px;
+  margin-bottom: 20px;
+}
+.item-list-type2 .item .item-image {
+  width: 100%;
+}
+.item-list-type2 .item p.item-description {
+  padding: 0px 70px;
+}
+.item-list-type2 .item p.item-best {
+  font-family: "Nanum Gothic", "��������";
+  font-weight: 300;
+  font-size: 17px;
+  padding-top: 30px;
+  background-image: url("../images/blt_best.png");
+  background-repeat: no-repeat;
+  background-position: top center;
+  margin-bottom: 10px;
+}
+.item-list-type2 .item p.item-best span {
+  font-weight: 700;
+}
+
+/* Search */
+#page-item-list .search-form {
+  margin-bottom: 40px;
+}
+#page-item-list .search-form .search-num {
+  text-align: center;
+  font-size: 18px;
+}
+#page-item-list .search-form .search-num span {
+  color: #e5005a;
+}
+#page-item-list .search-box {
+  background-color: #f6f6f6;
+  padding: 25px;
+  text-align: center;
+  margin: 15px 0px 40px;
+  border: 1px solid #ccc;
+}
+#page-item-list .search-box label {
+  font-weight: bold;
+  font-size: 17px;
+  padding: 0 5px;
+}
+#page-item-list .search-box input.input1 {
+  border: 2px solid #000;
+  width: 400px;
+  vertical-align: middle;
+}
+#page-item-list .search-box input.btn-submit {
+  background-color: #000;
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 30px;
+  border: none;
+  vertical-align: middle;
+}
+#page-item-list h3.underline-title {
+  font-size: 20px;
+  border-bottom: 1px solid #000;
+  padding: 5px 0px;
+}
+#page-item-list .searched-category {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0px;
+}
+#page-item-list .searched-category .category-group {
+  margin: 15px 0px;
+}
+#page-item-list .searched-category .category-group .category-name {
+  font-weight: bold;
+  display: inline-block;
+  width: 130px;
+  background-image: url("../images/blt_line.png");
+  background-repeat: no-repeat;
+  background-position: right center;
+  vertical-align: top;
+}
+#page-item-list .searched-category .category-group ul {
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 20px;
+  width: 950px;
+}
+#page-item-list .searched-category .category-group ul li {
+  display: inline-block;
+  margin-right: 30px;
+}
+#page-item-list .items h3.underline-title {
+  margin-bottom: 20px;
+}
+
+.pagination1 {
+  text-align: center;
+  padding: 30px;
+}
+.pagination1 .btn-page {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0px 20px;
+}
+.pagination1 .prev {
+  background-image: url("../images/btn_prev_page.png");
+}
+.pagination1 .next {
+  background-image: url("../images/btn_next_page.png");
+}
+.pagination1 span {
+  border: 1px solid #fff;
+  padding: 5px 10px;
+  color: #555;
+  margin: 0 3px;
+  cursor: pointer;
+}
+.pagination1 span:hover {
+  font-weight: bold;
+}
+.pagination1 span.active {
+  border: 2px solid #000;
+  color: #000;
+  font-weight: bold;
+}
+
+.pagination2 {
+  text-align: center;
+  padding: 10px;
+}
+.pagination2 .btn-page {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0px 10px;
+}
+.pagination2 .prev {
+  background-image: url("../images/btn_prev.png");
+}
+.pagination2 .next {
+  background-image: url("../images/btn_next.png");
+}
+.pagination2 span {
+  padding: 5px;
+  color: #555;
+  margin: 0 3px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.pagination2 span.selected {
+  color: #000;
+  font-weight: bold;
+}
+
+@media (max-width: 420px) {
+  #navigation-bar {
+    display: none;
+  }
+
+  #item-list-top-banner {
+    height: 160px;
+    margin-bottom: 10px;
+  }
+  #item-list-top-banner .item .image {
+    height: 160px;
+  }
+
+  .item-list-type1 .item {
+    width: auto;
+  }
+  .item-list-type1 .item p {
+    padding: 0px;
+  }
+
+  .item-list-type3 .item {
+    width: auto;
+  }
+  .item-list-type3 .item p {
+    padding: 0px;
+  }
+
+  #page-item-list .items.item-type1 .item-list-type3 {
+    border-top: none;
+  }
+
+  #page-item-list .sub-category {
+    position: relative;
+    padding-bottom: 40px;
+  }
+  #page-item-list .sub-category li {
+    font-size: 13px;
+  }
+  #page-item-list .sub-category > li {
+    margin: 3px;
+    padding-right: 10px;
+  }
+  #page-item-list .sub-category .c-name a {
+    font-size: 13px;
+  }
+  #page-item-list .sub-category .sub-items {
+    position: absolute;
+    bottom: 10px;
+    left: 0px;
+    width: 360px;
+    overflow: hidden;
+  }
+  #page-item-list .sub-category .sub-items span {
+  }
+  #page-item-list .sub-category .sub-items li span a {
+    font-size: 12px;
+    color: #555;
+  }
+
+  #page-item-list .best-seller-wrapper {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  #page-item-list .best-seller-wrapper h2 {
+    font-size: 20px;
+  }
+  /*.best-seller-wrapper #category-best-items .item .item-image { border: 1px solid #eee; }*/
+  .best-seller-wrapper #category-best-items .item p.item-title {
+    font-size: 12px;
+  }
+  #category-best-items .owl-controls {
+    width: 100px;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: relative;
+  }
+  #category-best-items .owl-controls .owl-dots {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    text-align: center;
+    position: static;
+  }
+  #category-best-items .owl-controls .owl-dots .owl-dot {
+    width: 5px;
+    height: 5px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin: 0px 3px 1px;
+  }
+
+  #category-best-items .owl-controls .owl-nav .owl-prev {
+    position: absolute;
+    padding-top: 2px;
+  }
+  #category-best-items .owl-controls .owl-nav .owl-next {
+    position: absolute;
+    right: 0px;
+    padding-top: 2px;
+  }
+
+  .items {
+    padding: 0;
+    margin: 0;
+  }
+  .items .item-header {
+    padding: 0px 10px;
+  }
+  #page-item-list .items .item-header .item-order {
+    width: 80px;
+  }
+
+  .items {
+    padding: 0 5px;
+  }
+  .items .item-list-type1 .item {
+    width: 155px;
+    text-align: center;
+    height: 290px;
+  }
+  .items .item-list-type1 .item .item-image {
+    width: 100%;
+  }
+  .items .item-list-type3 .item {
+    width: 155px;
+    text-align: center;
+    height: 290px;
+  }
+  .items .item-list-type3 .item .item-image {
+    width: 100%;
+  }
+  .items .more-items {
+    display: none;
+  }
+
+  .item-list-type1 .item p.item-price2 {
+    padding: 1.5em 0.5em;
+  }
+  .item-list-type1 .item p.item-price2 .list-price {
+    text-decoration: line-through;
+    color: #888;
+    float: left;
+  }
+  .item-list-type1 .item p.item-price2 .now-price {
+    font-size: 15px;
+    padding: 0px;
+    font-weight: bold;
+    float: left;
+  }
+  .item-list-type1 .item p.item-price2 .now-discount {
+    font-weight: 200;
+    color: #000;
+    font-size: 19px;
+    font-family: Gotham SSm A, Gotham SSm B;
+    float: right;
+    position: relative;
+    top: -20px;
+  }
+  .item-list-type1 .item p.item-price2 .discount_no {
+    font-size: 30px;
+    letter-spacing: -2px;
+  }
+  .item-list-type3 .item p.item-price2 {
+    padding: 1.5em 0.5em;
+  }
+  .item-list-type3 .item p.item-price2 .list-price {
+    text-decoration: line-through;
+    color: #888;
+    float: left;
+  }
+  .item-list-type3 .item p.item-price2 .now-price {
+    font-size: 15px;
+    padding: 0px;
+    font-weight: bold;
+    float: left;
+  }
+  .item-list-type3 .item p.item-price2 .now-discount {
+    font-weight: 200;
+    color: #000;
+    font-size: 19px;
+    font-family: Gotham SSm A, Gotham SSm B;
+    float: right;
+    position: relative;
+    top: -20px;
+  }
+  .item-list-type3 .item p.item-price2 .discount_no {
+    font-size: 30px;
+    letter-spacing: -2px;
+  }
+
+  #page-item-list .items.item-type1 .item-header {
+    padding: 5px;
+  }
+  #page-item-list .items.item-type1 .item-list-description {
+    display: block;
+    float: none;
+    border-bottom: 1px solid #000;
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
+  #page-item-list .items.item-type1 .item-list-type1 {
+    border-top: none;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 30px;
+  }
+  #page-item-list .items.item-type1 .item-actions {
+    padding: 20px 0px;
+  }
+  #page-item-list .items.item-type1 .item-actions label {
+    padding-top: 5px;
+    float: left;
+  }
+  #page-item-list .items.item-type1 .item-actions .btn-deselect {
+    float: right;
+    font-size: 14px;
+    vertical-align: middle;
+    padding: 5px 10px;
+  }
+  #page-item-list .items.item-type1 .item-actions .btn-add-cart {
+    margin: 0;
+    vertical-align: middle;
+    padding: 5px 10px;
+  }
+  #page-item-list .items.item-type1 .action-buttons {
+    display: none;
+  }
+  #page-item-list .btn-more-load {
+    text-align: center;
+  }
+  #page-item-list .btn-more-load span {
+    display: inline-block;
+    border: 2px solid #000;
+    padding: 10px 20px;
+    text-align: center;
+  }
+
+  .item-list-type1 {
+    overflow: auto;
+  }
+  .item-list-type3 {
+    overflow: auto;
+  }
+  .border-bottom {
+    border-bottom: 1px solid #ccc;
+  }
+  .item-list-type2 {
+    padding: 0px 10px;
+  }
+  .items .item-list-type2 .item {
+    width: auto;
+    text-align: center;
+    height: auto;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+  }
+  .items .item-list-type2 .item:last-child {
+    border-bottom: none;
+  }
+  .item-list-type2 .item .item-image {
+    width: 155px;
+  }
+  .item-list-type2 .item p.item-description {
+    padding: 0px 70px;
+  }
+  .item-list-type2 .item p.item-best {
+    font-family: "Nanum Gothic", "��������";
+    font-weight: 300;
+    font-size: 17px;
+    padding-top: 30px;
+    background-image: url("../images/blt_best.png");
+    background-repeat: no-repeat;
+    background-position: top center;
+    margin-bottom: 10px;
+  }
+  .item-list-type2 .item p.item-best span {
+    font-weight: 700;
+  }
+  .item-list-type2 .item p.item-description {
+    padding: 0px;
+  }
+
+  #page-item-list .search-form {
+    padding: 0 10px;
+    margin-bottom: 20px;
+  }
+  #page-item-list .search-form .search-num {
+    text-align: center;
+    font-size: 13px;
+  }
+  #page-item-list .search-box {
+    padding: 20px 0px;
+    margin: 15px 0px 20px;
+  }
+  #page-item-list .search-box input.input1 {
+    width: 170px;
+  }
+  #page-item-list .search-box input.btn-submit {
+    font-weight: bold;
+    padding: 10px 15px;
+  }
+
+  #page-item-list h3.underline-title {
+    font-size: 18px;
+  }
+  #page-item-list .searched-category {
+    border-bottom: none;
+  }
+  #page-item-list .searched-category .category-group {
+    margin: 15px 0px;
+    border-bottom: 1px solid #dcdcdc;
+    padding-bottom: 10px;
+  }
+  #page-item-list .searched-category .category-group .category-name {
+    display: inline-block;
+    line-height: 1.7;
+    background-image: none;
+  }
+
+  #page-item-list .searched-category .category-group ul {
+    display: block;
+    padding-left: 0px;
+    width: 100%;
+  }
+  #page-item-list .searched-category .category-group ul li {
+    font-size: 12px;
+    margin-right: 5px;
+    padding: 3px 0px;
+  }
+}

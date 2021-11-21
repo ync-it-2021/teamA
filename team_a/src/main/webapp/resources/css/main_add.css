@@ -1,0 +1,666 @@
+/*  BEST ITEMS  */
+#best-items {
+  padding: 20px 0px 30px 0px;
+  background-image: url("../images/main_best_bg_03.jpg");
+  background-position: center;
+  text-align: center;
+}
+#best-items .category-name {
+  text-align: center;
+}
+#best-items .category-name li {
+  display: inline-block;
+  padding: 20px;
+  font-family: "Nanum Gothic", "占쏙옙占쏙옙占쏙옙占쏙옙";
+  font-weight: 300;
+  font-size: 25px;
+  text-shadow: 2px 2px #555;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+#best-items .btn-more {
+  width: 73px;
+  height: 37px;
+  display: inline-block;
+  background-image: url("../images/btn_more.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  transition-delay: 0.3s;
+  opacity: 0.5;
+}
+#best-items #category-item {
+  margin-top: 15px;
+  overflow-y: hidden;
+  position: absolute;
+  top: 360px;
+}
+#best-items #category-item .item {
+  width: 190px;
+  float: left;
+  margin-right: 10px;
+  background-color: #fff;
+  padding: 10px 40px 20px 40px;
+} /* 占쏙옙占쏙옙 占싱뱄옙占쏙옙 占쏙옙占쏙옙占쏘에 占쏙옙占쏙옙 占쏙옙占쏙옙 占십울옙 */
+#best-items #category-item .item .item-image {
+  padding: 0 5px 5px 5px;
+  width: 195px;
+  text-align: center;
+}
+#best-items #category-item .item p.item-title {
+  font-family: "Nanum Gothic", "占쏙옙占쏙옙占쏙옙占쏙옙";
+  font-weight: 700;
+  font-size: 16px;
+  color: #010101;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+#best-items #category-item .item p.item-description {
+  color: #555;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+#best-items .category-item-wrapper {
+  margin-top: 0px;
+  position: relative;
+  height: 0px;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Prev, Next 占쏙옙튼占쏙옙 占쏙옙占쏙옙占쏙옙 占싣뤄옙 width 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 */
+#best-items .owl-controls {
+  width: 120px;
+  margin: 20px 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  position: relative;
+}
+#best-items .owl-controls .owl-dots .owl-dot {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  margin: 5px;
+  border: 2px solid #000;
+  border-radius: 8px;
+}
+#best-items .owl-controls .owl-dots .owl-dot.active {
+  background-color: #000;
+}
+#best-items .owl-controls .owl-nav .owl-prev {
+  position: absolute;
+}
+#best-items .owl-controls .owl-nav .owl-next {
+  position: absolute;
+  right: 0px;
+}
+#best-items.open {
+  padding-top: 5px;
+}
+#best-items.open .btn-more {
+  background-image: url("../images/btn_less.png");
+  opacity: 1;
+}
+#best-items.open .category-name {
+  height: 110px;
+}
+#best-items.open .category-name p {
+  opacity: 1;
+  font-size: 30px;
+  text-shadow: 1px 1px #555;
+  color: #000000;
+  font-family: "Nanum Gothic", "占쏙옙占쏙옙占쏙옙占쏙옙";
+  line-height: 110px;
+  font-weight: 700;
+}
+#best-items.open .category-item-wrapper {
+  height: 330px;
+  display: block;
+}
+#best-items.open .category-name li {
+  opacity: 0.7;
+  font-size: 25px;
+  text-shadow: none;
+}
+#best-items .category-name li.active {
+  opacity: 1;
+  font-size: 48px;
+  text-shadow: 2px 2px #555;
+  letter-spacing: -1;
+}
+#best-items.show-items #category-item {
+  top: 0px;
+  transition: top 0.3s ease-in-out;
+}
+/**/
+
+/* Best Review */
+/* montraum *180514 占쌍뱄옙占쏙옙占쌜억옙*/
+.best-review-wrapper {
+  margin-bottom: 50px;
+}
+.best-review-wrapper .title-wrapper {
+  height: 20px;
+  text-align: center;
+}
+.best-review-wrapper h2 {
+  font-family: "Gotham SSm A", "Gotham SSm B", "Nanum Gothic", "占쏙옙占쏙옙占쏙옙占쏙옙";
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  position: relative;
+  margin-top: 50px;
+}
+.best-review-wrapper .more-btn {
+  overflow: hidden;
+  margin: 18px 0px 0px 0px;
+  text-align: right;
+}
+.best-review-wrapper #mont-review {
+  margin-top: 18px;
+}
+.best-review-wrapper #mont-review .item {
+  width: 43%;
+  float: left;
+  margin-right: 20px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  left: 0px;
+  top: 0px;
+  border: 1px solid #ccc;
+  padding: 13px;
+}
+.best-review-wrapper #mont-review .item:last-child {
+  margin-right: 0;
+}
+.best-review-wrapper #mont-review .item p {
+  text-align: left;
+}
+.best-review-wrapper #mont-review .item p.item-title {
+  font-family: "Gotham SSm A", "Gotham SSm B", "Nanum Gothic", "占쏙옙占쏙옙占쏙옙占쏙옙";
+  font-weight: 700;
+  font-size: 14px;
+  color: #000;
+  padding-top: 10px;
+}
+.best-review-wrapper #mont-review .item p.item-title span.title {
+  float: left;
+  width: 60%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.best-review-wrapper #mont-review .item p.item-title span.id-name {
+  float: right;
+  color: #888;
+  font-weight: normal;
+}
+.best-review-wrapper #mont-review .item p.item-description {
+  float: left;
+  font-size: 12px;
+  font-weight: normal;
+  color: #888;
+  padding-top: 7px;
+  width: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  line-height: 1.2;
+  height: 3.6em;
+  text-align: left;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+#mont-review .owl-controls {
+  width: 1119px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  position: relative;
+  top: -186px;
+  bottom: 0px;
+}
+#mont-review .owl-controls .owl-nav .owl-prev {
+  position: absolute;
+}
+#mont-review .owl-controls .owl-nav .owl-next {
+  position: absolute;
+  right: 0px;
+}
+/* Best Review */
+
+/* montraum 占싱븝옙트 */
+.mont-event-wrapper .title-wrapper {
+  height: 20px;
+  text-align: center;
+}
+.mont-event-wrapper h2 {
+  font-family: "Gotham SSm A", "Gotham SSm B", "Nanum Gothic", "占쏙옙占쏙옙占쏙옙占쏙옙";
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  position: relative;
+  margin-top: 50px;
+}
+.mont-event-wrapper .more-btn {
+  overflow: hidden;
+  margin: 18px 0;
+  text-align: right;
+}
+
+#mont-event .owl-controls .owl-nav .owl-prev {
+  width: 32px;
+  height: 55px;
+  background-color: transparent;
+  border: none;
+  overflow: hidden;
+  float: left;
+  position: relative;
+  top: -120px;
+}
+#mont-event .owl-controls .owl-nav .owl-next {
+  width: 32px;
+  height: 55px;
+  background-color: transparent;
+  border: none;
+  overflow: hidden;
+  float: right;
+  position: relative;
+  top: -120px;
+}
+/* montraum 占싱븝옙트 */
+
+/*占쏙옙트占쏙옙占� 占쏙옙占� PC*/
+#mont-bn {
+  clear: both;
+  position: relative;
+  top: -45px;
+}
+#mont-bn .bn-div {
+  border: solid 5px #dbdbdb;
+  float: left;
+  padding: 15px;
+  width: 555px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#mont-bn .mr {
+  margin-right: 10px;
+}
+#mont-bn .bn-img {
+  float: left;
+  margin-right: 30px;
+}
+#mont-bn .bn-txt {
+  float: left;
+  font-size: 30px;
+}
+#mont-bn .bn-txt span {
+  font-weight: 900;
+}
+/*占쏙옙트占쏙옙占� 占쏙옙占� PC*/
+
+/*占쏙옙占쏙옙 占쏙옙품 찾占쏙옙*/
+.recom-wrapper h2 {
+  font-family: "Gotham SSm A", "Gotham SSm B", "Nanum Gothic", "占쏙옙占쏙옙占쏙옙占쏙옙";
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  position: relative;
+  margin: 30px 0;
+}
+.recom-wrapper #recom_gubun {
+  width: 50%;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+@media (max-width: 420px) {
+  #page-main .pc-width {
+    width: 100%;
+  }
+
+  /*  BEST ITEMS  */
+  #best-items {
+    padding: 20px 0px;
+    background-image: url("../images/main_best_bg_m_03.jpg");
+    background-size: cover;
+  }
+  #best-items.show-items #category-item {
+    transition: none;
+  }
+  #best-items.open .category-name p {
+    font-size: 1.5em;
+    line-height: 50px;
+    text-shadow: none;
+  }
+  #best-items .category-item-wrapper {
+    margin: 0 0 0 0px;
+  }
+  #best-items.open .category-item-wrapper {
+    height: 480px;
+  }
+  #best-items .category-name {
+    margin-bottom: 0;
+  }
+  #best-items .category-name li {
+    font-size: 20px;
+    display: block;
+    padding: 0px;
+  }
+  #best-items.open .category-name li {
+    opacity: 0.7;
+    font-size: 14px;
+    text-shadow: none;
+  }
+  #best-items .category-name li.active {
+    opacity: 1;
+    font-size: 23px;
+  }
+  #best-items.open {
+    padding: 20px 10px 5px 0px;
+    margin-bottom: 30px;
+  }
+  #best-items.open .category-name {
+    height: auto;
+  }
+  #best-items.open #category-item .item {
+    margin-left: 10px;
+    padding: 5px 5px 15px 5px;
+  }
+  #best-items .btn-more {
+    display: none;
+  }
+  #best-items .item-title {
+    font-size: 14px;
+  }
+  #best-items #category-item {
+    margin-top: 15px;
+    overflow-y: hidden;
+    position: absolute;
+    top: 0px;
+  }
+  #best-items #category-item .item {
+    width: 92%;
+    margin-bottom: 5px;
+  }
+  #best-items #category-item .item .item-image {
+    width: 75%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #best-items #category-item .item p.item-title {
+    font-size: 13px;
+  }
+  #best-items #category-item .item p.item-description {
+    font-size: 12px;
+  }
+  /*  BEST ITEMS  */
+
+  /* Best Review */
+  .best-review-wrapper .more-btn {
+    margin: 4px 14px 0px 0px;
+  }
+  .best-review-wrapper .more-btn img {
+    width: 18%;
+  }
+
+  .best-review-wrapper .title-wrapper {
+    height: 16px;
+    margin: 0px 0.8em;
+  }
+  .best-review-wrapper h2 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  .best-review-wrapper #mont-review-m {
+    margin-top: 8px;
+    background-image: url("../images/bg_best_review_m.jpg");
+    background-size: cover;
+    padding: 14px 10px;
+  }
+  .best-review-wrapper #mont-review-m ul {
+    width: 95%;
+    margin-left: 0.6em;
+    margin-right: 1em;
+  }
+  .best-review-wrapper #mont-review-m .item {
+    width: 85%;
+    height: auto;
+    margin-right: 0px;
+    text-align: left;
+    float: left;
+    overflow: hidden;
+    background-color: #fff;
+    margin-left: 5%;
+  }
+  .best-review-wrapper #mont-review-m .item .item-image {
+    float: left;
+    width: 52%;
+    background-color: #fff;
+  }
+  .best-review-wrapper #mont-review-m .item .review-content {
+    float: right;
+    overflow: hidden;
+    width: 48%;
+    padding: 0px;
+    vertical-align: middle;
+  }
+  .best-review-wrapper #mont-review-m .item .review-content p.item-title {
+    font-family: "Gotham SSm A", "Gotham SSm B", "Nanum Gothic", "占쏙옙占쏙옙占쏙옙占쏙옙";
+    font-weight: 700;
+    font-size: 14px;
+    color: #000;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 7px 0;
+    width: 100%;
+  }
+  .best-review-wrapper
+    #mont-review-m
+    .item
+    .review-content
+    p.item-title
+    span.title {
+    float: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 90%;
+  }
+  .best-review-wrapper
+    #mont-review-m
+    .item
+    .review-content
+    p.item-title
+    span.id-name {
+    float: left;
+    color: #888;
+    font-weight: normal;
+  }
+  .best-review-wrapper #mont-review-m .item .review-content p.item-description {
+    font-size: 13px;
+    letter-spacing: -0.5px;
+    font-weight: normal;
+    color: #888;
+    /* padding:0px 7px 7px; */
+    width: 90%;
+
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    line-height: 1.5;
+    height: 9em;
+    text-align: left;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+  .best-review-wrapper #mont-review-m .owl-controls {
+    margin-top: 0px;
+  }
+
+  #mont-review-m .owl-controls {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: relative;
+    top: -110px;
+    bottom: 0px; /* left: -15px; */
+  }
+  #mont-review-m .owl-controls .owl-nav .owl-prev {
+    position: absolute;
+    padding-top: 0px;
+    float: left;
+    left: -2%;
+  }
+  #mont-review-m .owl-controls .owl-nav img {
+    width: 72%;
+  }
+  #mont-review-m .owl-controls .owl-nav .owl-next {
+    position: absolute;
+    right: 3%;
+    padding-top: 0px;
+    float: right;
+  }
+  /* Best Review */
+
+  /* montraum 占싱븝옙트 */
+  .mont-event-wrapper .more-btn {
+    margin: 4px 14px 10px 0px;
+  }
+  .mont-event-wrapper .more-btn img {
+    width: 18%;
+  }
+
+  .mont-event-wrapper .title-wrapper {
+    height: 16px;
+    margin: 0px 0.8em;
+  }
+  .mont-event-wrapper h2 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  #mont-event .owl-controls {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: relative;
+    top: 35px;
+    bottom: 0px;
+  }
+  #mont-event .owl-controls .owl-nav .owl-prev {
+    position: absolute;
+    padding-top: 0px;
+    float: left;
+    left: 0;
+  }
+  #mont-event .owl-controls .owl-nav img {
+    width: 72%;
+  }
+  #mont-event .owl-controls .owl-nav .owl-next {
+    position: absolute;
+    padding-top: 0px;
+    float: right;
+    right: 0;
+  }
+  /* montraum 占싱븝옙트 */
+
+  /*占쏙옙트占쏙옙占� 占쏙옙占� 占쏙옙占쏙옙占�*/
+  #mont-bn {
+    margin-top: 2vw;
+    top: 0;
+  }
+  #mont-bn .bn-div {
+    border: solid 5px #dbdbdb;
+    float: left;
+    padding: 15px;
+    width: 49vw;
+    box-sizing: border-box;
+    text-align: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+  }
+  #mont-bn .mr {
+    margin-right: 2vw;
+  }
+  #mont-bn .bn-img {
+    float: none;
+    margin: 0;
+    width: 100%;
+  }
+  #mont-bn .bn-txt {
+    float: none;
+    font-size: 15px;
+    text-align: center;
+    width: 100%;
+  }
+  #mont-bn .bn-txt span {
+    font-weight: 900;
+  }
+  /*占쏙옙트占쏙옙占� 占쏙옙占� 占쏙옙占쏙옙占�*/
+
+  /*占쏙옙占쏙옙 占쏙옙품 찾占쏙옙*/
+  .recom-wrapper h2 {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+  }
+  .recom-wrapper #recom_tit img {
+    width: 60%;
+  }
+
+  .recom-wrapper #recom_bn {
+    display: none;
+  }
+  .recom-wrapper #recom_gubun {
+    width: 100%;
+  }
+  /*占쏙옙占쏙옙 占쏙옙품 찾占쏙옙*/
+
+  /* main title font img */
+  .recom-wrapper #recom_tit img {
+    width: 60%;
+  } /* 占쏙옙占쏙옙 占쏙옙품 찾占쏙옙*/
+  .best-seller-wrapper #best_seller_tit img {
+    width: 60%;
+    margin-top: 0px;
+    margin-bottom: 2.5em;
+  } /* MD's CHOICE */
+  #best-items #category_name_title img {
+    width: 60%;
+  } /* BEST ITEMS */
+  .best-review-wrapper #title-wrapper-title img {
+    width: 60%;
+    margin-bottom: 20px;
+  } /* best review */
+  .best-seller-wrapper2 #title-wrapper2-title img {
+    width: 60%;
+    margin-bottom: 20px;
+  } /* new arrival */
+  .mont-event-wrapper #mont-event-title img {
+    width: 60%;
+  } /* montraum event */
+}
