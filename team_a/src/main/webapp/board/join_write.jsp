@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!--수정완료 21/11/20 취소버튼 제작하였습니다 .-->
+<!--수정완료 21/11/20 취소버튼 제작하였습니다 ...-->
 <title>writer</title>
 </head>
 <body>
