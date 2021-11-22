@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 <title>qna</title>
-<jsp:include page="/include/header.jsp" />
+<jsp:include page="includes/header.jsp" />
 <body>
 
 
@@ -99,4 +99,4 @@
 
 				</div>
 	</section>
-	<jsp:include page="/include/footer.jsp" />
+	<jsp:include page="includes/footer.jsp" />

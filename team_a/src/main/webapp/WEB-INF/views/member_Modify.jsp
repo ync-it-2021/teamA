@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 	<title>정보수정/title>
-	<jsp:include page="/include/header.jsp"/>
+	<jsp:include page="includes/header.jsp"/>
 
 
 
@@ -693,4 +693,4 @@ $(".item-table.type1.input-form .btn-type1.address_new").click(function(){
 	}
 //-->
 </script>
-	<jsp:include page="/include/footer.jsp"/>
+	<jsp:include page="includes/footer.jsp"/>

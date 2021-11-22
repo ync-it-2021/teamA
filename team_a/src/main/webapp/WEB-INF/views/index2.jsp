@@ -21,18 +21,18 @@
 	
 	<section>
 
-			<jsp:include page="/include/header.jsp"/>
-			<jsp:include page="/include/banner.jsp"/>
-			<jsp:include page="/include/indexgoods.jsp"></jsp:include>
-			<jsp:include page="/include/indexReview.jsp"></jsp:include>
-			<jsp:include page="/include/indexnewarrival.jsp"></jsp:include>
-			<jsp:include page="/include/indexevent.jsp"></jsp:include>
-			<jsp:include page="/include/indexqna.jsp"></jsp:include>
+			<jsp:include page="includes/header.jsp"/>
+			<jsp:include page="includes/banner.jsp"/>
+			<jsp:include page="includes/indexgoods.jsp"></jsp:include>
+			<jsp:include page="includes/indexReview.jsp"></jsp:include>
+			<jsp:include page="includes/indexnewarrival.jsp"></jsp:include>
+			<jsp:include page="includes/indexevent.jsp"></jsp:include>
+			<jsp:include page="includes/indexqna.jsp"></jsp:include>
 				
 
 	</section>
-	<jsp:include page="/include/rightmenu.jsp"></jsp:include>	
-	<jsp:include page="/include/footer.jsp"/>
+	<jsp:include page="includes/rightmenu.jsp"></jsp:include>	
+	<jsp:include page="includes/footer.jsp"/>
 
 </body>
 </html>

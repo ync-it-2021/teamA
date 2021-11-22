@@ -75,7 +75,7 @@
 			<div class="top-wrapper">
 				<ul id="header-top" class="pc-width">
 
-					<li><a href="/login">LOGIN</a></li>
+					<li><a href="login">LOGIN</a></li>
 					<li><a href="join_agreement">JOIN</a></li>
 
 					<li><a href="buy_listcb8c.html?iniCategory=0">MY PAGE</a></li>

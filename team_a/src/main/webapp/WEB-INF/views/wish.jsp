@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<jsp:include page="/include/header.jsp"/>
+<jsp:include page="includes/header.jsp"/>
 <body>
 <section>
 			
@@ -73,6 +73,6 @@
 <div style="display:none;">
 	<!--풋터영역시작-->
 </div>
-	<jsp:include page="/include/footer.jsp"/>
+	<jsp:include page="includes/footer.jsp"/>
 </body>
 </html>

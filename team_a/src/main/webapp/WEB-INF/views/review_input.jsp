@@ -8,7 +8,7 @@
 </head>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
 <script type="text/javascript" src="/SE2/js/HuskyEZCreator.js" charset="utf-8"></script>
-<jsp:include page="/include/header.jsp" />
+<jsp:include page="includes/header.jsp" />
 <body>
 	<section>
 
@@ -152,5 +152,5 @@
 		</div>
 	</section>
 
-<jsp:include page="/include/footer.jsp"/>
+<jsp:include page="includes/footer.jsp"/>
 	

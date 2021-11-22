@@ -5,7 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<jsp:include page="/include/header.jsp"/>
+<jsp:include page="includes/header.jsp"/>
 </head>
 <body>
 <!DOCTYPE html>
@@ -54,7 +54,7 @@
 <div style="height:175px;">
 </section>
 
-	<jsp:include page="/include/footer.jsp"/>
+	<jsp:include page="includes/footer.jsp"/>
 
 
 </html>

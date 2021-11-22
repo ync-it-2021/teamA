@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 	<title>1:1문의 작성</title>
-	<jsp:include page="/include/header.jsp"/>
+	<jsp:include page="includes/header.jsp"/>
 	<meta name="description" content="">
 	<meta name="author" content="">
 	
@@ -125,7 +125,7 @@ ed.init();
 
 
 
-<jsp:include page="/include/footer.jsp"/>
+<jsp:include page="includes/footer.jsp"/>
 
 	
 

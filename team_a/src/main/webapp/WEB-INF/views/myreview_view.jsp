@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 	<title>리뷰</title>
-	<jsp:include page="/include/header.jsp"/>
+	<jsp:include page="includes/header.jsp"/>
 	<meta name="description" content="">
 	<meta name="author" content="">
 	
@@ -86,4 +86,4 @@
 </section>
 
 
-	<jsp:include page="/include/footer.jsp"/>
+	<jsp:include page="includes/footer.jsp"/>

@@ -12,7 +12,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 	<title>::몬트라움:: 프리미엄 펫용품 전문쇼핑몰</title>
-	<jsp:include page="/include/header.jsp"/>
+	<jsp:include page="includes/header.jsp"/>
 	<body>
 
 	
@@ -114,4 +114,4 @@
 	
 		</section>
 <!--Content영역종료-->
-	<jsp:include page="/include/footer.jsp"/>
+	<jsp:include page="includes/footer.jsp"/>

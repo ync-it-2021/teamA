@@ -16,7 +16,7 @@
 		location.href="login6d1f.html?refer_page=%2Fcommon%2Fall%5Fsite%2Fmember%2Flogin%2Easp"
 	}
 </script> -->
-<jsp:include page="/include/header.jsp"/>
+<jsp:include page="includes/header.jsp"/>
 <script type="text/javascript" src="../resources/js/top.js"></script>
 <!--Content영역시작-->
 		<section>
@@ -83,7 +83,7 @@
 		</section>
 <!--Content영역종료-->
 
-	<jsp:include page="/include/footer.jsp"/>
+	<jsp:include page="includes/footer.jsp"/>
 
 </body>
 </html>
