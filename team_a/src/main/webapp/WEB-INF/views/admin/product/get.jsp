@@ -4,7 +4,108 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@include file="../includes/header.jsp"%>
+<script>
+var reviewService = (function() {
 
+	// 댓글 추가
+	function add(reply, callback, error) {
+		console.log("add reply...............");
+
+		$.ajax({
+			type : 'post',
+			url : '/replies/new',
+			data : JSON.stringify(reply), // JavaScript 값이나 객체를 JSON 문자열로 변환
+			contentType : "application/json; charset=utf-8",
+			success : function(result, status, xhr) { // (Anything data(서버에서 받은 data), String textStatus, jqXHR jqXHR )
+				if (callback) {
+					callback(result);
+				}
+			},
+			error : function(xhr, status, err) {
+				if (error) {
+					// error 발생 시 응답 메세지와 err code를 alert 시킨다. 
+					error(xhr.responseText, xhr.status);
+				}
+			}
+		});
+	}
+	
+	// 댓글 목록
+	function getList(param, callback, error) {
+		console.log("getList reply..............");
+		
+		var idx = param.idx;
+		var page = param.page || 1; // param.page 가 null 이면 1로 설정 
+		
+		$.getJSON("/replies/pages/" + idx + "/" + page + ".json", function(data) {
+			if (callback) {
+				callback(data);
+			}
+		}).fail(function(xhr, status, err) {
+			if (error) {
+				error(xhr.responseText, xhr.status);
+			}
+		});
+
+	}
+	
+	// 댓글 조회
+	function get(rno, callback, error) {
+
+		$.get("/replies/" + rno + ".json", function(result) {
+			if (callback) {
+				callback(result);
+			}
+		}).fail(function(xhr, status, err) {
+			if (error) {
+				error();
+			}
+		});
+	}
+	
+	// 날짜 포맷 변환
+	function displayTime(timeValue) {
+
+		var today = new Date();
+
+		var gap = today.getTime() - timeValue;
+
+		var dateObj = new Date(timeValue);
+		var str = "";
+
+		if (gap < (1000 * 60 * 60 * 24)) {
+
+			var hh = dateObj.getHours();
+			var mi = dateObj.getMinutes();
+			var ss = dateObj.getSeconds();
+
+			return [ (hh > 9 ? '' : '0') + hh, ':', (mi > 9 ? '' : '0') + mi,
+					':', (ss > 9 ? '' : '0') + ss ].join('');
+
+		} else {
+			var yy = dateObj.getFullYear();
+			var mm = dateObj.getMonth() + 1; // getMonth() is zero-based
+			var dd = dateObj.getDate();
+
+			return [ yy, '/', (mm > 9 ? '' : '0') + mm, '/',
+					(dd > 9 ? '' : '0') + dd ].join('');
+		}
+	}
+
+	return {
+		add : add,
+		getList : getList,
+		remove : remove,
+		update : update,
+		get : get, 
+		displayTime : displayTime
+	};
+	
+	//return {name:"aaaa"}
+})();
+
+
+</script>
 
 <div class="row">
   <div class="col-lg-12">
@@ -125,7 +226,101 @@
 <!-- /.row -->
 
 
+<div class='row'>
+
+  <div class="col-lg-12">
+
+    <!-- /.panel -->
+    <div class="panel panel-default">
+<!--       <div class="panel-heading">
+        <i class="fa fa-comments fa-fw"></i> Reply
+      </div> -->
+      
+      <div class="panel-heading">
+        <i class="fa fa-comments fa-fw"></i> Reply
+        <!-- <button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New Reply</button> -->
+      </div>      
+      
+      
+      <!-- /.panel-heading -->
+      <div class="panel-body">        
+      
+      	<!-- 댓글 목록 출력 부분 -->
+      	<table border="1px">
+      	<thead>
+      	<th>번호</th>
+      	<th>작성자</th>
+      	<th>내용</th>
+      	<th>주문번호</th>
+      	<th>날짜</th>
+      	<th>점수</th>
+      	</thead>
+      	<tbody class="chat">
+      	</tbody>
+      	</table>
+        <!-- ./ end ul -->
+      </div>
+      <!-- /.panel .chat-panel -->
+
+	<div class="panel-footer"></div>
+
+
+		</div>
+  </div>
+  <!-- ./ end row -->
+</div>
+
+
 <script type="text/javascript">
+$(document).ready(function () {
+	  
+	let idxValue = '<c:out value="${prd.prd_idx}"/>';
+	let reviewUL = $(".chat");
+	  
+	showList(1);
+	
+	// 댓글 목록을 출력하는 함수
+	function showList(page){
+		
+		// console.log("show list " + page);
+	    
+		reviewService.getList({idx:idxValue, page: page|| 1 }, function(list) {
+	      
+		    // console.log("replyCnt: "+ replyCnt );
+		    // console.log("list: " + list);
+		    // console.log(list);
+	    	
+			let str="";
+	     
+			if(list == null || list.length == 0){
+				reviewUL.html("");
+				return;
+			}
+	     
+			for (var i = 0, len = list.length || 0; i < len; i++) {
+				str +=" <tr data-rno='"+list[i].review_idx+"'>";
+				str +=" <td>" + list[i].review_idx+"</td>";
+				str +=" <td>" + list[i].member_id + "</td>"; 
+				str +="	<td>" + list[i].order+idx+"</td>";
+				str +=" <td>" + list[i].review_contents + "</td>"; 
+				str +=" <td>" + reviewService.displayTime(list[i].review_date)+ "</td>"; 
+				str +=" <td>" + list[i].review_point+"</td></tr>";
+			}
+	     
+			reviewUL.html(str);
+	     
+			//showReplyPage(replyCnt);
+
+	 
+		});//end function
+	     
+	}//end showList
+	
+	
+	 
+});//end function
+	
+
 
 function replaceEscapeStr(str) {
 	return str.replace("\\","\\\\");
@@ -147,6 +342,8 @@ $(document).ready(function() {
     
 	});
 });
+
+
 </script>
 
 
