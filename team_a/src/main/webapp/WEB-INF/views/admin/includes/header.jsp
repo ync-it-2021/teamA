@@ -270,7 +270,7 @@
 		
 		<sec:authorize access="isAnonymous()">
 		
-		<li><a href="/admin/customLogin"><i class="fa fa-sign-out fa-fw"></i>
+		<li><a href="/customLogin"><i class="fa fa-sign-out fa-fw"></i>
 		    Login</a></li>
 		</sec:authorize>
 </ul>
@@ -324,7 +324,7 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> 결제</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> 이벤트</a>
+                            <a href="/admin/event/list"><i class="fa fa-sitemap fa-fw"></i> 이벤트</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i>게시판<span class="fa arrow"></span></a>
