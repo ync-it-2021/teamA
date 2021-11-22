@@ -13,5 +13,11 @@ public interface EventMapper {
 	
 	public int getTotalCount(Criteria cri);
 	
+	public EventVO read(int evt_idx);
+	
+	public Integer insertSelectKey(EventVO evt);
+	
 	public int delete(int evt_idx);
+	
+	public List<EventVO> getList();
 }

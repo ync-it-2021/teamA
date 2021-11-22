@@ -31,6 +31,21 @@ public class EventServiceImpl implements EventService{
 		log.info("get total count");
 		return mapper.getTotalCount(cri);
 	}
+	
+	@Override
+	public EventVO get(int evt_idx) {
+		// TODO Auto-generated method stub
+		return mapper.read(evt_idx);
+	}
+	
+	public void register(EventVO evt) {
+
+		log.info("register......" + evt);
+
+		mapper.insertSelectKey(evt);
+		
+	}
+	
 
 	
 
@@ -38,6 +53,11 @@ public class EventServiceImpl implements EventService{
 	public boolean remove(int evt_idx) {
 		log.info("remove...." + evt_idx);
 		return mapper.delete(evt_idx) == 1;
+	}
+
+	@Override
+	public List<EventVO> getList() {
+		return mapper.getList();
 	}
 
 }

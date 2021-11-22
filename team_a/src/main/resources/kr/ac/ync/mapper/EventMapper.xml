@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.ac.ync.mapper.EventMapper">
+
+<select id="getList" resultType="kr.ac.ync.domain.EventVO">
+			SELECT	evt_idx,				
+	  				evt_title,			
+	  				evt_start_day,		
+	  				evt_end_day,		
+	  				evt_main_img,		
+	  				evt_move_uri,
+	  				evt_del,			
+	 				prd_idx
+			FROM 	event
+	</select>
+
+
 <sql id="criteria">
 		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
 			<foreach item='type' collection="typeArr">
@@ -65,9 +79,50 @@
 			]]>
 					
 		</select>
+		
+		<select id="read" resultType="kr.ac.ync.domain.EventVO">
+		SELECT	*
+		FROM 	event
+		WHERE 	evt_idx = #{evt_idx}
+	</select>
+	
+	
+	<insert id="insertSelectKey">
+
+		<selectKey keyProperty="evt_idx" order="BEFORE"
+			resultType="int">
+			select seq_event.nextval from dual
+		</selectKey>
+
+		INSERT INTO event (	evt_idx,				
+				  				evt_title,			
+				  				evt_start_day,				
+				  				evt_end_day,			
+				  				evt_main_img,		
+				  				evt_header_img,		
+				  				evt_content_img,			
+				  				evt_move_uri,
+				  				evt_del,			
+				 				prd_idx			
+								)
+					VALUES (	seq_event.nextval,		
+				  				#{evt_title},			
+				  				#{evt_start_day},				
+				  				#{evt_end_day},			
+				  				#{evt_main_img,jdbcType=VARCHAR},		
+				  				#{evt_header_img,jdbcType=VARCHAR},		
+				  				#{evt_content_img,jdbcType=VARCHAR},			
+				  				#{evt_move_uri,jdbcType=VARCHAR},
+				  				#{evt_del,jdbcType=VARCHAR},			
+				 				#{prd_idx}				
+								 )
+	</insert>
+	
 
 	<update id="delete">
 		UPDATE event SET evt_del = 'Y' WHERE evt_idx = #{evt_idx}
 	</update>
+	
+	
 	
 </mapper>

@@ -9,7 +9,13 @@ public interface EventService {
 	
 	public List<EventVO> getListWithPaging(Criteria cri);
 	
+	public List<EventVO> getList();
+	
 	public int getTotal(Criteria cri);
+	
+	public EventVO get(int evt_idx);
+	
+	public void register(EventVO evt);
 
 	public boolean remove(int evt_idx);
 	
