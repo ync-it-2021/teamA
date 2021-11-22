@@ -39,12 +39,15 @@ public class CommonController {
 	public void logoutGET() {
 
 		log.info("custom logout");
+		
 	}
 
 	@PostMapping("/customLogout")
-	public void logoutPost() {
+	public String logoutPost() {
 
 		log.info("post custom logout");
+		return "index";
+		
 	}
 
 }
