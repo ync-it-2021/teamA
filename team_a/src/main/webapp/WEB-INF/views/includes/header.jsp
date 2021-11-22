@@ -75,8 +75,8 @@
 			<div class="top-wrapper">
 				<ul id="header-top" class="pc-width">
 
-					<li><a href="login.jsp">LOGIN</a></li>
-					<li><a href="join_agreement.jsp">JOIN</a></li>
+					<li><a href="/login">LOGIN</a></li>
+					<li><a href="join_agreement">JOIN</a></li>
 
 					<li><a href="buy_listcb8c.html?iniCategory=0">MY PAGE</a></li>
 					<li><span><img src="../resources/images/mnb_wish_icon.png"></span><a href="wish_list.html">WISH LIST</a></li>
