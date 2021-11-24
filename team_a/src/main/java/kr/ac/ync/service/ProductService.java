@@ -16,7 +16,7 @@ public interface ProductService {
 	public void register(ProductVO prd);
 	
 	// 글 수정
-	public boolean modify(ProductVO board);
+	public boolean modify(ProductVO prd);
 		
 	// 글 삭제
 	public boolean remove(int prd_idx);
