@@ -6,7 +6,7 @@
 <%@include file="../includes/header.jsp"%>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">게시글</h1>
+		<h1 class="page-header">주문/장바구니</h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -16,9 +16,7 @@
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				Board List Page
-				<button id='regBtn' type="button" class="btn btn-xs pull-right">Register
-					New Board</button>
+				Order List Page
 			</div>
 
 			<!-- /.panel-heading -->
@@ -26,22 +24,23 @@
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
-							<th>#번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
+							<th>주문번호</th>
+							<th>상품번호</th>
+							<th>주문id</th>
+							<th>금액</th>
+							<th>주문일자</th>
+							<th>상태</th>
 						</tr>
 					</thead>
 
-					<c:forEach items="${list}" var="board">
+					<c:forEach items="${list}" var="order">
 						<tr>
-							<td><c:out value="${board.bd_idx}" /></td>
-							<%-- <td><a href='/board/get?bd_idx=<c:out value="${board.}"/>'><c:out value="${board.title}"/></a></td> --%>
-							<td><a class='move' href='<c:out value="${board.bd_idx}"/>'><c:out value="${board.bd_title}" />
-							<b>[<c:out value="${board.bd_comment_cnt}" />]</b></a> 
-							</td>
-							<td><c:out value="${board.member_id}" /></td>
-							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.bd_date}" /></td>
+							<td><a class='move' href='<c:out value="${order.od_idx}"/>'><c:out value="${order.od_idx}" /></a></td>
+							<td><c:out value="${order.prd_idx}" /></td>
+							<td><c:out value="${order.member_id}" /></td>
+							<td><c:out value="${order.od_amount}" /></td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${order.od_date}" /></td>
+							<td><c:out value="${order.od_status}" /></td>
 						</tr>
 					</c:forEach>
 					
@@ -51,25 +50,14 @@
 				<div class='row'>
 					<div class="col-lg-12">
 
-						<form id='searchForm' action="/board/list" method='get'>
+						<form id='searchForm' action="/admin/order/list" method='get'>
 							<select name='type'>
 								<option value=""
 									<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>
-								<option value="T"
-									<c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>제목</option>
-								<option value="C"
-									<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>내용</option>
-								<option value="W"
-									<c:out value="${pageMaker.cri.type eq 'W'?'selected':''}"/>>작성자</option>
-								<option value="TC"
-									<c:out value="${pageMaker.cri.type eq 'TC'?'selected':''}"/>>제목
-									or 내용</option>
-								<option value="TW"
-									<c:out value="${pageMaker.cri.type eq 'TW'?'selected':''}"/>>제목
-									or 작성자</option>
-								<option value="TWC"
-									<c:out value="${pageMaker.cri.type eq 'TWC'?'selected':''}"/>>제목
-									or 내용 or 작성자</option>
+								<option value="M"
+									<c:out value="${pageMaker.cri.type eq 'M'?'selected':''}"/>>구매자</option>
+								<option value="P"
+									<c:out value="${pageMaker.cri.type eq 'P'?'selected':''}"/>>상품번호</option>
 							</select>
 							<input type='text' name='keyword' value='<c:out value="${pageMaker.cri.keyword}"/>' />
 							<input type='hidden' name='pageNum'	value='<c:out value="${pageMaker.cri.pageNum}"/>' />
@@ -103,7 +91,7 @@
 				<!--  Pagination 끝 -->
 				
 				<!-- 페이징 Form 시작 -->
-				<form id='actionForm' action="/board/list" method='get'>
+				<form id='actionForm' action="admin/order/list" method='get'>
 				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
 				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 				<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
@@ -170,10 +158,6 @@
 			$("#myModal").modal("show");
 		}
 		
-		$("#regBtn").on("click", function() {
-			self.location = "/board/register";
-		});
-		
 		var actionForm = $("#actionForm");
 
 		// 페이지 번호 클릭 이벤트
@@ -187,8 +171,8 @@
 		// 상세보기 클릭 이벤트
 		$(".move").on("click",function(e) {
 			e.preventDefault();
-			actionForm.append("<input type='hidden' name='bd' value='" + $(this).attr("href")	+ "'>");
-			actionForm.attr("action", "/admin/board/get");
+			actionForm.append("<input type='hidden' name='od' value='" + $(this).attr("href")	+ "'>");
+			actionForm.attr("action", "/admin/order/get");
 			actionForm.submit();
 		});
 		
