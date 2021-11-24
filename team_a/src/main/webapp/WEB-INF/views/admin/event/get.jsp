@@ -77,8 +77,8 @@
 
 <button data-oper='list' class="btn btn-info">List</button>
 
-<form id='operForm' action="/boad/modify" method="get">
-  <input type='hidden' id='bno' name='bno' value='<c:out value="${evt.evt_idx}"/>'>
+<form id='operForm' action="/admon/event/modify" method="get">
+  <input type='hidden' id='evt' name='evt' value='<c:out value="${evt.evt_idx}"/>'>
   <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
   <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
   <input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
@@ -114,7 +114,7 @@ $(document).ready(function() {
     
 	$("button[data-oper='list']").on("click", function(e){
     
-		operForm.find("#bno").remove();
+		operForm.find("#evt").remove();
 		operForm.attr("action","/admin/event/list")
 		operForm.submit();
     
