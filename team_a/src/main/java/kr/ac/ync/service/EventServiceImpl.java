@@ -60,4 +60,10 @@ public class EventServiceImpl implements EventService{
 		return mapper.getList();
 	}
 
+	@Override
+	public boolean modify(EventVO evt) {
+		log.info("modify......" + evt);
+		return mapper.update(evt) == 1;
+	}
+
 }

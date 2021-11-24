@@ -123,6 +123,18 @@
 		UPDATE event SET evt_del = 'Y' WHERE evt_idx = #{evt_idx}
 	</update>
 	
+	<update id="update">
+		UPDATE 	event
+		SET 	evt_title = #{evt_title},			
+  				evt_start_day  = #{evt_start_day},			
+  				evt_end_day  = #{evt_end_day},	
+  				evt_main_img  = #{evt_main_img},	
+  				evt_header_img  = #{evt_header_img},	
+  				evt_content_img  = #{evt_content_img},	
+  				evt_move_uri  = #{evt_move_uri},
+ 				prd_idx	= #{prd_idx}	
+		WHERE 	evt_idx =	#{evt_idx}
+	</update>	
 	
 	
 </mapper>

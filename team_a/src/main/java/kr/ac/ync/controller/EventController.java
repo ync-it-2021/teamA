@@ -83,13 +83,35 @@ public class EventController {
 		model.addAttribute("evt", service.get(evt_idx));
 	}
 	
-	
+	@PostMapping( "/modify")
+	public String modify(MultipartFile[] uploadFile, EventVO evt, @ModelAttribute("cri") Criteria cri) {
+		int index = 0;
+		for (MultipartFile multipartFile : uploadFile) {
+			if(multipartFile.getSize() > 0) {
+				switch (index) {
+				case 0:
+					evt.setEvt_header_img(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					break;
+				case 1:
+					evt.setEvt_main_img(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					break;
+				case 2:
+					evt.setEvt_content_img(UploadUtils.uploadFormPost(multipartFile, uploadPath));
+					break;
+				}
+			}
+			index++;
+		}
+		log.info("/modify");
+		this.service.modify(evt);
+		return "redirect:/admin/event/get?evt="+evt.getEvt_idx();
+	}
 	
 	@PostMapping( "/remove" )
-	public String delete(ProductVO prd, @ModelAttribute("cri") Criteria cri) {
+	public String delete(EventVO evt, @ModelAttribute("cri") Criteria cri) {
 
 		log.info("/remove");
-		this.service.remove(prd.getPrd_idx());
-		return "redirect:/admin/product/list";
+		this.service.remove(evt.getEvt_idx());
+		return "redirect:/admin/event/list";
 	}
 }
