@@ -140,7 +140,7 @@ var reviewService = (function() {
 
         <div class="form-group">
           <label>제작사</label>
-          <input class="form-control" rows="3" name='prd_company'
+          <input class="form-control"  name='prd_company'
              value="${prd.prd_company}"readonly="readonly">
         </div>
 
