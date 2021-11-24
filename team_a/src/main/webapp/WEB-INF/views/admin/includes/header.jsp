@@ -299,16 +299,16 @@
                                     <a href="/admin/product/list">전체</a>
                                 </li>
                                 <li>
-                                    <a href="flot.html">태그1</a>
+                                    <a href="/admin/product/list">태그1</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">태그2</a>
+                                    <a href="/admin/product/list">태그2</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">태그3</a>
+                                    <a href="/admin/product/list">태그3</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">태그4</a>
+                                    <a href="/admin/product/list">태그4</a>
                                 </li>
                                 <li>
                                     <a href="/admin/product/list">판매중단</a>
@@ -318,13 +318,14 @@
                         </li>
                         
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> 주문</a>
+                            <a href="/admin/order/list"><i class="fa fa-edit fa-fw"></i>주문/장바구니</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/admin/pay/list"><i class="fa fa-wrench fa-fw"></i>결제</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> 결제</a>
-                        </li>
-                        <li>
-                            <a href="/admin/event/list"><i class="fa fa-sitemap fa-fw"></i> 이벤트</a>
+                            <a href="/admin/event/list"><i class="fa fa-sitemap fa-fw"></i>이벤트</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i>게시판<span class="fa arrow"></span></a>
