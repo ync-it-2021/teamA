@@ -17,7 +17,7 @@ function getThumbFileName(fullFilePath) {
 
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header">Board Modify</h1>
+    <h1 class="page-header">event Modify</h1>
   </div>
   <!-- /.col-lg-12 -->
 </div>
@@ -27,76 +27,75 @@ function getThumbFileName(fullFilePath) {
   <div class="col-lg-12">
     <div class="panel panel-default">
 
-      <div class="panel-heading">Board Modify</div>
+      <div class="panel-heading">event Modify</div>
       <!-- /.panel-heading -->
       <div class="panel-body">
 
-      <form role="form" action="/board/modify" method="post" enctype="multipart/form-data">
-      	<!--
-       	controller에서 파라미터 수집시 upload file은 uploadFile 이름으로 server로 넘어간다.(binary data로)
-       	하지만 BoardVO에서는 file_1,file_2,file_3의 이름으로 setter를 해줘야 한다.
-       	따라서 file_1,file_2,file_3를 hidden으로 넘겨서 controller에서 file이 upload가 안됐을 경우에도
-       	파라미터 수집이 되도록(값은 null로 됨) 하기위해 hidden으로 값을 넘긴다.
+      <form role="form" action="/admin/event/modify" method="post" enctype="multipart/form-data">
+   
        	
-       	업로드 파일 삭제 기능 추가시 해당 file의 value="" 로 바꿔주면 된다.
-       	-->
-		<c:forEach var="i" begin="1" end="5">
-			<c:set var="t" value="bd_img${i}" />
-			<c:choose>
-				<c:when test="${not empty board[t]}">
-		            <input type="hidden" name="bd_img${i}" value="${board[t]}">
-		        </c:when>
-		        <c:otherwise>
-					<input type="hidden" name="bd_img${i}" value="">		
-		        </c:otherwise>
-			</c:choose>
-		</c:forEach>
-		
+       	<input type="hidden" name="evt_header_img" value="${evt.evt_header_img}">
+		<input type="hidden" name="evt_main_img" value="${evt.evt_main_img}">
+		<input type="hidden" name="evt_content_img" value="${evt.evt_content_img}">
       	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum }"/>'>
         <input type='hidden' name='amount' value='<c:out value="${cri.amount }"/>'>
 	    <input type='hidden' name='type' value='<c:out value="${cri.type }"/>'>
 		<input type='hidden' name='keyword' value='<c:out value="${cri.keyword }"/>'>
-		<input type='hidden' name='bd_idx' value='<c:out value="${board.bd_idx }"/>'>
-      
-<div class="form-group">
-  <label>Title</label> 
-  <input class="form-control" name='title' 
-    value='<c:out value="${board.bd_title }"/>' >
-</div>
+		<input type='hidden' name='evt_idx' value='<c:out value="${evt.evt_idx }"/>'>
 
 <div class="form-group">
-  <label>Text area</label>
-  <textarea class="form-control" rows="3" name='content' ><c:out value="${board.bd_contents}"/></textarea>
-</div>
+          <label>이벤트번호</label> <input class="form-control" name='evt_idx'
+            value='<c:out value="${evt.evt_idx }"/>' readonly="readonly">
+        </div>
 
-<div class="form-group">
-  <label>Writer</label> 
-  <input class="form-control" name='writer'
-    value='<c:out value="${board.member_id}"/>' readonly="readonly">            
-</div>
+        <div class="form-group">
+          <label>제목</label> <input class="form-control" name='evt_title'
+            value='<c:out value="${evt.evt_title }"/>' >
+        </div>
+        
+              <div class="form-group">
+          <label>상품번호</label> <input class="form-control" name='prd_idx'
+            value='<c:out value="${evt.prd_idx }"/>' >
+        </div>
+        
+              <div class="form-group">
+          <label>이동 uri</label> <input class="form-control" name='evt_move_uri'
+            value='<c:out value="${evt.evt_move_uri }"/>' >
+        </div>
+        
+              <div class="form-group">
+          <label>시작일</label> <input type="date" class="form-control" name='evt_start_day'
+            value='<fmt:formatDate pattern="yyyy-MM-dd" value="${evt.evt_start_day}" />'>
+        </div>
+        
+              <div class="form-group">
+          <label>종료일</label> <input type="date" class="form-control" name='evt_end_day'
+            value='<fmt:formatDate pattern="yyyy-MM-dd" value="${evt.evt_end_day}"/>'>
+        </div>
+        
+        <!-- 업로드 이미지나 파일을 출력 -->
+		<div class="form-group">
+          <label>해더 이미지</label>
+			<a href="/resources/upload/${evt.evt_header_img}" target="_blank">
+			<img src="/resources/upload/${evt.evt_header_img}"  width="50%" height="50%"></a>
+			<input type="file" class="form-control" name='uploadFile'>
+        </div>
+        
+        		<div class="form-group">
+          <label>메인 이미지</label>
+			<a href="/resources/upload/${evt.evt_main_img}" target="_blank">
+			<img src="/resources/upload/${evt.evt_main_img}"  width="50%" height="50%"></a>
+			<input type="file" class="form-control" name='uploadFile'>
+        </div>
+        
+        		<div class="form-group">
+          <label>내용 이미지</label>
+			<a href="/resources/upload/${evt.evt_content_img}" target="_blank">
+			<img src="/resources/upload/${evt.evt_content_img}"  width="50%" height="50%"></a>
+			<input type="file" class="form-control" name='uploadFile'>
+        </div>
 
-<c:forEach var="i" begin="1" end="5">
-	<c:set var="t" value="bd_img${i}" />
-	<div class="form-group">
-	<label>이미지${i}</label>
-		<c:if test="${not empty board[t]}">
-			<a href="/resources/upload/board/${board[t]}" target="_blank"><img src="/resources/upload/board/${board[t]}" id="thumb_${i}"></a>
-			<script>
-	        	document.getElementById('thumb_${i}').src="/resources/upload/" + getThumbFileName('${board[t]}');
-			</script>
-		</c:if>
-		<input type="file" class="form-control" name='uploadFile'>
-	</div>
-</c:forEach>
-
-	<sec:authentication property="principal" var="pinfo"/>
-	<sec:authorize access="isAuthenticated()">
-		<!--<c:if test="${pinfo.username eq board.member_id}">
-			<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
-  			<button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
-		</c:if>-->
-	</sec:authorize>
 
   <button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
   <button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
@@ -128,12 +127,15 @@ $(document).ready(function() {
 	    
 	    console.log(operation);
 	    
-	    if(operation === 'remove'){
-	      formObj.attr("action", "/board/remove");
+	    if(operation === 'modify'){
+		      formObj.attr("action", "/admin/event/modify");
+		      
+		}else if(operation === 'remove'){
+	      formObj.attr("action", "/admon/event/remove");
 	      
 	    }else if(operation === 'list'){
 	      //move to list
-	      formObj.attr("action", "/board/list").attr("method","get");
+	      formObj.attr("action", "/admin/event/list").attr("method","get");
 
 	      var pageNumTag = $("input[name='pageNum']").clone();
 	      var amountTag = $("input[name='amount']").clone();
