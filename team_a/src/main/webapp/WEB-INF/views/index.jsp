@@ -12,16 +12,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 	<title>A_team_project</title>
-	
-	
-	
-
 </head>
 <body>
-	
 
-
-	
 	<section>
 
 			<jsp:include page="includes/header.jsp"/>
