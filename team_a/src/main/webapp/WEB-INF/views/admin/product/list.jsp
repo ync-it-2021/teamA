@@ -120,7 +120,7 @@
 				<!--  Pagination 끝 -->
 				
 				<!-- 페이징 Form 시작 -->
-				<form id='actionForm' action="/product/list" method='get'>
+				<form id='actionForm' action="/admin/product/list" method='get'>
 				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
 				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 				<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
@@ -188,7 +188,7 @@
 		}
 		
 		$("#regBtn").on("click", function() {
-			self.location = "admin/product/register";
+			self.location = "/admin/product/register";
 		});
 		
 		var actionForm = $("#actionForm");
