@@ -13,6 +13,7 @@
 		<div id="page-main">
 			<!-- 메인롤링배너 XML -->
 			<div id="main-banner">
+			
 				<c:forEach var="evt" items="${evt}">
 					<div class="item">
 						<div class="image only-pc" onclick="location.href='index.jsp'"
@@ -24,10 +25,10 @@
 						<!-- { image for mobile } -->
 					</div>
 				</c:forEach>
-				
 			</div>
-
-
+		</div>
+</section>		
+		
 			<!-- 메인베너 스크립트 -->
 	<script type="text/javascript">
 
