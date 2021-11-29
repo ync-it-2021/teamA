@@ -28,15 +28,9 @@ public class IndexController {
 		
 		log.info("aaaaaa......" + evtService.getList());
 		model.addAttribute("evt",evtService.getList());
+		log.info("best...." + prdService.best_items());
+		model.addAttribute("best",prdService.best_items());
 		return"index";
 	}
-	
-	@GetMapping("/banner")
-	public void banner(Model model) {
-
-	}
-	
-
-
 	
 }

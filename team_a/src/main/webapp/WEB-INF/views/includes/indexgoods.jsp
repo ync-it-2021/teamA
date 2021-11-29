@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -183,192 +184,29 @@
 					<div id="category_name_title"
 						style="text-align:center;  width:100%; margin-top:30px; margin-bottom:20px;"><img
 							src="../resources/images/main_title_03.png"></div>
+							
 					<div class="category-item-wrapper">
 						<div id="category-item" class="tmphot" cate="1">
+						<c:forEach var="item" items="${best}">
 							<div class="page-block">
-								<ul>
-									<li class="item"
-										onclick="location.href = 'shopview2670.html?thisCategory=0&amp;pack_content_id=1360'"
-										style="cursor:pointer;">
-										<img class="item-image" src="../resources/images/p1360_20191204pm24605_1.jpg">
-										<p class="item-title">
-											<script language="javascript">view_name("view_brand", "20", "write")</script>
-										</p>
-										<p class="item-description">노스멜패드 XL 대용량 패키지 120매</p>
-									</li>
-
-									<li class="item"
-										onclick="location.href = 'shopviewa065.html?thisCategory=0&amp;pack_content_id=1499'"
-										style="cursor:pointer;">
-										<img class="item-image" src="../resources/images/p1499_20210830am81418_1.jpg">
-										<p class="item-title">
-											<script language="javascript">view_name("view_brand", "101", "write")</script>
-										</p>
-										<p class="item-description">이지츄 그레인프리 피쉬 2kg</p>
-									</li>
-								</ul>
-							</div>
-							<div class="page-block">
-								<ul>
-									<li class="item"
-										onclick="location.href = 'shopview0d4b.html?thisCategory=0&amp;pack_content_id=1497'"
-										style="cursor:pointer;">
-										<img class="item-image" src="../resources/images/p1497_20210830am81519_1.jpg">
-										<p class="item-title">
-											<script language="javascript">view_name("view_brand", "101", "write")</script>
-										</p>
-										<p class="item-description">그레인프리 덕 2.72kg</p>
-									</li>
-
-									<li class="item"
-										onclick="location.href = 'shopview28fc.html?thisCategory=0&amp;pack_content_id=1074'"
-										style="cursor:pointer;">
-										<img class="item-image" src="../resources/images/p1074_20210830am80834_1.jpg">
-										<p class="item-title">
-											<script language="javascript">view_name("view_brand", "54", "write")</script>
-										</p>
-										<p class="item-description">홀리스틱 캣 다이어트 5.4kg (전연령)</p>
-									</li>
-								</ul>
-							</div>
-							<div class="page-block">
-								<ul>
-									<li class="item"
-										onclick="location.href = 'shopviewd7de.html?thisCategory=0&amp;pack_content_id=1496'"
-										style="cursor:pointer;">
-										<img class="item-image" src="../resources/images/p1496_20210830am81546_1.jpg">
-										<p class="item-title">
-											<script language="javascript">view_name("view_brand", "101", "write")</script>
-										</p>
-										<p class="item-description">그레인프리 덕 1.36kg</p>
-									</li>
-
-									<li class="item"
-										onclick="location.href = 'shopview8a75.html?thisCategory=0&amp;pack_content_id=1072'"
-										style="cursor:pointer;">
-										<img class="item-image" src="../resources/images/p1072_20210830am80849_1.jpg">
-										<p class="item-title">
-											<script language="javascript">view_name("view_brand", "54", "write")</script>
-										</p>
-										<p class="item-description">그레인프리 캣 다이어트 5.4kg (전연령)</p>
-									</li>
-								</ul>
-							</div>
-							<div class="page-block">
-								<ul>
-									<li class="item"
-										onclick="location.href = 'shopviewb559.html?thisCategory=0&amp;pack_content_id=1515'"
-										style="cursor:pointer;">
-										<img class="item-image" src="../resources/images/p1515_20200825pm35329_1.jpg">
-										<p class="item-title">
-											<script language="javascript">view_name("view_brand", "73", "write")</script>
-										</p>
-										<p class="item-description">[생필품FAIR]^핑크젤리 에어솔루션 모래 30kg (7.5kg x 4개)</p>
-									</li>
-
-									<li class="item"
-										onclick="location.href = 'shopview3e55.html?thisCategory=0&amp;pack_content_id=1447'"
-										style="cursor:pointer;">
-										<img class="item-image" src="../resources/images/p1447_20200403pm43728_1.jpg">
-										<p class="item-title">
-											<script language="javascript">view_name("view_brand", "20", "write")</script>
-										</p>
-										<p class="item-description">[생필품FAIR]^노스멜패드 L 대용량 패키지 200매</p>
-									</li>
-								</ul>
-							</div>
-							<div class="page-block">
-								<ul>
-									<li class="item"
-										onclick="location.href = 'shopviewa2b5.html?thisCategory=0&amp;pack_content_id=1011'"
-										style="cursor:pointer;">
-										<img class="item-image" src="../resources/images/p1011_20191226am91347_1.jpg">
-										<p class="item-title">
-											<script language="javascript">view_name("view_brand", "20", "write")</script>
-										</p>
-										<p class="item-description">[생필품FAIR]^노스멜패드 M 200매 (50매 x 4개)</p>
-									</li>
-
-									<li class="item"
-										onclick="location.href = 'shopview69c5.html?thisCategory=0&amp;pack_content_id=1448'"
-										style="cursor:pointer;">
-										<img class="item-image" src="../resources/images/p1448_20211005pm41949_1.jpg">
-										<p class="item-title">
-											<script language="javascript">view_name("view_brand", "20", "write")</script>
-										</p>
-										<p class="item-description">[생필품FAIR]^트레이닝패드 XL 대용량 패키지 120매</p>
-									</li>
-								</ul>
-							</div>
-							<div class="page-block">
-								<ul>
-									<li class="item"
-										onclick="location.href = 'shopview7a72.html?thisCategory=0&amp;pack_content_id=1495'"
-										style="cursor:pointer;">
-										<img class="item-image" src="../resources/images/p1495_20210830am81652_1.jpg">
-										<p class="item-title">
-											<script language="javascript">view_name("view_brand", "101", "write")</script>
-										</p>
-										<p class="item-description">그레인프리 캣 피쉬 1.81kg</p>
-									</li>
-
-									<li class="item"
-										onclick="location.href = 'shopviewa914.html?thisCategory=0&amp;pack_content_id=1498'"
-										style="cursor:pointer;">
-										<img class="item-image" src="../resources/images/p1498_20210830am81446_1.jpg">
-										<p class="item-title">
-											<script language="javascript">view_name("view_brand", "101", "write")</script>
-										</p>
-										<p class="item-description">이지츄 그레인프리 피쉬 1kg</p>
-									</li>
-								</ul>
-							</div>
-							<div class="page-block">
-								<ul>
-									<li class="item"
-										onclick="location.href = 'shopviewb4f5.html?thisCategory=0&amp;pack_content_id=1581'"
-										style="cursor:pointer;">
-										<img class="item-image" src="../resources/images/p1581_20211007pm31955_1.jpg">
-										<p class="item-title">
-											<script language="javascript">view_name("view_brand", "54", "write")</script>
-										</p>
-										<p class="item-description">그레인프리 오션 레시피(연어) 5.9kg</p>
-									</li>
-
-									<li class="item"
-										onclick="location.href = 'shopview95e9.html?thisCategory=0&amp;pack_content_id=1500'"
-										style="cursor:pointer;">
-										<img class="item-image" src="../resources/images/p1500_20210830am81348_1.jpg">
-										<p class="item-title">
-											<script language="javascript">view_name("view_brand", "101", "write")</script>
-										</p>
-										<p class="item-description">오리지날 치킨 1.36kg</p>
-									</li>
-								</ul>
-							</div>
-							<div class="page-block">
-								<ul>
-									<li class="item"
-										onclick="location.href = 'shopview1209.html?thisCategory=0&amp;pack_content_id=1574'"
-										style="cursor:pointer;">
-										<img class="item-image" src="../resources/images/p1574_20210901pm33415_1.jpg">
-										<p class="item-title">
-											<script language="javascript">view_name("view_brand", "20", "write")</script>
-										</p>
-										<p class="item-description">퍼펙션패드 XL 120매 (20매 x 6개)</p>
-									</li>
-
-									<li class="item"
-										onclick="location.href = 'shopview06fe.html?thisCategory=0&amp;pack_content_id=1518'"
-										style="cursor:pointer;">
-										<img class="item-image" src="../resources/images/p1518_20210901pm32923_1.jpg">
-										<p class="item-title">
-											<script language="javascript">view_name("view_brand", "20", "write")</script>
-										</p>
-										<p class="item-description">퍼펙션패드 XXL 80매 (20매 x 4개)</p>
-									</li>
-								</ul>
-							</div>
+									<ul>
+										<li class="item"
+											onclick="location.href = '/prodect/get/prd=${item.prd_idx}'"
+											style="cursor:pointer;">
+											<img class="item-image" src="/resources/uprode/${item.prd_img1}">
+											<p class="item-title">
+												<script language="javascript">view_name("view_brand", "20", "write")</script>
+											</p>
+											<p class="item-description"><c:out value="${item.prd_name}"/></p>
+										</li>
+									</ul>
+								</div>
+						</c:forEach>
+							
+							
+							
+							
+							
 						</div>
 					</div>
 				</div>
