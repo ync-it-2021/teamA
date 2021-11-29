@@ -21,6 +21,17 @@
 			
 		</trim>
 	</sql>
+
+	<select id="best" resultType="kr.ac.ync.domain.BestVO">
+	SELECT  prd_idx,
+        	prd_img1,
+        	prd_name
+	FROM    product 
+	WHERE   prd_idx IN( SELECT      prd_idx
+	                    FROM        orders 
+        	            WHERE       od_idx IN  (SELECT  od_idx
+                                                FROM    pay))
+	</select>
 	
 	<select id="read" resultType="kr.ac.ync.domain.ProductVO">
 		SELECT	*
@@ -144,5 +155,9 @@
 				prd_img10 = #{prd_img10,jdbcType=VARCHAR} 
 		WHERE 	prd_idx =	#{prd_idx}
 	</update>	
+	
 
+
+	
+		
 </mapper>
