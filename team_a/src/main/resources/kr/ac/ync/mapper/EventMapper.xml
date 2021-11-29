@@ -56,7 +56,7 @@
 	  				evt_move_uri,
 	  				evt_del,			
 	 				prd_idx				
-			FROM	(SELECT /*+INDEX_DESC(event XPKevent) */
+			FROM	(SELECT /*+INDEX_DESC(event XPKEVENT) */
 	        				rownum rn,
 	        				evt_idx,				
 			  				evt_title,			
@@ -91,10 +91,10 @@
 
 		<selectKey keyProperty="evt_idx" order="BEFORE"
 			resultType="int">
-			select seq_event.nextval from dual
+			select SEQ_EVENT.nextval from dual
 		</selectKey>
 
-		INSERT INTO event (	evt_idx,				
+		INSERT INTO event (		evt_idx,				
 				  				evt_title,			
 				  				evt_start_day,				
 				  				evt_end_day,			
@@ -105,7 +105,7 @@
 				  				evt_del,			
 				 				prd_idx			
 								)
-					VALUES (	seq_event.nextval,		
+					VALUES (	SEQ_EVENT.nextval,		
 				  				#{evt_title},			
 				  				#{evt_start_day},				
 				  				#{evt_end_day},			
