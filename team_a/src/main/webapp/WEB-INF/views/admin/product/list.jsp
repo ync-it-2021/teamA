@@ -188,7 +188,7 @@
 		}
 		
 		$("#regBtn").on("click", function() {
-			self.location = "../register";
+			self.location = "admin/product/register";
 		});
 		
 		var actionForm = $("#actionForm");
