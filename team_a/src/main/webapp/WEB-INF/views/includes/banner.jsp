@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,26 +10,60 @@
 <title></title>
 </head>
 <body>
-<section>
 		<div id="page-main">
 			<!-- 메인롤링배너 XML -->
 			<div id="main-banner">
-			
+			<c:if test="${not empty evt}">
 				<c:forEach var="evt" items="${evt}">
-					<div class="item">
-						<div class="image only-pc" onclick="location.href='index.jsp'"
-							style="cursor:pointer;"><img src="/resources/upload/${evt.evt_main_img}"></div>
-						<!-- { image for pc } -->
+						<div class="item">
+							<div class="image only-pc" onclick="location.href='${evt.evt_move_uri}'"
+								style="cursor:pointer;background-image:url('/resources/upload/${evt.evt_main_img}')"></div>
+							<!-- { image for pc } -->
 	
-						<div class="image only-mobile" onclick="location.href='eventview3d62.html?idx=521'">
-						<img src="/resources/upload/${evt.evt_main_img}"></div>
+							<div class="image only-mobile" onclick="location.href='${evt.evt_move_uri}'"
+								style="background-image:url('/resources/upload/${evt.evt_main_img}')"></div>
+							<!-- { image for mobile } -->
+						</div>
+				</c:forEach>
+				<c:if test="${fn:length(evt) == 1}">
+					<div class="item">
+						<div class="image only-pc" onclick="location.href='${evt.evt_move_uri}'"
+							style="cursor:pointer;background-image:url('/resources/upload/${evt.evt_main_img}')"></div>
+						<!-- { image for pc } -->
+
+						<div class="image only-mobile" onclick="location.href='${evt.evt_move_uri}'"
+							style="background-image:url('/resources/upload/${evt.evt_main_img}')"></div>
 						<!-- { image for mobile } -->
 					</div>
-				</c:forEach>
+				</c:if>
+			</c:if>
+			
+			<c:if test="${empty evt}">
+				<div class="item">
+					<div class="image only-pc" onclick="location.href='/'"
+						style="cursor:pointer;background-image:url('/resources/images/event_empty.jpg')"></div>
+					<!-- { image for pc } -->
+
+					<div class="image only-mobile" onclick="location.href='/'"
+						style="background-image:url('/resources/images/event_empty.jpg')"></div>
+					<!-- { image for mobile } -->
+				</div>
+				
+				<div class="item">
+					<div class="image only-pc" onclick="location.href='/'"
+						style="cursor:pointer;background-image:url('/resources/images/event_empty.jpg')"></div>
+					<!-- { image for pc } -->
+
+					<div class="image only-mobile" onclick="location.href='/'"
+						style="background-image:url('/resources/images/event_empty.jpg')"></div>
+					<!-- { image for mobile } -->
+				</div>
+			</c:if>
 			</div>
 		</div>
-</section>		
-		
+	
+	
+	
 			<!-- 메인베너 스크립트 -->
 	<script type="text/javascript">
 

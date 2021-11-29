@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.ac.ync.domain.Criteria;
 import kr.ac.ync.service.EventService;
 import kr.ac.ync.service.ProductService;
 import lombok.extern.log4j.Log4j;
@@ -25,13 +26,12 @@ public class IndexController {
 	@GetMapping("/")
 	public String index(Model model) {
 		
-		log.info("data: " + evtService.getList());
-		
+		log.info("aaaaaa......" + evtService.getList());
 		model.addAttribute("evt",evtService.getList());
 		return"index";
 	}
 	
-	@GetMapping("banner")
+	@GetMapping("/banner")
 	public void banner(Model model) {
 
 	}
