@@ -16,11 +16,11 @@
 				<c:forEach var="evt" items="${evt}">
 					<div class="item">
 						<div class="image only-pc" onclick="location.href='index.jsp'"
-							style="cursor:pointer;background-image:url('/resources/upload/${evt.evt_main_img}')"></div>
+							style="cursor:pointer;background-image:url('team-a.ync-it.com/resources/upload/${evt.evt_main_img}');"></div>
 						<!-- { image for pc } -->
 	
 						<div class="image only-mobile" onclick="location.href='eventview3d62.html?idx=521'"
-							style="background-image:url('/resources/upload/${evt.evt_main_img}')"></div>
+							style="background-image:url('team-a.ync-it.com/resources/upload/${evt.evt_main_img}');"></div>
 						<!-- { image for mobile } -->
 					</div>
 				</c:forEach>
