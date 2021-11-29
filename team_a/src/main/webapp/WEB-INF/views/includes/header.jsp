@@ -148,7 +148,7 @@
 					<!-- 우측 이벤트 부분 제외  -->
 				</div>
 
-				<div style="margin-top: 10px;" id="top-logo" class="float_left"><a href="index.html"><img
+				<div style="margin-top: 10px;" id="top-logo" class="float_left"><a href="/"><img
 							src="../resources/images/img_logo_old2.png" alt="Montraum" /></a></div>
 				<!-- 검색바 부분 입니다  -->
 				<div id="header-right" class="float_left">
