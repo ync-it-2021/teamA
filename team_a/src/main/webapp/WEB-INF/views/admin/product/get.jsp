@@ -70,40 +70,23 @@
         </div>
         
         <!-- 업로드 이미지나 파일을 출력 -->
-        <div class="form-group"  >
-        <table>
-
-			<c:forEach var="i" begin="1" end="10">
-				<c:set var="t" value="prd_img${i}" />
-					<c:if test="${not empty prd[t]}">
-						<c:if test="${i % 6 == 0}">
-						<tr>
-						</c:if>
-						<td>
-							<table>
-								<tr style="text-align: center;"> 
-									<td>이미지${i}</td>
-								</tr>
-								<tr>
-									<td>
+	        <div class="form-group" >
+				<c:forEach var="i" begin="1" end="10">
+					<c:set var="t" value="prd_img${i}" />
+						<c:if test="${not empty prd[t]}">
+							<div style="text-align: center; width: 250px;float: left;">
+								<div style="width: 100%;">이미지${i}</div>
+								<div style="width: 100%;">
 									<a href="/resources/upload/${prd[t]}" target="_blank">
 									<img src="/resources/upload/${prd[t]}" id="thumb_${i}" width="200" height="200" style="margin: 25px;"></a>
-									</td>
-								</tr>
-							</table>
-						</td>
-						<c:if test="${i % 5 == 0}">
-						</tr>
-						</c:if>
-			       </c:if>   
-			</c:forEach>
-		</table>
+								</div>
+							</div>
+				       </c:if>   
+				</c:forEach>
+			
 		</div>
 	
-		<div>
-			<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
-			<button type="submit" data-oper='list' class="btn btn-default">List</button>
-		</div>
+		
 			
 
 <form id='operForm' action="/admin/product/modify" method="GET">
@@ -116,7 +99,10 @@
 
       </div>
       <!--  end panel-body -->
-
+		<div class="form-group" style="margin-left: 15px;">
+			<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
+			<button type="submit" data-oper='list' class="btn btn-default">List</button>
+		</div>
     </div>
     <!--  end panel-body -->
   </div>
@@ -133,22 +119,18 @@
 
       
       <div class="panel-heading">
-        <i class="fa fa-comments fa-fw"></i> Reviews
-      </div>      
       
+      <span id ="review" style="padding:10px; color:black;">Review </span>
+       <span id="inquiry" style="padding:10px; color:#888888;">Inquiry</span>
+       <input id="list_show" type="hidden" value="review">
+      </div>      
       
       <!-- /.panel-heading -->
       <div class="panel-body">        
       
       	<!-- 댓글 목록 출력 부분 -->
       	<table class="table table-striped table-bordered table-hover">
-      		<thead>
-	      		<th>번호</th>
-	      		<th>주문번호</th>
-	      		<th>작성자</th>
-	      		<th>내용</th>
-	      		<th>날짜</th>
-	      		<th>점수</th>
+      		<thead class="listHead">
       		</thead>
       	<tbody class="chat">
       	
@@ -169,6 +151,34 @@
 
 
 <script type="text/javascript">
+
+
+
+
+
+	let th_str = "";
+$("#review").on("click",function(){
+	th_str = "<th>번호</th><th>주문번호</th><th>작성자</th><th>내용</th><th>날짜</th><th>점수</th>";
+	$("#review").css({"color":"black"});
+	$("#inquiry").css({"color":"#888888"});
+	$("#list_show").val("review");
+	$(".listHead").html("");
+	$(".listHead").html(th_str);
+	getList(1);
+});
+
+$("#inquiry").on("click",function(){
+	th_str = "<th>번호</th><th>작성자</th><th>내용</th><th>날짜</th><th>답장</th><th>상태</th>";
+	$("#review").css({"color":"#888888"});
+	$("#inquiry").css({"color":"black"});
+	$("#list_show").val("inquiry");
+	$(".listHead").html("");
+	$(".listHead").html(th_str);
+	getList(1);
+});
+
+
+
 
 // 날짜 포맷 변환
 function displayTime(timeValue) {
@@ -200,30 +210,64 @@ function displayTime(timeValue) {
 }
 
 //댓글 목록
-function getList(param, callback, error) {
-	console.log("getList reply..............");
+function getList(pageNum) {
+	console.log("getList ..............");
 	let replyUL = $(".chat");
+	let ck = $("#list_show").val();
+	let _url= "";
 	let str="";
 	var idx = ${prd.prd_idx};
-	var page = param.page || 1; // param.page 가 null 이면 1로 설정 
+	var page = pageNum || 1; 
 	
+	if(ck == "review"){
+		_url = "/replies/pages/" + idx + "/" + page;
+	}else{
+		_url = "/prdInquiry/pages/" + idx + "/" + page;
+	}
 	$.ajax({
-		url:"/replies/pages/" + idx + "/" + page,
+		url:_url,
 		dataType:"json",
 		success:function(data){
-			console.log(data.length);
-			console.log(data);
 				for (var i = 0, len = data.length || 0; i < len; i++) {
-				
+				if(ck == "review"){
 				str +="<tr><td class='left clearfix' data-rno='"+data[i].review_idx+"'>"+data[i].review_idx+"</td>";
 				str +="<td>"+data[i].order_idx+"</td>";
 				str +="<td>"+data[i].member_id+"</td>";
 				str +="<td>"+data[i].review_contents+"</td>";
 				str +='<td>'+displayTime(data[i].review_date)+'</td>';
 				str +="<td>"+data[i].review_point+"</td></tr>";
-				replyUL.html(str);
+				}else{
+					str +="<tr><td class='left clearfix' data-rno='"+data[i].pi_idx+"'>"+data[i].pi_idx+"</td>";
+					str +="<td>"+data[i].member_id+"</td>";
+					str +="<td>"+data[i].pi_contents+"</td>";
+					str +='<td>'+displayTime(data[i].pi_write_day)+'</td>';
+					if(data[i].pi_reply == ""){
+						str +='<td>Y</td>';
+					}else{
+						str +='<td>N</td>';
+					}
+					
+					if(data[i].pi_del == 'Y'){
+						str +="<td>삭제</td></tr>";
+					}else if(data[i].pi_hidden == 'N'){
+						str +="<td>공개</td></tr>";
+					}else{
+						str +="<td>비공개</td></tr>";
+					}
+					
+					
+					
+						
+					
+					}
 			}
-		}
+				replyUL.html(str);
+		},
+	error:function(request, status, error ){
+		console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+
+	}
+	
 	});
 }
 
@@ -231,26 +275,9 @@ function getList(param, callback, error) {
 
 
 $(document).ready(function () {
-	  
-	let bnoValue = '<c:out value="${prd.prd_idx}"/>';
-	
-	  
-	showList(1);
-	
-	// 댓글 목록을 출력하는 함수
-	function showList(page){
-		    
-		getList({prd:bnoValue, page: page|| 1 }, function(list) {
-			if(list == null || list.length == 0){
-				replyUL.html("");
-				return;
-			}
-			replyUL.html(str);
+	$(".listHead").html("<th>번호</th><th>주문번호</th><th>작성자</th><th>내용</th><th>날짜</th><th>점수</th>");
+	getList(1);
 
-		});//end function
-	     
-	}//end showList
-	
 	/* 댓글 modal 창 동작 부분*/
 	let modal = $(".modal");
     let modalInputReply = modal.find("input[name='reply']");
