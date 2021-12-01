@@ -2,9 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.ac.ync.mapper.PrdInquiryMapper">
 
-<delete id="delete">
-		DELETE FROM prd_inquiry WHERE prd_idx = #{prd_idx};
-	</delete>
+<select id="getListWithPaging" resultType="kr.ac.ync.domain.PrdInquiryVO">
+		<![CDATA[
+	 		SELECT	pi_idx,
+					prd_idx,
+					member_id,
+					pi_contents,
+					pi_write_day,
+					pi_reply,
+					pi_replyer,
+					pi_reply_day,
+					pi_hidden,
+					pi_del
+	 		FROM	(SELECT /*+INDEX(review XPKREVIEW) */ 
+	      					rownum rn,
+	      					pi_idx,
+							prd_idx,
+							member_id,
+							pi_contents,
+							pi_write_day,
+							pi_reply,
+							pi_replyer,
+							pi_reply_day,
+							pi_hidden,
+							pi_del
+	    			FROM	prd_inquiry
+	    			WHERE	prd_idx =  #{prd}
+	    			AND		pi_idx > 0
+	    			AND		rownum <= #{cri.pageNum} * #{cri.amount}
+	   				)
+	   		WHERE	rn > (#{cri.pageNum} -1) * #{cri.amount}
+		]]>
+	</select>
+
+
 
 
 </mapper>
