@@ -284,7 +284,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="/admin/main.jsp"><i class="fa fa-dashboard fa-fw"></i> 메인으로</a>
+                            <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> 메인으로</a>
                         </li>
                         <li>
                             <a href="/admin/member/list"><i class="fa fa-table fa-fw"></i>회원</a>
