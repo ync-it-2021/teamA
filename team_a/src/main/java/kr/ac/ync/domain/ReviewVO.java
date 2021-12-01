@@ -11,7 +11,6 @@ public class ReviewVO {
   private int prd_idx;
   private int order_idx;
   private String member_id;
-
   private int review_point;
   private String review_contents;
   private String review_img;

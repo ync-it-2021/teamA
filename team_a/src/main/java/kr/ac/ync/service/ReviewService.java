@@ -10,16 +10,14 @@ public interface ReviewService {
 
 	public int register(ReviewVO vo);
 
-	public ReviewVO get(int review_idx);
+	public ReviewVO get(int prd);
 
 	public int modify(ReviewVO vo);
 
-	public int remove(int review_idx);
+	public int remove(int prd);
 
-	public List<ReviewVO> getList(Criteria cri, int prd_idx);
+	public List<ReviewVO> getList(Criteria cri, int prd);
 	
-	public ReviewPageDTO getListPage(Criteria cri, int prd_idx);
-	
-	public int productCnt(int prd_idx);
+	public ReviewPageDTO getListPage(Criteria cri, int prd);
 
 }

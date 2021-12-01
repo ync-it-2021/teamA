@@ -1,8 +1,3 @@
-/**
- * 댓글용 module 
- * jQuery의 $.ajax, $.getJSON 등을 이용해 비동기방식으로 data(json 포맷 등)를 주고 받는
- * 문법, 방법을 이해해야 한다. 
- */
 
 console.log("Reply Module........");
 
@@ -14,7 +9,7 @@ var reviewService = (function() {
 
 		$.ajax({
 			type : 'post',
-			url : '/replies/new',
+			url : '/review/new',
 			data : JSON.stringify(reply), // JavaScript 값이나 객체를 JSON 문자열로 변환
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr) { // (Anything data(서버에서 받은 data), String textStatus, jqXHR jqXHR )
@@ -35,7 +30,7 @@ var reviewService = (function() {
 	function getList(param, callback, error) {
 		console.log("getList reply..............");
 		
-		var idx = param.idx;
+		var idx = param.prd_idx;
 		var page = param.page || 1; // param.page 가 null 이면 1로 설정 
 		
 		$.getJSON("/replies/pages/" + idx + "/" + page + ".json", function(data) {
@@ -47,85 +42,10 @@ var reviewService = (function() {
 				error(xhr.responseText, xhr.status);
 			}
 		});
-		/*
-		// getJSON을 ajax로 적용한것 1
-		$.ajax({
-			type : 'get',
-			url : '/replies/pages/' + bno + '/' + page + '.json',
-			contentType : "application/json; charset=utf-8",
-			success : function(result, status, xhr) {
-				if (callback) {
-					callback(result);
-				}
-			},
-			error : function(xhr, status, err) {
-				if (error) {
-					error(xhr.responseText, xhr.status);
-				}
-			}
-		});
-		*/
-		
-		/*
-		// getJSON을 ajax로 적용한것 2
-		// ajax, getJSON 등은 return jqXHR
-		$.ajax({
-			type : 'get',
-			url : '/replies/pages/' + bno + '/' + page + '.json',
-			contentType : "application/json; charset=utf-8",
-		})
-		.done(function(data, status, xhr) {
-			if (callback) {
-				callback(data);
-			}
-		})
-		.fail(function(xhr, status, err) {
-			if (error) {
-				error(xhr.responseText, xhr.status);
-			}
-		});
-		*/
-	}
-	
-	// 댓글 목록 (댓글 숫자와 목록을 가져오는 경우)
-//	function getList(param, callback, error) {
-//
-//	    var bno = param.bno;
-//	    var page = param.page || 1;
-//	    
-//	    $.getJSON("/replies/pages/" + bno + "/" + page + ".json",
-//	    	function(data) {
-//	    		if (callback) {
-//	    			//callback(data); // 댓글 목록만 가져오는 경우 
-//	    			callback(data.replyCnt, data.list); //댓글 숫자와 목록을 가져오는 경우 
-//	    		}
-//	    	}).fail(function(xhr, status, err) {
-//	    		if (error) {
-//	    			error();
-//	    		}
-//	    	});
-//	}
 
-	// 댓글 삭제
-	/*
-	function remove(rno, callback, error) {
-		$.ajax({
-			type : 'delete',
-			url : '/replies/' + rno,
-			success : function(deleteResult, status, xhr) {
-				if (callback) {
-					callback(deleteResult);
-				}
-			},
-			error : function(xhr, status, err) {
-				if (error) {
-					error(err);
-				}
-			}
-		});
 	}
-	*/
 	
+
 	// 댓글 삭제. security 적용 후
 	function remove(rno, replyer, callback, error) {
 		  
@@ -224,6 +144,4 @@ var reviewService = (function() {
 		get : get, 
 		displayTime : displayTime
 	};
-	
-	//return {name:"aaaa"}
 })();

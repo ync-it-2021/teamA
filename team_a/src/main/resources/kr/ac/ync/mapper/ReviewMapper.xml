@@ -2,69 +2,70 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.ac.ync.mapper.ReviewMapper">
 
-	<insert id="insert">
-		INSERT INTO review (review_idx,
-							member_idx, 
-							prd_idx, 
-							order_idx,
-							review_point, 
-							review_contents,
-							review_img)
-					VALUES (seq_review.nextval,
-					 		#{member_idx}, 	
-					 		#{prd_idx}, 
-					 		#{order_idx},
-					 		#{review_point},
-					 		#{review_contents},
-					 		#{review_img})
+
+
+<insert id="insert">
+		INSERT INTO review
+				(review_idx,
+				 prd_idx,
+	 			 review_contents,
+		  		 member_id,
+		  <if test="#{order_idx} == ''">
+		  		 order_idx,
+		  </if>
+		  <if test="#{review_img} == ''">
+		  		 review_img,
+		  </if>
+		  		 review_point)
+		VALUES (seq_review.nextval,
+				#{prd_idx},
+	 			#{review_contents,
+		  		#{member_id,
+				<if test="#{not empty order_idx }">
+		  		#{order_idx},
+		  		</if>
+		  		<if test="#{not empty review_img }">
+		  		#{review_img},
+		  		</if>
+		 		#{review_point})
 	</insert>
+	
+	
 
 	<select id="read" resultType="kr.ac.ync.domain.ReviewVO">
 		SELECT * FROM review WHERE review_idx =	#{review_idx}
 	</select>
 
-	<delete id="delete">
-		DELETE FROM review WHERE review_idx = #{review_idx}
-	</delete>
+	<update id="delete">
+		UPDATE review SET review_del = 'Y' WHERE review_idx = #{review_idx}
+	</update>
 
 	<update id="update">
 		UPDATE review SET	review_contents = #{review_contents},
-								review_date = sysdate 
+							review_date = sysdate 
 		WHERE review_idx = #{review_idx}
 	</update>
 
-
 	<select id="getListWithPaging" resultType="kr.ac.ync.domain.ReviewVO">
-
-		SELECT 	 *
-		FROM 	review
-		WHERE prd_idx = #{prd_idx}
-		ORDER BY review_idx asc
-
-	</select>
-
-	<select id="getListWithPaging2" resultType="kr.ac.ync.domain.ReviewVO">
 		<![CDATA[
-	 		SELECT 	review_idx,
-			  		prd_idx, 
-				   	order_idx,
-				   	member_idx,
-				   	review_contents,
-				   	review_img,
-				   	review_date, 
-				   	review_del
+	 		SELECT	review_idx,
+					order_idx,
+					member_id,
+					review_contents,
+					review_date,
+					review_img,
+					review_point
 	 		FROM	(SELECT /*+INDEX(review XPKREVIEW) */ 
 	      					rownum rn,
 	      					review_idx,
-	      					prd_idx, 
-						   	order_idx,
-						   	member_idx,
-						   	review_contents,
-						   	review_img,
-						   	review_date, 
-						   	review_del
+							order_idx,
+							member_id,
+							review_contents,
+							review_date,
+							review_img,
+							review_point
 	    			FROM	review
-	    			WHERE	prd_idx =  #{prd_idx}
+	    			WHERE	prd_idx =  #{prd}
 	    			AND		review_idx > 0
 	    			AND		rownum <= #{cri.pageNum} * #{cri.amount}
 	   				)
@@ -72,10 +73,11 @@
 		]]>
 	</select>
 
-	<select id="getCountByProduct" resultType="int">
+	<select id="getCountByPrd" resultType="int">
 		<![CDATA[
-		SELECT count(review_idx) FROM review WHERE prd_idx = #{prd_idx}
+		SELECT count(review_idx) FROM review WHERE prd_idx = #{prd}
 		]]>
 	</select>
+	
 
 </mapper>

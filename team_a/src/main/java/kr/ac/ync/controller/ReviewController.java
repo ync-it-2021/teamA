@@ -24,7 +24,7 @@ import lombok.extern.log4j.Log4j;
 
 @RestController
 @Log4j
-@RequestMapping("/replies/")
+@RequestMapping("/replies/*")
 public class ReviewController {
 	
 	@Autowired
@@ -36,12 +36,12 @@ public class ReviewController {
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/new", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> create(@RequestBody ReviewVO vo) {
-		
+
 		log.info("ReviewVO: " + vo);
 
 		int insertCount = service.register(vo);
 
-		log.info("Reply INSERT COUNT: " + insertCount);
+		log.info("Review INSERT COUNT: " + insertCount);
 
 		return insertCount == 1
 				? new ResponseEntity<>("success", HttpStatus.OK)
@@ -52,25 +52,23 @@ public class ReviewController {
 	// spring 5.2에서 MediaType.APPLICATION_JSON_UTF8_VALUE 는 제거됨
 	// 해당 값 없어도 현재 브라우저는 UTF-8을 제대로 처리함.
 	// spring 5.2 부터 MediaType.APPLICATION_JSON_UTF8 로 수정하면됨
-	@GetMapping(value = "/{review_idx}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<ReviewVO> get(@PathVariable("review_idx") int review_idx) {
+	@GetMapping(value = "/{rv}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<ReviewVO> get(@PathVariable("rv") int rv) {
 
-		log.info("get: " + review_idx);
+		log.info("get: " + rv);
 
-		return new ResponseEntity<>(service.get(review_idx), HttpStatus.OK);
+		return new ResponseEntity<>(service.get(rv), HttpStatus.OK);
 	}
 	
-	// PUT, PATCH method를 모두 적용시켜야 되기에 @RequestMapping을 사용
-	// 둘중 하나만 적용할려면 @PutMapping, @PatchMapping 을 사용하면 된다.
-	@PreAuthorize("principal.member_id == #vo.member_id")
-	@RequestMapping(value = "/{review_idx}", method = { RequestMethod.PUT, RequestMethod.PATCH },
+//	@PreAuthorize("principal.username == #vo.replyer")
+	@RequestMapping(value = "/{rv}", method = { RequestMethod.PUT, RequestMethod.PATCH },
 					consumes = "application/json", produces = {	MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> modify(@RequestBody ReviewVO vo, @PathVariable("review_idx") int review_idx) {
+	public ResponseEntity<String> modify(@RequestBody ReviewVO vo, @PathVariable("rv") int rv) {
 		
 		// @RequestBody 처리되는 data는 일반파라미터나 @PathVariable로 처리할 수 없다.
-		vo.setReview_idx(review_idx);
+		vo.setReview_idx(rv);
 
-		log.info("review_idx: " + review_idx);
+		log.info("rno: " + rv);
 		log.info("modify: " + vo);
 
 		return service.modify(vo) == 1 
@@ -79,34 +77,35 @@ public class ReviewController {
 
 	}
 
-	@PreAuthorize("principal.username == #vo.replyer")
-	@DeleteMapping(value = "/{rno}", produces = { MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> remove(@RequestBody ReviewVO vo, @PathVariable("review_idx") int review_idx) {
+//	@PreAuthorize("principal.username == #vo.replyer")
+	@DeleteMapping(value = "/{rv}", produces = { MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<String> remove(@RequestBody ReviewVO vo, @PathVariable("rv") int rv) {
 
-		log.info("remove: " + review_idx);
-		log.info("replyer: " + vo.getMember_id());
+		log.info("remove: " + rv);
+		log.info("member_id: " + vo.getMember_id());
 
-		return service.remove(review_idx) == 1
+		return service.remove(rv) == 1
 				? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>("Fail!! 댓글 삭제 중 오류 발생",HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}
 	
-	
-	// 상품 리뷰 불러오기
-	@GetMapping(value = "/pages/{idx}/{page}", produces = { MediaType.APPLICATION_XML_VALUE,
+	// spring 5.2에서 MediaType.APPLICATION_JSON_UTF8_VALUE 는 제거됨
+	// 해당 값 없어도 현재 브라우저는 UTF-8을 제대로 처리함.
+	// spring 5.2 부터 MediaType.APPLICATION_JSON_UTF8 로 수정하면됨
+	// 페이징 처리된 댓글 목록을 가져오는 method
+	@GetMapping(value = "/pages/{prd}/{page}", produces = { MediaType.APPLICATION_XML_VALUE,
 															MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<List<ReviewVO>> getList(@PathVariable("page") int page, @PathVariable("idx") int idx) {
-
-			log.info("getList.................");
-			Criteria cri = new Criteria(page,10);
-			log.info(cri);
-			log.info(service.getList(cri, idx));
+	public ResponseEntity<List<ReviewVO>> getList(@PathVariable("page") int page, @PathVariable("prd") int prd) {
 		
-			
-			return new ResponseEntity<>(service.getList(cri, idx), HttpStatus.OK);
-	}
-
+		 log.info("getList.................");
+		 Criteria cri = new Criteria(page,10);
+		 log.info(cri);
+		 log.info(prd);
+		 log.info(service.getList(cri,prd));
+	
+		 return new ResponseEntity<>(service.getList(cri,prd), HttpStatus.OK);
+	 }
 
 }
 
