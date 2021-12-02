@@ -8,9 +8,6 @@
 
 <%
 
-	
-
-
 
 	request.setCharacterEncoding("UTF-8");
 	
@@ -45,7 +42,7 @@
 	String sql = "insert into member (member_name,member_id, member_pass, member_email, member_phone, member_birthday, member_address ) values(?, ?, ?, ?, ?, ?, ?)";
 	
 	try{
-		// 1. 드라이버 로드
+		// 1. 드라이버 로드() 
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		
 		// 2. conn 생성
