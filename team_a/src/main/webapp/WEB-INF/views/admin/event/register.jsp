@@ -7,7 +7,7 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header">Board Register</h1>
+    <h1 class="page-header">Event Register</h1>
   </div>
   <!-- /.col-lg-12 -->
 </div>
@@ -17,49 +17,42 @@
   <div class="col-lg-12">
     <div class="panel panel-default">
 
-      <div class="panel-heading">Board Register</div>
+      <div class="panel-heading">Event Register</div>
       <!-- /.panel-heading -->
       <div class="panel-body">
 
-        <form role="form" action="/board/register" method="post" enctype="multipart/form-data">
-        	<!--
-        	controller에서 파라미터 수집시 upload file은 uploadFile 이름으로 server로 넘어간다.(binary data로)
-        	하지만 BoardVO에서는 file_1,file_2,file_3의 이름으로 setter를 해줘야 한다.
-        	따라서 file_1,file_2,file_3를 hidden으로 넘겨서 controller에서 file이 upload가 안됐을 경우에도
-        	파라미터 수집이 되도록(값은 null로 됨) 하기위해 hidden으로 값을 넘긴다.
-        	-->
-			<input type="hidden" name="file_1" value="">
-	        <input type="hidden" name="file_2" value="">
-	        <input type="hidden" name="file_3" value="">
+        <form role="form" action="/admin/event/register_insert" method="post" enctype="multipart/form-data">
 	        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
           <div class="form-group">
-            <label>Title</label> <input class="form-control" name='title'>
-          </div>
-
-          <div class="form-group">
-            <label>Text area</label>
-            <textarea class="form-control" rows="3" name='content'></textarea>
-          </div>
-			
-          <!-- <div class="form-group">
-            <label>Writer</label> <input class="form-control" name='writer'>
-          </div> -->
-          
-          <div class="form-group">
-            <label>Writer</label> <input class="form-control" name='writer' 
-                value='<sec:authentication property="principal.username"/>' readonly="readonly">
+            <label>제목</label> <input class="form-control" name='evt_title'>
           </div>
           
           <div class="form-group">
-            <label>이미지 등록 1</label> <input type="file" class="form-control" name='uploadFile'>
+            <label>이동 uri</label> <input class="form-control" name='evt_move_uri'>
           </div>
           
           <div class="form-group">
-            <label>이미지 등록 2</label> <input type="file" class="form-control" name='uploadFile'>
+            <label>상품 번호</label> <input class="form-control" name='prd_idx'>
           </div>
           
           <div class="form-group">
-            <label>이미지 등록 3</label> <input type="file" class="form-control" name='uploadFile'>
+            <label>해더</label> <input type="file" class="form-control" name='uploadFile'>
+          </div>
+          
+          <div class="form-group">
+            <label>메인</label> <input type="file" class="form-control" name='uploadFile'>
+          </div>
+          
+          <div class="form-group">
+            <label>내용</label> <input type="file" class="form-control" name='uploadFile'>
+          </div>
+          
+          <div class="form-group">
+          <label>시작일</label><input type="date" class="form-control" name='evt_start_day' value=''>
+          </div>
+          
+          <div class="form-group">
+          <label>종료일</label><input type="date" class="form-control" name='evt_end_day' value=''>
           </div>
           
           <button type="submit" class="btn btn-default">Submit

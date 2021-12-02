@@ -270,7 +270,7 @@
 		
 		<sec:authorize access="isAnonymous()">
 		
-		<li><a href="/admin/customLogin"><i class="fa fa-sign-out fa-fw"></i>
+		<li><a href="/customLogin"><i class="fa fa-sign-out fa-fw"></i>
 		    Login</a></li>
 		</sec:authorize>
 </ul>
@@ -287,85 +287,54 @@
                             <a href="/admin/main.jsp"><i class="fa fa-dashboard fa-fw"></i> 메인으로</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <a href="/admin/member/list"><i class="fa fa-table fa-fw"></i>회원</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            	<i class="fa fa-bar-chart-o fa-fw"></i> 상품
+                            	<span class="fa arrow"></span>
+                            </a>
                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Flot Charts</a>
+                           		<li>
+                                    <a href="/admin/product/list">전체</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Morris.js Charts</a>
+                                    <a href="/admin/product/list">태그1</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/product/list">태그2</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/product/list">태그3</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/product/list">태그4</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/product/list">판매중단</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a href="/admin/order/list"><i class="fa fa-edit fa-fw"></i>주문/장바구니</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/admin/pay/list"><i class="fa fa-wrench fa-fw"></i>결제</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                            <a href="/admin/event/list"><i class="fa fa-sitemap fa-fw"></i>이벤트</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i>게시판<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
+                                    <a href="/admin/board/list">일반</a>
                                 </li>
                                 <li>
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="icons.html"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="blank.html">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login Page</a>
+                                    <a href="/admin/board/list">공지</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

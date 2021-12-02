@@ -2,7 +2,6 @@
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@include file="../includes/header.jsp"%>
 
 <script>
@@ -31,7 +30,7 @@ function getThumbFileName(fullFilePath) {
       <!-- /.panel-heading -->
       <div class="panel-body">
 
-      <form role="form" action="/admin/product/modify" method="post" enctype="multipart/form-data">
+<form role="form" action="/admin/product/modify" method="post" enctype="multipart/form-data">
       	<!--
        	controller에서 파라미터 수집시 upload file은 uploadFile 이름으로 server로 넘어간다.(binary data로)
        	하지만 BoardVO에서는 file_1,file_2,file_3의 이름으로 setter를 해줘야 한다.
@@ -58,49 +57,73 @@ function getThumbFileName(fullFilePath) {
 	    <input type='hidden' name='type' value='<c:out value="${cri.type }"/>'>
 		<input type='hidden' name='keyword' value='<c:out value="${cri.keyword }"/>'>
 		<input type='hidden' name='bd_idx' value='<c:out value="${board.bd_idx }"/>'>
-      
-<div class="form-group">
-  <label>Title</label> 
-  <input class="form-control" name='title' 
-    value='<c:out value="${board.bd_title }"/>' >
-</div>
+   
+   <div class="form-group">
+          <label>상품번호</label> 
+          <input class="form-control" name='prd_idx'
+            value='<c:out value="${prd.prd_idx}"/>' readonly="readonly">
+        </div>
+        <div class="form-group">
+          <label>코드</label> 
+          <input class="form-control" name='prd_kind'
+            value='<c:out value="${prd.prd_kind}"/>' >
+        </div>
+        <div class="form-group">
+          <label>상품명</label> 
+          <input class="form-control" name='prd_name'
+            value='<c:out value="${prd.prd_name}"/>' >
+        </div>
 
-<div class="form-group">
-  <label>Text area</label>
-  <textarea class="form-control" rows="3" name='content' ><c:out value="${board.bd_contents}"/></textarea>
-</div>
+        <div class="form-group">
+          <label>제작사</label>
+          <input class="form-control" rows="3" name='prd_company'
+             value="${prd.prd_company}">
+        </div>
 
-<div class="form-group">
-  <label>Writer</label> 
-  <input class="form-control" name='writer'
-    value='<c:out value="${board.member_id}"/>' readonly="readonly">            
-</div>
+        <div class="form-group">
+          <label>원가</label> 
+          <input class="form-control" name='prd_cost_price' type="number" min="0"
+            value='<c:out value="${prd.prd_cost_price}" />'>
+        </div>
+        <div class="form-group">
+          <label>재고</label> 
+          <input type="number" min='0' class="form-control" name='prd_inventory'
+            value='<c:out value="${prd.prd_inventory}"/>' >
+        </div>
+        <div class="form-group">
+          <label>세일기간</label> 
+          <input type="date" class="form-control" name='prd_discount_date'
+            value='<c:out value="${prd.prd_discount_date}"/>'>
+        </div>
+        <div class="form-group">
+          <label>세일금액</label>
+           <input class="form-control" name='prd_sale_prices' type="number"
+            value='<c:out value="${prd.prd_sale_prices}" />' >
+        </div>
+        <div class="form-group">
+          <label>판매금액</label> 
+          <input class="form-control" name='prd_amount' type="number"
+            value='<c:out value="${prd.prd_amount}" />'>
+        </div>
 
-<c:forEach var="i" begin="1" end="5">
-	<c:set var="t" value="bd_img${i}" />
+<c:forEach var="i" begin="1" end="10">
+	<c:set var="t" value="prd_img${i}" />
 	<div class="form-group">
 	<label>이미지${i}</label>
-		<c:if test="${not empty board[t]}">
-			<a href="/resources/upload/board/${board[t]}" target="_blank"><img src="/resources/upload/board/${board[t]}" id="thumb_${i}"></a>
+		<c:if test="${not empty prd[t]}">
+			<a href="/resources/upload/${prd[t]}" target="_blank"><img src="/resources/upload/${prd[t]}" id="thumb_${i}"></a>
 			<script>
-	        	document.getElementById('thumb_${i}').src="/resources/upload/" + getThumbFileName('${board[t]}');
+	        	document.getElementById('thumb_${i}').src="/resources/upload/" + getThumbFileName('${prd[t]}');
 			</script>
 		</c:if>
 		<input type="file" class="form-control" name='uploadFile'>
 	</div>
 </c:forEach>
 
-	<sec:authentication property="principal" var="pinfo"/>
-	<sec:authorize access="isAuthenticated()">
-		<!--<c:if test="${pinfo.username eq board.member_id}">
-			<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
-  			<button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
-		</c:if>-->
-	</sec:authorize>
-
   <button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
   <button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
   <button type="submit" data-oper='list' class="btn btn-info">List</button>
+  
 </form>
 
 
@@ -127,13 +150,15 @@ $(document).ready(function() {
 	    var operation = $(this).data("oper");
 	    
 	    console.log(operation);
-	    
-	    if(operation === 'remove'){
-	      formObj.attr("action", "/board/remove");
+	    if(operation === 'modify'){
+		      formObj.attr("action", "/admin/product/modify");
+		      
+		    }else if(operation === 'remove'){
+	      formObj.attr("action", "/admin/product/remove");
 	      
 	    }else if(operation === 'list'){
 	      //move to list
-	      formObj.attr("action", "/board/list").attr("method","get");
+	      formObj.attr("action", "/admin/product/list").attr("method","get");
 
 	      var pageNumTag = $("input[name='pageNum']").clone();
 	      var amountTag = $("input[name='amount']").clone();

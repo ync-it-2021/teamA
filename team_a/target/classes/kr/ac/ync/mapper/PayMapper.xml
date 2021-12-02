@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.ync.mapper.PayMapper">
+
+<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'B'.toString()">
+							pay_buyer LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'R'.toString()">
+							pay_recipient LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'P'.toString()">
+							pay_idx LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'O'.toString()">
+							od_idx LIKE '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+			
+		</trim>
+	</sql>
+	
+	<select id="read" resultType="kr.ac.ync.domain.PayVO">
+		SELECT	*
+		FROM 	pay
+		WHERE 	pay_idx = #{pay_idx}
+	</select>
+	
+	
+	<select id="getTotalCount" resultType="int">
+		SELECT 	count(*) 
+		FROM 	pay 
+		WHERE 
+		<include refid="criteria"></include> 
+		pay_idx > 0
+	</select>
+
+	<select id="getListWithPaging" resultType="kr.ac.ync.domain.PayVO">
+		<![CDATA[
+		SELECT	pay_idx,
+				od_idx,
+				pay_buyer,
+				pay_option,
+				pay_amount,
+				pay_date,
+				pay_state		
+		FROM	(SELECT /*+INDEX_DESC(pay IDX_PAY) */
+						rownum rn,
+        				pay_idx,
+						od_idx,
+						pay_buyer,
+						pay_option,
+						pay_amount,
+						pay_date,
+						pay_state	
+      			FROM	pay
+				WHERE 
+  		]]>
+		<include refid="criteria"></include> 
+		<![CDATA[    
+      			rownum <= #{pageNum} * #{amount}
+      			)
+  		WHERE rn > (#{pageNum} -1) * #{amount}   
+		]]>
+				
+	</select>
+
+<insert id="insertSelectKey">
+
+		<selectKey keyProperty="pay_idx" order="BEFORE"
+			resultType="int">
+			SELELCT	seq_pay.nextval
+			FROM 	dual
+		</selectKey>
+
+		INSERT INTO pay (	pay_idx,
+							od_idx,
+							pay_buyer,
+							pay_option,
+							pay_amount,
+							pay_mileage,
+							pay_recipient,
+							pay_address,
+							pay_state		
+								)
+					VALUES (	seq_pay.nextval,
+								#{od_idx},
+								#{pay_buyer},
+								#{pay_option},
+								#{pay_amount},
+								#{pay_mileage},
+								#{pay_recipient},
+								#{pay_address},
+								#{pay_state}		
+								 )
+	</insert>
+
+	<update id="update">
+			UPDATE 	pay
+			SET 	pay_recipient = #{pay_recipient},
+					pay_address = #{pay_address},
+					pay_state = #{pay_state}	 	
+			WHERE 	pay_idx =	#{pay_idx}
+		</update>	
+
+
+</mapper>

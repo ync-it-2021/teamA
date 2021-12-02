@@ -17,7 +17,7 @@ function getThumbFileName(fullFilePath) {
 
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header">Board Modify</h1>
+    <h1 class="page-header">Pay Modify</h1>
   </div>
   <!-- /.col-lg-12 -->
 </div>
@@ -27,80 +27,71 @@ function getThumbFileName(fullFilePath) {
   <div class="col-lg-12">
     <div class="panel panel-default">
 
-      <div class="panel-heading">Board Modify</div>
+      <div class="panel-heading">Pay Modify</div>
       <!-- /.panel-heading -->
       <div class="panel-body">
 
-      <form role="form" action="/board/modify" method="post" enctype="multipart/form-data">
-      	<!--
-       	controller에서 파라미터 수집시 upload file은 uploadFile 이름으로 server로 넘어간다.(binary data로)
-       	하지만 BoardVO에서는 file_1,file_2,file_3의 이름으로 setter를 해줘야 한다.
-       	따라서 file_1,file_2,file_3를 hidden으로 넘겨서 controller에서 file이 upload가 안됐을 경우에도
-       	파라미터 수집이 되도록(값은 null로 됨) 하기위해 hidden으로 값을 넘긴다.
-       	
-       	업로드 파일 삭제 기능 추가시 해당 file의 value="" 로 바꿔주면 된다.
-       	-->
-		<c:forEach var="i" begin="1" end="5">
-			<c:set var="t" value="bd_img${i}" />
-			<c:choose>
-				<c:when test="${not empty board[t]}">
-		            <input type="hidden" name="bd_img${i}" value="${board[t]}">
-		        </c:when>
-		        <c:otherwise>
-					<input type="hidden" name="bd_img${i}" value="">		
-		        </c:otherwise>
-			</c:choose>
-		</c:forEach>
-		
-      	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum }"/>'>
-        <input type='hidden' name='amount' value='<c:out value="${cri.amount }"/>'>
-	    <input type='hidden' name='type' value='<c:out value="${cri.type }"/>'>
+      <form role="form" action="/admin/pay/modify" method="post" enctype="multipart/form-data">
+	    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	    <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum }"/>'>
+	    <input type='hidden' name='amount' value='<c:out value="${cri.amount }"/>'>
+		<input type='hidden' name='type' value='<c:out value="${cri.type }"/>'>
 		<input type='hidden' name='keyword' value='<c:out value="${cri.keyword }"/>'>
-		<input type='hidden' name='bd_idx' value='<c:out value="${board.bd_idx }"/>'>
-      
-<div class="form-group">
-  <label>Title</label> 
-  <input class="form-control" name='title' 
-    value='<c:out value="${board.bd_title }"/>' >
-</div>
+		<input type='hidden' name='pay_idx' value='<c:out value="${pay.pay_idx }"/>'>
+		
+		
+		<div class="form-group">
+          <label>결제번호</label> <input class="form-control" name='pay_idx'
+            value='<c:out value="${pay.pay_idx }"/>' readonly="readonly">
+        </div>
 
-<div class="form-group">
-  <label>Text area</label>
-  <textarea class="form-control" rows="3" name='content' ><c:out value="${board.bd_contents}"/></textarea>
-</div>
+        <div class="form-group">
+          <label>주문번호</label> <input class="form-control" name='od_idx'
+            value='<c:out value="${pay.od_idx }"/>' readonly="readonly">
+        </div>
+        
+        <div class="form-group">
+          <label>구매자</label> <input class="form-control" name='pay_buyer'
+            value='<c:out value="${pay.pay_buyer }"/>' readonly="readonly">
+        </div>
 
-<div class="form-group">
-  <label>Writer</label> 
-  <input class="form-control" name='writer'
-    value='<c:out value="${board.member_id}"/>' readonly="readonly">            
-</div>
-
-<c:forEach var="i" begin="1" end="5">
-	<c:set var="t" value="bd_img${i}" />
-	<div class="form-group">
-	<label>이미지${i}</label>
-		<c:if test="${not empty board[t]}">
-			<a href="/resources/upload/board/${board[t]}" target="_blank"><img src="/resources/upload/board/${board[t]}" id="thumb_${i}"></a>
-			<script>
-	        	document.getElementById('thumb_${i}').src="/resources/upload/" + getThumbFileName('${board[t]}');
-			</script>
-		</c:if>
-		<input type="file" class="form-control" name='uploadFile'>
-	</div>
-</c:forEach>
-
-	<sec:authentication property="principal" var="pinfo"/>
-	<sec:authorize access="isAuthenticated()">
-		<!--<c:if test="${pinfo.username eq board.member_id}">
-			<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
-  			<button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
-		</c:if>-->
-	</sec:authorize>
-
-  <button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
-  <button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
-  <button type="submit" data-oper='list' class="btn btn-info">List</button>
+        <div class="form-group">
+          <label>결제금액</label> <input class="form-control" name='pay_amount'
+            value='<c:out value="${pay.pay_amount}" />' readonly="readonly">
+        </div>
+        
+        <div class="form-group">
+          <label>결제방법</label> <input class="form-control" name='pay_option'
+            value='<c:out value="${pay.pay_option }"/>' readonly="readonly">
+        </div>
+        
+        <div class="form-group">
+          <label>지급 마일리지</label> <input class="form-control" name='pay_mileage'
+            value='<c:out value="${pay.pay_mileage }"/>' readonly="readonly">
+        </div>
+        
+        <div class="form-group">
+          <label>결제날짜</label> <input type="date" class="form-control" name='pay_buyer'
+            value='<fmt:formatDate pattern="yyyy-MM-dd" value="${pay.pay_date}" />' readonly="readonly">
+        </div>
+        
+        <div class="form-group">
+          <label>수취인</label> <input class="form-control" name='pay_recipient'
+            value='<c:out value="${pay.pay_recipient }"/>' >
+        </div>
+        
+         <div class="form-group">
+          <label>배송지</label> <input class="form-control" name='pay_address'
+            value='<c:out value="${pay.pay_address }"/>' >
+        </div>
+        
+		 <div class="form-group">
+          <label>상태</label> <input class="form-control" name='pay_state'
+            value='<c:out value="${pay.pay_state }"/>'>
+        </div>
+		
+		<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
+		<button type="submit" data-oper='list' class="btn btn-info">List</button>
 </form>
 
 
@@ -128,12 +119,9 @@ $(document).ready(function() {
 	    
 	    console.log(operation);
 	    
-	    if(operation === 'remove'){
-	      formObj.attr("action", "/board/remove");
-	      
-	    }else if(operation === 'list'){
+		 if(operation === 'list'){
 	      //move to list
-	      formObj.attr("action", "/board/list").attr("method","get");
+	      formObj.attr("action", "/admin/pay/list").attr("method","get");
 
 	      var pageNumTag = $("input[name='pageNum']").clone();
 	      var amountTag = $("input[name='amount']").clone();

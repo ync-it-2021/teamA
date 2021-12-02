@@ -1,5 +1,7 @@
 package kr.ac.ync.domain;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import lombok.Data;
@@ -18,6 +20,7 @@ public class ProductVO {
 	private String prd_kind;			//분류(종류)
 	private int prd_amount;				//판매가격
 	private int prd_review_cnt;
+	private String prd_del;
 	private String prd_img1;			//이미지1(대표이미지)
 	private String prd_img2;			//이미지2~10(상품이미지, 상품 소개이미지)
 	private String prd_img3;
@@ -29,5 +32,13 @@ public class ProductVO {
 	private String prd_img9;
 	private String prd_img10;
 	
-	
+	public void setPrd_discount_date(String getDate) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		if(getDate.isEmpty()) {
+			this.prd_discount_date = null;
+			return;
+		}
+		Date date = new Date(sdf.parse(getDate).getTime());
+		this.prd_discount_date = date;
+	}
 }

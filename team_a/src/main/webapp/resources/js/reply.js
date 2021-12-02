@@ -6,7 +6,7 @@
 
 console.log("Reply Module........");
 
-var replyService = (function() {
+var reviewService = (function() {
 
 	// 댓글 추가
 	function add(reply, callback, error) {
@@ -35,10 +35,10 @@ var replyService = (function() {
 	function getList(param, callback, error) {
 		console.log("getList reply..............");
 		
-		var bno = param.bno;
+		var idx = param.idx;
 		var page = param.page || 1; // param.page 가 null 이면 1로 설정 
 		
-		$.getJSON("/replies/pages/" + bno + "/" + page + ".json", function(data) {
+		$.getJSON("/replies/pages/" + idx + "/" + page + ".json", function(data) {
 			if (callback) {
 				callback(data);
 			}
@@ -47,7 +47,6 @@ var replyService = (function() {
 				error(xhr.responseText, xhr.status);
 			}
 		});
-		
 		/*
 		// getJSON을 ajax로 적용한것 1
 		$.ajax({

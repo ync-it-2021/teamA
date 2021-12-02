@@ -2,7 +2,6 @@ package kr.ac.ync.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.ac.ync.domain.Criteria;
-import kr.ac.ync.domain.ProductVO;
 import kr.ac.ync.domain.PageDTO;
+import kr.ac.ync.domain.ProductVO;
 import kr.ac.ync.service.ProductService;
 import kr.ac.ync.util.UploadUtils;
 import lombok.extern.log4j.Log4j;
@@ -31,25 +30,22 @@ public class ProductController {
 	@Autowired
 	private ProductService service;
 	
-	@GetMapping("/list/")
+	@GetMapping("/list")
 	public void list(Criteria cri, Model model) {
 
 		log.info("list: " + cri);
-//		model.addAttribute("pageMaker", new PageDTO(cri, 123));
-		
-		// 게시판의 글은 지속적으로 등록, 삭제 되기에 매번 list를 호출 할때 total을 구해와야 한다. 
+
 		int total = service.getTotal(cri);
 		log.info("total: " + total);
 		model.addAttribute("list", service.getListWithPaging(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
-	@GetMapping( "/get")
+	@GetMapping( {"/get" , "/modify"})
 	public void get(@RequestParam("prd") int prd_idx, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("/get");
 		model.addAttribute("prd", service.get(prd_idx));
 	}
-	
 	@PostMapping( "/modify")
 	public String modify(MultipartFile[] uploadFile, ProductVO prd, @ModelAttribute("cri") Criteria cri) {
 		int index = 0;
@@ -92,14 +88,14 @@ public class ProductController {
 		}
 		log.info("/modify");
 		this.service.modify(prd);
-		return "redirect:/admin/member/get?prd="+prd.getPrd_idx();
+		return "redirect:/admin/product/get?prd="+prd.getPrd_idx();
 	}
 	
-	@GetMapping( "/delete" )
-	public String delete(@RequestParam("prd") int prd_id, @ModelAttribute("cri") Criteria cri) {
+	@PostMapping( "/remove" )
+	public String delete(ProductVO prd, @ModelAttribute("cri") Criteria cri) {
 
-		log.info("/delete");
-		this.service.remove(prd_id);
+		log.info("/remove");
+		this.service.remove(prd.getPrd_idx());
 		return "redirect:/admin/product/list";
 	}
 	
@@ -154,7 +150,7 @@ public class ProductController {
 			service.register(prd);
 			rttr.addFlashAttribute("result", prd.getPrd_idx());
 
-			return "redirect:/admin/product/list/";
+			return "redirect:/admin/product/list";
 		}
 }
 

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,9 +76,16 @@
 		<div class="only-pc">
 			<div class="top-wrapper">
 				<ul id="header-top" class="pc-width">
-
-					<li><a href="login.jsp">LOGIN</a></li>
-					<li><a href="join_agreement.jsp">JOIN</a></li>
+				<sec:authorize access="isAuthenticated()">
+				<li><a href="/customLogout"><i class="fa fa-sign-out fa-fw"></i>
+				    Logout</a></li>
+				</sec:authorize>
+				<sec:authorize access="isAnonymous()">
+				<li><a href="/login"><i class="fa fa-sign-out fa-fw"></i>
+				    Login</a></li>
+				</sec:authorize>
+				
+					<li><a href="join_agreement">JOIN</a></li>
 
 					<li><a href="buy_listcb8c.html?iniCategory=0">MY PAGE</a></li>
 					<li><span><img src="../resources/images/mnb_wish_icon.png"></span><a href="wish_list.html">WISH LIST</a></li>
@@ -139,7 +148,7 @@
 					<!-- 우측 이벤트 부분 제외  -->
 				</div>
 
-				<div style="margin-top: 10px;" id="top-logo" class="float_left"><a href="index.html"><img
+				<div style="margin-top: 10px;" id="top-logo" class="float_left"><a href="/"><img
 							src="../resources/images/img_logo_old2.png" alt="Montraum" /></a></div>
 				<!-- 검색바 부분 입니다  -->
 				<div id="header-right" class="float_left">

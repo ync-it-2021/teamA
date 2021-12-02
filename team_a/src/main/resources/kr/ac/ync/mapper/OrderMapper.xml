@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.ync.mapper.OrderMapper">
+<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'N'.toString()">
+							od_name LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'M'.toString()">
+							member_id LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'P'.toString()">
+							prd_id LIKE '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+			
+		</trim>
+	</sql>
+	
+	<select id="read" resultType="kr.ac.ync.domain.OrderVO">
+		SELECT	*
+		FROM 	orders
+		WHERE 	od_idx = #{od_idx}
+	</select>
+	
+	
+	<select id="getTotalCount" resultType="int">
+		SELECT 	count(*) 
+		FROM 	orders
+		WHERE 
+		<include refid="criteria"></include> 
+		od_idx > 0
+	</select>
+
+	<select id="getListWithPaging" resultType="kr.ac.ync.domain.OrderVO">
+		<![CDATA[
+		SELECT	od_idx,
+				prd_idx,
+				member_id,
+				od_date,
+				od_amount,
+				od_status,
+				od_del
+		FROM	(SELECT /*+INDEX_DESC(orders XPKORDER) */
+					rownum rn,
+        			od_idx,
+					prd_idx,
+					member_id,
+					od_date,
+					od_amount,
+					od_status,
+					od_del	
+      			FROM	orders
+				WHERE 
+  		]]>
+		<include refid="criteria"></include> 
+		<![CDATA[    
+      			rownum <= #{pageNum} * #{amount}
+      			)
+  		WHERE rn > (#{pageNum} -1) * #{amount} 
+		]]>
+				
+	</select>
+	
+	<update id="update">
+		UPDATE 	orders
+		SET 	od_status = #{od_status} 
+		WHERE 	od_idx =	#{od_idx}
+	</update>
+
+	<update id="delete">
+		UPDATE orders SET od_del = 'Y' WHERE od_idx = #{od_idx}
+	</update>
+
+</mapper>

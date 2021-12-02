@@ -6,7 +6,7 @@
 <%@include file="../includes/header.jsp"%>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">게시글</h1>
+		<h1 class="page-header">결제</h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -17,8 +17,6 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				Board List Page
-				<button id='regBtn' type="button" class="btn btn-xs pull-right">Register
-					New Board</button>
 			</div>
 
 			<!-- /.panel-heading -->
@@ -26,22 +24,23 @@
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
-							<th>#번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
+							<th>결제번호</th>
+							<th>주문번호</th>
+							<th>구매자</th>
+							<th>결제방법</th>
+							<th>결제일</th>
+							<th>상태</th>
 						</tr>
 					</thead>
 
-					<c:forEach items="${list}" var="board">
+					<c:forEach items="${list}" var="pay">
 						<tr>
-							<td><c:out value="${board.bd_idx}" /></td>
-							<%-- <td><a href='/board/get?bd_idx=<c:out value="${board.}"/>'><c:out value="${board.title}"/></a></td> --%>
-							<td><a class='move' href='<c:out value="${board.bd_idx}"/>'><c:out value="${board.bd_title}" />
-							<b>[<c:out value="${board.bd_comment_cnt}" />]</b></a> 
-							</td>
-							<td><c:out value="${board.member_id}" /></td>
-							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.bd_date}" /></td>
+							<td><a class='payMove' href='<c:out value="${pay.pay_idx}"/>'><c:out value="${pay.pay_idx}" /></a></td>
+							<td><a class='orderMove' href='<c:out value="${pay.od_idx}"/>'><c:out value="${pay.od_idx}" /></a></td>
+							<td><c:out value="${pay.pay_buyer}" /></td>
+							<td><c:out value="${pay.pay_option}" /></td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${pay.pay_date}" /></td>
+							<td><c:out value="${pay.pay_state}" /></td>
 						</tr>
 					</c:forEach>
 					
@@ -51,7 +50,7 @@
 				<div class='row'>
 					<div class="col-lg-12">
 
-						<form id='searchForm' action="/board/list" method='get'>
+						<form id='searchForm' action="/admin/pay/list" method='get'>
 							<select name='type'>
 								<option value=""
 									<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>
@@ -103,7 +102,7 @@
 				<!--  Pagination 끝 -->
 				
 				<!-- 페이징 Form 시작 -->
-				<form id='actionForm' action="/board/list" method='get'>
+				<form id='actionForm' action="/admin/pay/list" method='get'>
 				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
 				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 				<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
@@ -163,16 +162,8 @@
 				return;
 			}
 
-			if (parseInt(result) > 0) {
-				$(".modal-body").html("게시글 " + parseInt(result)	+ " 번이 등록되었습니다.");
-			}
-
 			$("#myModal").modal("show");
 		}
-		
-		$("#regBtn").on("click", function() {
-			self.location = "/board/register";
-		});
 		
 		var actionForm = $("#actionForm");
 
@@ -185,10 +176,17 @@
 		});
 		
 		// 상세보기 클릭 이벤트
-		$(".move").on("click",function(e) {
+		$(".payMove").on("click",function(e) {
 			e.preventDefault();
-			actionForm.append("<input type='hidden' name='bd' value='" + $(this).attr("href")	+ "'>");
-			actionForm.attr("action", "/admin/board/get");
+			actionForm.append("<input type='hidden' name='pay' value='" + $(this).attr("href")	+ "'>");
+			actionForm.attr("action", "/admin/pay/get");
+			actionForm.submit();
+		});
+		// 상세보기 클릭 이벤트
+		$(".orderMove").on("click",function(e) {
+			e.preventDefault();
+			actionForm.append("<input type='hidden' name='od' value='" + $(this).attr("href")	+ "'>");
+			actionForm.attr("action", "/admin/order/get");
 			actionForm.submit();
 		});
 		

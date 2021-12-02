@@ -18,8 +18,20 @@
 					</choose>
 				</trim>
 			</foreach>
+			
 		</trim>
 	</sql>
+
+	<select id="best" resultType="kr.ac.ync.domain.BestVO">
+	SELECT  prd_idx,
+        	prd_img1,
+        	prd_name
+	FROM    product 
+	WHERE   prd_idx IN( SELECT      prd_idx
+	                    FROM        orders 
+        	            WHERE       od_idx IN  (SELECT  od_idx
+                                                FROM    pay))
+	</select>
 	
 	<select id="read" resultType="kr.ac.ync.domain.ProductVO">
 		SELECT	*
@@ -40,36 +52,36 @@
 		<![CDATA[
 		SELECT	prd_idx,				
   				prd_name,			
-  				prd_register_date,		
- 				prd_inventory,			
+  				prd_register_date,				
   				prd_cost_price,			
   				prd_discount_date,		
   				prd_sale_prices,		
   				prd_company,			
-  				prd_kind,			
+  				prd_kind,
+  				prd_del,			
  				prd_amount				
 		FROM	(SELECT /*+INDEX_DESC(product XPKPRODUCT) */
         				rownum rn,
         				prd_idx,				
 		  				prd_name,			
-		  				prd_register_date,		
-		 				prd_inventory,			
+		  				prd_register_date,				
 		  				prd_cost_price,			
 		  				prd_discount_date,		
 		  				prd_sale_prices,		
 		  				prd_company,			
-		  				prd_kind,			
+		  				prd_kind,	
+		  				prd_del,		
 		 				prd_amount	
       			FROM	product
 				WHERE 
   		]]>
 		<include refid="criteria"></include> 
-      
 		<![CDATA[    
       			rownum <= #{pageNum} * #{amount}
       			)
   		WHERE rn > (#{pageNum} -1) * #{amount}   
 		]]>
+				
 	</select>
 	
 	<insert id="insertSelectKey">
@@ -82,6 +94,7 @@
 		INSERT INTO product (	prd_idx,
 								prd_name,
 								prd_cost_price,
+								prd_inventory,
 								prd_company,
 								prd_kind,
 								prd_amount, 
@@ -99,6 +112,7 @@
 					VALUES (	seq_product.nextval,
 								#{prd_name}, 
 								#{prd_cost_price},
+								#{prd_inventory},
 								#{prd_company},
 								#{prd_kind},
 								#{prd_amount}, 
@@ -115,20 +129,21 @@
 								 )
 	</insert>
 	
-	<delete id="delete">
-		DELETE 
-		FROM 	product
-		WHERE 	prd_idx = #{prd_idx}
-	</delete>
+	<update id="delete">
+		UPDATE 	product 
+		SET 	prd_del = 'Y'
+		WHERE	prd_idx = #{prd_idx}
+	</update>
  
 	<update id="update">
 		UPDATE 	product 
 		SET 	prd_name = #{prd_name},
 				prd_cost_price = #{prd_cost_price},
 				prd_company = #{prd_company},
+				prd_inventory = #{prd_inventory},
 				prd_kind = #{prd_kind},
 				prd_amount = #{prd_amount}, 
-				prd_img1 = #{prd_img1,jdbcType=VARCHAR} , 
+				prd_img1 = #{prd_img1,jdbcType=VARCHAR}, 
 				prd_img2 = #{prd_img2,jdbcType=VARCHAR}, 
 				prd_img3 = #{prd_img3,jdbcType=VARCHAR}, 
 				prd_img4 = #{prd_img4,jdbcType=VARCHAR}, 
@@ -140,5 +155,9 @@
 				prd_img10 = #{prd_img10,jdbcType=VARCHAR} 
 		WHERE 	prd_idx =	#{prd_idx}
 	</update>	
+	
 
+
+	
+		
 </mapper>

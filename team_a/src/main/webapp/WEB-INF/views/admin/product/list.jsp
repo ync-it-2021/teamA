@@ -28,15 +28,16 @@
 						<tr align="center">
 							<th width="6%" >상품번호</th>
 							<th width="40%">상품명</th>
-							<th width="10%">제작사</th>
-							<th width="10%">등록일</th>
-							<th width="10%">할인기간</th>
+							<th width="9%">제작사</th>
+							<th width="8%">등록일</th>
+							<th width="8%">할인기간</th>
 							<th width="5%">원가</th>
 							<th width="5%">할인금액</th>
 							<th width="5%">판매금액</th>
 							<th width="3%">재고</th>
 							<th width="3%">주문</th>
 							<th width="3%">리뷰</th>
+							<th width="5%">상태</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -54,6 +55,10 @@
 							<td><c:out value="${prd.prd_inventory}" /></td>
 							<td>0</td>
 							<td><c:out value="${prd.prd_review_cnt}"/></td>
+							<td>
+							<c:if test="${prd.prd_del == 'Y'}">[중단]</c:if>
+							<c:if test="${prd.prd_del == 'N'}">[판매중]</c:if>
+							</td>
 						</tr>
 					</c:forEach>
 					
@@ -115,7 +120,7 @@
 				<!--  Pagination 끝 -->
 				
 				<!-- 페이징 Form 시작 -->
-				<form id='actionForm' action="/product/list" method='get'>
+				<form id='actionForm' action="/admin/product/list" method='get'>
 				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
 				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 				<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
@@ -183,7 +188,7 @@
 		}
 		
 		$("#regBtn").on("click", function() {
-			self.location = "../register";
+			self.location = "/admin/product/register";
 		});
 		
 		var actionForm = $("#actionForm");

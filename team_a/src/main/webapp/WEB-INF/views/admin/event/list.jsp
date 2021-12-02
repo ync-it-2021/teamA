@@ -6,7 +6,7 @@
 <%@include file="../includes/header.jsp"%>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">게시글</h1>
+		<h1 class="page-header">이벤트</h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -17,8 +17,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				Board List Page
-				<button id='regBtn' type="button" class="btn btn-xs pull-right">Register
-					New Board</button>
+				<button id='regBtn' type="button" class="btn btn-xs pull-right">Register New Event</button>
 			</div>
 
 			<!-- /.panel-heading -->
@@ -27,21 +26,38 @@
 					<thead>
 						<tr>
 							<th>#번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
+							<th>제목[상품번호]/이미지</th>
+							<th>시작일</th>
+							<th>종료일</th>
+							<th>상태</th>
 						</tr>
 					</thead>
 
-					<c:forEach items="${list}" var="board">
+					<c:forEach items="${list}" var="evt">
 						<tr>
-							<td><c:out value="${board.bd_idx}" /></td>
-							<%-- <td><a href='/board/get?bd_idx=<c:out value="${board.}"/>'><c:out value="${board.title}"/></a></td> --%>
-							<td><a class='move' href='<c:out value="${board.bd_idx}"/>'><c:out value="${board.bd_title}" />
-							<b>[<c:out value="${board.bd_comment_cnt}" />]</b></a> 
+							<td><c:out value="${evt.evt_idx}" /></td>
+							<td>
+								<table>
+									<tr>
+										<a class='move' href='<c:out value="${evt.evt_idx}"/>'>
+										<c:out value="${evt.evt_title}" />
+										<b>[상품 번호 :<c:out value="${evt.prd_idx}" />]</b></a> 
+									</tr>
+									<tr>
+										<img src="/resources/upload/${evt.evt_header_img}" width="100%" height="50px">
+									</tr>
+								</table>
 							</td>
-							<td><c:out value="${board.member_id}" /></td>
-							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.bd_date}" /></td>
+							<td style="text-align: center;" ><fmt:formatDate pattern="yyyy-MM-dd" value="${evt.evt_start_day}" /></td>
+							<c:set var="now" value="<%=new java.util.Date() %>"/>
+							<td style="text-align: center;  line-height:auto" ><fmt:formatDate pattern="yyyy-MM-dd" value="${evt.evt_end_day}" /></td>
+							<td>
+								<c:choose>  
+									<c:when test="${evt.evt_start_day  > now }">대기중</c:when>
+									<c:when test="${evt.evt_start_day  < now && evt.evt_end_day  > now }">진행중</c:when>
+									<c:when test="${evt.evt_end_day  < now }">종료</c:when>
+								
+								</c:choose>
 						</tr>
 					</c:forEach>
 					
@@ -171,7 +187,7 @@
 		}
 		
 		$("#regBtn").on("click", function() {
-			self.location = "/board/register";
+			self.location = "/admin/event/register";
 		});
 		
 		var actionForm = $("#actionForm");
@@ -187,8 +203,8 @@
 		// 상세보기 클릭 이벤트
 		$(".move").on("click",function(e) {
 			e.preventDefault();
-			actionForm.append("<input type='hidden' name='bd' value='" + $(this).attr("href")	+ "'>");
-			actionForm.attr("action", "/admin/board/get");
+			actionForm.append("<input type='hidden' name='evt' value='" + $(this).attr("href")	+ "'>");
+			actionForm.attr("action", "/admin/event/get");
 			actionForm.submit();
 		});
 		

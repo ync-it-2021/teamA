@@ -2,6 +2,7 @@ package kr.ac.ync.service;
 
 import java.util.List;
 
+import kr.ac.ync.domain.BestVO;
 import kr.ac.ync.domain.Criteria;
 import kr.ac.ync.domain.ProductVO;
 
@@ -16,9 +17,10 @@ public interface ProductService {
 	public void register(ProductVO prd);
 	
 	// 글 수정
-	public boolean modify(ProductVO board);
+	public boolean modify(ProductVO prd);
 		
 	// 글 삭제
 	public boolean remove(int prd_idx);
 
+	public List<BestVO> best_items();
 }

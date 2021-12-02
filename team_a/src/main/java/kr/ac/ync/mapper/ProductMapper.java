@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import kr.ac.ync.domain.BoardVO;
+import kr.ac.ync.domain.BestVO;
 import kr.ac.ync.domain.Criteria;
 import kr.ac.ync.domain.ProductVO;
 
@@ -25,5 +25,7 @@ public interface ProductMapper {
 	public int delete(int prd_idx);
 
 	public int update(ProductVO prd);
+	
+	public List<BestVO> best();
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import kr.ac.ync.domain.BestVO;
 import kr.ac.ync.domain.Criteria;
 import kr.ac.ync.domain.ProductVO;
 import kr.ac.ync.mapper.ProductMapper;
@@ -56,6 +57,12 @@ public class ProductServiceImpl implements ProductService {
 	public boolean remove(int prd_idx) {
 		log.info("remove...." + prd_idx);
 		return mapper.delete(prd_idx) == 1;
+	}
+
+	@Override
+	public List<BestVO> best_items() {
+		log.info("best...." + mapper.best());
+		return mapper.best();
 	}
 
 }
