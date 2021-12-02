@@ -22,20 +22,20 @@ public class ReviewServiceImpl implements ReviewService {
 	private ReviewMapper mapper;
 	
 	@Autowired
-	private ProductMapper productMapper;
+	private ProductMapper prdMapper;
 	
 	@Transactional
 	@Override
 	public int register(ReviewVO vo) {
 		log.info("register......" + vo);
-		productMapper.updateReviewCnt(vo.getPrd_idx(), 1);
+		prdMapper.updateReviewCnt(vo.getPrd_idx(), 1);
 		return mapper.insert(vo);
 	}
 
 	@Override
-	public ReviewVO get(int review_idx) {
-		log.info("get......" + review_idx);
-		return mapper.read(review_idx);
+	public ReviewVO get(int rv) {
+		log.info("get......" + rv);
+		return mapper.read(rv);
 	}
 
 	@Override
@@ -46,32 +46,27 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Transactional
 	@Override
-	public int remove(int review_idx) {
-		log.info("remove...." + review_idx);
+	public int remove(int rv) {
+		log.info("remove...." + rv);
 		
-		ReviewVO vo = mapper.read(review_idx);
-		productMapper.updateReviewCnt(vo.getPrd_idx(), -1);
-		return mapper.delete(review_idx);
+		ReviewVO vo = mapper.read(rv);
+		prdMapper.updateReviewCnt(vo.getPrd_idx(), -1);
+		return mapper.delete(rv);
 	}
 
 	@Override
-	public List<ReviewVO> getList(Criteria cri, int prd_idx) {
-		log.info("get Review List of a Board " + prd_idx);
-		return mapper.getListWithPaging(cri, prd_idx);
+	public List<ReviewVO> getList(Criteria cri, int rv) {
+		log.info("get Review List of a Product " + rv);
+		return mapper.getListWithPaging(cri, rv);
 	}
   
 	@Override
-	public ReviewPageDTO getListPage(Criteria cri, int prd_idx) {
+	public ReviewPageDTO getListPage(Criteria cri, int prd) {
        
 		return new ReviewPageDTO(
-				mapper.getCountByProduct(prd_idx), 
-				mapper.getListWithPaging(cri, prd_idx));
+				mapper.getCountByPrd(prd), 
+				mapper.getListWithPaging(cri,prd));
 	}
 
-	@Override
-	public int productCnt(int prd_idx) {
-		
-		return mapper.getCountByProduct(prd_idx);
-	}
 }
 

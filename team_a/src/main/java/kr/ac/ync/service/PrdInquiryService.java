@@ -1,7 +1,12 @@
 package kr.ac.ync.service;
 
+import java.util.List;
+
+import kr.ac.ync.domain.Criteria;
+import kr.ac.ync.domain.PrdInquiryVO;
+
 public interface PrdInquiryService {
 
-	
-	public boolean remove(int pi_idx);
+	public List<PrdInquiryVO> getList(Criteria cri, int prd);
+
 }

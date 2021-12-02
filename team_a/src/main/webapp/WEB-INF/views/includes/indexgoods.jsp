@@ -193,7 +193,7 @@
 										<li class="item"
 											onclick="location.href = '/prodect/get/prd=${item.prd_idx}'"
 											style="cursor:pointer;">
-											<img class="item-image" src="/resources/uprode/${item.prd_img1}">
+											<img class="item-image" src="/resources/upload/${item.prd_img1}">
 											<p class="item-title">
 												<script language="javascript">view_name("view_brand", "20", "write")</script>
 											</p>

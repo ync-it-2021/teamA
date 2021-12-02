@@ -4,108 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@include file="../includes/header.jsp"%>
-<script>
-var reviewService = (function() {
 
-	// 댓글 추가
-	function add(reply, callback, error) {
-		console.log("add reply...............");
-
-		$.ajax({
-			type : 'post',
-			url : '/replies/new',
-			data : JSON.stringify(reply), // JavaScript 값이나 객체를 JSON 문자열로 변환
-			contentType : "application/json; charset=utf-8",
-			success : function(result, status, xhr) { // (Anything data(서버에서 받은 data), String textStatus, jqXHR jqXHR )
-				if (callback) {
-					callback(result);
-				}
-			},
-			error : function(xhr, status, err) {
-				if (error) {
-					// error 발생 시 응답 메세지와 err code를 alert 시킨다. 
-					error(xhr.responseText, xhr.status);
-				}
-			}
-		});
-	}
-	
-	// 댓글 목록
-	function getList(param, callback, error) {
-		console.log("getList reply..............");
-		
-		var idx = param.idx;
-		var page = param.page || 1; // param.page 가 null 이면 1로 설정 
-		
-		$.getJSON("/replies/pages/" + idx + "/" + page + ".json", function(data) {
-			if (callback) {
-				callback(data);
-			}
-		}).fail(function(xhr, status, err) {
-			if (error) {
-				error(xhr.responseText, xhr.status);
-			}
-		});
-
-	}
-	
-	// 댓글 조회
-	function get(rno, callback, error) {
-
-		$.get("/replies/" + rno + ".json", function(result) {
-			if (callback) {
-				callback(result);
-			}
-		}).fail(function(xhr, status, err) {
-			if (error) {
-				error();
-			}
-		});
-	}
-	
-	// 날짜 포맷 변환
-	function displayTime(timeValue) {
-
-		var today = new Date();
-
-		var gap = today.getTime() - timeValue;
-
-		var dateObj = new Date(timeValue);
-		var str = "";
-
-		if (gap < (1000 * 60 * 60 * 24)) {
-
-			var hh = dateObj.getHours();
-			var mi = dateObj.getMinutes();
-			var ss = dateObj.getSeconds();
-
-			return [ (hh > 9 ? '' : '0') + hh, ':', (mi > 9 ? '' : '0') + mi,
-					':', (ss > 9 ? '' : '0') + ss ].join('');
-
-		} else {
-			var yy = dateObj.getFullYear();
-			var mm = dateObj.getMonth() + 1; // getMonth() is zero-based
-			var dd = dateObj.getDate();
-
-			return [ yy, '/', (mm > 9 ? '' : '0') + mm, '/',
-					(dd > 9 ? '' : '0') + dd ].join('');
-		}
-	}
-
-	return {
-		add : add,
-		getList : getList,
-		remove : remove,
-		update : update,
-		get : get, 
-		displayTime : displayTime
-	};
-	
-	//return {name:"aaaa"}
-})();
-
-
-</script>
 
 <div class="row">
   <div class="col-lg-12">
@@ -171,40 +70,23 @@ var reviewService = (function() {
         </div>
         
         <!-- 업로드 이미지나 파일을 출력 -->
-        <div class="form-group"  >
-        <table>
-
-			<c:forEach var="i" begin="1" end="10">
-				<c:set var="t" value="prd_img${i}" />
-					<c:if test="${not empty prd[t]}">
-						<c:if test="${i % 6 == 0}">
-						<tr>
-						</c:if>
-						<td>
-							<table>
-								<tr style="text-align: center;"> 
-									<td>이미지${i}</td>
-								</tr>
-								<tr>
-									<td>
+	        <div class="form-group" >
+				<c:forEach var="i" begin="1" end="10">
+					<c:set var="t" value="prd_img${i}" />
+						<c:if test="${not empty prd[t]}">
+							<div style="text-align: center; width: 250px;float: left;">
+								<div style="width: 100%;">이미지${i}</div>
+								<div style="width: 100%;">
 									<a href="/resources/upload/${prd[t]}" target="_blank">
 									<img src="/resources/upload/${prd[t]}" id="thumb_${i}" width="200" height="200" style="margin: 25px;"></a>
-									</td>
-								</tr>
-							</table>
-						</td>
-						<c:if test="${i % 5 == 0}">
-						</tr>
-						</c:if>
-			       </c:if>   
-			</c:forEach>
-		</table>
+								</div>
+							</div>
+				       </c:if>   
+				</c:forEach>
+			
 		</div>
 	
-		<div>
-			<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
-			<button type="submit" data-oper='list' class="btn btn-default">List</button>
-		</div>
+		
 			
 
 <form id='operForm' action="/admin/product/modify" method="GET">
@@ -217,7 +99,10 @@ var reviewService = (function() {
 
       </div>
       <!--  end panel-body -->
-
+		<div class="form-group" style="margin-left: 15px;">
+			<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
+			<button type="submit" data-oper='list' class="btn btn-default">List</button>
+		</div>
     </div>
     <!--  end panel-body -->
   </div>
@@ -225,37 +110,30 @@ var reviewService = (function() {
 </div>
 <!-- /.row -->
 
-
 <div class='row'>
 
   <div class="col-lg-12">
 
     <!-- /.panel -->
     <div class="panel panel-default">
-<!--       <div class="panel-heading">
-        <i class="fa fa-comments fa-fw"></i> Reply
-      </div> -->
+
       
       <div class="panel-heading">
-        <i class="fa fa-comments fa-fw"></i> Reply
-        <!-- <button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New Reply</button> -->
-      </div>      
       
+      <span id ="review" style="padding:10px; color:black;">Review </span>
+       <span id="inquiry" style="padding:10px; color:#888888;">Inquiry</span>
+       <input id="list_show" type="hidden" value="review">
+      </div>      
       
       <!-- /.panel-heading -->
       <div class="panel-body">        
       
       	<!-- 댓글 목록 출력 부분 -->
-      	<table border="1px">
-      	<thead>
-      	<th>번호</th>
-      	<th>작성자</th>
-      	<th>내용</th>
-      	<th>주문번호</th>
-      	<th>날짜</th>
-      	<th>점수</th>
-      	</thead>
+      	<table class="table table-striped table-bordered table-hover">
+      		<thead class="listHead">
+      		</thead>
       	<tbody class="chat">
+      	
       	</tbody>
       	</table>
         <!-- ./ end ul -->
@@ -271,56 +149,290 @@ var reviewService = (function() {
 </div>
 
 
+
 <script type="text/javascript">
+
+
+
+
+
+	let th_str = "";
+$("#review").on("click",function(){
+	th_str = "<th>번호</th><th>주문번호</th><th>작성자</th><th>내용</th><th>날짜</th><th>점수</th>";
+	$("#review").css({"color":"black"});
+	$("#inquiry").css({"color":"#888888"});
+	$("#list_show").val("review");
+	$(".listHead").html("");
+	$(".listHead").html(th_str);
+	getList(1);
+});
+
+$("#inquiry").on("click",function(){
+	th_str = "<th>번호</th><th>작성자</th><th>내용</th><th>날짜</th><th>답장</th><th>상태</th>";
+	$("#review").css({"color":"#888888"});
+	$("#inquiry").css({"color":"black"});
+	$("#list_show").val("inquiry");
+	$(".listHead").html("");
+	$(".listHead").html(th_str);
+	getList(1);
+});
+
+
+
+
+// 날짜 포맷 변환
+function displayTime(timeValue) {
+
+	var today = new Date();
+
+	var gap = today.getTime() - timeValue;
+
+	var dateObj = new Date(timeValue);
+	var str = "";
+
+	if (gap < (1000 * 60 * 60 * 24)) {
+
+		var hh = dateObj.getHours();
+		var mi = dateObj.getMinutes();
+		var ss = dateObj.getSeconds();
+
+		return [ (hh > 9 ? '' : '0') + hh, ':', (mi > 9 ? '' : '0') + mi,
+				':', (ss > 9 ? '' : '0') + ss ].join('');
+
+	} else {
+		var yy = dateObj.getFullYear();
+		var mm = dateObj.getMonth() + 1; // getMonth() is zero-based
+		var dd = dateObj.getDate();
+
+		return [ yy, '-', (mm > 9 ? '' : '0') + mm, '-',
+				(dd > 9 ? '' : '0') + dd ].join('');
+	}
+}
+
+//댓글 목록
+function getList(pageNum) {
+	console.log("getList ..............");
+	let replyUL = $(".chat");
+	let ck = $("#list_show").val();
+	let _url= "";
+	let str="";
+	var idx = ${prd.prd_idx};
+	var page = pageNum || 1; 
+	
+	if(ck == "review"){
+		_url = "/replies/pages/" + idx + "/" + page;
+	}else{
+		_url = "/prdInquiry/pages/" + idx + "/" + page;
+	}
+	$.ajax({
+		url:_url,
+		dataType:"json",
+		success:function(data){
+				for (var i = 0, len = data.length || 0; i < len; i++) {
+				if(ck == "review"){
+				str +="<tr><td class='left clearfix' data-rno='"+data[i].review_idx+"'>"+data[i].review_idx+"</td>";
+				str +="<td>"+data[i].order_idx+"</td>";
+				str +="<td>"+data[i].member_id+"</td>";
+				str +="<td>"+data[i].review_contents+"</td>";
+				str +='<td>'+displayTime(data[i].review_date)+'</td>';
+				str +="<td>"+data[i].review_point+"</td></tr>";
+				}else{
+					str +="<tr><td class='left clearfix' data-rno='"+data[i].pi_idx+"'>"+data[i].pi_idx+"</td>";
+					str +="<td>"+data[i].member_id+"</td>";
+					str +="<td>"+data[i].pi_contents+"</td>";
+					str +='<td>'+displayTime(data[i].pi_write_day)+'</td>';
+					if(data[i].pi_reply == ""){
+						str +='<td>Y</td>';
+					}else{
+						str +='<td>N</td>';
+					}
+					
+					if(data[i].pi_del == 'Y'){
+						str +="<td>삭제</td></tr>";
+					}else if(data[i].pi_hidden == 'N'){
+						str +="<td>공개</td></tr>";
+					}else{
+						str +="<td>비공개</td></tr>";
+					}
+					
+					
+					
+						
+					
+					}
+			}
+				replyUL.html(str);
+		},
+	error:function(request, status, error ){
+		console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+
+	}
+	
+	});
+}
+
+
+
+
 $(document).ready(function () {
-	  
-	let idxValue = '<c:out value="${prd.prd_idx}"/>';
-	let reviewUL = $(".chat");
-	  
-	showList(1);
-	
-	// 댓글 목록을 출력하는 함수
-	function showList(page){
+	$(".listHead").html("<th>번호</th><th>주문번호</th><th>작성자</th><th>내용</th><th>날짜</th><th>점수</th>");
+	getList(1);
+
+	/* 댓글 modal 창 동작 부분*/
+	let modal = $(".modal");
+    let modalInputReply = modal.find("input[name='reply']");
+    let modalInputReplyer = modal.find("input[name='replyer']");
+    let modalInputReplyDate = modal.find("input[name='replyDate']");
+    let modalModBtn = $("#modalModBtn");
+    let modalRemoveBtn = $("#modalRemoveBtn");
+    let modalRegisterBtn = $("#modalRegisterBtn");
+    
+    $("#modalCloseBtn").on("click", function(e){
+    	modal.modal('hide');
+    });
+    
+    $("#addReplyBtn").on("click", function(e){
+		modal.find("input").val("");
+		modal.find("input[name='replyer']").val(replyer);
+		modalInputReplyDate.closest("div").hide();
+		modal.find("button[id !='modalCloseBtn']").hide();
 		
-		// console.log("show list " + page);
-	    
-		reviewService.getList({idx:idxValue, page: page|| 1 }, function(list) {
-	      
-		    // console.log("replyCnt: "+ replyCnt );
-		    // console.log("list: " + list);
-		    // console.log(list);
-	    	
-			let str="";
-	     
-			if(list == null || list.length == 0){
-				reviewUL.html("");
-				return;
-			}
-	     
-			for (var i = 0, len = list.length || 0; i < len; i++) {
-				str +=" <tr data-rno='"+list[i].review_idx+"'>";
-				str +=" <td>" + list[i].review_idx+"</td>";
-				str +=" <td>" + list[i].member_id + "</td>"; 
-				str +="	<td>" + list[i].order+idx+"</td>";
-				str +=" <td>" + list[i].review_contents + "</td>"; 
-				str +=" <td>" + reviewService.displayTime(list[i].review_date)+ "</td>"; 
-				str +=" <td>" + list[i].review_point+"</td></tr>";
-			}
-	     
-			reviewUL.html(str);
-	     
-			//showReplyPage(replyCnt);
+		modalRegisterBtn.show();
+		$(".modal").modal("show");
+    });
+    
+	// Ajax Spring Security Header
+    $(document).ajaxSend(function(e, xhr, options) { 
+		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
+	});
+    
+    // 댓글 등록
+	modalRegisterBtn.on("click",function(e){
+      
+		let reply = {
+			reply: modalInputReply.val(),
+            replyer:modalInputReplyer.val(),
+            bno:bnoValue
+		};
+      
+		reviewService.add(reply, function(result){
+        
+        alert(result);
+        
+        modal.find("input").val("");
+        modal.modal("hide");
+        
+        showList(1);
+        //showList(-1);
+        
+      });
+      
+    });
+    
+	//댓글 조회 클릭 이벤트 처리 
+    $(".chat").on("click", "li", function(e){
+      
+		let rno = $(this).data("rno");
+		console.log(rno);
+		
+		reviewService.get(rno, function(reply){
+	
+			modalInputReply.val(reply.reply);
+			modalInputReplyer.val(reply.replyer);
+			modalInputReplyDate.val(reviewService.displayTime( reply.replyDate)).attr("readonly","readonly");
+			modal.data("rno", reply.rno);
+			
+			modal.find("button[id !='modalCloseBtn']").hide();
+			modalModBtn.show();
+			modalRemoveBtn.show();
+			
+			$(".modal").modal("show");
+		});
+	});
+	
 
-	 
-		});//end function
-	     
-	}//end showList
 	
-	
-	 
-});//end function
-	
+	// 댓글 수정 이벤트. security 적용 후
+	modalModBtn.on("click", function(e){
+		
+		let originalReplyer = modalInputReplyer.val();
+		
+		let reply = {
+				rno:modal.data("rno"), 
+				reply: modalInputReply.val(),
+				replyer: originalReplyer
+				};
+	  
+		if(!replyer){
+			alert("로그인후 수정이 가능합니다.");
+			modal.modal("hide");
+			return;
+		}
 
+		console.log("Original Replyer: " + originalReplyer);
+		
+		if(replyer  != originalReplyer){
+			alert("자신이 작성한 댓글만 수정이 가능합니다.");
+			modal.modal("hide");
+			return;
+		}
+		  
+		reviewService.update(reply, function(result){
+			alert(result);
+			modal.modal("hide");
+			showList(1);
+		});
+	});
+
+	// 댓글 삭제 이벤트
+	modalRemoveBtn.on("click", function (e){
+	  	  
+		let rno = modal.data("rno");
+
+		console.log("RNO: " + rno);
+		console.log("REPLYER: " + replyer);
+	   	  
+		if(!replyer){
+			alert("로그인후 삭제가 가능합니다.");
+			modal.modal("hide");
+			return;
+		}
+	   	  
+		let originalReplyer = modalInputReplyer.val();
+	   	  
+		console.log("Original Replyer: " + originalReplyer);
+	   	  
+		if(replyer !== originalReplyer){
+	   		  
+			alert("자신이 작성한 댓글만 삭제가 가능합니다.");
+			modal.modal("hide");
+			return;
+		}
+	   	  
+		reviewService.remove(rno, originalReplyer, function(result){
+			alert(result);
+			modal.modal("hide");
+			showList(1);
+		});
+	});
+	
+	/* 댓글 modal 창 동작 부분*/
+	
+	// 댓글 인증 부분 추가
+ 	let replyer = null;
+    
+    <sec:authorize access="isAuthenticated()">
+		replyer = '<sec:authentication property="principal.username"/>';   
+	</sec:authorize>
+ 
+	let csrfHeaderName ="${_csrf.headerName}"; 
+	let csrfTokenValue="${_csrf.token}";
+	
+});
+</script>
+
+
+<script type="text/javascript">
 
 function replaceEscapeStr(str) {
 	return str.replace("\\","\\\\");
