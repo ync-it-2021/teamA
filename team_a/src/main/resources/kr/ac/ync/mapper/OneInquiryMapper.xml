@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.ync.mapper.OneInquiryMapper">
+
+<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'N'.toString()">
+							prd_name LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+						prd_name LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'K'.toString()">
+						prd_name LIKE '%'||#{keyword}||'%'
+	
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+			
+		</trim>
+	</sql>
+	
+	<select id="read" resultType="kr.ac.ync.domain.OneInquiryVO">
+		SELECT	*
+		FROM 	one_inquiry
+		WHERE 	oi_idx = #{oi_idx}
+	</select>
+	
+	
+	<select id="getTotalCount" resultType="int">
+		SELECT 	count(*) 
+		FROM 	one_inquiry
+		WHERE 
+		<include refid="criteria"></include> 
+		oi_idx > 0
+	</select>
+
+	<select id="getListWithPaging" resultType="kr.ac.ync.domain.OneInquiryVO">
+		<![CDATA[
+		SELECT	oi_idx,
+				member_id,
+				oi_title,
+				oi_date,
+				oi_reply				
+		FROM	(SELECT /*+INDEX_DESC(one_inquiry XPKONE_INQUIRY) */
+        				rownum rn,
+						oi_idx,
+						member_id,
+						oi_title,
+						oi_date,
+						oi_reply
+      			FROM	one_inquiry
+				WHERE 
+  		]]>
+		<include refid="criteria"></include> 
+		<![CDATA[    
+      			rownum <= #{pageNum} * #{amount}
+      			)
+  		WHERE rn > (#{pageNum} -1) * #{amount}   
+		]]>
+				
+	</select>
+	
+	<update id="update">
+		UPDATE 	one_inquiry
+		SET 	oi_reply = #{oi_reply},
+				oi_reply_date = SYSTIMESTAMP
+		WHERE 	oi_idx =	#{oi_idx}
+	</update>	
+	
+
+</mapper>
