@@ -79,7 +79,7 @@
 		} else{ // 실패
 			response.sendRedirect("join_fail.jsp");
 		}
-		//11
+		//22
 	} catch(Exception e){
 		e.printStackTrace();
 	} finally{
