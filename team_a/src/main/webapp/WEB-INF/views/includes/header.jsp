@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,8 +68,14 @@
 		<div class="only-pc">
 			<div class="top-wrapper">
 				<ul id="header-top" class="pc-width">
-
-					<li><a href="login.jsp">LOGIN</a></li>
+					
+					
+					<sec:authorize access="isAuthenticated()">
+					<li><a href="/customLogout">LOGOUT</a></li>
+					</sec:authorize>
+					<sec:authorize access="isAnonymous()">
+					<li><a href="/login">LOGIN</a></li>
+					</sec:authorize>
 					<li><a href="join_agreement.jsp">JOIN</a></li>
 					<li><a href="orderlist.jsp">MY PAGE</a></li>
 					<li><span><img src="../resources/images/mnb_wish_icon.png"></span><a href="wish.jsp">WISH LIST</a></li>
@@ -98,7 +105,7 @@
 										<hr style="size=20px;">
 								<div class="select-button">
 								<pre></pre>
-										<span > <a href="login.jsp"  class="primary-btn view-card">로그인</a> </span>
+										<span > <a href="login"  class="primary-btn view-card">로그인</a> </span>
 									
 									 <span> <a href="join_write.jsp" class="primary-btn view-card">회원가입</a>  </span>
 								</div>

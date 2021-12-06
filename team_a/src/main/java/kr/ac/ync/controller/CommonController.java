@@ -46,7 +46,7 @@ public class CommonController {
 	public String logoutPost() {
 
 		log.info("post custom logout");
-		return "index";
+		return "/";
 		
 	}
 
