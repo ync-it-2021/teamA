@@ -43,7 +43,7 @@ public class EventServiceImpl implements EventService{
 		log.info("register......" + evt);
 
 		mapper.insertSelectKey(evt);
-		
+		//22
 	}
 	
 
