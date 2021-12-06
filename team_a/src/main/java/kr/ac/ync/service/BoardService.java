@@ -28,4 +28,5 @@ public interface BoardService {
 	// 전체 게시물 갯수
 	public int getTotal(Criteria cri);
 	//11
+	//11
 }
