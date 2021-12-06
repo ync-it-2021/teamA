@@ -33,6 +33,26 @@
 	<script language="javascript" src="../resources/js/common.js" charset="euc-kr"></script>
 	<script language="javascript" src="../resources/js/commonweb.js" charset="euc-kr"></script>
 	<script type="text/javascript" src="../resourceas/js/font-awesome.min"></script>
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> branch 'main' of https://github.com/ync-it-2021/teamA.git
 
 	<!-- 메뉴바  네비-->
 	<script type="text/javascript">
@@ -102,7 +122,11 @@
 									 <span> <a href="join_write.jsp" class="primary-btn view-card">회원가입</a>  </span>
 								</div>
 							</div>
+<<<<<<< HEAD
 <!-- 헤더 1차 수정 수정완료시 삭제합니다 .  -->
+=======
+
+>>>>>>> branch 'main' of https://github.com/ync-it-2021/teamA.git
 						</li>
 					<li class="cart-icon "> <a class="nejongbo" href="shoppingbasket.jsp"><img src="../resources/images/shopping-cart.png"style="margin-right:8px;"><p  style="text-align:center;"> cart</p></a>
 						
