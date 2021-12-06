@@ -14,7 +14,7 @@
 					pi_reply_day,
 					pi_hidden,
 					pi_del
-	 		FROM	(SELECT /*+INDEX(review XPKREVIEW) */ 
+	 		FROM	(SELECT /*+INDEX(prd_inquiry XPKPRD_INQUIRY) */ 
 	      					rownum rn,
 	      					pi_idx,
 							prd_idx,
