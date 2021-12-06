@@ -30,4 +30,5 @@ public interface BoardService {
 	//11
 	//11
 	//22
+	//22
 }
