@@ -20,7 +20,7 @@
 	String member_birthday = year+ "/"+month+"/" + day;
 	String email = request.getParameter("email");
 	String email2 = request.getParameter("email2");
-	
+	//2
 	String member_email = email +"@" +  email2; 
 	String phone1 = request.getParameter("mobile1");
 	String phone2 = request.getParameter("mobile2");
