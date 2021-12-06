@@ -34,7 +34,7 @@ public class BoardController {
 	@GetMapping("/register")
 	@PreAuthorize("isAuthenticated()")
 	public void register() {
-
+		// register 4
 	}
 	//	list 출력
 	@GetMapping("/list")
