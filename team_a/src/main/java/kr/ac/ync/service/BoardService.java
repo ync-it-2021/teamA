@@ -29,4 +29,5 @@ public interface BoardService {
 	public int getTotal(Criteria cri);
 	//11
 	//11
+	//22
 }
