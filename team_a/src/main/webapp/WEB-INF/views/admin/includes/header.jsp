@@ -325,6 +325,9 @@
                             <a href="/admin/pay/list"><i class="fa fa-wrench fa-fw"></i>결제</a>
                         </li>
                         <li>
+                            <a href="/admin/oi/list"><i class="fa fa-sitemap fa-fw"></i>1대1 문의</a>
+                        </li>
+                        <li>
                             <a href="/admin/event/list"><i class="fa fa-sitemap fa-fw"></i>이벤트</a>
                         </li>
                         <li>
