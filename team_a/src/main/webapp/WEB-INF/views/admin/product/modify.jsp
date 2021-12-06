@@ -56,7 +56,7 @@ function getThumbFileName(fullFilePath) {
         <input type='hidden' name='amount' value='<c:out value="${cri.amount }"/>'>
 	    <input type='hidden' name='type' value='<c:out value="${cri.type }"/>'>
 		<input type='hidden' name='keyword' value='<c:out value="${cri.keyword }"/>'>
-		<input type='hidden' name='bd_idx' value='<c:out value="${board.bd_idx }"/>'>
+		<input type='hidden' name='prd_idx' value='<c:out value="${prd.prd_idx }"/>'>
    
    <div class="form-group">
           <label>상품번호</label> 
