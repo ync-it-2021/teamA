@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.ync.mapper.CommentMapper">
+
+<insert id="insert">
+		INSERT INTO comment_board
+				(cm_idx,
+				 bd_idx,
+	 			 cm_contents,
+		  		 member_id
+		  		 )
+		VALUES (seq_comment.nextval,
+				#{bd_idx},
+	 			#{cm_contents},
+		  		#{member_id}
+		 		)
+	</insert>
+	
+	<update id="delete">
+		UPDATE comment_board SET cm_del = 'Y' WHERE cm_idx = #{cm_idx}
+	</update>
+
+	<update id="update">
+		UPDATE comment_board SET	cm_contents = #{cm_contents},
+									cm_date = sysdate 
+		WHERE cm_idx = #{cm_idx}
+	</update>
+
+	<select id="getList" resultType="kr.ac.ync.domain.CommentVO">
+	 		SELECT	cm_idx,
+	 				cm_contents,
+	 				member_id,
+	 				cm_date,
+	 				cm_del,
+	 				cm_hidden
+	    			FROM	comment_board
+	    			WHERE	bd_idx =  #{bd_idx}
+	    			AND		cm_idx > 0
+	</select>
+
+
+	<select id="getCountByBd" resultType="int">
+		<![CDATA[
+		SELECT count(cm_idx) FROM comment_board WHERE bd_idx = #{bd}
+		]]>
+	</select>
+
+
+
+
+</mapper>
