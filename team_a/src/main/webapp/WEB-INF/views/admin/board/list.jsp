@@ -27,21 +27,37 @@
 					<thead>
 						<tr>
 							<th>#번호</th>
+							<th>종류</th>
 							<th>제목</th>
 							<th>작성자</th>
 							<th>작성일</th>
+							<th>조회수</th>
+							<th>추천</th>
+							<th>비추천</th>
+							<th>상태</th>
 						</tr>
 					</thead>
 
 					<c:forEach items="${list}" var="board">
 						<tr>
 							<td><c:out value="${board.bd_idx}" /></td>
-							<%-- <td><a href='/board/get?bd_idx=<c:out value="${board.}"/>'><c:out value="${board.title}"/></a></td> --%>
+							<td>
+								<c:if test="${board.bd_code eq 'AN'}" > 어드민 공지</c:if>
+								<c:if test="${board.bd_code eq 'MN'}" > 공지사항</c:if>
+								<c:if test="${board.bd_code eq 'BD'}" > 게시글</c:if>
+							</td>
 							<td><a class='move' href='<c:out value="${board.bd_idx}"/>'><c:out value="${board.bd_title}" />
 							<b>[<c:out value="${board.bd_comment_cnt}" />]</b></a> 
 							</td>
 							<td><c:out value="${board.member_id}" /></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.bd_date}" /></td>
+							<td><c:out value="${board.bd_cnt}" /></td>
+							<td><c:out value="${board.bd_good_cnt}" /></td>
+							<td><c:out value="${board.bd_bad_cnt}" /></td>
+							<td>
+								<c:if test="${board.bd_del eq 'N'}" > 게시중</c:if>
+								<c:if test="${board.bd_del eq 'Y'}" > 삭제됨</c:if>
+							</td>
 						</tr>
 					</c:forEach>
 					
@@ -51,7 +67,7 @@
 				<div class='row'>
 					<div class="col-lg-12">
 
-						<form id='searchForm' action="/board/list" method='get'>
+						<form id='searchForm' action="/admin/board/list" method='get'>
 							<select name='type'>
 								<option value=""
 									<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>
@@ -61,15 +77,6 @@
 									<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>내용</option>
 								<option value="W"
 									<c:out value="${pageMaker.cri.type eq 'W'?'selected':''}"/>>작성자</option>
-								<option value="TC"
-									<c:out value="${pageMaker.cri.type eq 'TC'?'selected':''}"/>>제목
-									or 내용</option>
-								<option value="TW"
-									<c:out value="${pageMaker.cri.type eq 'TW'?'selected':''}"/>>제목
-									or 작성자</option>
-								<option value="TWC"
-									<c:out value="${pageMaker.cri.type eq 'TWC'?'selected':''}"/>>제목
-									or 내용 or 작성자</option>
 							</select>
 							<input type='text' name='keyword' value='<c:out value="${pageMaker.cri.keyword}"/>' />
 							<input type='hidden' name='pageNum'	value='<c:out value="${pageMaker.cri.pageNum}"/>' />
@@ -103,7 +110,7 @@
 				<!--  Pagination 끝 -->
 				
 				<!-- 페이징 Form 시작 -->
-				<form id='actionForm' action="/board/list" method='get'>
+				<form id='actionForm' action="/admin/board/list" method='get'>
 				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
 				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 				<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
@@ -171,7 +178,7 @@
 		}
 		
 		$("#regBtn").on("click", function() {
-			self.location = "admin/board/register";
+			self.location = "/admin/board/register";
 		});
 		
 		var actionForm = $("#actionForm");

@@ -31,14 +31,7 @@ function getThumbFileName(fullFilePath) {
       <!-- /.panel-heading -->
       <div class="panel-body">
 
-      <form role="form" action="/board/modify" method="post" enctype="multipart/form-data">
-      	<!--
-       	controller에서 파라미터 수집시 upload file은 uploadFile 이름으로 server로 넘어간다.(binary data로)
-       	하지만 BoardVO에서는 file_1,file_2,file_3의 이름으로 setter를 해줘야 한다.
-       	따라서 file_1,file_2,file_3를 hidden으로 넘겨서 controller에서 file이 upload가 안됐을 경우에도
-       	파라미터 수집이 되도록(값은 null로 됨) 하기위해 hidden으로 값을 넘긴다.
-       	
-       	업로드 파일 삭제 기능 추가시 해당 file의 value="" 로 바꿔주면 된다.
+      <form role="form" action="/admin/board/modify" method="post" enctype="multipart/form-data">
        	-->
 		<c:forEach var="i" begin="1" end="5">
 			<c:set var="t" value="bd_img${i}" />
@@ -61,18 +54,18 @@ function getThumbFileName(fullFilePath) {
       
 <div class="form-group">
   <label>Title</label> 
-  <input class="form-control" name='title' 
+  <input class="form-control" name='bd_title' 
     value='<c:out value="${board.bd_title }"/>' >
 </div>
 
 <div class="form-group">
   <label>Text area</label>
-  <textarea class="form-control" rows="3" name='content' ><c:out value="${board.bd_contents}"/></textarea>
+  <textarea class="form-control" rows="3" name='bd_contents' ><c:out value="${board.bd_contents}"/></textarea>
 </div>
 
 <div class="form-group">
   <label>Writer</label> 
-  <input class="form-control" name='writer'
+  <input class="form-control" name='member_id'
     value='<c:out value="${board.member_id}"/>' readonly="readonly">            
 </div>
 
@@ -81,7 +74,7 @@ function getThumbFileName(fullFilePath) {
 	<div class="form-group">
 	<label>이미지${i}</label>
 		<c:if test="${not empty board[t]}">
-			<a href="/resources/upload/board/${board[t]}" target="_blank"><img src="/resources/upload/board/${board[t]}" id="thumb_${i}"></a>
+			<a href="/resources/upload/${board[t]}" target="_blank"><img src="/resources/upload/${board[t]}" id="thumb_${i}"></a>
 			<script>
 	        	document.getElementById('thumb_${i}').src="/resources/upload/" + getThumbFileName('${board[t]}');
 			</script>
@@ -89,15 +82,6 @@ function getThumbFileName(fullFilePath) {
 		<input type="file" class="form-control" name='uploadFile'>
 	</div>
 </c:forEach>
-
-	<sec:authentication property="principal" var="pinfo"/>
-	<sec:authorize access="isAuthenticated()">
-		<!--<c:if test="${pinfo.username eq board.member_id}">
-			<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
-  			<button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
-		</c:if>-->
-	</sec:authorize>
-
   <button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
   <button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
   <button type="submit" data-oper='list' class="btn btn-info">List</button>
@@ -129,11 +113,11 @@ $(document).ready(function() {
 	    console.log(operation);
 	    
 	    if(operation === 'remove'){
-	      formObj.attr("action", "/board/remove");
+	      formObj.attr("action", "/admin/board/remove");
 	      
 	    }else if(operation === 'list'){
 	      //move to list
-	      formObj.attr("action", "/board/list").attr("method","get");
+	      formObj.attr("action", "/admin/board/list").attr("method","get");
 
 	      var pageNumTag = $("input[name='pageNum']").clone();
 	      var amountTag = $("input[name='amount']").clone();

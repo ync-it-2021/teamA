@@ -17,36 +17,40 @@
   <div class="col-lg-12">
     <div class="panel panel-default">
 
-      <div class="panel-heading">Board Register</div>
+      <div class="panel-heading">Board Register  </div>
       <!-- /.panel-heading -->
       <div class="panel-body">
 
-        <form role="form" action="/board/register" method="post" enctype="multipart/form-data">
-        	<!--
-        	controller에서 파라미터 수집시 upload file은 uploadFile 이름으로 server로 넘어간다.(binary data로)
-        	하지만 BoardVO에서는 file_1,file_2,file_3의 이름으로 setter를 해줘야 한다.
-        	따라서 file_1,file_2,file_3를 hidden으로 넘겨서 controller에서 file이 upload가 안됐을 경우에도
-        	파라미터 수집이 되도록(값은 null로 됨) 하기위해 hidden으로 값을 넘긴다.
-        	-->
-			<input type="hidden" name="file_1" value="">
-	        <input type="hidden" name="file_2" value="">
-	        <input type="hidden" name="file_3" value="">
+        <form role="form" action="/admin/board/register" method="post" enctype="multipart/form-data">
+        
+			<input type="hidden" name="bd_file1" value="">
+	        <input type="hidden" name="bd_file2" value="">
+	        <input type="hidden" name="bd_file3" value="">
+	        <input type="hidden" name="bd_file4" value="">
+	        <input type="hidden" name="bd_file5" value="">
 	        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
           <div class="form-group">
-            <label>Title</label> <input class="form-control" name='title'>
+            <label>Title</label>
+            <input class="form-control" name='bd_title'>
+          </div>
+          
+          <div class="form-group">
+            <label>타입</label>
+             <select name='bd_code'>
+				<option value="MN"
+					<c:out value="${pageMaker.cri.type eq 'MN'?'selected':''}"/>>일반 공지</option>
+				<option value="AN"
+					<c:out value="${pageMaker.cri.type eq 'AN'?'selected':''}"/>>관리자 공지</option>
+			</select>
           </div>
 
           <div class="form-group">
-            <label>Text area</label>
-            <textarea class="form-control" rows="3" name='content'></textarea>
+            <label>작성 글</label>
+            <textarea class="form-control" rows="3" name='bd_contents'></textarea>
           </div>
-			
-          <!-- <div class="form-group">
-            <label>Writer</label> <input class="form-control" name='writer'>
-          </div> -->
           
           <div class="form-group">
-            <label>Writer</label> <input class="form-control" name='writer' 
+            <label>작성자</label> <input class="form-control" name='member_id' 
                 value='<sec:authentication property="principal.username"/>' readonly="readonly">
           </div>
           
@@ -61,6 +65,16 @@
           <div class="form-group">
             <label>이미지 등록 3</label> <input type="file" class="form-control" name='uploadFile'>
           </div>
+          
+           <div class="form-group">
+            <label>이미지 등록 4</label> <input type="file" class="form-control" name='uploadFile'>
+          </div>
+          
+          <div class="form-group">
+            <label>이미지 등록 5</label> <input type="file" class="form-control" name='uploadFile'>
+          </div>
+          
+
           
           <button type="submit" class="btn btn-default">Submit
             Button</button>
