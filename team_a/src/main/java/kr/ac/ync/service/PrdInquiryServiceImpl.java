@@ -22,6 +22,12 @@ public class PrdInquiryServiceImpl implements PrdInquiryService {
 		log.info("get Review List of a Product " + prd);
 		return mapper.getListWithPaging(cri, prd);
 	}
+
+	@Override
+	public List<PrdInquiryVO> getCheckList(Criteria cri) {
+		log.info("get check list to product inquiry");
+		return mapper.getCheckList(cri);
+	}
 	 
 
 	
