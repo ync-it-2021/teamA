@@ -41,9 +41,7 @@ public class BoardController {
 	public void list(Criteria cri, Model model) {
 
 		log.info("list: " + cri);
-//		model.addAttribute("pageMaker", new PageDTO(cri, 123));
 		
-		// 게시판의 글은 지속적으로 등록, 삭제 되기에 매번 list를 호출 할때 total을 구해와야 한다. 
 		int total = service.getTotal(cri);
 		log.info("total: " + total);
 		model.addAttribute("list", service.getListWithPaging(cri));
@@ -85,7 +83,7 @@ public class BoardController {
 		service.register(board);
 		rttr.addFlashAttribute("result", board.getBd_idx());
 
-		return "redirect:/board/list";
+		return "redirect:/admin/board/list";
 	}
 
 	//보기
@@ -131,7 +129,7 @@ public class BoardController {
 			rttr.addFlashAttribute("result", "success");
 		}
 
-		return "redirect:/board/list" + cri.getListLink();
+		return "redirect:/admin/board/list" + cri.getListLink();
 	}
 
 	@PostMapping("/remove")

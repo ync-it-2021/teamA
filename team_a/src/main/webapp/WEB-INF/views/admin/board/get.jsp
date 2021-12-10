@@ -23,23 +23,23 @@
       <div class="panel-body">
 
           <div class="form-group">
-          <label>글번호</label> <input class="form-control" name='bno'
+          <label>글번호</label> <input class="form-control" name='bd_idx'
             value='<c:out value="${board.bd_idx }"/>' readonly="readonly">
         </div>
 
         <div class="form-group">
-          <label>제목</label> <input class="form-control" name='title'
+          <label>제목</label> <input class="form-control" name='bd_title'
             value='<c:out value="${board.bd_title }"/>' readonly="readonly">
         </div>
 
         <div class="form-group">
           <label>Text area</label>
-          <textarea class="form-control" rows="3" name='content'
+          <textarea class="form-control" rows="3" name='bd_content'
             readonly="readonly"><c:out value="${board.bd_contents}" /></textarea>
         </div>
 
         <div class="form-group">
-          <label>작성자</label> <input class="form-control" name='writer'
+          <label>작성자</label> <input class="form-control" name='member_id'
             value='<c:out value="${board.member_id }"/>' readonly="readonly">
         </div>
         
@@ -49,8 +49,8 @@
 				<c:if test="${not empty board[t]}">
 					<div class="form-group">
 			          <label>이미지${i}</label>
-						<a href="/resources/upload/board/${board[t]}" target="_blank">
-						<img src="/resources/upload/board/${board[t]}" id="thumb_${i}" width="200" height="200"></a>
+						<a href="/resources/upload/${board[t]}" target="_blank">
+						<img src="/resources/upload/${board[t]}" id="thumb_${i}" width="200" height="200"></a>
 			        </div>
 			        <script>
 			        //document.getElementById('thumb_${i}').src="/resources/upload/" + getThumbFileName('${board[t]}');
@@ -67,8 +67,8 @@
 
 <button data-oper='list' class="btn btn-info">List</button>
 
-<form id='operForm' action="/boad/modify" method="get">
-  <input type='hidden' id='bno' name='bno' value='<c:out value="${board.bd_idx}"/>'>
+<form id='operForm' action="/admin/boad/modify" method="get">
+  <input type='hidden' id='bd' name='bd' value='<c:out value="${board.bd_idx}"/>'>
   <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
   <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
   <input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
@@ -91,16 +91,9 @@
 
     <!-- /.panel -->
     <div class="panel panel-default">
-<!--       <div class="panel-heading">
-        <i class="fa fa-comments fa-fw"></i> Reply
-      </div> -->
       
       <div class="panel-heading">
         <i class="fa fa-comments fa-fw"></i> Reply
-        <!-- <button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New Reply</button> -->
-        <sec:authorize access="isAuthenticated()">
-	        <button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New Reply</button>
-        </sec:authorize>
       </div>      
       
       
@@ -115,262 +108,256 @@
       </div>
       <!-- /.panel .chat-panel -->
 
-	<div class="panel-footer"></div>
-
-
+	<div class="panel-footer">
+	
+		<div class="panel-body">        
+		<sec:authentication property="principal.username" var="user_id"/>
+					<textarea id="comment_bar" class="form-control" rows="2" style="resize: none;" placeholder="답글작성"></textarea>
+					<button id="comment_write" class="btn btn-info">작성하기</button>
+	     	 </div>
+	
+	   		
+	    
+	     	 
+	     	 
+	</div>
+		 
 		</div>
   </div>
   <!-- ./ end row -->
 </div>
 
 
-
-	<!-- 댓글 Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">REPLY MODAL</h4>
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-		                <label>Reply</label> 
-		                <input class="form-control" name='reply' value='New Reply!!!!'>
-					</div>      
-					<div class="form-group">
-						<label>Replyer</label> 
-						<input class="form-control" name='replyer' value='replyer'>
-					</div>
-					<div class="form-group">
-						<label>Reply Date</label> 
-						<input class="form-control" name='replyDate' value='2018-01-01 13:13'>
-					</div>
-				</div>
-				
-				<div class="modal-footer">
-					<button id='modalModBtn' type="button" class="btn btn-warning">Modify</button>
-					<button id='modalRemoveBtn' type="button" class="btn btn-danger">Remove</button>
-					<button id='modalRegisterBtn' type="button" class="btn btn-primary">Register</button>
-					<button id='modalCloseBtn' type="button" class="btn btn-default">Close</button>
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-        <!-- /.modal-dialog -->
-	</div>
-	<!-- /댓글 modal -->
-      
-<script type="text/javascript" src="/resources/js/reply.js?v=1.0"></script>
-
 <script type="text/javascript">
-$(document).ready(function () {
+
+let header = '${_csrf.headerName}';
+let token = '${_csrf.token}';
+
+//날짜 포맷 변환
+function displayTime(timeValue) {
+
+var today = new Date();
+
+var gap = today.getTime() - timeValue;
+
+var dateObj = new Date(timeValue);
+var str = "";
+
+if (gap < (1000 * 60 * 60 * 24)) {
+
+	var hh = dateObj.getHours();
+	var mi = dateObj.getMinutes();
+	var ss = dateObj.getSeconds();
+
+	return [ (hh > 9 ? '' : '0') + hh, ':', (mi > 9 ? '' : '0') + mi,
+			':', (ss > 9 ? '' : '0') + ss ].join('');
+
+} else {
+	var yy = dateObj.getFullYear();
+	var mm = dateObj.getMonth() + 1; // getMonth() is zero-based
+	var dd = dateObj.getDate();
+
+	return [ yy, '-', (mm > 9 ? '' : '0') + mm, '-',
+			(dd > 9 ? '' : '0') + dd ].join('');
+}
+}
+
+//댓글 목록
+function getList(replyUL) {
+console.log("getList ..............");
+let str="";
+var idx = ${board.bd_idx};
+	$.ajax({
+		url:"/comment/pages/"+idx,
+		dataType:"json",
+		success:function(list){
+				for (var i = 0, len = list.length || 0; i < len; i++) {
+					
+					str +="<li class='left clearfix' >";
+					str +="  <div id='chat"+i+"'><div class='header'><strong class='primary-font'>["
+						+ list[i].cm_idx+"] "+list[i].member_id; 
+						if(list[i].cm_del =='Y'){
+							str +="<b style='color : red'>[삭제됨]</b></strong>";
+						}
+					str +="<small class='pull-right text-muted'>"
+						+ displayTime(list[i].cm_date)+"</small>";
+						if(list[i].cm_del =='N'){
+						 <sec:authorize access="isAuthenticated()">
+							if('<sec:authentication property="principal.username"/>' === list[i].member_id){
+								str +="<small data-action='up' data-idx='"+list[i].cm_idx+"' data-member='"+list[i].member_id+"' data-contents='"+list[i].cm_contents+"'>[수정]</small>"
+								+"<small data-action='del' data-idx='"+list[i].cm_idx+"'data-member='"+list[i].member_id+"'>[삭제]</small>";
+							}
+						</sec:authorize>
+						}
+						str +="</div><p>"+list[i].cm_contents;
+						
+						if(list[i].cm_hidden == "Y" ){
+							alert(list[i].cm_hidden);
+							str +="[숨김]";
+						}
+						
+						str +="</p></div></li>"
+					}
+				
+				replyUL.html(str);
+		},
+		error:function(request, status, error ){
+		console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	
+	}
+	
+	});
+}
+
+/*댓글 등록  */
+function add(commentMd, callback, error) {
+	// ajax를 사용하여 DB에 데이터를 저장할 때 필요한 csrf코드 설정  
+	
+	console.log("add reply...............");
+	$.ajax({
+		type : 'post',
+		url : '/comment/new',
+		data : JSON.stringify(commentMd), // JavaScript 값이나 객체를 JSON 문자열로 변환
+		contentType : "application/json; charset=utf-8",
+		//실행할때 시큘리티에 문제가 되지 않도록 csrf코드추가
+		beforeSend : function(xhr){
+			xhr.setRequestHeader(header, token);
+		},
+		success : function(result, status, xhr) { // (Anything data(서버에서 받은 data), String textStatus, jqXHR jqXHR )
+			if (callback) {
+				callback(result);
+			}
+		},
+		error : function(xhr, status, err) {
+			if (error) {
+				// error 발생 시 응답 메세지와 err code를 alert 시킨다. 
+				error(xhr.responseText, xhr.status);
+			}
+		}
+	});
+}
+
+//댓글 삭제
+function remove(cm_idx, member_id, callback, error) {
 	  
+	console.log("--------------------------------------");  
+	console.log(JSON.stringify({cm_idx:cm_idx,  member_id: member_id}));  
+	    
+	$.ajax({
+		type : 'delete',
+		url : '/comment/' + cm_idx,
+		data:  JSON.stringify({cm_idx:cm_idx,  member_id: member_id}),
+		contentType: "application/json; charset=utf-8",
+		beforeSend : function(xhr){
+			xhr.setRequestHeader(header, token);
+		},
+		success : function(deleteResult, status, xhr) {
+			if (callback) {
+				callback(deleteResult);
+			}
+		},
+		error : function(xhr, status, err) {
+			if (error) {
+				error(err);
+			}
+		}
+	});
+}
+
+// 댓글 수정
+function update(comment, callback, error) {
+
+	console.log("RNO: " + comment.cm_idx);
+
+	$.ajax({
+		type : 'put',
+		url : '/comment/' + comment.cm_idx,
+		data : JSON.stringify(comment), // JavaScript 값이나 객체를 JSON 문자열로 변환
+		contentType : "application/json; charset=utf-8",
+		beforeSend : function(xhr){
+			xhr.setRequestHeader(header, token);
+		},
+		success : function(result, status, xhr) {
+			if (callback) {
+				callback(result);
+			}
+		},
+		error : function(xhr, status, err) {
+			if (error) {
+				error(err);
+			}
+		}
+	});
+}
+
+$(document).ready(function () {
 	let bnoValue = '<c:out value="${board.bd_idx}"/>';
 	let replyUL = $(".chat");
-	  
-	showList(1);
+	getList(replyUL);
 	
-	// 댓글 목록을 출력하는 함수
-	function showList(page){
-		
-		// console.log("show list " + page);
-	    
-		replyService.getList({bno:bnoValue, page: page|| 1 }, function(list) {
-	      
-		    // console.log("replyCnt: "+ replyCnt );
-		    // console.log("list: " + list);
-		    // console.log(list);
-	    	
-			let str="";
-	     
-			if(list == null || list.length == 0){
-				replyUL.html("");
-				return;
-			}
-	     
-			for (var i = 0, len = list.length || 0; i < len; i++) {
-				str +="<li class='left clearfix' data-rno='"+list[i].rno+"'>";
-				str +="  <div><div class='header'><strong class='primary-font'>["
-					+ list[i].rno+"] "+list[i].replyer+"</strong>"; 
-				str +="    <small class='pull-right text-muted'>"
-					+ replyService.displayTime(list[i].replyDate)+"</small></div>";
-				str +="    <p>"+list[i].reply+"</p></div></li>";
-			}
-	     
-			replyUL.html(str);
-	     
-			//showReplyPage(replyCnt);
-
-	 
-		});//end function
-	     
-	}//end showList
 	
-	/* 댓글 modal 창 동작 부분*/
-	let modal = $(".modal");
-    let modalInputReply = modal.find("input[name='reply']");
-    let modalInputReplyer = modal.find("input[name='replyer']");
-    let modalInputReplyDate = modal.find("input[name='replyDate']");
-    let modalModBtn = $("#modalModBtn");
-    let modalRemoveBtn = $("#modalRemoveBtn");
-    let modalRegisterBtn = $("#modalRegisterBtn");
-    
-    $("#modalCloseBtn").on("click", function(e){
-    	modal.modal('hide');
-    });
-    
-    $("#addReplyBtn").on("click", function(e){
-		modal.find("input").val("");
-		modal.find("input[name='replyer']").val(replyer);
-		modalInputReplyDate.closest("div").hide();
-		modal.find("button[id !='modalCloseBtn']").hide();
-		
-		modalRegisterBtn.show();
-		$(".modal").modal("show");
-    });
-    
-	// Ajax Spring Security Header
-    $(document).ajaxSend(function(e, xhr, options) { 
-		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
-	});
-    
-    // 댓글 등록
-	modalRegisterBtn.on("click",function(e){
-      
-		let reply = {
-			reply: modalInputReply.val(),
-            replyer:modalInputReplyer.val(),
-            bno:bnoValue
-		};
-      
-		replyService.add(reply, function(result){
-        
-        alert(result);
-        
-        modal.find("input").val("");
-        modal.modal("hide");
-        
-        showList(1);
-        //showList(-1);
-        
-      });
-      
-    });
-    
-	//댓글 조회 클릭 이벤트 처리 
-    $(".chat").on("click", "li", function(e){
-      
-		let rno = $(this).data("rno");
-		console.log(rno);
-		
-		replyService.get(rno, function(reply){
-	
-			modalInputReply.val(reply.reply);
-			modalInputReplyer.val(reply.replyer);
-			modalInputReplyDate.val(replyService.displayTime( reply.replyDate)).attr("readonly","readonly");
-			modal.data("rno", reply.rno);
-			
-			modal.find("button[id !='modalCloseBtn']").hide();
-			modalModBtn.show();
-			modalRemoveBtn.show();
-			
-			$(".modal").modal("show");
-		});
-	});
-	
-	// 댓글 수정 이벤트
-	/*
-	modalModBtn.on("click", function(e){
-    
-		var reply = {rno:modal.data("rno"), reply: modalInputReply.val()};
-    
-		replyService.update(reply, function(result){
-          
-			alert(result);
-			modal.modal("hide");
-			showList(1);
-		});
-	});
-	*/
-	
-	// 댓글 수정 이벤트. security 적용 후
-	modalModBtn.on("click", function(e){
-		
-		let originalReplyer = modalInputReplyer.val();
-		
-		let reply = {
-				rno:modal.data("rno"), 
-				reply: modalInputReply.val(),
-				replyer: originalReplyer
-				};
-	  
-		if(!replyer){
-			alert("로그인후 수정이 가능합니다.");
-			modal.modal("hide");
-			return;
-		}
-
-		console.log("Original Replyer: " + originalReplyer);
-		
-		if(replyer  != originalReplyer){
-			alert("자신이 작성한 댓글만 수정이 가능합니다.");
-			modal.modal("hide");
-			return;
-		}
-		  
-		replyService.update(reply, function(result){
-			alert(result);
-			modal.modal("hide");
-			showList(1);
-		});
-	});
-
-	// 댓글 삭제 이벤트
-	modalRemoveBtn.on("click", function (e){
-	  	  
-		let rno = modal.data("rno");
-
-		console.log("RNO: " + rno);
-		console.log("REPLYER: " + replyer);
-	   	  
-		if(!replyer){
-			alert("로그인후 삭제가 가능합니다.");
-			modal.modal("hide");
-			return;
-		}
-	   	  
-		let originalReplyer = modalInputReplyer.val();
-	   	  
-		console.log("Original Replyer: " + originalReplyer);
-	   	  
-		if(replyer !== originalReplyer){
-	   		  
-			alert("자신이 작성한 댓글만 삭제가 가능합니다.");
-			modal.modal("hide");
-			return;
-		}
-	   	  
-		replyService.remove(rno, originalReplyer, function(result){
-			alert(result);
-			modal.modal("hide");
-			showList(1);
-		});
-	});
-	
-	/* 댓글 modal 창 동작 부분*/
-	
-	// 댓글 인증 부분 추가
- 	let replyer = null;
-    
-    <sec:authorize access="isAuthenticated()">
-		replyer = '<sec:authentication property="principal.username"/>';   
-	</sec:authorize>
- 
-	let csrfHeaderName ="${_csrf.headerName}"; 
-	let csrfTokenValue="${_csrf.token}";
 	
 });
+
+$("#comment_write").on("click",function(){
+	
+	let	cm_contents = $("#comment_bar").val();
+	let commentMd = {bd_idx:${board.bd_idx},
+					cm_contents:cm_contents,
+					member_id:'${user_id}'};
+	
+	console.log(commentMd);
+	add(commentMd,function(result){
+        
+        console.log(result);
+        
+        $("#comment_bar").val("");
+        
+        getList($(".chat"));
+
+        });
+});
+
+$(".chat").on("click","small",function(e){
+
+	let	cmAction = $(this).data("action") ;
+	let	cmIdx = $(this).data("idx") ;
+	let	cmMember = $(this).data("member") ;
+
+	console.log(cmAction);
+	
+	if(cmAction === 'up'){
+		let	text_box = $(this).data("box") ;
+		let	cmContents = $(this).data("contents") ;
+
+		var new_contents = prompt("수정 내용을 적어주세요",cmContents);
+		
+		update({cm_idx:cmIdx, cm_contents:new_contents, member_id:cmMember},function(count){if(count ==="success"){
+			alert(count);
+		}},function(err){alert(err);
+		});
+		
+		getList($(".chat"));
+		// 수정
+	}else{
+		if(confirm("삭제하겠습니까?") == true){
+			remove(cmIdx,cmMember,function(count){
+				console.log(count);
+				if(count ==="success"){
+					alert("삭제되었습니다.");
+				}
+			}, function(err){
+				alert('실패하였습니다.');
+			});
+			//삭제
+			 getList($(".chat"));
+		}
+	}
+
+});
+
+
+
 </script>
 
 <script type="text/javascript">
@@ -378,21 +365,15 @@ $(document).ready(function () {
 function replaceEscapeStr(str) {
 	return str.replace("\\","\\\\");
 }
-
 $(document).ready(function() {
-  
 	let operForm = $("#operForm");
-
 	$("button[data-oper='modify']").on("click", function(e){
-		operForm.attr("action","/board/modify").submit();
+		operForm.attr("action","/admin/board/modify").submit();
 	});
-    
-	$("button[data-oper='list']").on("click", function(e){
-    
-		operForm.find("#bno").remove();
-		operForm.attr("action","/board/list")
+	$("button[data-oper='list']").on("click", function(e){   
+		operForm.find("#bd").remove();
+		operForm.attr("action","/admin/board/list")
 		operForm.submit();
-    
 	});
 });
 </script>

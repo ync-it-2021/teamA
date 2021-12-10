@@ -151,11 +151,6 @@
 
 
 <script type="text/javascript">
-
-
-
-
-
 	let th_str = "";
 $("#review").on("click",function(){
 	th_str = "<th>번호</th><th>주문번호</th><th>작성자</th><th>내용</th><th>날짜</th><th>점수</th>";

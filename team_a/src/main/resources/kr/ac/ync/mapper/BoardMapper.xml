@@ -20,73 +20,37 @@
 						<when test="type == 'M'.toString()">
 							member_id LIKE '%'||#{keyword}||'%'
 						</when>
+						<when test="type == 'D'.toString()">
+							bd_code LIKE #{keyword}
+						</when>
 					</choose>
 				</trim>
 			</foreach>
 		</trim>
 	</sql>
-
-
-	<select id="getList" resultType="kr.ac.ync.domain.BoardVO">
-	<![CDATA[
-		SELECT 	* 
-		FROM 	board 
-		WHERE 	bd_idx > 0 
-		]]>
-	</select>
  
-	<insert id="insert">
-		INSERT INTO board	(bd_idx, 
-							bd_code, 
-							bd_title, 
-							bd_content, 
-							member_id, 
-							bd_img1, 
-							bd_img2, 
-							bd_img3, 
-							bd_img4,
-							bd_img5 
-							)
-					VALUES (seq_board.nextval, 
-							#{bd_code},
-							#{bd_title}, 
-							#{bd_content}, 
-							#{member_id}, 
-							#{bd_img1},
-							#{bd_img2}, 
-							#{bd_img3}, 
-							#{bd_img4}, 
-							#{bd_img5}
-							)
-	</insert>
 
 	<insert id="insertSelectKey">
-
-		<selectKey keyProperty="bd_idx" order="BEFORE"
-			resultType="long">
-			select seq_board.nextval from dual
-		</selectKey>
-
 		INSERT INTO board (	bd_idx,
 							bd_code,
 							bd_title, 
-							bd_content, 
+							bd_contents, 
 							member_id, 
 							bd_img1, 
 							bd_img2, 
 							bd_img3,
 							bd_img4, 
-							bd_img5, )
+							bd_img5 )
 					VALUES (seq_board.nextval, 
 							#{bd_code}, 
 							#{bd_title}, 
-							#{bd_content}, 
+							#{bd_contents}, 
 							#{member_id}, 
-							#{bd_img1}, 
-							#{bd_img2}, 
-							#{bd_img3}, 
-							#{bd_img4}, 
-							#{bd_img5})
+							#{bd_img1,jdbcType=VARCHAR}, 
+							#{bd_img2,jdbcType=VARCHAR}, 
+							#{bd_img3,jdbcType=VARCHAR}, 
+							#{bd_img4,jdbcType=VARCHAR}, 
+							#{bd_img5,jdbcType=VARCHAR})
 	</insert>
 
 	<select id="read" resultType="kr.ac.ync.domain.BoardVO">
@@ -107,11 +71,11 @@
 		SET 	bd_title= #{bd_title},
 				bd_contents=#{bd_contents},
 				member_id = #{member_id},
-				bd_img_1 = #{bd_img_1},
-				bd_img_2 = #{bd_img_2},
-				bd_img_3 = #{bd_img_3},
-				bd_img_4 = #{bd_img_4},
-				bd_img_5 = #{bd_img_5},
+				bd_img1 = #{bd_img1},
+				bd_img2 = #{bd_img2},
+				bd_img3 = #{bd_img3},
+				bd_img4 = #{bd_img4},
+				bd_img5 = #{bd_img5},
 				bd_date = sysdate
 		WHERE 	bd_idx =	#{bd_idx}
 	</update>	
@@ -120,25 +84,27 @@
 		<![CDATA[
 		SELECT	bd_idx,
 				bd_title,
-				bd_contents,
+				bd_code,
 				member_id,
 				bd_img1,
 				bd_date,
 				bd_good_cnt,
 				bd_bad_cnt,
 				bd_cnt,
+				bd_del,
 				bd_comment_cnt
-		FROM	(SELECT /*+INDEX_DESC(board pk_board) */
+		FROM	(SELECT /*+INDEX_DESC(board XPKBOARD) */
         				rownum rn,
         				bd_idx,
         				bd_title,
-        				bd_contents,
+        				bd_code,
         				member_id,
         				bd_img1,
         				bd_date,
         				bd_good_cnt,
         				bd_bad_cnt,
         				bd_cnt,
+        				bd_del,
         				bd_comment_cnt
       			FROM	board
 				WHERE 
@@ -161,9 +127,9 @@
 		bd_idx > 0
 	</select>
 	
-	<update id="updateReplyCnt">
+	<update id="updateCommentCnt">
 		UPDATE 	board 
-		SET 	replycnt = bd_comment_cnt + #{amount} 
+		SET 	bd_comment_cnt = bd_comment_cnt + 1 
 		WHERE 	bd_idx = #{bd_idx}
 	</update> 
 	
