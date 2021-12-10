@@ -33,20 +33,20 @@ public class ReviewController {
 	// consumes은 호출하는쪽에서 application/json 요청만 받아들인다. 요청 컨텐트 타입 제한
 	// produces은 조건에 지정한 미디어 타입과 관련된 응답을 생성. 응답 컨텐트 타입 제한
 	// 명시적으로 consumes와 produces 조건을 각각 사용하는 것을 권장한다
-	@PreAuthorize("isAuthenticated()")
-	@PostMapping(value = "/new", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> create(@RequestBody ReviewVO vo) {
-
-		log.info("ReviewVO: " + vo);
-
-		int insertCount = service.register(vo);
-
-		log.info("Review INSERT COUNT: " + insertCount);
-
-		return insertCount == 1
-				? new ResponseEntity<>("success", HttpStatus.OK)
-				: new ResponseEntity<>("Fail!! 댓글 등록 중 오류 발생",HttpStatus.INTERNAL_SERVER_ERROR);
-	}
+//	@PreAuthorize("isAuthenticated()")
+//	@PostMapping(value = "/new", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
+//	public ResponseEntity<String> create(@RequestBody ReviewVO vo) {
+//
+//		log.info("ReviewVO: " + vo);
+//
+//		int insertCount = service.register(vo);
+//
+//		log.info("Review INSERT COUNT: " + insertCount);
+//
+//		return insertCount == 1
+//				? new ResponseEntity<>("success", HttpStatus.OK)
+//				: new ResponseEntity<>("Fail!! 댓글 등록 중 오류 발생",HttpStatus.INTERNAL_SERVER_ERROR);
+//	}
 	
 	// 교재와 다른 부분 내용 추가!
 	// spring 5.2에서 MediaType.APPLICATION_JSON_UTF8_VALUE 는 제거됨
