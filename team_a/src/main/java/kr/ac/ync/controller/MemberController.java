@@ -51,7 +51,7 @@ public class MemberController {
 	
 	
 	// 글 등록
-	@PostMapping("/register_insert")
+	@PostMapping("/register")
 //	@PreAuthorize("isAuthenticated()")
 	public String register_insert( MemberVO member,RedirectAttributes rttr) {
 
@@ -77,7 +77,7 @@ public class MemberController {
 	}
 	
 	
-	@GetMapping( "/get" )
+	@GetMapping( {"/get","/modify"} )
 	public void get(@RequestParam("mb_id") String member_id, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("/get");
@@ -86,19 +86,24 @@ public class MemberController {
 	
 	
 
-	@GetMapping( "/modify" )
+	@PostMapping( "/modify" )
 	public String modify(MemberVO member, @ModelAttribute("cri") Criteria cri) {
+		
+		
+		member.setMember_pass(pwencoder.encode(member.getMember_pass()));
 
 		log.info("/modify");
 		this.mapper.update(member);
 		return "redirect:/admin/member/get?mb_id="+member.getMember_id();
 	}
 	
-	@GetMapping( "/delete" )
-	public String delete(@RequestParam("mb_id") String member_id, @ModelAttribute("cri") Criteria cri) {
+	@PostMapping( "/delete" )
+	public String delete(@RequestParam("member_id") String member_id, @ModelAttribute("cri") Criteria cri,RedirectAttributes rttr) {
 
-		log.info("/delete");
+		log.info("/delete : "+ member_id);
 		this.mapper.delete(member_id);
+
+		rttr.addFlashAttribute("result", member_id);
 		return "redirect:/admin/member/list";
 	}
 	

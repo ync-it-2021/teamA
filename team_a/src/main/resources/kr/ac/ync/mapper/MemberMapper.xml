@@ -7,9 +7,9 @@
 		<result property="member_id" column="member_id"/>
 		<result property="member_pass" column="member_pass"/>
 		<result property="member_name" column="member_name"/>
+		<result property="member_birthday" column="member_birthday"/>
 		<result property="member_email" column="member_email"/>
 		<result property="member_phone" column="member_phone"/>
-		<result property="member_birthday" column="member_birthday"/>
 		<result property="member_address" column="member_address"/>
 		<result property="member_mileage" column="member_mileage"/>
 		<result property="member_grade" column="member_grade"/>
@@ -22,28 +22,7 @@
 		<result property="auth" column="auth"/>
 	</resultMap>
 
-	<!--
-	member_auth table은 사용 하지 않고 AuthVO만 사용한다.
-	tbl_member 의 autho 컬럼 정보만 따로 담아는 객체이다.
-	Spring Security의 기본 사용법과 다르게 tbl_member에 권한 컴럼(auth)을
-	넣어서 사용하기에 기본 사용법과 달라진다.
-	-->
-	<!--회원 상세 정보 출력-->
-	<select id="read" resultMap="memberMap">
-	SELECT	member_id,
-			member_name,
-			member_pass,
-			member_email,
-			member_phone,
-			member_birthday,
-			member_address,
-			member_mileage,
-			member_grade,
-			auth
-	FROM	member
-	WHERE	member_id = #{member_id} 
-	</select>
-	<!--회원 검색 출력-->
+<!--회원 검색 출력-->
 		<sql id="criteria">
 		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
 			<foreach item='type' collection="typeArr">
@@ -75,12 +54,24 @@
 			</foreach>
 		</trim>
 	</sql>
-	<!--전체 회원정보 출력-->
-	<select id="getList" resultType="kr.ac.ync.domain.MemberVO">
-	<![CDATA[
-		SELECT * FROM member WHERE member_id = "" 
-		]]>
+
+	<!--회원 상세 정보 출력-->
+	<select id="read" resultMap="memberMap">
+	SELECT	member_id,
+			member_name,
+			member_email,
+			member_pass,
+			member_phone,
+			member_birthday,
+			member_address,
+			member_mileage,
+			member_grade,
+			auth
+	FROM	member
+	WHERE	member_id = #{member_id} 
 	</select>
+	
+
 	<!--페이징 회원 출력-->
 	<select id="getListWithPaging" resultType="kr.ac.ync.domain.MemberVO">
 		<![CDATA[
@@ -115,9 +106,9 @@
 	</select>
 	<!--회원 전체수 출력-->
 	<select id="getTotal" resultType="int">
-		SELECT count(*) FROM member WHERE
+		SELECT count(*) FROM member
 		<include refid="criteria"></include>
-			1=1 
+		
 	</select>
 	<!--회원 추가-->
 	<insert id="insertSelectKey">
@@ -126,6 +117,7 @@
 							member_pass,
 							member_email,
 							member_phone,
+							member_grade,  
 							member_address,
 							auth
 							 )
@@ -134,6 +126,7 @@
 							#{member_pass},
 							#{member_email},
 							#{member_phone},
+							#{member_grade},
 							#{member_address},
 							#{auth,jdbcType=VARCHAR})
 	</insert>
@@ -144,16 +137,17 @@
 				member_name = #{member_name},
 				member_email = #{member_email},
 				member_phone = #{member_phone},
-				member_mileaghe = #{member_mileaghe},
+				member_mileage = #{member_mileage},
 				member_grade = #{member_grade},
-				member_address = #{membet_address},
+				member_address = #{member_address},
 				member_birthday = #{member_birthday}
 		WHERE 	member_id =	#{member_id}
 	</update>	
-	<!--회원 삭제-->
-	<delete id="delete">
-		DELETE 
-		FROM 	member 
-		WHERE 	member_id = #{member_id}
-	</delete>
+	
+	<update id="delete">
+		UPDATE 	member
+		SET 	member_grade = -1
+		WHERE 	member_id =	#{member_id}
+	</update>
+	
 </mapper>

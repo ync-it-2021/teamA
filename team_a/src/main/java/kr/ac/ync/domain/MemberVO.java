@@ -1,5 +1,7 @@
 package kr.ac.ync.domain;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -19,5 +21,15 @@ public class MemberVO {
 	private int member_mileage;
 	private String auth;
 	private List<AuthVO> authList;
+	
+	public void setMember_birthday(String getDate) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		if(getDate.isEmpty()) {
+			this.member_birthday = null;
+			return;
+		}
+		Date date = new Date(sdf.parse(getDate).getTime());
+		this.member_birthday = date;
+	}
 
 }
