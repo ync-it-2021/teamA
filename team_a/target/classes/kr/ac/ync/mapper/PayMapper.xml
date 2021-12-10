@@ -19,6 +19,9 @@
 						<when test="type == 'O'.toString()">
 							od_idx LIKE '%'||#{keyword}||'%'
 						</when>
+						<when test="type == 'C'.toString()">
+							pay_state LIKE '%'||#{keyword}||'%'
+						</when>
 					</choose>
 				</trim>
 			</foreach>
