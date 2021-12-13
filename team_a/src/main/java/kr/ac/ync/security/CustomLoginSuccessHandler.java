@@ -34,7 +34,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 
 		if (roleNames.contains("ROLE_ADMIN")) {
 
-			response.sendRedirect("/admin");//이동 경로 수정
+			response.sendRedirect("/admin/main");//이동 경로 수정
 			return;
 		}
 
