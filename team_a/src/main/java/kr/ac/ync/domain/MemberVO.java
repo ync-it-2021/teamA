@@ -1,11 +1,11 @@
 package kr.ac.ync.domain;
 
-<<<<<<< HEAD
+
 import java.sql.Timestamp;
-=======
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
->>>>>>> branch 'main' of https://github.com/ync-it-2021/teamA.git
+
 import java.util.Date;
 import java.util.List;
 
@@ -26,9 +26,7 @@ public class MemberVO {
 	private String auth;
 	private List<AuthVO> authList;
 	
-<<<<<<< HEAD
-	
-=======
+
 	public void setMember_birthday(String getDate) throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		if(getDate.isEmpty()) {
@@ -39,6 +37,6 @@ public class MemberVO {
 		this.member_birthday = date;
 	}
 
->>>>>>> branch 'main' of https://github.com/ync-it-2021/teamA.git
+
 }
  

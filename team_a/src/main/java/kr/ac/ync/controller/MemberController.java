@@ -52,15 +52,6 @@ public class MemberController {
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 
 	}
-<<<<<<< HEAD
-=======
-	
-	
-	// 글 등록
-	@PostMapping("/register")
-//	@PreAuthorize("isAuthenticated()")
-	public String register_insert( MemberVO member,RedirectAttributes rttr) {
->>>>>>> branch 'main' of https://github.com/ync-it-2021/teamA.git
 
 	// 글 등록 페이징
 	@GetMapping({ "/register", "/join_write" })
@@ -86,10 +77,7 @@ public class MemberController {
 		String month = request.getParameter("birth2");
 		String day = request.getParameter("birth3");
 		String member_birthday = year + "-" + month + "-" + day;
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date(sdf.parse(member_birthday).getTime());
-		member.setMember_birthday(date);
+		member.setMember_birthday(member_birthday);
 
 		
 		String email = request.getParameter("email");
@@ -125,30 +113,20 @@ public class MemberController {
 
 		return "redirect:/member/login";
 	}
-<<<<<<< HEAD
 
-	@GetMapping("/get")
-=======
-	
-	// 글 등록 페이징
-	@GetMapping("/register")
-	public void register() {
-	}
 	
 	
 	@GetMapping( {"/get","/modify"} )
->>>>>>> branch 'main' of https://github.com/ync-it-2021/teamA.git
 	public void get(@RequestParam("mb_id") String member_id, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("/get");
 		model.addAttribute("member", this.mapper.read(member_id));
 	}
 
-<<<<<<< HEAD
-	@GetMapping("/modify")
-=======
+
+
+
 	@PostMapping( "/modify" )
->>>>>>> branch 'main' of https://github.com/ync-it-2021/teamA.git
 	public String modify(MemberVO member, @ModelAttribute("cri") Criteria cri) {
 		
 		
@@ -158,15 +136,13 @@ public class MemberController {
 		this.mapper.update(member);
 		return "redirect:/admin/member/get?mb_id=" + member.getMember_id();
 	}
-<<<<<<< HEAD
 
-	@GetMapping("/delete")
-	public String delete(@RequestParam("mb_id") String member_id, @ModelAttribute("cri") Criteria cri) {
-=======
+
+
 	
 	@PostMapping( "/delete" )
 	public String delete(@RequestParam("member_id") String member_id, @ModelAttribute("cri") Criteria cri,RedirectAttributes rttr) {
->>>>>>> branch 'main' of https://github.com/ync-it-2021/teamA.git
+
 
 		log.info("/delete : "+ member_id);
 		this.mapper.delete(member_id);
