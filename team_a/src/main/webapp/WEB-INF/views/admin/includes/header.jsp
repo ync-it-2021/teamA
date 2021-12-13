@@ -323,6 +323,9 @@
                             <a href="/admin/event/list"><i class="fa fa-sitemap fa-fw"></i>이벤트</a>
                         </li>
                         <li>
+                            <a href="/admin/coupon/list"><i class="fa fa-wrench fa-fw"></i>쿠폰</a>
+                        </li>
+                        <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i>게시판<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
