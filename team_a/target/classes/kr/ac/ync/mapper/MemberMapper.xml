@@ -117,11 +117,8 @@
 							member_pass,
 							member_email,
 							member_phone,
-<<<<<<< HEAD
 							member_birthday,
-=======
 							member_grade,  
->>>>>>> branch 'main' of https://github.com/ync-it-2021/teamA.git
 							member_address,
 							auth
 							 )
@@ -130,11 +127,8 @@
 							#{member_pass},
 							#{member_email},
 							#{member_phone},
-<<<<<<< HEAD
 							#{member_birthday},
-=======
 							#{member_grade},
->>>>>>> branch 'main' of https://github.com/ync-it-2021/teamA.git
 							#{member_address},
 							#{auth,jdbcType=VARCHAR})
 	</insert>
