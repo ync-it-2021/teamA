@@ -78,5 +78,17 @@ public class CommentController {
 
 		return new ResponseEntity<>(service.getList(idx), HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/member/pages/{id}", produces = { MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<List<CommentVO>> getList( @PathVariable("id") String member_id) {
+
+		log.info("getList.................");
+
+		log.info(member_id);
+		log.info(service.getList(member_id));
+
+		return new ResponseEntity<>(service.getList(member_id), HttpStatus.OK);
+	}
 
 }

@@ -14,6 +14,7 @@ public interface CommentService {
 	public int remove(int bd);
 	
 	public List<CommentVO> getList(int bd);
+	public List<CommentVO> getList(String member_id);
 	
 	public int getComment_cnt(int bd);
 	

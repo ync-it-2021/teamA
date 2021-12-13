@@ -68,5 +68,20 @@ public class ReviewServiceImpl implements ReviewService {
 				mapper.getListWithPaging(cri,prd));
 	}
 
+	
+	@Override
+	public List<ReviewVO> getList(Criteria cri, String member_id) {
+		log.info("get Review List of a member " + member_id);
+		return mapper.getListByMemberWithPaging(cri, member_id);
+	}
+  
+	@Override
+	public ReviewPageDTO getListPage(Criteria cri, String member_id) {
+       
+		return new ReviewPageDTO(
+				mapper.getCountByMember(member_id), 
+				mapper.getListByMemberWithPaging(cri,member_id));
+	}
+
 }
 

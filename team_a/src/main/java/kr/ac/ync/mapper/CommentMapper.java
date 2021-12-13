@@ -17,6 +17,8 @@ public interface CommentMapper {
 	public int update(CommentVO vo);
 	
 	public List<CommentVO> getList(@Param("bd_idx") int bd_idx);
+	
+	public List<CommentVO> getListByMember(@Param("member_id") String member_id);
 
 	public int getCountByComment(int bd);
 
