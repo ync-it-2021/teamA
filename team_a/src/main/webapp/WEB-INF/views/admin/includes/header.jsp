@@ -275,7 +275,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> 메인으로</a>
+                            <a href="/admin/main"><i class="fa fa-dashboard fa-fw"></i> 메인으로</a>
                         </li>
                         <li>
                             <a href="/admin/member/list"><i class="fa fa-table fa-fw"></i>회원</a>
@@ -320,6 +320,9 @@
                         </li>
                         <li>
                             <a href="/admin/event/list"><i class="fa fa-sitemap fa-fw"></i>이벤트</a>
+                        </li>
+                        <li>
+                            <a href="/admin/coupon/list"><i class="fa fa-wrench fa-fw"></i>쿠폰</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i>게시판<span class="fa arrow"></span></a>

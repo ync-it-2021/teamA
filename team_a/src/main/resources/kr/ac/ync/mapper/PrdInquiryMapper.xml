@@ -35,7 +35,38 @@
 		]]>
 	</select>
 
-
+<select id="getCheckList" resultType="kr.ac.ync.domain.PrdInquiryVO">
+		<![CDATA[
+	 		SELECT	pi_idx,
+					prd_idx,
+					member_id,
+					pi_contents,
+					pi_write_day,
+					pi_reply,
+					pi_replyer,
+					pi_reply_day,
+					pi_hidden,
+					pi_del
+	 		FROM	(SELECT /*+INDEX(prd_inquiry XPKPRD_INQUIRY) */ 
+	      					rownum rn,
+	      					pi_idx,
+							prd_idx,
+							member_id,
+							pi_contents,
+							pi_write_day,
+							pi_reply,
+							pi_replyer,
+							pi_reply_day,
+							pi_hidden,
+							pi_del
+	    			FROM	prd_inquiry
+	    			WHERE	pi_replyer IS NULL
+	    			AND		pi_reply IS NULL
+	    			AND		rownum <= #{cri.pageNum} * #{cri.amount}
+	   				)
+	   		WHERE	rn > (#{cri.pageNum} -1) * #{cri.amount}
+		]]>
+	</select>
 
 
 </mapper>

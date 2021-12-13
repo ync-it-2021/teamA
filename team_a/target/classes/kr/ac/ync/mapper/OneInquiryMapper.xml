@@ -11,11 +11,13 @@
 							prd_name LIKE '%'||#{keyword}||'%'
 						</when>
 						<when test="type == 'C'.toString()">
-						prd_name LIKE '%'||#{keyword}||'%'
+							prd_name LIKE '%'||#{keyword}||'%'
 						</when>
 						<when test="type == 'K'.toString()">
-						prd_name LIKE '%'||#{keyword}||'%'
-	
+							prd_name LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'A'.toString()">
+						oi_reply IS NULL
 						</when>
 					</choose>
 				</trim>

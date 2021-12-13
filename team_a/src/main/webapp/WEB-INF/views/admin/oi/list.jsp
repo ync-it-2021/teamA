@@ -30,7 +30,6 @@
 							<th >제목</th>
 							<th >작성일</th>
 							<th >답장</th>
-							<th></th>
 						</tr>
 					</thead>
 

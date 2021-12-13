@@ -37,6 +37,18 @@
 	    			WHERE	bd_idx =  #{bd_idx}
 	    			AND		cm_idx > 0
 	</select>
+	
+	<select id="getListByMember" resultType="kr.ac.ync.domain.CommentVO">
+	 		SELECT	cm_idx,
+	 				cm_contents,
+	 				bd_idx,
+	 				cm_date,
+	 				cm_del,
+	 				cm_hidden
+	    			FROM	comment_board
+	    			WHERE	member_id LIKE #{member_id}
+	    			AND		cm_idx > 0
+	</select>
 
 
 	<select id="getCountByBd" resultType="int">

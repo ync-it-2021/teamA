@@ -18,7 +18,11 @@ public interface ReviewMapper {
 	public int update(ReviewVO vo);
 
 	public List<ReviewVO> getListWithPaging(@Param("cri") Criteria cri, @Param("prd") int prd);
+	
+	public List<ReviewVO> getListByMemberWithPaging(@Param("cri") Criteria cri, @Param("member_id") String member_id);
 
 	public int getCountByPrd(int prd);
+	
+	public int getCountByMember(String member_id);
 	
 }

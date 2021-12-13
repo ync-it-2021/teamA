@@ -6,7 +6,7 @@
 <%@include file="../includes/header.jsp"%>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">게시글</h1>
+		<h1 class="page-header">쿠폰</h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -16,9 +16,9 @@
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				Board List Page
+				Coupon List Page
 				<button id='regBtn' type="button" class="btn btn-xs pull-right">Register
-					New Board</button>
+					New Coupon</button>
 			</div>
 
 			<!-- /.panel-heading -->
@@ -28,20 +28,26 @@
 						<tr>
 							<th>#번호</th>
 							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
+							<th>소지</th>
+							<th>등록일</th>
+							<th>유통기한</th>
+							<th>사용일</th>
+							<th>상태</th>
 						</tr>
 					</thead>
 
-					<c:forEach items="${list}" var="board">
+					<c:forEach items="${list}" var="cp">
 						<tr>
-							<td><c:out value="${board.bd_idx}" /></td>
-							<%-- <td><a href='/board/get?bd_idx=<c:out value="${board.}"/>'><c:out value="${board.title}"/></a></td> --%>
-							<td><a class='move' href='<c:out value="${board.bd_idx}"/>'><c:out value="${board.bd_title}" />
-							<b>[<c:out value="${board.bd_comment_cnt}" />]</b></a> 
+							<td><c:out value="${ cp.cp_idx}"/></td>
+							<td><a class='move' href='<c:out value="${cp.cp_idx}"/>'><c:out value="${cp.cp_name}"/></a></td>
+							<td><c:out value="${cp.member_id}"/></td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cp.cp_register_date}" /></td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cp.cp_end_day}" /></td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cp.cp_useful_day}" /></td>
+							<td>
+								<c:if test="${cp.cp_use_check == 'Y'}">[사용]</c:if>
+								<c:if test="${cp.cp_use_check == 'N'}">[미사용]</c:if>
 							</td>
-							<td><c:out value="${board.member_id}" /></td>
-							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.bd_date}" /></td>
 						</tr>
 					</c:forEach>
 					
@@ -51,7 +57,7 @@
 				<div class='row'>
 					<div class="col-lg-12">
 
-						<form id='searchForm' action="/board/list" method='get'>
+						<form id='searchForm' action="/admin/coupon/list" method='get'>
 							<select name='type'>
 								<option value=""
 									<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>
@@ -103,7 +109,7 @@
 				<!--  Pagination 끝 -->
 				
 				<!-- 페이징 Form 시작 -->
-				<form id='actionForm' action="/board/list" method='get'>
+				<form id='actionForm' action="/admin/coupon/list" method='get'>
 				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
 				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 				<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
@@ -171,7 +177,7 @@
 		}
 		
 		$("#regBtn").on("click", function() {
-			self.location = "/board/register";
+			self.location = "/admin/coupon/register";
 		});
 		
 		var actionForm = $("#actionForm");
@@ -187,8 +193,8 @@
 		// 상세보기 클릭 이벤트
 		$(".move").on("click",function(e) {
 			e.preventDefault();
-			actionForm.append("<input type='hidden' name='bd' value='" + $(this).attr("href")	+ "'>");
-			actionForm.attr("action", "/admin/board/get");
+			actionForm.append("<input type='hidden' name='cp' value='" + $(this).attr("href")	+ "'>");
+			actionForm.attr("action", "/admin/coupon/get");
 			actionForm.submit();
 		});
 		

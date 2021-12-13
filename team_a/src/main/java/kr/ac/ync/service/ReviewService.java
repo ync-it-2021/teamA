@@ -19,5 +19,9 @@ public interface ReviewService {
 	public List<ReviewVO> getList(Criteria cri, int prd);
 	
 	public ReviewPageDTO getListPage(Criteria cri, int prd);
+	
+	public List<ReviewVO> getList(Criteria cri, String member_id);
+	
+	public ReviewPageDTO getListPage(Criteria cri, String member_id);
 
 }

@@ -10,4 +10,6 @@ import kr.ac.ync.domain.PrdInquiryVO;
 public interface PrdInquiryMapper {
 
 	public List<PrdInquiryVO> getListWithPaging(@Param("cri") Criteria cri, @Param("prd") int prd);
+	
+	public List<PrdInquiryVO> getCheckList(@Param("cri") Criteria cri);
 }

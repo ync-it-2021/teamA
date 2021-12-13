@@ -21,7 +21,7 @@
       <!-- /.panel-heading -->
       <div class="panel-body">
 
-        <form role="form" action="/admin/member/register_insert" method="post" enctype="multipart/form-data">
+        <form role="form" action="/admin/member/register" method="post" enctype="multipart/form-data">
 	        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
           <div class="form-group">
             <label>ID</label>

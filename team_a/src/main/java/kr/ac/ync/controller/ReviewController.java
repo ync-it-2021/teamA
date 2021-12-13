@@ -90,10 +90,6 @@ public class ReviewController {
 
 	}
 	
-	// spring 5.2에서 MediaType.APPLICATION_JSON_UTF8_VALUE 는 제거됨
-	// 해당 값 없어도 현재 브라우저는 UTF-8을 제대로 처리함.
-	// spring 5.2 부터 MediaType.APPLICATION_JSON_UTF8 로 수정하면됨
-	// 페이징 처리된 댓글 목록을 가져오는 method
 	@GetMapping(value = "/pages/{prd}/{page}", produces = { MediaType.APPLICATION_XML_VALUE,
 															MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<List<ReviewVO>> getList(@PathVariable("page") int page, @PathVariable("prd") int prd) {
@@ -106,6 +102,20 @@ public class ReviewController {
 	
 		 return new ResponseEntity<>(service.getList(cri,prd), HttpStatus.OK);
 	 }
+	
+	
+	@GetMapping(value = "/member/pages/{id}/{page}", produces = { MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<List<ReviewVO>> getList(@PathVariable("page") int page, @PathVariable("id") String member_id) {
+	
+	log.info("getList.................");
+	Criteria cri = new Criteria(page,10);
+	log.info(cri);
+	log.info(member_id);
+	log.info(service.getList(cri,member_id));
+	
+	return new ResponseEntity<>(service.getList(cri,member_id), HttpStatus.OK);
+	}
 
 }
 

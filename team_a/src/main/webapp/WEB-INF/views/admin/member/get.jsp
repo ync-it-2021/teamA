@@ -90,26 +90,25 @@
 
     <!-- /.panel -->
     <div class="panel panel-default">
-<!--       <div class="panel-heading">
-        <i class="fa fa-comments fa-fw"></i> Reply
-      </div> -->
+
       
       <div class="panel-heading">
-        <i class="fa fa-comments fa-fw"></i> Reply
-        <!-- <button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New Reply</button> -->
-        <sec:authorize access="isAuthenticated()">
-	        <button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New Reply</button>
-        </sec:authorize>
+      <span id="review" style="padding:10px; color:black;">Review</span>
+      <span id ="comment" style="padding:10px; color:#888888;">Comment </span>
+       <input id="list_show" type="hidden" value="review">
       </div>      
-      
       
       <!-- /.panel-heading -->
       <div class="panel-body">        
       
       	<!-- 댓글 목록 출력 부분 -->
-        <ul class="chat">
-
-        </ul>
+	      	<table class="table table-striped table-bordered table-hover">
+	      		<thead class="listHead">
+	      		</thead>
+	      	<tbody class="chat">
+	      	
+	      	</tbody>
+	      	</table>
         <!-- ./ end ul -->
       </div>
       <!-- /.panel .chat-panel -->
@@ -119,93 +118,111 @@
 
 		</div>
   </div>
+ </div>
   <!-- ./ end row -->
-</div>
-
-
-
-	<!-- 댓글 Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">REPLY MODAL</h4>
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-		                <label>Reply</label> 
-		                <input class="form-control" name='reply' value='New Reply!!!!'>
-					</div>      
-					<div class="form-group">
-						<label>Replyer</label> 
-						<input class="form-control" name='replyer' value='replyer'>
-					</div>
-					<div class="form-group">
-						<label>Reply Date</label> 
-						<input class="form-control" name='replyDate' value='2018-01-01 13:13'>
-					</div>
-				</div>
-				
-				<div class="modal-footer">
-					<button id='modalModBtn' type="button" class="btn btn-warning">Modify</button>
-					<button id='modalRemoveBtn' type="button" class="btn btn-danger">Remove</button>
-					<button id='modalRegisterBtn' type="button" class="btn btn-primary">Register</button>
-					<button id='modalCloseBtn' type="button" class="btn btn-default">Close</button>
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-        <!-- /.modal-dialog -->
-	</div>
-	<!-- /댓글 modal -->
-      
-<script type="text/javascript" src="/resources/js/reply.js?v=1.0"></script>
 
 <script type="text/javascript">
-$(document).ready(function () {
-	  
-	let bnoValue = '<c:out value="${member.member_id}"/>';
-	let replyUL = $(".chat");
-	  
-	showList(1);
-	
-	// 댓글 목록을 출력하는 함수
-	function showList(page){
-		
-		// console.log("show list " + page);
-	    
-		replyService.getList({bno:bnoValue, page: page|| 1 }, function(list) {
-	      
-		    // console.log("replyCnt: "+ replyCnt );
-		    // console.log("list: " + list);
-		    // console.log(list);
-	    	
-			let str="";
-	     
-			if(list == null || list.length == 0){
-				replyUL.html("");
-				return;
-			}
-	     
-			for (var i = 0, len = list.length || 0; i < len; i++) {
-				str +="<li class='left clearfix' data-rno='"+list[i].rno+"'>";
-				str +="  <div><div class='header'><strong class='primary-font'>["
-					+ list[i].rno+"] "+list[i].replyer+"</strong>"; 
-				str +="    <small class='pull-right text-muted'>"
-					+ replyService.displayTime(list[i].replyDate)+"</small></div>";
-				str +="    <p>"+list[i].reply+"</p></div></li>";
-			}
-	     
-			replyUL.html(str);
-	     
-			//showReplyPage(replyCnt);
+	let th_str = "";
+$("#review").on("click",function(){
+	th_str = "<th>상품번호</th><th>주문번호</th><th>내용</th><th>날짜</th><th>점수</th>";
+	$("#review").css({"color":"black"});
+	$("#comment").css({"color":"#888888"});
+	$("#list_show").val("review");
+	$(".listHead").html("");
+	$(".listHead").html(th_str);
+	getList(1);
+});
 
-	 
-		});//end function
-	     
-	}//end showList
+$("#comment").on("click",function(){
+	th_str = "<th>글번호</th><th>내용</th><th>날짜</th><th>상태</th>";
+	$("#review").css({"color":"#888888"});
+	$("#comment").css({"color":"black"});
+	$("#list_show").val("comment");
+	$(".listHead").html("");
+	$(".listHead").html(th_str);
+	getList(1);
+});
+
+// 날짜 포맷 변환
+function displayTime(timeValue) {
+
+	var today = new Date();
+
+	var gap = today.getTime() - timeValue;
+
+	var dateObj = new Date(timeValue);
+	var str = "";
+
+	if (gap < (1000 * 60 * 60 * 24)) {
+
+		var hh = dateObj.getHours();
+		var mi = dateObj.getMinutes();
+		var ss = dateObj.getSeconds();
+
+		return [ (hh > 9 ? '' : '0') + hh, ':', (mi > 9 ? '' : '0') + mi,
+				':', (ss > 9 ? '' : '0') + ss ].join('');
+
+	} else {
+		var yy = dateObj.getFullYear();
+		var mm = dateObj.getMonth() + 1; // getMonth() is zero-based
+		var dd = dateObj.getDate();
+
+		return [ yy, '-', (mm > 9 ? '' : '0') + mm, '-',
+				(dd > 9 ? '' : '0') + dd ].join('');
+	}
+}
+
+//댓글 목록
+function getList(pageNum) {
+
+	let replyUL = $(".chat");
+	let ck = $("#list_show").val();
+	let _url= "";
+	let str="";
+	var id = '${member.member_id}';
+	var page = pageNum || 1; 
+	console.log(ck+" getList ..............");
+	if(ck == "review"){
+		_url = "/replies/member/pages/" + id + "/" + page;
+	}else if(ck == "comment"){
+		_url = "/comment/member/pages/" + id;
+	}
+	$.ajax({
+		url:_url,
+		dataType:"json",
+		success:function(data){
+				for (var i = 0, len = data.length || 0; i < len; i++) {
+				if(ck == "review"){
+				str +="<tr><td class='left clearfix' data-rno='"+data[i].review_idx+"'>"+data[i].prd_idx+"</td>";
+				str +="<td>"+data[i].order_idx+"</td>";
+				str +="<td>"+data[i].review_contents+"</td>";
+				str +='<td>'+displayTime(data[i].review_date)+'</td>';
+				str +="<td>"+data[i].review_point+"</td></tr>";
+				}else if(ck == "comment"){
+					str +="<tr><td class='left clearfix' data-rno='"+data[i].cm_idx+"'>"+data[i].bd_idx+"</td>";
+					str +="<td>"+data[i].cm_contents+"</td>";
+					str +='<td>'+displayTime(data[i].cm_date)+'</td>';
+					if(data[i].cm_hidden == "Y"){
+						str +='<td>Y</td>';
+					}else{
+						str +='<td>N</td>';
+					}
+				}
+			}
+				replyUL.html(str);
+		},
+	error:function(request, status, error ){
+		console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+
+	}
 	
+	});
+}
+
+$(document).ready(function () {
+	$(".listHead").html("<th>상품번호</th><th>주문번호</th><th>내용</th><th>날짜</th><th>점수</th>");
+	getList(1);
+
 	/* 댓글 modal 창 동작 부분*/
 	let modal = $(".modal");
     let modalInputReply = modal.find("input[name='reply']");
@@ -219,43 +236,12 @@ $(document).ready(function () {
     	modal.modal('hide');
     });
     
-    $("#addReplyBtn").on("click", function(e){
-		modal.find("input").val("");
-		modal.find("input[name='replyer']").val(replyer);
-		modalInputReplyDate.closest("div").hide();
-		modal.find("button[id !='modalCloseBtn']").hide();
-		
-		modalRegisterBtn.show();
-		$(".modal").modal("show");
-    });
-    
 	// Ajax Spring Security Header
     $(document).ajaxSend(function(e, xhr, options) { 
 		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
 	});
     
-    // 댓글 등록
-	modalRegisterBtn.on("click",function(e){
-      
-		let reply = {
-			reply: modalInputReply.val(),
-            replyer:modalInputReplyer.val(),
-            bno:bnoValue
-		};
-      
-		replyService.add(reply, function(result){
-        
-        alert(result);
-        
-        modal.find("input").val("");
-        modal.modal("hide");
-        
-        showList(1);
-        //showList(-1);
-        
-      });
-      
-    });
+  
     
 	//댓글 조회 클릭 이벤트 처리 
     $(".chat").on("click", "li", function(e){
@@ -263,11 +249,11 @@ $(document).ready(function () {
 		let rno = $(this).data("rno");
 		console.log(rno);
 		
-		replyService.get(rno, function(reply){
+		reviewService.get(rno, function(reply){
 	
 			modalInputReply.val(reply.reply);
 			modalInputReplyer.val(reply.replyer);
-			modalInputReplyDate.val(replyService.displayTime( reply.replyDate)).attr("readonly","readonly");
+			modalInputReplyDate.val(reviewService.displayTime( reply.replyDate)).attr("readonly","readonly");
 			modal.data("rno", reply.rno);
 			
 			modal.find("button[id !='modalCloseBtn']").hide();
@@ -278,20 +264,7 @@ $(document).ready(function () {
 		});
 	});
 	
-	// 댓글 수정 이벤트
-	/*
-	modalModBtn.on("click", function(e){
-    
-		var reply = {rno:modal.data("rno"), reply: modalInputReply.val()};
-    
-		replyService.update(reply, function(result){
-          
-			alert(result);
-			modal.modal("hide");
-			showList(1);
-		});
-	});
-	*/
+
 	
 	// 댓글 수정 이벤트. security 적용 후
 	modalModBtn.on("click", function(e){
@@ -318,7 +291,7 @@ $(document).ready(function () {
 			return;
 		}
 		  
-		replyService.update(reply, function(result){
+		reviewService.update(reply, function(result){
 			alert(result);
 			modal.modal("hide");
 			showList(1);
@@ -350,7 +323,7 @@ $(document).ready(function () {
 			return;
 		}
 	   	  
-		replyService.remove(rno, originalReplyer, function(result){
+		reviewService.remove(rno, originalReplyer, function(result){
 			alert(result);
 			modal.modal("hide");
 			showList(1);
@@ -360,10 +333,10 @@ $(document).ready(function () {
 	/* 댓글 modal 창 동작 부분*/
 	
 	// 댓글 인증 부분 추가
- 	let replyer = null;
+ 	let memberID = null;
     
     <sec:authorize access="isAuthenticated()">
-		replyer = '<sec:authentication property="principal.username"/>';   
+		memberID = '<sec:authentication property="principal.username"/>';   
 	</sec:authorize>
  
 	let csrfHeaderName ="${_csrf.headerName}"; 

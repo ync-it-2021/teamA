@@ -79,5 +79,37 @@
 		]]>
 	</select>
 	
+	<select id="getListByMemberWithPaging" resultType="kr.ac.ync.domain.ReviewVO">
+		<![CDATA[
+	 		SELECT	review_idx,
+					order_idx,
+					prd_idx,
+					review_contents,
+					review_date,
+					review_img,
+					review_point
+	 		FROM	(SELECT /*+INDEX(review XPKREVIEW) */ 
+	      					rownum rn,
+	      					review_idx,
+							order_idx,
+							prd_idx,
+							review_contents,
+							review_date,
+							review_img,
+							review_point
+	    			FROM	review
+	    			WHERE	member_id LIKE #{member_id}
+	    			AND		review_idx > 0
+	    			AND		rownum <= #{cri.pageNum} * #{cri.amount}
+	   				)
+	   		WHERE	rn > (#{cri.pageNum} -1) * #{cri.amount}
+		]]>
+	</select>
 
+	<select id="getCountByMember" resultType="int">
+		<![CDATA[
+		SELECT count(review_idx) FROM review WHERE member_id LIKE #{member_id}
+		]]>
+	</select>
+	
 </mapper>

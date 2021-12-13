@@ -48,6 +48,12 @@ public class CommentServiceImpl implements CommentService{
 		log.info("get Review List of a Board " + bd_idx);
 		return mapper.getList(bd_idx);
 	}
+	
+	@Override
+	public List<CommentVO> getList(String member_id) {
+		log.info("get Review List of a Board " + member_id);
+		return mapper.getListByMember(member_id);
+	}
 
 	@Override
 	public int getComment_cnt(int bd) {
