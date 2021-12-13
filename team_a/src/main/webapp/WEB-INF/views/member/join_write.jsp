@@ -7,7 +7,7 @@
 <title>writer</title>
 </head>
 <body>
-<jsp:include page="includes/header.jsp"/>
+<jsp:include page="../includes/header.jsp"/>
 
 <body>
 
@@ -91,7 +91,7 @@
 
 		<h2 class="page-title">Join</h2>
 		<div id="authText" name="authText" style="display:none;margin:5px 0;"></div>
-		<form name="frmReg" action="#" method="post">
+		<form name="frmReg" action="/member/join_write" method="post">
 		<input type="hidden" name="coupon" value="">
 		<input type="hidden" name="Mobile_Ori" value="">
 		<input type="hidden" name="Email_Ori" value="">
@@ -100,6 +100,8 @@
 		<input type="hidden" name="idcheck_ok" value="">
 		<input type="hidden" name="mobileCert_ok" value="">
 		<input type="hidden" name="certNum" value="">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		<input type="hidden" class="form-control" name='auth' value = "ROLE_MEMBER">
 		<div class="contents-wrapper member-info-form">
 			<h2 class="page-sub-title kr">개인정보 입력</h2>
 			<div class="page-content-desc">
@@ -201,7 +203,7 @@
 					<th>도로명 주소</th>
 					<td>
 					
-						<input type="text" name="" readOnly maxlength="10" class="input1" id="sample3_postcode" />
+						<input type="text" name="address1" readOnly maxlength="10" class="input1" id="sample3_postcode" />
 						<span class="btn-type1 address"  name="address1" style="cursor:pointer"   onClick="sample3_execDaumPostcode()">우편번호 찾기</span> <br />
 						
 						<input type="text" name="address2" readOnly  class="input1"id="sample3_address" />
@@ -466,7 +468,7 @@ function check_Alpha_Num(input) {
 			return;
 		}
 
-		Frm.action = "join_write_insert_db_2016.html"
+		Frm.action = "join_write";
 		Frm.target = "_self";
 		Frm.submit();
 	}
@@ -734,7 +736,7 @@ function check_Alpha_Num(input) {
 <div style="display:none;">
 	<!--풋터영역시작-->
 </div>
-<jsp:include page="includes/footer.jsp"/>
+<jsp:include page="../includes/footer.jsp"/>
 
 
 </body>

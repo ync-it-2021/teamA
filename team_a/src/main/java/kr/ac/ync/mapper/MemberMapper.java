@@ -20,4 +20,10 @@ public interface MemberMapper {
 	public int delete(String member_id);
 	
 	public Integer insertSelectKey(MemberVO member);
+	
+	public List<MemberVO> get();
+	
+	public String member_insert(MemberVO member);
+	
+	public String member_search(MemberVO member);
 }

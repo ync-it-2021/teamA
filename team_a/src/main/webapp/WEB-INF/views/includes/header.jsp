@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+    <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>   
 <!DOCTYPE html>
@@ -71,16 +71,16 @@
 					
 					
 					<sec:authorize access="isAuthenticated()">
-					<li><a href="/customLogout">LOGOUT</a></li>
+						<li><a href="/customLogout">LOGOUT</a></li>
 					</sec:authorize>
 					<sec:authorize access="isAnonymous()">
-					<li><a href="/login">LOGIN</a></li>
+						<li><a href="/login">LOGIN</a></li>
 					</sec:authorize>
-					<li><a href="join_agreement.jsp">JOIN</a></li>
-					<li><a href="orderlist.jsp">MY PAGE</a></li>
-					<li><span><img src="../resources/images/mnb_wish_icon.png"></span><a href="wish.jsp">WISH LIST</a></li>
-					<li><span><img src="../resources/images/mnb_cart_icon.png"></span><a
-							href="shoppingbasket.jsp">CART</a></li>
+						<li><a href="join_agreement.jsp">JOIN</a></li>
+						<li><a href="/orderlist">MY PAGE</a></li>
+						<li><span><img src="../resources/images/mnb_wish_icon.png"></span><a href="wish.jsp">WISH LIST</a></li>
+						<li><span><img src="../resources/images/mnb_cart_icon.png"></span><a
+								href="shoppingbasket.jsp">CART</a></li>
 				</ul>
 			</div>
 			<div class="bottom-wrapper clearfix pc-width">

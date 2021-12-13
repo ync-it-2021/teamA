@@ -1,5 +1,6 @@
 package kr.ac.ync.domain;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -19,5 +20,7 @@ public class MemberVO {
 	private int member_mileage;
 	private String auth;
 	private List<AuthVO> authList;
-
+	
+	
 }
+ 

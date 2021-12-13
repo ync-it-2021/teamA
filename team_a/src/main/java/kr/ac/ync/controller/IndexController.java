@@ -32,5 +32,9 @@ public class IndexController {
 		model.addAttribute("best",prdService.best_items());
 		return"index";
 	}
+	@RequestMapping("/orderlist")
+	public String orderlist() {
+	return "orderlist";
+	}
 	
 }

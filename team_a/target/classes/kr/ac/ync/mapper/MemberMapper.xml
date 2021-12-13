@@ -9,7 +9,6 @@
 		<result property="member_name" column="member_name"/>
 		<result property="member_email" column="member_email"/>
 		<result property="member_phone" column="member_phone"/>
-		<result property="member_birthday" column="member_birthday"/>
 		<result property="member_address" column="member_address"/>
 		<result property="member_mileage" column="member_mileage"/>
 		<result property="member_grade" column="member_grade"/>
@@ -126,6 +125,7 @@
 							member_pass,
 							member_email,
 							member_phone,
+							member_birthday,
 							member_address,
 							auth
 							 )
@@ -134,6 +134,7 @@
 							#{member_pass},
 							#{member_email},
 							#{member_phone},
+							#{member_birthday},
 							#{member_address},
 							#{auth,jdbcType=VARCHAR})
 	</insert>
