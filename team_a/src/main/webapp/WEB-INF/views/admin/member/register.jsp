@@ -43,9 +43,9 @@
             <label>Email</label>
              <input  class="form-control" name='member_email'>
           </div>
-    		 <input type="hidden" class="form-control" name='member_address' value="-">
-    		 <input type="hidden" class="form-control" name='member_grade' value = "0">
-    		 <input type="hidden" class="form-control" name='auth' value = "ROLE_ADMIN">
+    		 <input type="hidden" name='member_address' value="-">
+    		 <input type="hidden" name='member_grade' value = "0">
+    		 <input type="hidden" name='auth' value = "ROLE_ADMIN">
           
           <button type="submit" class="btn btn-default">Submit
             Button</button>
