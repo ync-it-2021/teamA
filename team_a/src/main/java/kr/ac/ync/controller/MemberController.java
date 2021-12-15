@@ -1,7 +1,6 @@
 package kr.ac.ync.controller;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.ac.ync.domain.AuthVO;
@@ -58,60 +58,44 @@ public class MemberController {
 	public void register() {
 	}
 
-	@PostMapping({ "/register_insert", "/join_write" })
-//	@PreAuthorize("isAuthenticated()")
+
+	@PostMapping({ "/register", "/join_write" })
 	public String member_insert(HttpServletRequest request, MemberVO member ,RedirectAttributes rttr) throws ParseException {
 		
 		
-		   
+		
+		
+			log.info("front");
 		List<AuthVO> list = new ArrayList<AuthVO>();
 		AuthVO vo = new AuthVO();
+		
+		if(member == null) {
 		vo.setMember_id(request.getParameter("id"));
 		vo.setAuth(request.getParameter("auto"));
 		list.add(vo);
-
-		String member_id = request.getParameter("id");
-		String member_pass = (pwencoder.encode(request.getParameter("pwd1")));
-		String member_name = request.getParameter("name");
-		String year = request.getParameter("birth1");
-		String month = request.getParameter("birth2");
-		String day = request.getParameter("birth3");
-		String member_birthday = year + "-" + month + "-" + day;
-		member.setMember_birthday(member_birthday);
-
-		
-		String email = request.getParameter("email");
-		String email2 = request.getParameter("email2");
-
-		String member_email = email + "@" + email2;
-
-		String phone1 = request.getParameter("mobile1");
-		String phone2 = request.getParameter("mobile2");
-		String phone3 = request.getParameter("mobile3");
-		String member_phone = phone1 + "-" + phone2 + "-" + phone3;
-
-		String address = request.getParameter("address1");
-		String address2 = request.getParameter("address2");
-		String address3 = request.getParameter("address3");
-		String member_address = address + address2 + address3;
-		
-		 
-
-		 
-		member.setMember_id(member_id);
-		member.setMember_pass(member_pass);
-		member.setMember_name(member_name);
-		
-		member.setMember_email(member_email);
-		member.setMember_phone(member_phone);
-		member.setMember_address(member_address);
+		member.setMember_id(request.getParameter("id"));
+		member.setMember_pass(pwencoder.encode(request.getParameter("pwd1")));
+		member.setMember_name(request.getParameter("name"));
+		member.setMember_birthday(request.getParameter("birth1")+"-"+request.getParameter("birth2")+"-"+request.getParameter("birth3"));
+		member.setMember_email(request.getParameter("email")+"@"+request.getParameter("email2"));
+		member.setMember_phone(request.getParameter("mobile1")+"-"+request.getParameter("mobile2")+"-"+request.getParameter("mobile3"));
+		member.setMember_address(request.getParameter("address1") + request.getParameter("address2") + request.getParameter("address3"));
 		member.setAuthList(list);
-
+		}else {
+			vo.setMember_id(member.getMember_id());
+			vo.setAuth(member.getAuth());
+			member.setMember_pass(pwencoder.encode(member.getMember_pass()));
+			if(member.getMember_birthday() == null)
+				member.setMember_birthday(new Date());
+		}
+		log.info( member.getMember_birthday());
 		log.info("register: " + member);
 		this.mapper.insertSelectKey(member);
 		rttr.addFlashAttribute("result", member.getMember_id());
-
-		return "redirect:/member/login";
+		if(vo.getAuth().equals("ROLE_ADMIN")) {
+			return "redirect:/admin/member/list";
+		}
+		return "redirect:/login";
 	}
 
 	
