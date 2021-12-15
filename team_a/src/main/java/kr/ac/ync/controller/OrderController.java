@@ -1,5 +1,7 @@
 package kr.ac.ync.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,9 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.ac.ync.domain.CartVO;
 import kr.ac.ync.domain.Criteria;
-import kr.ac.ync.domain.OrderVO;
 import kr.ac.ync.domain.PageDTO;
 import kr.ac.ync.service.OrderService;
 import lombok.extern.log4j.Log4j;
@@ -37,7 +40,7 @@ public class OrderController {
 	@GetMapping( "/get" )
 	public void get(@RequestParam("od") int od_idx, @ModelAttribute("cri") Criteria cri, Model model) {
 
-		log.info("/get");
+		log.info("/get : " + service.get(od_idx).getMember_id());
 		model.addAttribute("order", service.get(od_idx));
 	}
 	
@@ -47,5 +50,12 @@ public class OrderController {
 		log.info("/remove");
 		this.service.remove(od_idx);
 		return "redirect:/admin/order/list";
+	}
+	
+	@GetMapping( "/cart" )
+	@ResponseBody
+	public List<CartVO> getCartList(String member_id, Model model) {
+		log.info("/cart : " + service.getCartList(member_id));
+		return service.getCartList(member_id);
 	}
 }
