@@ -1,11 +1,8 @@
 package kr.ac.ync.domain;
 
 
-import java.sql.Timestamp;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
 import java.util.Date;
 import java.util.List;
 
@@ -30,13 +27,17 @@ public class MemberVO {
 	public void setMember_birthday(String getDate) throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		if(getDate.isEmpty()) {
-			this.member_birthday = null;
-			return;
-		}
+			this.member_birthday = new Date();
+		}else {
 		Date date = new Date(sdf.parse(getDate).getTime());
 		this.member_birthday = date;
+		}
 	}
 
+	public void setMember_birthday(Date date) {
+		this.member_birthday = date;
+		}
+	
 
 }
  

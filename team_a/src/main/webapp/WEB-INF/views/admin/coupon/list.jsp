@@ -38,8 +38,8 @@
 
 					<c:forEach items="${list}" var="cp">
 						<tr>
-							<td><c:out value="${ cp.cp_idx}"/></td>
-							<td><a class='move' href='<c:out value="${cp.cp_idx}"/>'><c:out value="${cp.cp_name}"/></a></td>
+							<td><a class='move' href='<c:out value="${cp.cp_idx}"/>'><c:out value="${ cp.cp_idx}"/></a></td>
+							<td><c:out value="${cp.cp_name}"/></td>
 							<td><c:out value="${cp.member_id}"/></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cp.cp_register_date}" /></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${cp.cp_end_day}" /></td>

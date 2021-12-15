@@ -1,7 +1,6 @@
 package kr.ac.ync.controller;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -60,13 +59,15 @@ public class MemberController {
 	public void register() {
 	}
 
-	@PostMapping({ "/register_insert", "/join_write" })
-//	@PreAuthorize("isAuthenticated()")
+
+	@PostMapping({ "/register", "/join_write" })
 	public String member_insert(HttpServletRequest request, MemberVO member, RedirectAttributes rttr)
 			throws ParseException {
 
 		List<AuthVO> list = new ArrayList<AuthVO>();
 		AuthVO vo = new AuthVO();
+		
+		if(member == null) {
 		vo.setMember_id(request.getParameter("id"));
 		vo.setAuth(request.getParameter("auto"));
 		list.add(vo);
@@ -103,12 +104,21 @@ public class MemberController {
 		member.setMember_phone(member_phone);
 		member.setMember_address(member_address);
 		member.setAuthList(list);
-
+		}else {
+			vo.setMember_id(member.getMember_id());
+			vo.setAuth(member.getAuth());
+			member.setMember_pass(pwencoder.encode(member.getMember_pass()));
+			if(member.getMember_birthday() == null)
+				member.setMember_birthday(new Date());
+		}
+		log.info( member.getMember_birthday());
 		log.info("register: " + member);
 		this.mapper.insertSelectKey(member);
 		rttr.addFlashAttribute("result", member.getMember_id());
-
-		return "redirect:/member/login";
+		if(vo.getAuth().equals("ROLE_ADMIN")) {
+			return "redirect:/admin/member/list";
+		}
+		return "redirect:/login";
 	}
 
 	@GetMapping({ "/get", "/modify" })

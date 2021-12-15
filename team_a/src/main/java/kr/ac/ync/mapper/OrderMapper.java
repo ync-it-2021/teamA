@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import kr.ac.ync.domain.CartVO;
 import kr.ac.ync.domain.Criteria;
 import kr.ac.ync.domain.OrderVO;
 
@@ -23,4 +24,6 @@ public interface OrderMapper {
 	public int update(String od_status);
 	
 	public int delete(int od_idx);
+	
+	public List<CartVO> getCart(String member_id);
 }

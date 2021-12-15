@@ -22,6 +22,26 @@
 		</trim>
 	</sql>
 	
+<select id="getCart" resultType="kr.ac.ync.domain.CartVO">
+		SELECT  prd.prd_idx,
+		        prd.prd_name,
+		        prd.prd_amount,
+		        prd.prd_img1,
+		        od.od_idx,
+		        od.od_date,
+		        od.od_amount,
+		        od.od_discount,
+		        od.od_details,
+		        od.od_sale_prices
+		FROM    product prd,
+		        orders  od
+		WHERE   prd.prd_idx = od.prd_idx
+		AND     od.od_status LIKE '장바구니'
+		AND		od.member_id LIKE #{member_id}
+	</select>
+	
+	
+	
 	<select id="read" resultType="kr.ac.ync.domain.OrderVO">
 		SELECT	*
 		FROM 	orders

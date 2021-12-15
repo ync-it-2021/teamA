@@ -83,6 +83,7 @@
 		<![CDATA[
 	 		SELECT	review_idx,
 					order_idx,
+					member_id,
 					prd_idx,
 					review_contents,
 					review_date,
@@ -92,6 +93,7 @@
 	      					rownum rn,
 	      					review_idx,
 							order_idx,
+							member_id,
 							prd_idx,
 							review_contents,
 							review_date,

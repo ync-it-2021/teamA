@@ -34,7 +34,41 @@
 	<script language="javascript" src="../resources/js/common.js" charset="euc-kr"></script>
 	<script language="javascript" src="../resources/js/commonweb.js" charset="euc-kr"></script>
 	<script type="text/javascript" src="../resourceas/js/font-awesome.min"></script>
+	
+	<script>
+	$(document).ready(function () {
+		getList();
+	});
+	
+	function getList() {
+		let member_id="";
+		  <sec:authorize access="isAuthenticated()">
+		   member_id = '<sec:authentication property="principal.username"/>'||null;   
+			</sec:authorize>
+		$.ajax({
+			url:"/order/cart",
+			type:"get",
+			data:{member_id : member_id},
+			dataType:"JSON",
+			success:function(data){
+				let str = "";
+				for (var i = 0, len = data.length || 0; i < len; i++) {
+					str +="<li ><img class='left'src='/resources/upload/"+data[i].prd_img1+"' style='width=25px'>";
+					str +="<ul><li>"+data[i].od_amount+"</li>";
+					str +="<li><input value='"+data[i].prd_name+"' readonly='readonly'/></li></ul></li>";
+				}
+				$(".cart_list").html(str);
+				console.log(str);
+				
+			},
+		error:function(request, status, error ){
+			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 
+		}
+		
+		});
+	}
+	</script>
 
 	<!-- 메뉴바  네비-->
 	<script type="text/javascript">
@@ -63,7 +97,6 @@
 	</script>
 </head>
 <body>
-<header>
 	<header>
 		<div class="only-pc">
 			<div class="top-wrapper">
@@ -72,15 +105,16 @@
 					
 					<sec:authorize access="isAuthenticated()">
 						<li><a href="/customLogout">LOGOUT</a></li>
+						<li><a href="/orderlist">MY PAGE</a></li>
+						<li><span><img src="../resources/images/mnb_wish_icon.png"></span><a href="wish">WISH LIST</a></li>
+						<li><span><img src="../resources/images/mnb_cart_icon.png"></span><a
+								href="shoppingbasket">CART</a></li>
 					</sec:authorize>
 					<sec:authorize access="isAnonymous()">
 						<li><a href="/login">LOGIN</a></li>
+						<li><a href="/member/join_write">JOIN</a></li>
 					</sec:authorize>
-						<li><a href="join_agreement.jsp">JOIN</a></li>
-						<li><a href="/orderlist">MY PAGE</a></li>
-						<li><span><img src="../resources/images/mnb_wish_icon.png"></span><a href="wish.jsp">WISH LIST</a></li>
-						<li><span><img src="../resources/images/mnb_cart_icon.png"></span><a
-								href="shoppingbasket.jsp">CART</a></li>
+						
 				</ul>
 			</div>
 			<div class="bottom-wrapper clearfix pc-width">
@@ -92,63 +126,57 @@
 						<li class="cart-icon "> <a class="nejongbo" href="orderlist.jsp"><img  src="../resources/images/user.png" ><p style="text-align:center;">MY</p></a>
 
 							<div class="cart-hover">
-							<ul class="cotana">
-							<a href="orderlist.jsp" class="hel"><span>주문내역</span></a>
-							<a href="" class="hel"><span>배송</span></a>
-							<a href="wish.jsp" class="hel"><span>위시리스트</span></a>
-							<a href="qna.jsp" class="hel"><span>1:1문의</span></a>
-							<a href="myreview_view.jsp" class="hel"><span>my후기</span></a>
-									
+							<!--로그인 된 화면  -->
+							<sec:authorize access="isAuthenticated()">
+								<ul class="cotana">
+									<li><a href="orderlist.jsp" class="hel"><span>주문내역</span></a></li>
+									<li><a href="" class="hel"><span>배송</span></a></li>
+									<li><a href="wish.jsp" class="hel"><span>위시리스트</span></a></li>
+									<li><a href="qna.jsp" class="hel"><span>1:1문의</span></a></li>
+									<li><a href="myreview_view.jsp" class="hel"><span>my후기</span></a></li>
 								</ul>
+								</sec:authorize>
+								<!--로그인 안된 화면  -->
+								<sec:authorize access="isAnonymous()">
 								<div class="select-items">							
 								</div>
-										<hr style="size=20px;">
+								<hr style="size=20px;">
 								<div class="select-button">
-								<pre></pre>
-										<span > <a href="login"  class="primary-btn view-card">로그인</a> </span>
-									
-									 <span> <a href="join_write.jsp" class="primary-btn view-card">회원가입</a>  </span>
+									<pre></pre>
+									<span > <a href="/login"  class="primary-btn view-card">로그인</a> </span>
+									<span> <a href="/member/join_write" class="primary-btn view-card">회원가입</a></span>
 								</div>
+								</sec:authorize>
 							</div>
 
 <!-- 헤더 1차 수정 수정완료시 삭제합니다 .  -->
 						</li>
-					<li class="cart-icon "> <a class="nejongbo" href="shoppingbasket.jsp"><img src="../resources/images/shopping-cart.png"style="margin-right:8px;"><p  style="text-align:center;"> cart</p></a>
-						
+					<li class="cart-icon "><a class="nejongbo" href="shoppingbasket.jsp"><img src="../resources/images/shopping-cart.png"style="margin-right:8px;"></a>
+						<p  style="text-align:center;"> CART </p>
 								<div class="cart-hover">
-								<div class="select-items">
-									<table>
-										<tbody>
-											<tr>
-												<td class="si-pic"><img src="img/product/product-1.jpg" alt=""></td>
-												<td class="si-text">
-
-												</td>
-												<td class="si-close">
-													<i class="ti-close"></i>
-												</td>
-											</tr>
-											<tr>
-												<td class="si-pic"><img src="../resources/images/select-product-2.jpg" alt=""></td>
-
-												<td class="si-close">
-													<i class="ti-close"></i>
-												</td>
-											</tr>
-										</tbody>
-									</table>
+								<sec:authorize access="isAuthenticated()">
+									<div class="select-items">
+										<ul class="cart_list">
+										</ul>
+									</div>
+									</sec:authorize>
+									<sec:authorize access="isAnonymous()">
+										<h5> 로그인 후 보실수 있습니다.</h5>
+									</sec:authorize>
 								</div>
-<h5> 로그인 후 보실수 있습니다.</h5>
 						</li>
-						
-				
-			
-						<li><a href="mycoupon.jsp"><img src="../resources/images/cupone.png" style="margin-right:8px;"><p style="text-align:center;">cupon</p></a></li>
+
+						<li>
+						<a href="mycoupon.jsp">
+						<img src="../resources/images/cupone.png" style="margin-right:8px;"/>
+						</a>
+						<p style="text-align:center;">cupon</p>
+						</li>
 					</ul>
 					<!-- 우측 이벤트 부분 제외  -->
 				</div>
 
-				<div style="margin-top: 10px;" id="top-logo" class="float_left"><a href="index.jsp"><img
+				<div style="margin-top: 10px;" id="top-logo" class="float_left"><a href="/"><img
 							src="../resources/images/img_logo_old2.png" alt="Montraum" /></a></div>
 				<!-- 검색바 부분 입니다  -->
 				<div id="header-right" class="float_left">
@@ -159,7 +187,7 @@
 							<input type="image" src="../resources/images/blt_search.png" class="btn-search2" alt="검색버튼"
 								onClick="search_submit1()" />
 						</form>
-						<script language="javascript">
+						<script>
 							function search_submit1() {
 								str_search = document.searchForm1.search.value.trim();
 								if ('검색어를 입력하세요.' == str_search) {

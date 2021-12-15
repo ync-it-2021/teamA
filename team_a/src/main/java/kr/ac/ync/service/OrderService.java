@@ -2,8 +2,8 @@ package kr.ac.ync.service;
 
 import java.util.List;
 
+import kr.ac.ync.domain.CartVO;
 import kr.ac.ync.domain.Criteria;
-import kr.ac.ync.domain.EventVO;
 import kr.ac.ync.domain.OrderVO;
 
 public interface OrderService {
@@ -17,4 +17,6 @@ public interface OrderService {
 	public boolean remove(int od_idx);
 
 	boolean modify(String status);
+	
+	public List<CartVO> getCartList(String member_id);
 }
