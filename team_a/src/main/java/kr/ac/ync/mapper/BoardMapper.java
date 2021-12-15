@@ -23,6 +23,8 @@ public interface BoardMapper {
 
 	public int getTotalCount(Criteria cri);
 	
+	public int idCheck(String memberId);
+	
 	// 2개 이상의 파라미터를 넘기기위해 @Param 사용. 댓글 추가/삭제 시 amount에 1/-1 값
 	public void updateCommentCnt(@Param("bd_idx") int bd_idx, @Param("amount") int amount);
 }

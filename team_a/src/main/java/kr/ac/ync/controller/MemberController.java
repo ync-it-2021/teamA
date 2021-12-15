@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.ac.ync.domain.AuthVO;
@@ -136,7 +138,31 @@ public class MemberController {
 		rttr.addFlashAttribute("result", member_id);
 		return "redirect:/admin/member/list";
 	}
-
+	
+	@RequestMapping(value = "/user_id_check")
+	@ResponseBody
+	public String user_id_sheck(MemberVO member, HttpServletRequest request) {
+		int result_idCheck = 1;
+		String member_id = request.getParameter("input_id");
+		
+		System.out.println(member_id);
+		
+		try { 
+			result_idCheck = mapper.id_Check(member_id);
+			System.out.println(result_idCheck);
+		} catch (Exception e) {
+			System.out.println("아이디 중복 검사 오류 발생");
+			e.printStackTrace();
+		}
+		
+		return String.valueOf(result_idCheck);
+		
+		 
+	}
+		
+	 // memberIdChkPOST() 종료	
+	
+	
 	@GetMapping("/pwsearch")
 	public String member_search(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) {
 		String ProcessGubun = request.getParameter("ProcessGubun");

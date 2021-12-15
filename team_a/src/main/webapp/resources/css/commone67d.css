@@ -557,7 +557,16 @@ html.mask, html.mask body { overflow: hidden !important; }
 	.item-table.type1 td { padding: 10px 0; }
 	
 	input.input4 { width: 35%;border: 1px solid #ccc; padding: 9px; margin-left: 3px; margin-right: 3px; font-size: 14px; }
-
+	/* 중복아이디 존재하지 않는경우 */
+	input.id_input_re_1{
+		color : green;
+		display : none;
+	}
+	/* 중복아이디 존재하는 경우 */
+	input.id_input_re_2{
+		color : red;
+		display : none;
+	}
 	/* 踰꾪듉 */
 	div.action-buttons span,
 	div.action-buttons a { padding: 7px 20px; font-size: 13px; }
