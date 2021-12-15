@@ -60,10 +60,9 @@ public class MemberController {
 
 	@PostMapping({ "/register_insert", "/join_write" })
 //	@PreAuthorize("isAuthenticated()")
-	public String member_insert(HttpServletRequest request, MemberVO member ,RedirectAttributes rttr) throws ParseException {
-		
-		
-		   
+	public String member_insert(HttpServletRequest request, MemberVO member, RedirectAttributes rttr)
+			throws ParseException {
+
 		List<AuthVO> list = new ArrayList<AuthVO>();
 		AuthVO vo = new AuthVO();
 		vo.setMember_id(request.getParameter("id"));
@@ -79,7 +78,6 @@ public class MemberController {
 		String member_birthday = year + "-" + month + "-" + day;
 		member.setMember_birthday(member_birthday);
 
-		
 		String email = request.getParameter("email");
 		String email2 = request.getParameter("email2");
 
@@ -94,14 +92,11 @@ public class MemberController {
 		String address2 = request.getParameter("address2");
 		String address3 = request.getParameter("address3");
 		String member_address = address + address2 + address3;
-		
-		 
 
-		 
 		member.setMember_id(member_id);
 		member.setMember_pass(member_pass);
 		member.setMember_name(member_name);
-		
+
 		member.setMember_email(member_email);
 		member.setMember_phone(member_phone);
 		member.setMember_address(member_address);
@@ -114,22 +109,16 @@ public class MemberController {
 		return "redirect:/member/login";
 	}
 
-	
-	
-	@GetMapping( {"/get","/modify"} )
+	@GetMapping({ "/get", "/modify" })
 	public void get(@RequestParam("mb_id") String member_id, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("/get");
 		model.addAttribute("member", this.mapper.read(member_id));
 	}
 
-
-
-
-	@PostMapping( "/modify" )
+	@PostMapping("/modify")
 	public String modify(MemberVO member, @ModelAttribute("cri") Criteria cri) {
-		
-		
+
 		member.setMember_pass(pwencoder.encode(member.getMember_pass()));
 
 		log.info("/modify");
@@ -137,44 +126,40 @@ public class MemberController {
 		return "redirect:/admin/member/get?mb_id=" + member.getMember_id();
 	}
 
+	@PostMapping("/delete")
+	public String delete(@RequestParam("member_id") String member_id, @ModelAttribute("cri") Criteria cri,
+			RedirectAttributes rttr) {
 
-
-	
-	@PostMapping( "/delete" )
-	public String delete(@RequestParam("member_id") String member_id, @ModelAttribute("cri") Criteria cri,RedirectAttributes rttr) {
-
-
-		log.info("/delete : "+ member_id);
+		log.info("/delete : " + member_id);
 		this.mapper.delete(member_id);
 
 		rttr.addFlashAttribute("result", member_id);
 		return "redirect:/admin/member/list";
 	}
-	
+
 	@GetMapping("/pwsearch")
-	public String member_search(HttpServletRequest request, MemberVO member ,RedirectAttributes rttr) {
+	public String member_search(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) {
 		String ProcessGubun = request.getParameter("ProcessGubun");
 		System.out.print(ProcessGubun);
 
 		if (ProcessGubun.equals("A")) { // find ID
-			
 
 			String search_gu = request.getParameter("search_gu");
 
 			String id1;
 			String id2;
 			String id = "1";
-			
+
 			if (id.equals(search_gu)) {
 
 				String member_name = request.getParameter("txUsername1_txt");
 
 				String member_email = request.getParameter("txEmail");
-				
+
 				member.setMember_name(member_name);
-				
+
 				member.setMember_email(member_email);
-			}else {
+			} else {
 
 				String member_name = request.getParameter("txUsername2_txt");
 
@@ -185,8 +170,39 @@ public class MemberController {
 				member.setMember_name(member_name);
 				member.setMember_phone(member_phone);
 			}
-		}
+		} else {
+
+			String search_gu = request.getParameter("search_gu");
+
+			String id1;
+			String id2;
+			String id = "1";
+
+			if (id.equals(search_gu)) {
+
+				String member_id = request.getParameter("txUserID1_pass");
+
+				String member_name = request.getParameter("txUsername1_pass_txt");
+				String member_email = request.getParameter("txEmail1_pass");
+				member.setMember_id(member_id);
+				member.setMember_name(member_name);
+				member.setMember_email(member_email);
+
+			} else { String member_id = request.getParameter("txUserID1_pass");
+
+			String member_name = request.getParameter("txUsername1_pass_txt");
+			String phone1 = request.getParameter("mobile1");
+			String phone2 = request.getParameter("mobile2");
+			String phone3 = request.getParameter("mobile3");
+			String member_phone = phone1 + "-" + phone2 + "-" + phone3;
 			
+			member.setMember_id(member_id);
+			member.setMember_name(member_name);
+			member.setMember_email(member_phone);
+
+			}
+		}
+
 		return "redirect:/login";
 	}
 }
