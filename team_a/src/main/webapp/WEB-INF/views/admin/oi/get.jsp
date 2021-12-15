@@ -64,7 +64,7 @@
       <!-- /.panel-heading -->
      
       <div class="panel-body" >      
-      	<textarea rows="5" cols="150" id="reply" placeholder="답장 내용" name="oi_reply"  readonly="readonly">${oi.oi_reply}</textarea>
+      	<textarea rows="5" cols="100%" id="reply" placeholder="답장 내용" name="oi_reply"  readonly="readonly">${oi.oi_reply}</textarea>
       	  <div class="form-group">
           <label>작성 시간 : </label> <fmt:formatDate type="both" value="${oi.oi_reply_date}" />
           <span id="reply_modify" style="font-size:small; float: right;">[수정하기] </span> 

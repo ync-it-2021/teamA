@@ -48,7 +48,7 @@
         
         <div class="form-group">
           <label>등록일  :  </label><fmt:formatDate pattern="yyyy-MM-dd" value="${member.member_birthday }" />
-           <input type ="hidden" class="form-control" name='member_birthday'value='<c:out value="${member.member_birthday }"/>' readonly="readonly">
+           <input type ="hidden" class="form-control" name='member_birthday'value='<c:out value="${member.member_birthday}"/>' readonly="readonly">
         </div>
         
         <div class="form-group">
@@ -193,19 +193,21 @@ function getList(pageNum) {
 		success:function(data){
 				for (var i = 0, len = data.length || 0; i < len; i++) {
 				if(ck == "review"){
-				str +="<tr><td class='left clearfix' data-rno='"+data[i].review_idx+"'>"+data[i].prd_idx+"</td>";
-				str +="<td>"+data[i].order_idx+"</td>";
+				str +="<tr><td class='left clearfix' data-rv='"+data[i].prd_idx+"'>"+data[i].prd_idx+"</td>";
+				str +="<td data-od='"+data[i].order_idx+"'>"+data[i].order_idx+"</td>";
 				str +="<td>"+data[i].review_contents+"</td>";
 				str +='<td>'+displayTime(data[i].review_date)+'</td>';
 				str +="<td>"+data[i].review_point+"</td></tr>";
 				}else if(ck == "comment"){
-					str +="<tr><td class='left clearfix' data-rno='"+data[i].cm_idx+"'>"+data[i].bd_idx+"</td>";
+					str +="<tr><td class='left clearfix' data-cm='"+data[i].bd_idx+"'>"+data[i].bd_idx+"</td>";
 					str +="<td>"+data[i].cm_contents+"</td>";
 					str +='<td>'+displayTime(data[i].cm_date)+'</td>';
-					if(data[i].cm_hidden == "Y"){
-						str +='<td>Y</td>';
+					if(data[i].cm_del == "Y"){
+						str +='<td>삭제</td>';
+					}else if(data[i].cm_hidden == 'N'){
+						str +='<td>공개</td>';
 					}else{
-						str +='<td>N</td>';
+						str +='<td>숨김</td>';
 					}
 				}
 			}
@@ -243,60 +245,20 @@ $(document).ready(function () {
     
   
     
-	//댓글 조회 클릭 이벤트 처리 
-    $(".chat").on("click", "li", function(e){
-      
-		let rno = $(this).data("rno");
-		console.log(rno);
-		
-		reviewService.get(rno, function(reply){
+	//해당 idx번호 클릭시 해당 상세정보 페이지로 이동
+    $(".chat").on("click", "td", function(e){
+		let movePage = $(this).data();
+		console.log(movePage);
+		if(movePage.cm != null){
+			location.href="/admin/board/get?bd="+movePage.cm;
+		}else if(movePage.rv != null){
+			location.href="/admin/product/get?prd="+movePage.rv;
+		}else if(movePage.od != null){
+			location.href="/admin/order/get?od="+movePage.od;
+		}
 	
-			modalInputReply.val(reply.reply);
-			modalInputReplyer.val(reply.replyer);
-			modalInputReplyDate.val(reviewService.displayTime( reply.replyDate)).attr("readonly","readonly");
-			modal.data("rno", reply.rno);
-			
-			modal.find("button[id !='modalCloseBtn']").hide();
-			modalModBtn.show();
-			modalRemoveBtn.show();
-			
-			$(".modal").modal("show");
-		});
 	});
 	
-
-	
-	// 댓글 수정 이벤트. security 적용 후
-	modalModBtn.on("click", function(e){
-		
-		let originalReplyer = modalInputReplyer.val();
-		
-		let reply = {
-				rno:modal.data("rno"), 
-				reply: modalInputReply.val(),
-				replyer: originalReplyer
-				};
-	  
-		if(!replyer){
-			alert("로그인후 수정이 가능합니다.");
-			modal.modal("hide");
-			return;
-		}
-
-		console.log("Original Replyer: " + originalReplyer);
-		
-		if(replyer  != originalReplyer){
-			alert("자신이 작성한 댓글만 수정이 가능합니다.");
-			modal.modal("hide");
-			return;
-		}
-		  
-		reviewService.update(reply, function(result){
-			alert(result);
-			modal.modal("hide");
-			showList(1);
-		});
-	});
 
 	// 댓글 삭제 이벤트
 	modalRemoveBtn.on("click", function (e){
