@@ -20,7 +20,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping({"/order/*","/admin/order/*"})
+@RequestMapping({"/order/*","/mypage/orderlist","/admin/order/*"})
 public class OrderController {
 
 	@Autowired
@@ -35,6 +35,17 @@ public class OrderController {
 		log.info("total: " + total);
 		model.addAttribute("list", service.getListWithPaging(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
+	}
+	@GetMapping("")
+	public String memberList(Criteria cri, Model model) {
+
+		log.info("list: " + cri);
+
+		int total = service.getTotal(cri);
+		log.info("total: " + total);
+		model.addAttribute("list", service.getListWithPaging(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		return "/mypage/orderlist";
 	}
 	
 	@GetMapping( "/get" )

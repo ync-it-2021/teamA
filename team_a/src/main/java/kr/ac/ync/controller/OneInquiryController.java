@@ -18,7 +18,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping({"/oi/*","/admin/oi/*"})
+@RequestMapping({"/mypage/qna","/admin/oi/*"})
 public class OneInquiryController {
 	
 	@Value("${globalConfig.uploadPath}")
@@ -26,6 +26,18 @@ public class OneInquiryController {
 	
 	@Autowired
 	private OneInquiryService service;
+	 
+	@GetMapping("")
+	public String memberList(Criteria cri, Model model) {
+
+		log.info("list: " + cri);
+
+		int total = service.getTotal(cri);
+		log.info("total: " + total);
+		model.addAttribute("list", service.getListWithPaging(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		return "mypage/qna";
+	}
 	
 	
 	@GetMapping("/list")

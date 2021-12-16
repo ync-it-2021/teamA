@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +29,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping({ "/admin/member/*", "/member/*" })
+@RequestMapping({ "/admin/member/*","/mypage/*","/join/*"})
 public class MemberController {
 
 	@Autowired
@@ -40,7 +41,7 @@ public class MemberController {
 	public MemberController(MemberMapper mapper) {
 		this.mapper = mapper;
 	}
-
+	//어드민만 사용가능하도록 수정해야 함
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model) {
 
@@ -52,19 +53,14 @@ public class MemberController {
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 
 	}
-
-	// 글 등록 페이징
+	//회원 가입
 	@GetMapping({ "/register", "/join_write" })
 	public void register() {
 	}
 
 
-	@PostMapping({ "/register", "/join_write" })
+	@RequestMapping({ "/register", "/join_write" })
 	public String member_insert(HttpServletRequest request, MemberVO member ,RedirectAttributes rttr) throws ParseException {
-		
-		
-		
-		
 			log.info("front");
 		List<AuthVO> list = new ArrayList<AuthVO>();
 		AuthVO vo = new AuthVO();
@@ -99,17 +95,15 @@ public class MemberController {
 	}
 
 	
-	
+	//멤버와 어드민만 사용 가능
 	@GetMapping( {"/get","/modify"} )
 	public void get(@RequestParam("mb_id") String member_id, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("/get");
 		model.addAttribute("member", this.mapper.read(member_id));
 	}
-
-
-
-
+	
+	
 	@PostMapping( "/modify" )
 	public String modify(MemberVO member, @ModelAttribute("cri") Criteria cri) {
 		
@@ -120,10 +114,13 @@ public class MemberController {
 		this.mapper.update(member);
 		return "redirect:/admin/member/get?mb_id=" + member.getMember_id();
 	}
-
-
-
+	//프론트 회원탈퇴 이동 화면
+	@GetMapping( "/drawal" )
+	public String drawal() {
+		return "/mypage/member_Withdrawal";
+	}
 	
+	//회원 탈퇴
 	@PostMapping( "/delete" )
 	public String delete(@RequestParam("member_id") String member_id, @ModelAttribute("cri") Criteria cri,RedirectAttributes rttr) {
 
@@ -135,6 +132,7 @@ public class MemberController {
 		return "redirect:/admin/member/list";
 	}
 	
+	//아이디 중복 체크 
 	@RequestMapping(value = "/user_id_check")
 	@ResponseBody
 	public String user_id_sheck(MemberVO member, HttpServletRequest request) {
@@ -152,11 +150,19 @@ public class MemberController {
 		}
 		
 		return String.valueOf(result_idCheck);
-		
-		 
 	}
 		
 	 // memberIdChkPOST() 종료	
+	
+	//멤버 이름 가져오기
+	@RequestMapping(value = "/getUserName/{id}",produces = "application/text; charset=UTF-8")
+	public @ResponseBody String getUserName(@PathVariable("id") String member_id) {
+		log.info(mapper.read(member_id).getMember_name());
+		return mapper.read(member_id).getMember_name();
+//		return member_id;
+	}
+	
+	
 	
 	@GetMapping("/pwsearch")
 	public String member_search(HttpServletRequest request, MemberVO member ,RedirectAttributes rttr) {
@@ -196,4 +202,7 @@ public class MemberController {
 			
 		return "redirect:/login";
 	}
+	
+	
+	
 }
