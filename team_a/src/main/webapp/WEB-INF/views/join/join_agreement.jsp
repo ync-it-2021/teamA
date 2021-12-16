@@ -5,7 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<jsp:include page="includes/header.jsp"/>
+<jsp:include page="../includes/header.jsp"/>
 </head>
 <body>
 <!DOCTYPE html>
@@ -44,7 +44,7 @@
 		<h3 class="title" style="padding-top:60px;">몬트라움 회원가입</h3>
 		<p class="desc">몬트라움 멤버십 회원가입을 합니다.<p>
 		<div class="article-wrapper">
-			<input type="button" class="btn-ws-join" value="회원가입" onclick="location.href='join_write.html'" style="cursor:pointer;" />
+			<input type="button" class="btn-ws-join" value="회원가입" onclick="location.href='/member/join_write'" style="cursor:pointer;" />
 		</div>
 	
 
@@ -54,7 +54,7 @@
 <div style="height:175px;">
 </section>
 
-	<jsp:include page="includes/footer.jsp"/>
+	<jsp:include page="../includes/footer.jsp"/>
 
 
 </html>
