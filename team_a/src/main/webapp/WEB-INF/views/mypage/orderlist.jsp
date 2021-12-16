@@ -1,82 +1,69 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <!DOCTYPE html>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>::¸óÆ®¶ó¿ò:: ÇÁ¸®¹Ì¾ö Æê¿ëÇ° Àü¹®¼îÇÎ¸ô</title>
-	<jsp:include page="includes/header.jsp"/>
-	<body>
+	<title>::ëª¬íŠ¸ë¼ì›€:: í”„ë¦¬ë¯¸ì—„ íŽ«ìš©í’ˆ ì „ë¬¸ì‡¼í•‘ëª°</title>
+	<jsp:include page="../includes/header.jsp"/>
+<script>
+$(document).ready(function(){
+	$.ajax({
+		url:'/mypage/getUserName/<sec:authentication property="principal.username"/>',
+		type:"get",
+		success:function(data){
+			console.log(data);
+			$(".welcome-member").html(data + " ê³ ê°ë‹˜, í™˜ì˜í•©ë‹ˆë‹¤.");
+		}
+	});
+});
 
+</script>
 	
-	<style>
+<style>
 #popup-member-join-check { max-width: 540px; padding-top:50px;padding-bottom:30px;}
 #popup-member-join-check .ws-join {text-align:center;border-bottom:1px solid #000;padding-bottom: 34px;margin-bottom: 26px; margin-top: 26px;}
 #popup-member-join-check .ws-join .title {font-size:26px;}
 #popup-member-join-check .ws-join .desc {font-size:13px; color:#555;}
 #popup-member-join-check .ws-join .btn-ws-join {font-weight: 700;font-size: 15px;margin-top: 16px;border: none;display: inline-block;background-color: #000;color: #fff;padding: 16px 0px;width: 289px;}
-
-
-
+#navigation-bar>a, #navigation-bar{color: gray;};
 </style>
-
-
-
-
 </head>
 <body>
 
 <script language="javascript" src="../resources/js/top.js"></script>
 <script language="javascript" src="../resources/js/_vir0001/code.js" charset="euc-kr"></script>
 
-<!--Content¿µ¿ª½ÃÀÛ-->
+<!--Contentì˜ì—­ì‹œìž‘-->
 		<section>
 			<div id="page-member-order-list" class="section-member pc-width">
-				<div id="navigation-bar"><script>document.write(navistr)</script></div>
-				<h2 class="page-title"><script>document.write(siteTitle)</script></h2>
 				
-	<div class="member-nav-wrapper">
-	<ul class="member-nav open-sub-menu"> <!-- ³ªÀÇ ¼îÇÎÇöÈ²ÀÏ ¶§ open-sub-menu class¸¦ Ãß°¡ -->
-		<li class="active">
-			<a href="orderlist.jsp">³ªÀÇ ¼îÇÎÇöÈ²</a>
-			<div class="member-sub-nav">
-				<a href="orderlist.jsp" class="active">ÁÖ¹®³»¿ª</a>
-				<a href="shoppingbasket.jsp">Àå¹Ù±¸´Ï</a>
-				<a href="wish.jsp">À§½Ã¸®½ºÆ®</a>
-				<a href="mycoupon.jsp">ÄíÆù</a>
-		
-			</div>
-		</li>
-		<li><a href="member_Modify.jsp">°³ÀÎÁ¤º¸¼öÁ¤</a></li>
-		<li class="hide-mobile"><a href="qna.jsp">1:1¹®ÀÇ</a></li>
-		<li><a href="myreview_view.jsp">³ªÀÇÈÄ±â</a></li>
-		<li><a href="member_Withdrawal.jsp">È¸¿øÅ»Åð</a></li>
-	</ul>
-	</div>
-
+	<jsp:include page="myPageNavigation.jsp"></jsp:include>
 	
 	<div class="top-summary">
-		<p class="welcome-member"> name °í°´´Ô, È¯¿µÇÕ´Ï´Ù.</p>
+		<p class="welcome-member"></p>
 		<div class="top-infobox2 my-membership">
 			<div class="level-box">
         <div class="level-blt"><img src="../resources/images/blt2_membership_1.png"/></div>
         <div class="level-info">
-          <div class="title-name only-pc">11¿ù È¸¿øµî±Þ</div>
-          <div class="title-name only-mobile">11¿ù<br/>È¸¿øµî±Þ</div>
-          <div class="level-name only-pc" style="width:200px;">½Å±Ô ÆêÆÔ<br/><span class="membership-view" style="padding: 4px 7px;background: #000;"><a href="/about/members.asp" style="color: #fff;font-weight: bold;text-decoration: none;">È¸¿øÇýÅÃ È®ÀÎ ¹× ÄíÆù´Ù¿î·Îµå</a></span></div>
-          <div class="level-name only-mobile">½Å±Ô ÆêÆÔ<div class="level-date only-mobile">21.4.26 ~ 21.10.25</div>
-          <br/><span class="membership-view" style="padding: 4px 7px;background: #000;"><a href="/about/members.asp" style="color: #fff;font-weight: bold;">È¸¿øÇýÅÃ È®ÀÎ ¹× ÄíÆù´Ù¿î·Îµå</a></span></div>
+          <div class="title-name only-pc">11ì›” íšŒì›ë“±ê¸‰</div>
+          <div class="title-name only-mobile">11ì›”<br/>íšŒì›ë“±ê¸‰</div>
+          <div class="level-name only-pc" style="width:200px;">ì‹ ê·œ íŽ«íŒ¸<br/><span class="membership-view" style="padding: 4px 7px;background: #000;"><a href="/about/members.asp" style="color: #fff;font-weight: bold;text-decoration: none;">íšŒì›í˜œíƒ í™•ì¸ ë° ì¿ í°ë‹¤ìš´ë¡œë“œ</a></span></div>
+          <div class="level-name only-mobile">ì‹ ê·œ íŽ«íŒ¸<div class="level-date only-mobile">21.4.26 ~ 21.10.25</div>
+          <br/><span class="membership-view" style="padding: 4px 7px;background: #000;"><a href="/about/members.asp" style="color: #fff;font-weight: bold;">íšŒì›í˜œíƒ í™•ì¸ ë° ì¿ í°ë‹¤ìš´ë¡œë“œ</a></span></div>
         </div>
-        <div class="level-date only-pc">£ªµî±Þ»êÁ¤±â°£ - 2021.4.26 ~ 2021.10.25</div>
+        <div class="level-date only-pc">ï¼Šë“±ê¸‰ì‚°ì •ê¸°ê°„ - 2021.4.26 ~ 2021.10.25</div>
       </div>
       <div class="level-box2">
-        <div class="order-buy-info only-pc"><span class="highlight">ÃÖ±Ù 6°³¿ù°£ ÁÖ¹®±Ý¾× <span style='color:#c00000;font-weight:bold;'>0</span>¿ø</span></div>
-        <div class="order-buy-info only-mobile"><span class="highlight">ÃÖ±Ù 6°³¿ù°£ ÁÖ¹®±Ý¾× <span style='color:#c00000;font-weight:bold;'>0</span>¿ø</span></div>
+        <div class="order-buy-info only-pc"><span class="highlight">ìµœê·¼ 6ê°œì›”ê°„ ì£¼ë¬¸ê¸ˆì•¡ <span style='color:#c00000;font-weight:bold;'>0</span>ì›</span></div>
+        <div class="order-buy-info only-mobile"><span class="highlight">ìµœê·¼ 6ê°œì›”ê°„ ì£¼ë¬¸ê¸ˆì•¡ <span style='color:#c00000;font-weight:bold;'>0</span>ì›</span></div>
       
-        <div class="amount-info only-mobile"><span class="highlight">[<span style='color:#ae8346;font-weight:bold;'>ÀÏ¹Ý ÆêÆÔ</span>]±îÁö <span style='color:#c00000;font-weight:bold;'>1</span>È¸ ±¸¸Å ³²¾Ò½À´Ï´Ù.</span></div>
-        <div class="diff-info only-pc">*µî±Þ»êÁ¤ ±âÁØ¿¡ µû¸¥ ¿¹»ó ±Ý¾×À¸·Î ÃÑÁÖ¹®±Ý¾×°ú ´Ù¸¦ ¼ö ÀÖ½À´Ï´Ù.</div>
-        <div class="diff-info only-mobile">µî±Þ»êÁ¤ ±âÁØ¿¡ µû¸¥ ¿¹»ó±Ý¾×À¸·Î ÃÑÁÖ¹®±Ý¾×°ú ´Ù¸¦ ¼ö ÀÖ½À´Ï´Ù.</div>
+        <div class="amount-info only-mobile"><span class="highlight">[<span style='color:#ae8346;font-weight:bold;'>ì¼ë°˜ íŽ«íŒ¸</span>]ê¹Œì§€ <span style='color:#c00000;font-weight:bold;'>1</span>íšŒ êµ¬ë§¤ ë‚¨ì•˜ìŠµë‹ˆë‹¤.</span></div>
+        <div class="diff-info only-pc">*ë“±ê¸‰ì‚°ì • ê¸°ì¤€ì— ë”°ë¥¸ ì˜ˆìƒ ê¸ˆì•¡ìœ¼ë¡œ ì´ì£¼ë¬¸ê¸ˆì•¡ê³¼ ë‹¤ë¥¼ ìˆ˜ ìžˆìŠµë‹ˆë‹¤.</div>
+        <div class="diff-info only-mobile">ë“±ê¸‰ì‚°ì • ê¸°ì¤€ì— ë”°ë¥¸ ì˜ˆìƒê¸ˆì•¡ìœ¼ë¡œ ì´ì£¼ë¬¸ê¸ˆì•¡ê³¼ ë‹¤ë¥¼ ìˆ˜ ìžˆìŠµë‹ˆë‹¤.</div>
       </div>
 		</div>
 
@@ -84,29 +71,29 @@
 			<div class="my-infobox my-balance2 my-info">
 			  <img class="only-pc" src="../resources/images/balance.png" style="float: left;margin-top: -11px;">
 			  <img class="only-mobile" src="../resources/images/balance.png" style="float: left;width: 35px;">
-				<div class="name only-pc" style="float: left;padding: 25px 10px;font-size: 15px;">¿¹Ä¡±Ý<br/><a href="/common/process/mypoint.asp">0</a> ¿ø</div>
-				<div class="name only-mobile" style="float: left;">¿¹Ä¡±Ý<br/><a href="/common/process/mypoint.asp">0</a> ¿ø</div>
+				<div class="name only-pc" style="float: left;padding: 25px 10px;font-size: 15px;">ì˜ˆì¹˜ê¸ˆ<br/><a href="/common/process/mypoint.asp">0</a> ì›</div>
+				<div class="name only-mobile" style="float: left;">ì˜ˆì¹˜ê¸ˆ<br/><a href="/common/process/mypoint.asp">0</a> ì›</div>
 			</div>
 
       <div class="my-infobox my-coupon2 my-info">
         <img class="only-pc" src="../resources/images/coupon.png" style="float: left;">
         <img class="only-mobile" src="../resources/images/coupon.png" style="float: left;width: 35px;">
-        <div class="name only-pc" style="float: left;padding: 25px 10px;font-size: 15px;">ÄíÆù<br/><a href="/common/process/mycoupon.asp">0</a> Àå</div>
-        <div class="name only-mobile" style="float: left;">ÄíÆù<br/><a href="/common/process/mycoupon.asp">0</a> Àå</div>
+        <div class="name only-pc" style="float: left;padding: 25px 10px;font-size: 15px;">ì¿ í°<br/><a href="/common/process/mycoupon.asp">0</a> ìž¥</div>
+        <div class="name only-mobile" style="float: left;">ì¿ í°<br/><a href="/common/process/mycoupon.asp">0</a> ìž¥</div>
       </div>
 
 			<div class="my-infobox my-wish2 my-info">
 			  <img class="only-pc" src="../resources/images/wish.png" style="float: left;">
 			  <img class="only-mobile" src="../resources/images/wish.png" style="float: left;width: 35px;">
-				<div class="name only-pc" style="float: left;padding: 25px 10px;font-size: 15px;">À§½Ã¸®½ºÆ®<br/><a href="/common/process/wish_list.asp">0</a> °³</div>
-				<div class="name only-mobile" style="float: left;">À§½Ã¸®½ºÆ®<br/><a href="/common/process/wish_list.asp">0</a> °³</div>
+				<div class="name only-pc" style="float: left;padding: 25px 10px;font-size: 15px;">ìœ„ì‹œë¦¬ìŠ¤íŠ¸<br/><a href="/common/process/wish_list.asp">0</a> ê°œ</div>
+				<div class="name only-mobile" style="float: left;">ìœ„ì‹œë¦¬ìŠ¤íŠ¸<br/><a href="/common/process/wish_list.asp">0</a> ê°œ</div>
 			</div>
 
 			<div class="my-infobox my-cart2 my-info">
 			  <img class="only-pc" src="../resources/images/cart.png" style="float: left;margin-top: -5px;">
 			  <img class="only-mobile" src="../resources/images/cart.png" style="float: left;width: 35px;">
-        <div class="name only-pc" style="float: left;padding: 25px 10px;font-size: 15px;">Àå¹Ù±¸´Ï<br/><a href="/common/process/order_list.asp?iniCategory=0">0</a> °³</div>
-        <div class="name only-mobile" style="float: left;">Àå¹Ù±¸´Ï<br/><a href="/common/process/order_list.asp?iniCategory=0">0</a> °³</div>
+        <div class="name only-pc" style="float: left;padding: 25px 10px;font-size: 15px;">ìž¥ë°”êµ¬ë‹ˆ<br/><a href="/common/process/order_list.asp?iniCategory=0">0</a> ê°œ</div>
+        <div class="name only-mobile" style="float: left;">ìž¥ë°”êµ¬ë‹ˆ<br/><a href="/common/process/order_list.asp?iniCategory=0">0</a> ê°œ</div>
       </div>
 		</div>
 
@@ -115,37 +102,37 @@
 
 
 				<div class="contents-wrapper item-list" id="item-list">
-					<h3 class="sub-title">ÁÖ¹®³»¿ª</h3>
-					<span class="only-pc">°í°´´Ô²²¼­ ÁÖ¹®ÇÏ½Å Á¤º¸¿Í Á¦Ç°ÀÇ ¹è¼Û¿©ºÎ¸¦ Á¶È¸ÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.</span>
-          <span class="only-mobile">ÁÖ¹®ÇÏ½Å Á¤º¸¿Í Á¦Ç°ÀÇ ¹è¼Û¿©ºÎ¸¦ Á¶È¸</span>
+					<h3 class="sub-title">ì£¼ë¬¸ë‚´ì—­</h3>
+					<span class="only-pc">ê³ ê°ë‹˜ê»˜ì„œ ì£¼ë¬¸í•˜ì‹  ì •ë³´ì™€ ì œí’ˆì˜ ë°°ì†¡ì—¬ë¶€ë¥¼ ì¡°íšŒí•˜ì‹¤ ìˆ˜ ìžˆìŠµë‹ˆë‹¤.</span>
+          <span class="only-mobile">ì£¼ë¬¸í•˜ì‹  ì •ë³´ì™€ ì œí’ˆì˜ ë°°ì†¡ì—¬ë¶€ë¥¼ ì¡°íšŒ</span>
           <div class="page-content-desc only-pc">
-            <span class="btn-write btn-up-right" id="searchDate3" name="searchDate3" onclick="location.href='buy_list.asp?searchDate=3';" style="right:215px;">ÃÖ±Ù3°³¿ù</span>
-            <span class="btn-write btn-up-right" id="searchDate6" name="searchDate6" onclick="location.href='buy_list.asp?searchDate=6';" style="right:100px;">ÃÖ±Ù6°³¿ù</span>
-            <span class="btn-write btn-up-right" id="searchDate12" name="searchDate12" onclick="location.href='buy_list.asp?searchDate=12';">ÃÖ±Ù1³â</span>
+            <span class="btn-write btn-up-right" id="searchDate3" name="searchDate3" onclick="location.href='buy_list.asp?searchDate=3';" style="right:215px;">ìµœê·¼3ê°œì›”</span>
+            <span class="btn-write btn-up-right" id="searchDate6" name="searchDate6" onclick="location.href='buy_list.asp?searchDate=6';" style="right:100px;">ìµœê·¼6ê°œì›”</span>
+            <span class="btn-write btn-up-right" id="searchDate12" name="searchDate12" onclick="location.href='buy_list.asp?searchDate=12';">ìµœê·¼1ë…„</span>
           </div>
           <div class="page-content-desc only-mobile">
-            <span class="btn-write btn-up-right" id="searchDate3" name="searchDate3" onclick="location.href='buy_list.asp?searchDate=3';" style="right:152px;top:-60px;">ÃÖ±Ù3°³¿ù</span>
-            <span class="btn-write btn-up-right" id="searchDate6" name="searchDate6" onclick="location.href='buy_list.asp?searchDate=6';" style="right:70px;top:-60px;">ÃÖ±Ù6°³¿ù</span>
-            <span class="btn-write btn-up-right" id="searchDate12" name="searchDate12" onclick="location.href='buy_list.asp?searchDate=12';" style="top:-60px;">ÃÖ±Ù1³â</span>
+            <span class="btn-write btn-up-right" id="searchDate3" name="searchDate3" onclick="location.href='buy_list.asp?searchDate=3';" style="right:152px;top:-60px;">ìµœê·¼3ê°œì›”</span>
+            <span class="btn-write btn-up-right" id="searchDate6" name="searchDate6" onclick="location.href='buy_list.asp?searchDate=6';" style="right:70px;top:-60px;">ìµœê·¼6ê°œì›”</span>
+            <span class="btn-write btn-up-right" id="searchDate12" name="searchDate12" onclick="location.href='buy_list.asp?searchDate=12';" style="top:-60px;">ìµœê·¼1ë…„</span>
           </div>
 			
 					<div class="only-pc">
 					<table class="item-table type1">
 						<tr>
-							<th class="item-info">ÁÖ¹®ÀÏ½Ã</th>
-							<th class="order-no">ÁÖ¹®¹øÈ£</th>
-							<th class="count">°áÁ¦¹æ¹ý</th>
-							<th class="ship-status">ÁÖ¹®±Ý¾×</th>
-							<th class="action">ÁÖ¹®»óÅÂ</th>
+							<th class="item-info">ì£¼ë¬¸ì¼ì‹œ</th>
+							<th class="order-no">ì£¼ë¬¸ë²ˆí˜¸</th>
+							<th class="count">ê²°ì œë°©ë²•</th>
+							<th class="ship-status">ì£¼ë¬¸ê¸ˆì•¡</th>
+							<th class="action">ì£¼ë¬¸ìƒíƒœ</th>
 						</tr>
-						<!--³»¿ëÀÌ ¾øÀ»¶§ »ç¿ëÇØÁÖ¼¼¿ä
+						<!--ë‚´ìš©ì´ ì—†ì„ë•Œ ì‚¬ìš©í•´ì£¼ì„¸ìš”
 						<tr>
-							<td colspan="5">ÁÖ¹®ÇÏ½Å ³»¿ªÀÌ ¾ø½À´Ï´Ù.</td>
+							<td colspan="5">ì£¼ë¬¸í•˜ì‹  ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤.</td>
 						</tr>
 						-->
 
 			<tr>
-				<td colspan="5" class="empty">ÁÖ¹®ÇÏ½Å ³»¿ªÀÌ ¾ø½À´Ï´Ù.</td>
+				<td colspan="5" class="empty">ì£¼ë¬¸í•˜ì‹  ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤.</td>
 			</tr>
 
 					</table>
@@ -155,35 +142,35 @@
 					<table class="item-table type1">
 
 			<tr>
-				<td colspan="2" class="empty">ÁÖ¹®ÇÏ½Å ³»¿ªÀÌ ¾ø½À´Ï´Ù.</td>
+				<td colspan="2" class="empty">ì£¼ë¬¸í•˜ì‹  ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤.</td>
 			</tr>
 
 					</table>
 					</div>
-					<!-- PC ÆäÀÌÁö -->
+					<!-- PC íŽ˜ì´ì§€ -->
 					<div class="pagination1 only-pc">
 					<span class='btn-page prev'></span><span class='btn-page next'></span>
 					</div>
 
-					<!-- ¸ð¹ÙÀÏ ÆäÀÌÁö -->
+					<!-- ëª¨ë°”ì¼ íŽ˜ì´ì§€ -->
 					<div class="pagination2 only-mobile">
 						<span class='btn-page prev'></span><span class='btn-page next'></span>
 					</div>
 
 
 					<div class="notice-wrapper clearfix">
-						<h3>È®ÀÎÇØÁÖ¼¼¿ä</h3>
+						<h3>í™•ì¸í•´ì£¼ì„¸ìš”</h3>
 						<ul class="notice-list">
-							<li>ÃÖ±Ù 3°³¿ù µ¿¾ÈÀÇ ÁÖ¹®ÇöÈ² Á¶È¸°¡ °¡´ÉÇÕ´Ï´Ù.</li>
-							<li>ÁÖ¹®¹øÈ£¸¦ Å¬¸¯ÇÏ½Ã¸é ÁÖ¹® »ó¼¼³»¿ªÀ» È®ÀÎÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.</li>
+							<li>ìµœê·¼ 3ê°œì›” ë™ì•ˆì˜ ì£¼ë¬¸í˜„í™© ì¡°íšŒê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤.</li>
+							<li>ì£¼ë¬¸ë²ˆí˜¸ë¥¼ í´ë¦­í•˜ì‹œë©´ ì£¼ë¬¸ ìƒì„¸ë‚´ì—­ì„ í™•ì¸í•˜ì‹¤ ìˆ˜ ìžˆìŠµë‹ˆë‹¤.</li>
 						</ul>
 					</div>
 
 				</div>
 			</div>
 		</section>
-<!--Content¿µ¿ªÁ¾·á-->
+<!--Contentì˜ì—­ì¢…ë£Œ-->
 <div style="display:none;">
-	<!--Ç²ÅÍ¿µ¿ª½ÃÀÛ-->
+	<!--í’‹í„°ì˜ì—­ì‹œìž‘-->
 </div>
-	<jsp:include page="includes/footer.jsp"/>
+	<jsp:include page="../includes/footer.jsp"/>

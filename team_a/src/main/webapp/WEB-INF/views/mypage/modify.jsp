@@ -5,23 +5,20 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>정보수정/title>
-	<jsp:include page="includes/header.jsp"/>
+	<title>정보수정</title>
+	<jsp:include page="../includes/header.jsp"/>
 
+	<!-- 네비영역종료-->
 
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script  src="/resources/js/top.js"></script>
+	<script  src="/resources/js/code.js" charset="utf-8"></script>
+<!-- 	<script  src="/resources/js/code.js" charset="utf-8"></script>
+	<script src="/resources/js/_vir0001/code.js"></script> -->
 
 
 </head>
-
-
-	<!--네비영역종료-->
-
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script language="javascript" src="../resources/js/top.js"></script>
-<script language="javascript" src="../resources/js/code.js" charset="utf-8"></script>
-<script language="javascript" src="../resources/js/code_member.js" charset="utf-8"></script>
-<script language="javascript">
-<!--
+<script>
 	//영문/숫자 체크
 	function check_Alpha_Num(input){
 		var err_cnt=0
@@ -121,12 +118,12 @@
 		if (isEmpty(Frm.mobile2.value)){ alert("핸드폰 번호 가운데자리를 입력해 주십시오");  Frm.mobile2.focus(); return}
 		if (isEmpty(Frm.mobile3.value)){ alert("핸드폰 번호 뒷자리를 입력해 주십시오");  Frm.mobile3.focus(); return}
 
-/*
+
 		//우편번호 주소
 		if (isEmpty(Frm.zip.value)){ alert("우편번호를 입력해 주십시오");  Frm.zip.focus(); return}
 		if (isEmpty(Frm.addr1.value)){ alert("주소를 입력해 주십시오");  Frm.addr1.focus(); return}
 		if (isEmpty(Frm.addr2.value)){ alert("나머지 주소를 입력해 주십시오");  Frm.addr2.focus(); return}
-*/
+
 		if(mobileChk()){
 			Frm.action = "member_edit_DB.asp";
 			Frm.target = "_self";
@@ -210,34 +207,13 @@
 			}
 		}
 	}
-//-->
-</SCRIPT>
+
+</script>
+
 <!--Content영역시작-->
 <section>
-	<div id="page-member-info" class="section-member pc-width">
-		<div id="navigation-bar"><script>document.write(navistr)</script></div>
-		<h2 class="page-title"><script>document.write(siteTitle)</script></h2>
-		<!-- mypage 상단 시작 -->
 		
-	<div class="member-nav-wrapper">
-	<ul class="member-nav"> <!-- 나의 쇼핑현황일 때 open-sub-menu class를 추가 -->
-		<li>
-			<a href="orderlist.jsp">나의 쇼핑현황</a>
-			<div class="member-sub-nav">
-				<a href="orderlist.jsp">주문내역</a>
-				<a href="shoppingbasket.jsp">장바구니</a>
-				<a href="wish.jsp">위시리스트</a>
-				<a href="mycoupon.jsp">쿠폰</a>
-				<a href="mypoint.jsp">예치금</a>
-			</div>
-		</li>
-		<li class="active"><a href="member_Modify.jsp">개인정보수정</a></li>
-
-		<li class="hide-mobile"><a href="qna.jsp">1:1문의</a></li>
-		<li><a href="myreview_view.jsp">나의후기</a></li>
-		<li><a href="member_Withdrawal.jsp">회원탈퇴</a></li>
-	</ul>
-	</div>
+	<jsp:include page="myPageNavigation.jsp"/>
 
 	
 		<!-- mypage 상단 끝 -->
@@ -280,15 +256,15 @@
 				</tr>
 				<tr>
 					<th>이름</th>
-					<td><div id="user_name" name="user_name"></div>
+					<td><div id="user_name"></div>
 				</tr>
 				<tr>
 					<th>이메일</th>
 					<td>
-						<input type="text" name="email" maxlength="45" onkeydown="space_no()" onkeyup="space_no2()" autocomplete="off" class="input1 email1" /> @
+						<input type="text" name="email" maxlength="45" onkeydown="space_no()" onkeyup="space_no2()" autocomplete="off" class="input1 email1" /> 
 						<input type="text" name="email2"  maxlength="30" onkeydown ="space_no()" onkeyup="space_no2()" class="input1 email2" />
 						<select name="SelectEmail" OnChange="ChangeEmail()" class="type1 email-select">
-							<script type="javascript">make_select_code("select","email","SelectEmail","","^직접입력","","x")</script>
+							<!-- <script>make_select_code("select","email","SelectEmail","","^직접입력","","x")</script> -->
 						</select>
 						<div class="next-line">
 							<input type="checkbox" name="bMail_rcv" value="1" onclick="$(this).parents('td').find('.alter-notice-wrapper').toggle()" />
@@ -303,7 +279,7 @@
 				<tr>
 					<th>휴대폰번호</th>
 					<td>
-						<script language="javascript">make_select_code("select","handphone","mobile1","type1 phone1","^선택","")</script> - 
+						<script>make_select_code("select","handphone","mobile1","type1 phone1","^선택","")</script> - 
 						<input type="text" name="mobile2" maxlength="4" onkeypress="onlyNumber()" class="input1 phone2" /> - 
 						<input type="text" name="mobile3" maxlength="4" onkeypress="onlyNumber()" class="input1 phone3" />
 					
@@ -319,7 +295,7 @@
 					<td>
 					
 						<input type="text" name="" readOnly maxlength="10" class="input1" id="sample3_postcode" />
-						<span class="btn-type1 address"  name="address1" style="cursor:pointer"   onClick="sample3_execDaumPostcode()">우편번호 찾기</span> <br />
+						<span class="btn-type1 address" name="address1" style="cursor:pointer"   onClick="sample3_execDaumPostcode()">우편번호 찾기</span> <br/>
 						
 						<input type="text" name="address2" readOnly  class="input1"id="sample3_address" />
 						<input type="text" name="address3" maxlength="60"  class="input1" id="sample3_detailAddress" />
@@ -337,7 +313,7 @@
 			<h3 class="block-title">부가정보</h3>
 			<table class="item-table type1 input-form">
 				<!-- 결혼기념일 지금은 사용 안함 -->
-                <div style="display:none;"><script language="javascript">fn_ymd("Marry")</script></div>
+                <div style="display:none;"> <script>fn_ymd("Marry")</script ></div>
 			
 				<tr>
 					<th style="width:77px;">첫째</th>
@@ -353,7 +329,7 @@
 						</div>
 						<div class="field-block">
 							<span>기념일</span>
-							<script language="javascript">fn_ymd("1")</script>
+							<script>fn_ymd("1")</script>
 						</div>
 					</td>
 				</tr>
@@ -364,7 +340,7 @@
 				<tr>
 					<th>개인정보 유효기간</th>
 					<td>
-						<script>make_select_code("checkbox","expireYear","exYear","null","","","nextCodeFnc(this)","chk","")</script>
+						<!-- <script>make_select_code("checkbox","expireYear","exYear","null","","","nextCodeFnc(this)","chk","")</script> -->
 						<span class="alter-notice-wrapper">
 							<span class="alter-notice pc-text">선택하지 않을 경우 관련 법령에 의해 1년 자동 지정</span>
 							<span class="alter-notice mobile-text">선택하지 않을 경우 1년 자동 지정</span>
@@ -379,7 +355,6 @@
 			</div>
 		</div>
 		</form>
-	</div>
 </section>
 
 
@@ -463,7 +438,6 @@
 
 
 
-<script language="javascript" src="../resources/js/_vir0001/code.js"></script>
 
 
 <!-- AceCounter Log Gathering Script V.7.5.2017020801 -->
@@ -555,8 +529,8 @@ adn_mobile_panel_param.push([{
 <!-- End Google Tag Manager (noscript) -->
 </body>
 </html>
-<script language="javascript">
-<!--	
+<script>
+	
 	form = document.frmReg;
 
 form.Mobile_Ori.value="010-1111-1111"
@@ -569,7 +543,6 @@ form.email.value="이메일"
 form.email2.value="naver.com"
 form.SelectEmail.value="naver.com"
 form.email2.style.backgroundColor = "#EEEEEE"
-
 form.zip.value=""
 form.addr1.value=""
 form.addr2.value=""
@@ -691,6 +664,6 @@ $(".item-table.type1.input-form .btn-type1.address_new").click(function(){
 			alert("인증번호가 틀립니다. 다시 확인해주세요.");
 		}
 	}
-//-->
+
 </script>
-	<jsp:include page="includes/footer.jsp"/>
+	<jsp:include page="../includes/footer.jsp"/>

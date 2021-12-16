@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 	<title>::몬트라움:: 프리미엄 펫용품 전문쇼핑몰</title>
-	<jsp:include page="includes/header.jsp"/>
+	<jsp:include page="../includes/header.jsp"/>
 
 
 <script language="javascript">
@@ -20,31 +20,9 @@
 <script language="javascript" src="../resources/js/top.js"></script>
 <!--Content영역시작-->
 
-<section>
-	<div id="page-member-withdraw" class="section-member pc-width">
-					<div id="navigation-bar"><script>document.write(navistr)</script></div>
-					<h2 class="page-title"><script>document.write(siteTitle)</script></h2>
-		<!-- mypage 상단 시작 -->
-		
-	<div class="member-nav-wrapper">
-	<ul class="member-nav"> <!-- 나의 쇼핑현황일 때 open-sub-menu class를 추가 -->
-		<li>
-			<a href="buy_list.jsp">나의 쇼핑현황</a>
-			<div class="member-sub-nav">
-				<a href="orderlist.jsp">주문내역</a>
-				<a href="shoppingbasket.jsp">장바구니</a>
-				<a href="wish.jsp">위시리스트</a>
-				<a href="mycoupon.jsp">쿠폰</a>
-			
-			</div>
-		</li>
-		<li><a href="member_Modify.jsp">개인정보수정</a></li>
+<section>	
 
-		<li class="hide-mobile"><a href="qna.jsp">1:1문의</a></li>
-		<li><a href="myreview_view.jsp">나의후기</a></li>
-		<li class="active"><a href="member_Withdrawal.jsp">회원탈퇴</a></li>
-	</ul>
-	</div>
+	<jsp:include page="myPageNavigation.jsp"/>
 
 	
 		<!-- mypage 상단 끝 -->
@@ -114,4 +92,4 @@
 	</div>
 </section>
 <!--Content영역종료-->
-<jsp:include page="includes/footer.jsp"/>
+<jsp:include page="../includes/footer.jsp"/>
