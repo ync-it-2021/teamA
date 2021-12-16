@@ -40,6 +40,7 @@
 				</script>
 				Mypage
 			</h2>
+		</div>
 			<div class="member-nav-wrapper">
 				<ul class="member-nav">
 					<!-- 나의 쇼핑현황일 때 open-sub-menu class를 추가 -->
