@@ -33,10 +33,10 @@ public class IndexController {
 		return"index";
 	}
 	
-
-	@RequestMapping("/orderlist")
-	public String orderlist() {
-	return "orderlist";
+	@RequestMapping("/join")
+	public String join() {
+	return "/join/join_agreement";
 	}
+	
 	
 }
