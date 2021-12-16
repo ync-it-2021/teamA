@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +8,8 @@
 </head>
 <body>
 
-	<h2>ȸ�����Կ� �����߽��ϴ�</h2>
-	<a href="join.agreement">�ٽ� �����ϱ�</a>
+	<h2>회원가입에 실패했습니다</h2>
+	<a href="join.agreement">다시 가입하기</a>
 
 </body>
 </html>
