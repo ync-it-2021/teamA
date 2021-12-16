@@ -25,5 +25,8 @@ public interface MemberMapper {
 	
 	public String member_insert(MemberVO member);
 	
-	public String member_search(MemberVO member);
+	public String member_search(String member_id);
+	
+	// 아이디 중복 검사
+	public int id_Check(String member_id);
 }
