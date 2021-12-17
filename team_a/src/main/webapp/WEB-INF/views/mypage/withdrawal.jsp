@@ -20,7 +20,7 @@
 <script language="javascript" src="../resources/js/top.js"></script>
 <!--Content영역시작-->
 
-<section>	
+<section class="section_style"> 	
 
 	<jsp:include page="myPageNavigation.jsp"/>
 
@@ -48,7 +48,7 @@
 							<label><input type="radio" name="OutReason" value="고객응대 불친절 및 지연" /> 고객응대 불친절 및 지연</label>
 							<label><input type="radio" name="OutReason" value="제품 주문 과정의 어려움" /> 제품 주문 과정의 어려움</label>
 							<label><input type="radio" name="OutReason" value="개인정보유출 우려" /> 개인정보유출 우려</label>
-							<label><input type="radio" name="OutReason" value="시스템 에러" /> 시스템 에러</label>
+							<label><input type="radio" name="OutReason" value="시스템 에러" /> 시스템 에러</label></br>
 							<label><input type="radio" name="OutReason" value="" /> 기타 (상세한 사유를 입력해주세요)
 								<input name="OutReason_text" type="text" class="input1 reason" />
 							</label>

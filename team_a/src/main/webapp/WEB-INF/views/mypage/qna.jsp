@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 <title>qna</title>
-<jsp:include page="includes/header.jsp" />
+<jsp:include page="../includes/header.jsp" />
 <body>
 
 
@@ -21,53 +21,10 @@
 	<script type="text/javascript" src="../resources/js/top.js"></script>
 
 	<!--Content영역시작-->
-	<section>
-		<div id="page-member-ask" class="section-member pc-width">
-			<div id="navigation-bar">
-				<script>
-					document.write(navistr)
-				</script>
-			</div>
-			<h2 class="page-title">
-				<script>
-					document.write(siteTitle)
-				</script>
-			</h2>
-			<!-- mypage 상단 시작 -->
-			<h2 class="page-title">
-				<script>
-					document.write(siteTitle)
-				</script>
-				Mypage
-			</h2>
-		</div>
-			<div class="member-nav-wrapper">
-				<ul class="member-nav">
-					<!-- 나의 쇼핑현황일 때 open-sub-menu class를 추가 -->
-					<li class="active">
-						<div class="member-sub-nav">
-							<a href="orderlist.jsp">주문내역</a>
-							<a href="shoppingbasket.jsp">장바구니</a>
-							<a href="wish.jsp" class="active">위시리스트</a> 
-							<a href="mycoupon.jsp">쿠폰</a>
-						</div>
-					</li>
-					<li><a href="member_Modify.jsp">개인정보수정</a></li>
-					<li class="hide-mobile"><a href="qna.jsp">1:1문의</a></li>
-					<li><a href="myreview_view.jsp">나의후기</a></li>
-					<li><a href="member_Withdrawal.jsp">회원탈퇴</a></li>
-				</ul>
-			</div>
-
-
-
-			<div class="member-nav-wrapper">
-				<ul class="member-nav open-sub-menu">
-					<!-- 나의 쇼핑현황일 때 open-sub-menu class를 추가 -->
-			</div>
-
-
-
+	<section class="section_style">
+		<jsp:include page="myPageNavigation.jsp"/>
+		<script>$(".member-nav").addClass("open-sub-menu");</script>
+			
 			<!-- mypage 상단 끝 -->
 			<div class="contents-wrapper">
 				<h2 class="page-sub-title kr">1:1 문의</h2>
@@ -100,4 +57,4 @@
 
 				</div>
 	</section>
-	<jsp:include page="includes/footer.jsp" />
+	<jsp:include page="../includes/footer.jsp" />

@@ -3,6 +3,10 @@
   padding: 10px 0;
   box-sizing: border-box;
 }
+.section_style {
+	margin-left:10%;
+	margin-right:10%;
+	}
 .section-member .tab-contents .tab-content {
   padding: 50px 0;
   width: 600px;

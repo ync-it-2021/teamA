@@ -101,7 +101,7 @@
 					
 					<sec:authorize access="isAuthenticated()">
 						<li><a href="/customLogout">LOGOUT</a></li>
-						<li><a href="/mypage/orderlist">MY PAGE</a></li>
+						<li><a href='/mypage/order'>MY PAGE</a></li>
 						<li><span><img src="../resources/images/mnb_wish_icon.png"></span><a href="/mypage/wish">WISH LIST</a></li>
 						<li><span><img src="../resources/images/mnb_cart_icon.png"></span><a href="/mypage/basket">CART</a></li>
 					</sec:authorize>
@@ -117,18 +117,19 @@
 				<!-- <div id="sub"> -->
 				<div class="inner-header">
 					<ul style="margin-top: 15px; padding-right: 40px;" id="header-right" class="header-right float_right nav-right">
-
-						<li class="cart-icon "> <a class="nejongbo" href="/mypage/orderlist"><img  src="../resources/images/user.png" ></a>
+						<li class="cart-icon "> 
+						<a class="nejongbo" href='/mypage/order'>
+						<img  src="../resources/images/user.png" ></a>
 							<p style="text-align:center;">MY</p>
 							<div class="cart-hover">
 							<!--로그인 된 화면  -->
 							<sec:authorize access="isAuthenticated()">
 								<ul class="cotana">
-									<li><a href="orderlist.jsp" class="hel"><span>주문내역</span></a></li>
-									<li><a href="" class="hel"><span>배송</span></a></li>
-									<li><a href="wish.jsp" class="hel"><span>위시리스트</span></a></li>
-									<li><a href="qna.jsp" class="hel"><span>1:1문의</span></a></li>
-									<li><a href="myreview_view.jsp" class="hel"><span>my후기</span></a></li>
+									<li><a href="/order" class="hel"><span>주문내역</span></a></li>
+									<li><a href="#" class="hel"><span>배송</span></a></li>
+									<li><a href="#" class="hel"><span>위시리스트</span></a></li>
+									<li><a href="#" class="hel"><span>1:1문의</span></a></li>
+									<li><a href="#" class="hel"><span>my후기</span></a></li>
 								</ul>
 								</sec:authorize>
 								<!--로그인 안된 화면  -->

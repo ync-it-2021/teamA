@@ -211,7 +211,7 @@
 </script>
 
 <!--Content영역시작-->
-<section>
+<section class="section_style" >
 		
 	<jsp:include page="myPageNavigation.jsp"/>
 
@@ -223,6 +223,7 @@
 		<input type="hidden" name ="Email_Ori" value="">
 		<input type="hidden" name="certNum" value="">
 		<input type="hidden" name="mobileCert_ok" value="">
+		
 		<div class="contents-wrapper member-info-form">
 			<h2 class="page-sub-title kr">개인정보 수정</h2>
 			<div class="page-content-desc">
@@ -358,6 +359,9 @@
 </section>
 
 
+
+
+
 <!-- 모바일 사이드바 170621-최문영작업 -->
 
 <script>
@@ -432,12 +436,6 @@
         element_wrap.style.display = 'block';
     }
 </script> 
-
-
-
-
-
-
 
 
 <!-- AceCounter Log Gathering Script V.7.5.2017020801 -->

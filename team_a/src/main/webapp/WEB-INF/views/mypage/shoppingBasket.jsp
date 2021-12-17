@@ -16,18 +16,20 @@
 		location.href="login6d1f.html?refer_page=%2Fcommon%2Fall%5Fsite%2Fmember%2Flogin%2Easp"
 	}
 </script> -->
+	
 <jsp:include page="../includes/header.jsp"/>
 <script type="text/javascript" src="../resources/js/top.js"></script>
 <!--Content영역시작-->
-		<section>
-			<jsp:include page="myPageNavigation.jsp"></jsp:include>
+		<section class="section_style">
+			<jsp:include page="myPageNavigation.jsp"/>
+			<script>$(".member-nav").addClass("open-sub-menu");</script>
 					<!-- ms 구매 유도 배너// 추후 저단가 제품 구매 유도 배너로 변경 예정 또는 진행X -->
 					<div class="ms-banner"><a href="eventview76d1.html?idx=282">
 					<img src="../resources/images/order_bn.jpg" border="0" class="only-pc">
 					</a></div>
 					<!-- //ms 구매 유도 배너 -->
 
-				<form name="form1" method="post" action="http://www.montraum.com/common/process/shopview_insert_DB.asp">
+				<form name="form1" method="post" action="location-href:/">
 					<div class="item-list">
 						<h2>장바구니</h2>
 						<div class="content-desc">

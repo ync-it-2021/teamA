@@ -16,18 +16,22 @@
 	<title>::몬트라움:: 프리미엄 펫용품 전문쇼핑몰</title>
 	<jsp:include page="../includes/header.jsp"/>
 	<body>
-
+	
 	
 
-<script language="javascript">
-	httpUrl = "/common/process/mycoupon.asp"
-	httpUrl2 = "www.montraum.com"
-	function loginCheck() {
-		location.href="/common/all_site/member/login.asp?refer_page=%2Fcommon%2Fprocess%2Fmycoupon%2Easp"
-	}
-</script>
+	<script language="javascript">
+		httpUrl = "/common/process/mycoupon.asp"
+		httpUrl2 = "www.montraum.com"
+		function loginCheck() {
+			location.href="/common/all_site/member/login.asp?refer_page=%2Fcommon%2Fprocess%2Fmycoupon%2Easp"
+		}
+	</script>
 
-
+	<script>
+		$(document).ready(function(){
+			$(".member-nav").addClass("open-sub-menu");					
+		});
+	</script>
 			
 	
 <script language="javascript" src="/resources/js/top.js"></script>
@@ -39,7 +43,7 @@
 
 
 <!--Content영역시작-->
-		<section>
+		<section class="section_style">
 							
 	<jsp:include page="myPageNavigation.jsp"/>
 

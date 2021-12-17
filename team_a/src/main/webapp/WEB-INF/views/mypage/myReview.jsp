@@ -11,7 +11,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-<section>
+<section class="section_style">
 	<div id="page-member-my-review" class="section-member pc-width">
 			
 		<jsp:include page="myPageNavigation.jsp"/>
