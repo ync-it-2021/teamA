@@ -116,7 +116,7 @@
 .section-member .member-nav li:last-child {
   background-image: none;
 }
-.section-member .member-nav li.active a {
+.section-member .member-nav li.active small {
   font-weight: bold;
   border-bottom: 1px solid #000;
 }
@@ -132,6 +132,14 @@
   display: inline-block;
 }
 .section-member .member-nav li .member-sub-nav a {
+  font-weight: normal;
+  border-bottom: none;
+  margin: 0 10px;
+  color: #555;
+  font-size: 14px;
+}
+
+.section-member .member-nav li .member-sub-nav small {
   font-weight: normal;
   border-bottom: none;
   margin: 0 10px;
@@ -1187,6 +1195,7 @@
     width: 100%;
     overflow-x: scroll;
   }
+  
   .section-member .member-nav {
     padding: 15px 10px 15px 10px;
     width: 430px;
@@ -1218,6 +1227,12 @@
     font-size: 12px;
     margin: auto 5px;
   }
+  
+  .section-member .member-nav li .member-sub-nav > small {
+    font-size: 10px;
+    margin: 15px;
+  }
+  
   .section-member .member-nav.open-sub-menu li.member-sub-nav {
     display: inline-block;
   }

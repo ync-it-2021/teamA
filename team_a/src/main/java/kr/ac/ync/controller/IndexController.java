@@ -24,12 +24,10 @@ public class IndexController {
 	
 	@GetMapping("/")
 	public String index( Model model) {
-		
 		log.info("Event......" + evtService.getList());
 		model.addAttribute("evt",evtService.getList());
 		log.info("best......" + prdService.best_items());
 		model.addAttribute("best",prdService.best_items());
-		
 		return"index";
 	}
 	
@@ -37,6 +35,5 @@ public class IndexController {
 	public String join() {
 	return "/join/join_agreement";
 	}
-	
-	
+
 }

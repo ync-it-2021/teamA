@@ -6,18 +6,6 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <jsp:include page="../includes/header.jsp"/>
-</head>
-<body>
-<!DOCTYPE html>
-
-
-
-
-
-</head>
-<body>
-
-
 <script type="text/javascript" src="../resources/images/top.js"></script>
 <style>
 #popup-member-join-check { max-width: 540px; padding-top:50px;padding-bottom:30px;}
@@ -35,24 +23,33 @@
 
 
 </style>
+
+</head>
+<body>
 <section>
-
-<div id="popup-member-join-check"  class="section-member pc-width">
-
-	<div class="ws-join">
-
-		<h3 class="title" style="padding-top:60px;">몬트라움 회원가입</h3>
-		<p class="desc">몬트라움 멤버십 회원가입을 합니다.<p>
-		<div class="article-wrapper">
-			<input type="button" class="btn-ws-join" value="회원가입" onclick="location.href='/member/join_write'" style="cursor:pointer;" />
+		<div id="popup-member-join-check" class="section-member pc-width">
+			<div class="ws-join">
+				<h3 class="title" style="padding-top: 60px;">몬트라움 회원가입</h3>
+				<p class="desc">몬트라움 멤버십 회원가입을 합니다.
+				<p>
+				<div class="article-wrapper">
+					<input type="button" class="btn-ws-join" value="회원가입" 
+					onclick="location.href='/join/join_write'"style="cursor: pointer;" />
+				</div>
+			</div>
 		</div>
-	
-
-	
-
-</div>
-<div style="height:175px;">
+		<div style="height:175px;"></div>
 </section>
+
+
+
+
+</body>
+
+
+
+
+
 
 	<jsp:include page="../includes/footer.jsp"/>
 

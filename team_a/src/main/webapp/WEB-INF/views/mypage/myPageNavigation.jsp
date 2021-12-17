@@ -13,6 +13,7 @@
 </style>
 <script type="text/javascript">
 
+	
 </script>
 </head>
 <body>
@@ -25,13 +26,19 @@
 						str +="<a href='/'> HOME </a>";
 						for(var s of href_data){
 							if(s == 'mypage') {
-								str +=" > <a href='/mypage/orderlist'>" 
+								str +=" > <a href='/mypage/orderlist'>"; 
 							}else{
-								str +=" > <a href='"+s+"'>" 
+								str +=" > <a href='"+s+"'>"; 
 							};
 							str += s.toUpperCase() +" </a>";
 						}
+						if(href_data[href_data.length -1] == 'orderlist'){
+							alert();
+							$('.member-nav').attr("class","member-nav open-sub-menu");
+						}
+						
 						$("#navigation-bar").html(str);
+						
 					</script>
 				</div>
 				<h2 class="page-title"><script>if(href_data[href_data.length-1] == 'orderlist'){
@@ -39,8 +46,9 @@
 				}else{
 					document.write(href_data[href_data.length-1]);
 				}</script></h2>
+<div class="section-member">
 <div class="member-nav-wrapper">
-	<ul class="member-nav open-sub-menu"> <!-- 나의 쇼핑현황일 때 open-sub-menu class를 추가 -->
+	<ul class="member-nav"> <!-- 나의 쇼핑현황일 때 open-sub-menu class를 추가 -->
 		<li>
 			<a href="orderlist">나의 쇼핑현황</a>
 			
@@ -58,6 +66,7 @@
 		<li><a href="drawal">회원탈퇴</a></li>
 		<!-- class="active" -->
 	</ul>
+	</div>
 	</div>
 </body>
 </html>

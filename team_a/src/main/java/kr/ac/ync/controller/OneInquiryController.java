@@ -39,7 +39,6 @@ public class OneInquiryController {
 		return "mypage/qna";
 	}
 	
-	
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model) {
 
