@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>   
 <meta charset="UTF-8">
+
 	<link rel="stylesheet" type="css/style.css" href="/resources/css/text/css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/default.css" />
 	<link rel="stylesheet" type="text/css" href="/resources/css/layout.css" />
@@ -11,18 +12,20 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/item-view.css" />
 	<link rel="stylesheet" type="text/css" href="/resources/css/order-cart.css" />
 
+	<link rel="stylesheet" type="text/css" href="/resources/css/member.css?ver=1"/>
 	<link rel="stylesheet" type="text/css" href="/resources/css/brand.css" />
 	<link rel="stylesheet" type="text/css" href="/resources/css/communityc619.css?v=1.0" />
 	<link rel="stylesheet" type="text/css" href="/resources/css/guide.css" />
 	<link rel="stylesheet" type="text/css" href="/resources/css/event.css" />
 	<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
-	<link rel="stylesheet" type="text/css" href="/resources/css/member.css?ver=1"/>
 	<link rel="stylesheet" type="text/css" href="/resources/css/owl.carousel.css" />
 	<link rel="stylesheet" type="text/css" href="/resources/css/override.css" />
 	<link rel="stylesheet" type="text/css" href="/resources/css/popup.css" />
 	<link rel="stylesheet" type="text/css" href="/resources/css/main_add.css" />
 	<link rel="stylesheet" type="css/style.css" href="/resourceas/css/font-awesome.min.css"/>
 
+	
+	<script type="text/javascript" src="/resources/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="/resources/js/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="/resources/js/owl.carousel.min.js"></script>
 	<script type="text/javascript" src="/resources/js/fastclick.js"></script>
