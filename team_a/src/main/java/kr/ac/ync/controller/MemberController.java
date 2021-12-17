@@ -25,6 +25,7 @@ import kr.ac.ync.domain.Criteria;
 import kr.ac.ync.domain.MemberVO;
 import kr.ac.ync.domain.PageDTO;
 import kr.ac.ync.mapper.MemberMapper;
+import kr.ac.ync.randompass.RandomPass;
 import lombok.extern.log4j.Log4j;
 
 @Controller
@@ -57,6 +58,10 @@ public class MemberController {
 	// 글 등록 페이징
 	@GetMapping({ "/register", "/join_write" })
 	public void register() {
+	}
+	
+	@GetMapping({ "/register", "/passwordsearch" })
+	public void passwordsearch() {
 	}
 
 
@@ -173,72 +178,98 @@ public class MemberController {
 	 // memberIdChkPOST() 종료	
 	
 	
-	@GetMapping("/pwsearch")
-	public String member_search(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) {
-		String ProcessGubun = request.getParameter("ProcessGubun");
-		System.out.print(ProcessGubun);
-
-		if (ProcessGubun.equals("A")) { // find ID
-
-			String search_gu = request.getParameter("search_gu");
-
-			String id1;
-			String id2;
-			String id = "1";
-
-			if (id.equals(search_gu)) {
-
-				String member_name = request.getParameter("txUsername1_txt");
-
-				String member_email = request.getParameter("txEmail");
-
-				member.setMember_name(member_name);
-
-				member.setMember_email(member_email);
-			} else {
-
-				String member_name = request.getParameter("txUsername2_txt");
-
-				String phone1 = request.getParameter("mobile1");
-				String phone2 = request.getParameter("mobile2");
-				String phone3 = request.getParameter("mobile3");
-				String member_phone = phone1 + "-" + phone2 + "-" + phone3;
-				member.setMember_name(member_name);
-				member.setMember_phone(member_phone);
-			}
-		} else {
-
-			String search_gu = request.getParameter("search_gu");
-
-			String id1;
-			String id2;
-			String id = "1";
-
-			if (id.equals(search_gu)) {
-
-				String member_id = request.getParameter("txUserID1_pass");
-
-				String member_name = request.getParameter("txUsername1_pass_txt");
-				String member_email = request.getParameter("txEmail1_pass");
-				member.setMember_id(member_id);
-				member.setMember_name(member_name);
-				member.setMember_email(member_email);
-
-			} else { String member_id = request.getParameter("txUserID1_pass");
-
-			String member_name = request.getParameter("txUsername1_pass_txt");
-			String phone1 = request.getParameter("mobile1");
-			String phone2 = request.getParameter("mobile2");
-			String phone3 = request.getParameter("mobile3");
-			String member_phone = phone1 + "-" + phone2 + "-" + phone3;
-			
-			member.setMember_id(member_id);
-			member.setMember_name(member_name);
-			member.setMember_email(member_phone);
-
-			}
-		}
-
-		return "redirect:/login";
+	@RequestMapping(value = "/idsearchemail")
+	@ResponseBody
+	
+	public String member_idsearchemail(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) {
+		
+		String member_name = request.getParameter("member_name");
+		String member_email = request.getParameter("member_email");
+		
+		String result_id;
+		System.out.println(member_name);
+		System.out.println(member_email);
+		result_id = mapper.member_idsearch_email(member_name,member_email);
+		System.out.println(result_id);
+		return result_id;
+	 // find ID
 	}
+	
+	@GetMapping(value = "/idsearchphone")
+	@ResponseBody //문자 그대로 날라감
+	public String member_idsearchphone(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) {
+		
+		String member_name = request.getParameter("member_name");
+		String member_phone = request.getParameter("member_phone");
+					
+		String result_id;
+		System.out.println(member_name);
+		System.out.println(member_phone);
+		result_id = mapper.member_idsearch_phone(member_name,member_phone);
+		System.out.println(result_id);
+		
+		return result_id;
+		
+		
+	 // find ID	
+	}
+	@GetMapping(value = "memberpasssearchemail")
+	@ResponseBody //문자 그대로 날라감
+	public String member_passsearch_email(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) {
+		String member_id = request.getParameter("member_id");
+		String member_name = request.getParameter("member_name");
+		String member_email = request.getParameter("member_email");
+		
+		String result_id;
+		
+		int result_pass;
+		
+		
+		System.out.println(member_id);
+		System.out.println(member_name);
+		System.out.println(member_email);
+		result_id = mapper.member_passsearch_email(member_id,member_name,member_email);
+		System.out.println(result_id);
+		RandomPass member_passfinal = new RandomPass();
+		
+		String member_pass = member_passfinal.getRamdomPassword(10);
+				
+		System.out.println(member_pass);
+		
+		
+		
+		result_pass = mapper.member_passsearch_email_update(member_pass, member_id,member_name,member_email);
+		
+		
+		return member_pass;
+	 // find ID
+	}
+	@GetMapping(value = "memberpasssearchphone")
+	@ResponseBody //문자 그대로 날라감
+	public String member_passsearch_phone(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) {
+		String member_id = request.getParameter("member_id");
+		String member_name = request.getParameter("member_name");
+		String member_phone = request.getParameter("member_phone");
+		
+		String result_id;
+		System.out.println(member_id);
+		System.out.println(member_name);
+		System.out.println(member_phone);
+		result_id = mapper.member_passsearch_phone(member_id,member_name,member_phone);
+		
+		int result_pass;
+		
+		System.out.println(result_id);
+		RandomPass member_passfinal = new RandomPass();
+		
+		String member_pass = member_passfinal.getRamdomPassword(10);
+				
+		System.out.println(member_pass);
+		
+		
+		
+		result_pass = mapper.member_passsearch_phone_update(member_pass, member_id,member_name,member_phone);
+		return result_id;
+	 // find ID
+}
 }

@@ -68,7 +68,7 @@
 					</form>						
 					<div class="page-link">
 						<ul>
-							<li><a href="searchidinfo2ce3.html?ProcessGubun=A">아이디 찾기</a></li>
+							<li><a href="/member/passwordsearch">아이디 찾기</a></li>
 							<li><a href="searchidinfo0a92.html?ProcessGubun=B">비밀번호 찾기</a></li>
 							<li><a href="/member/join_write">회원가입</a></li>
 						</ul>

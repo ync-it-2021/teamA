@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,26 +28,33 @@
 	function loginCheck() {
 		location.href="loginefb7.html?refer_page=%2Fcommon%2Fall%5Fsite%2Fmember%2Fsearchidinfo%2Easp%3FProcessGubun%3DB"
 	}
+	
+	
+		 
+		
+		
+	
+	
 </script>
 	<script language="javascript" src="../resources/images/top.js"></script>
-	<script language="javascript" src="../resources/images/code.js" charset="euc-kr"></script>
+	<script language="javascript" src="../resources/js/code.js"
+		charset="euc-kr"></script>
 	<!--Content영역시작-->
 	<section>
 		<div id="page-member-find-id" class="section-member pc-width">
 			<div id="navigation-bar">
-				<span>Home</span> <span>Member</span> <span class="current">아이디/비밀번호 찾기</span>
+				<span>Home</span> <span>Member</span> <span class="current">아이디/비밀번호
+					찾기</span>
 			</div>
 
 			<h2 class="page-title kr">아이디/비밀번호 찾기</h2>
-			<form method="post" name="FindId" id="FindId" action="/member/pwsearch">
+			<form method="post" name="FindId" id="FindId" action="findid.jsp">
 				<input type="hidden" name="ProcessGubun" value="A">
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-		<input type="hidden" class="form-control" name='auth' value = "ROLE_MEMBER">
 				<div class="contents-wrapper">
 					<div class="tab-contents">
 						<div class="tab-header">
 							<ul class="clearfix">
-								<li class="tab1" data-target="content1">아이디 찾기</li>
+								<li class="tab1 " data-target="content1">아이디 찾기</li>
 								<li class="tab2 active" data-target="content2">비밀번호 찾기</li>
 							</ul>
 						</div>
@@ -75,7 +83,7 @@
 								<div class="clearfix find-method method-phone">
 									<ul class="input-items">
 										<li><span class="input-name">이름</span> <input name="txUsername2_txt" id="txUsername2_txt" type="text" class="input1 w-width" /> <input name="txUsername2" id="txUsername2" type="hidden" /></li>
-										<li><span class="input-name">휴대폰</span> <script language="javascript">make_select_code("select","handphone","mobile1","type1 phone-select","")</script> - <input name="mobile2" type="text" onkeydown="return onlyNumber(event)" maxlength="2" class="input1 phone1" /> - <input name="mobile3" type="text" onkeydown="return onlyNumber(event)" maxlength="2" class="input1 phone2" /></li>
+										<li><span class="input-name">휴대폰</span> <script language="javascript">make_select_code("select","handphone","mobile1","type1 phone-select","")</script> - <input name="mobile2" type="text" onkeydown="return onlyNumber(event)" maxlength="4" class="input1 phone1" /> - <input name="mobile3" type="text" onkeydown="return onlyNumber(event)" maxlength="4" class="input1 phone2" /></li>
 									</ul>
 								</div>
 							</div>
@@ -112,7 +120,7 @@
 										<li><span class="input-name">아이디</span> <input name="txUserID2_pass" id="txUserID2_pass" type="text" class="input1 w-width" /></li>
 										<li><span class="input-name">이름</span> <input name="txUsername2_pass_txt" id="txUsername2_pass_txt" type="text" class="input1 w-width" /> <input name="txUsername2_pass" id="txUsername2_pass" type="hidden" /></li>
 										<li><span class="input-name">휴대폰</span> <script language="javascript">make_select_code("select","handphone","mobile1_pass","type1 phone-select","")</script> - <input name="mobile2_pass" type="text" onkeydown="return onlyNumber(event)" maxlength="4" class="input1 phone1" /> - <input name="mobile3_pass" type="text" onkeydown="return onlyNumber(event)" maxlength="4" class="input1 phone2" /></li>
-									</ul>
+										</ul>
 								</div>
 							</div>
 
@@ -133,8 +141,9 @@
 function SendFindId(){
 	
 	console.log("SendFindId()");
+	var listVar = $('input[name=search_gu]:checked').val();
+	console.log(listVar);
 	
-
 	if (document.getElementsByName("search_gu")[0].checked == true)
 	{
 		if (isEmpty(document.FindId.txUsername1_txt.value)){ alert("이름을 입력하세요");  document.FindId.txUsername1_txt.focus(); return}
@@ -148,14 +157,69 @@ function SendFindId(){
 	}
 
 	
-	document.FindId.ProcessGubun.value = "A";
-	document.FindId.submit();
-	return
+	var x = $('input[name=search_gu]:checked').val();
+	console.log(x)
+	if (x == 1 ) {
+		var member_name = $('#txUsername1_txt').val();
+		var member_email = $('#txEmail1').val();
+		console.log(member_name);
+		console.log(member_email);
+		$.ajax({
+		url : 'idsearchemail',
+		type : 'get',
+		data:{
+			member_name : member_name,
+			member_email : member_email					
+		},
+		success : function(data) {
+			if(data == 0){
+				alert("회원정보 확인");
+			}	else {
+			alert(data);
+			}
+	}
+	});
+	}
+	else {
+		var member_name = $('#txUsername2_txt').val()
+		var phone1 = $("select[name=mobile1]").val();
+		var phone2 = $('input[name=mobile2]').val();
+		var phone3 = $('input[name=mobile3]').val();
+		console.log(member_name);
+		console.log(phone1);
+		var member_phone = phone1 + "-" + phone2 + "-" + phone3;
+		console.log(member_phone);
+		$.ajax({
+			url : 'idsearchphone',
+			type : 'get',
+			data:{
+				member_name : member_name ,
+				member_phone : member_phone					
+			},
+			success : function(data) {
+				if(data == 0){
+					alert("회원정보 확인");
+				}	else {
+				alert(data);
+				
+				}
+		}
+		});
+		}
+			
+	
+	
+
+	
+	
+	
 }
 
 function SendFindPw(){
 
-	console.log("SendFindPW()");
+	var x = $('input[name=search_gu_pass]:checked').val();
+	
+	
 	if (document.getElementsByName("search_gu_pass")[0].checked == true)
 	{
 		if (isEmpty(document.FindId.txUserID1_pass.value)){ alert("아이디를 입력하세요");  document.FindId.txUserID1_pass.focus(); return}
@@ -171,92 +235,74 @@ function SendFindPw(){
 	}
 
 	
-	document.FindId.ProcessGubun.value = "B";
-	document.FindId.submit();
-	return
-}
-
-<!--
-if("B" == "B" ){
-		$("#send_content1").hide();
-		$("#send_content2").show();
-	if("" == "N" ){
-		//search_chg("2");
-	}
-}
-
-
-function SendFindId(){
 	
-
-	if (document.getElementsByName("search_gu")[0].checked == true)
-	{
-		if (isEmpty(document.FindId.txUsername1_txt.value)){ alert("이름을 입력하세요");  document.FindId.txUsername1_txt.focus(); return}
-		if (isEmpty(document.FindId.txEmail1.value)){ alert("이메일을 입력해 주세요");  document.FindId.txEmail1.focus(); return}
-		document.FindId.txUsername1.value = escape(document.FindId.txUsername1_txt.value)
-	}else if (document.getElementsByName("search_gu")[1].checked == true)
-	{
-		if (isEmpty(document.FindId.txUsername2_txt.value)){ alert("이름을 입력하세요");  document.FindId.txUsername2_txt.focus(); return}
-		if (isEmpty(document.FindId.mobile1.value)||isEmpty(document.FindId.mobile2.value)||isEmpty(document.FindId.mobile3.value)){ alert("휴대폰 번호를 입력해 주세요"); return}
-		document.FindId.txUsername2.value = escape(document.FindId.txUsername2_txt.value)
-	}
-
+	console.log(x)
 	
-	document.FindId.ProcessGubun.value = "A";
-	document.FindId.submit();
-	return
-}
-
-function SendFindPw(){
-
-	if (document.getElementsByName("search_gu_pass")[0].checked == true)
-	{
-		if (isEmpty(document.FindId.txUserID1_pass.value)){ alert("아이디를 입력하세요");  document.FindId.txUserID1_pass.focus(); return}
-		if (isEmpty(document.FindId.txUsername1_pass_txt.value)){ alert("이름을 입력하세요");  document.FindId.txUsername1_pass_txt.focus(); return}
-		if (isEmpty(document.FindId.txEmail1_pass.value)){ alert("이메일을 입력해 주세요");  document.FindId.txEmail1_pass.focus(); return}
-		document.FindId.txUsername1_pass.value = escape(document.FindId.txUsername1_pass_txt.value)
-	}else if (document.getElementsByName("search_gu_pass")[1].checked == true)
-	{
-		if (isEmpty(document.FindId.txUserID2_pass.value)){ alert("아이디를 입력하세요");  document.FindId.txUserID2_pass.focus(); return}
-		if (isEmpty(document.FindId.txUsername2_pass_txt.value)){ alert("이름을 입력하세요");  document.FindId.txUsername2_pass_txt.focus(); return}
-		if (isEmpty(document.FindId.mobile1_pass.value)||isEmpty(document.FindId.mobile2_pass.value)||isEmpty(document.FindId.mobile3_pass.value)){ alert("휴대전화를 입력해 주세요"); return}
-		document.FindId.txUsername2_pass.value = escape(document.FindId.txUsername2_pass_txt.value)
-	}
-
-	
-	document.FindId.ProcessGubun.value = "B";
-	document.FindId.submit();
-	return
-}
-
-
-function SendFindPass(gu){
+	if (x == 1 ) {
+		var member_id = $('#txUserID1_pass').val()
+		var member_name = $('#txUsername1_pass_txt').val()
+		var member_email = $('#txEmail1_pass').val()
 		
-	window.open("searchidinfo_mail2630.html?UserID=&amp;Pass_gu="+gu,"PassWord","width=450 ,height=220,top=400,left=700 , scrollbars=no");
+		
+		console.log(member_id);
+		console.log(member_name);
+		console.log(member_email);
+		$.ajax({
+		url : 'memberpasssearchemail',
+		type : 'get',
+		data:{
+			member_id : member_id,
+			member_name : member_name,
+			member_email : member_email					
+		},
+		success : function(data) {
+			if(data == 0){
+				alert("회원정보 확인");
+			}	else {
+			alert(data);
+			}
+	}
+	});
+	} 
+	else {
+		var member_id = $('#txUserID2_pass').val()
+		var member_name = $('#txUsername2_pass_txt').val()
+		
+		
+		var phone1 = $("select[name=mobile1_pass]").val();
+		var phone2 = $('input[name=mobile2_pass]').val();
+		var phone3 = $('input[name=mobile3-pass]').val();
+		var member_phone = phone1 + "-" + phone2 + "-" + phone3;
+		
+	
+	console.log(member_name);
+	console.log(member_phone);
+	console.log(member_id)
+	
+
+	
+	$.ajax({
+		url : 'memberpasssearchphone',
+		type : 'get',
+		data:{
+			
+			member_id : member_id,
+			member_name : member_name ,
+			member_phone : member_phone					
+		},
+		success : function(data) {
+			if(data == 0){
+				alert("회원정보 확인");
+			}	else {
+			alert(data);
+			}
+	}
+	});
+}
 
 }
 
-function onlyNumber(event) {
 
-	var key = window.event ? event.keyCode : event.which;    
-
-    if ((event.shiftKey == false) && ((key  > 47 && key  < 58) || (key  > 95 && key  < 106)
-
-    || key  == 35 || key  == 36 || key  == 37 || key  == 39  // 방향키 좌우,home,end  
-
-    || key  == 8  || key  == 46|| key  == 9 ) // del, back space
-
-    ) {
-
-        return true;
-
-    }else {
-
-        return false;
-
-    }    
-
-}
 
 $(function(){
 	//탭동작 스크립트
@@ -291,7 +337,7 @@ $(function(){
 	})
 });
 
-//-->
+
 </SCRIPT>
 <jsp:include page="../includes/footer.jsp" />
 </body>
