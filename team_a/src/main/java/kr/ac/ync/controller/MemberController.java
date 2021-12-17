@@ -117,7 +117,7 @@ public class MemberController {
 	//프론트 회원탈퇴 이동 화면
 	@GetMapping( "/drawal" )
 	public String drawal() {
-		return "/mypage/member_Withdrawal";
+		return "/mypage/withdrawal";
 	}
 	
 	//회원 탈퇴
