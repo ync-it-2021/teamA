@@ -28,6 +28,8 @@ public class IndexController {
 		model.addAttribute("evt",evtService.getList());
 		log.info("best......" + prdService.best_items());
 		model.addAttribute("best",prdService.best_items());
+		log.info("new......" + prdService.new_items());
+		model.addAttribute("new_arrival",prdService.new_items());
 		return"index";
 	}
 	
