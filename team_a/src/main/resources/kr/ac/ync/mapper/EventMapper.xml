@@ -3,15 +3,16 @@
 <mapper namespace="kr.ac.ync.mapper.EventMapper">
 
 <select id="getList" resultType="kr.ac.ync.domain.EventVO">
-			SELECT	evt_idx,				
-	  				evt_title,			
-	  				evt_start_day,		
-	  				evt_end_day,		
-	  				evt_main_img,		
-	  				evt_move_uri,
-	  				evt_del,			
-	 				prd_idx
-			FROM 	event
+		SELECT	evt_idx,				
+			  	evt_title,			
+			  	evt_start_day,		
+			  	evt_end_day,		
+			  	evt_main_img,		
+			  	evt_move_uri,
+		        evt_del,			
+			 	prd_idx
+		FROM 	event
+		WHERE   TO_CHAR(evt_end_day,'YYYY/MM/dd') >= TO_CHAR(SYSDATE, 'YYYY/MM/dd')
 	</select>
 
 
