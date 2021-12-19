@@ -1,12 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <head>
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>1:1¹®ÀÇ ÀÛ¼º</title>
-	<jsp:include page="includes/header.jsp"/>
+	<title>1:1ë¬¸ì˜ ìž‘ì„±</title>
+	<jsp:include page="../includes/header.jsp"/>
 	<meta name="description" content="">
 	<meta name="author" content="">
 	
@@ -24,79 +25,70 @@
 	}
 </script>
 <script language="javascript" src="../resources/images/top.js"></script>
-<!--Content¿µ¿ª½ÃÀÛ-->
-<section>
+<!--Contentì˜ì—­ì‹œìž‘-->
+<section class="section_style">
 	<div id="page-member-ask" class="section-member pc-width">
 		<div id="navigation-bar"><script>document.write(navistr)</script></div>
 		<h2 class="page-title"><script>document.write(siteTitle)</script></h2>
-		<!-- mypage »ó´Ü ½ÃÀÛ -->
+		<!-- mypage ìƒë‹¨ ì‹œìž‘ -->
 		
 	<div class="member-nav-wrapper">
-	<ul class="member-nav"> <!-- ³ªÀÇ ¼îÇÎÇöÈ²ÀÏ ¶§ open-sub-menu class¸¦ Ãß°¡ -->
+	<ul class="member-nav"> <!-- ë‚˜ì˜ ì‡¼í•‘í˜„í™©ì¼ ë•Œ open-sub-menu classë¥¼ ì¶”ê°€ -->
 		<li>
-			<a href="buy_list.jsp">³ªÀÇ ¼îÇÎÇöÈ²</a>
+			<a href="buy_list.jsp">ë‚˜ì˜ ì‡¼í•‘í˜„í™©</a>
 			<div class="member-sub-nav">
-				<a href="orderlist.jsp">ÁÖ¹®³»¿ª</a>
-				<a href="shoppingbasket.jsp">Àå¹Ù±¸´Ï</a>
-				<a href="wish.jsp">À§½Ã¸®½ºÆ®</a>
-				<a href="mycoupon.jsp">ÄíÆù</a>
-				<a href="mypoint.jsp">¿¹Ä¡±Ý</a>
+				<a href="orderlist.jsp">ì£¼ë¬¸ë‚´ì—­</a>
+				<a href="shoppingbasket.jsp">ìž¥ë°”êµ¬ë‹ˆ</a>
+				<a href="wish.jsp">ìœ„ì‹œë¦¬ìŠ¤íŠ¸</a>
+				<a href="mycoupon.jsp">ì¿ í°</a>
+				<a href="mypoint.jsp">ì˜ˆì¹˜ê¸ˆ</a>
 			</div>
 		</li>
-		<li><a href="member_Modify.jsp">°³ÀÎÁ¤º¸¼öÁ¤</a></li>
-		<li><a href="baesong_addr.jsp">ÁÖ¼Ò·Ï°ü¸®</a></li>
-		<li class="hide-mobile active"><a href="qna.jsp">1:1¹®ÀÇ</a></li>
-		<li><a href="myreview_view.jsp">³ªÀÇÈÄ±â</a></li>
-		<li><a href="member_Withdrawal.jsp">È¸¿øÅ»Åð</a></li>
+		<li><a href="member_Modify.jsp">ê°œì¸ì •ë³´ìˆ˜ì •</a></li>
+		<li><a href="baesong_addr.jsp">ì£¼ì†Œë¡ê´€ë¦¬</a></li>
+		<li class="hide-mobile active"><a href="qna.jsp">1:1ë¬¸ì˜</a></li>
+		<li><a href="myreview_view.jsp">ë‚˜ì˜í›„ê¸°</a></li>
+		<li><a href="member_Withdrawal.jsp">íšŒì›íƒˆí‡´</a></li>
 	</ul>
 	</div>
 
 	
-		<!-- mypage »ó´Ü ³¡ -->
+		<!-- mypage ìƒë‹¨ ë -->
 		<div class="contents-wrapper">
-			<h2 class="page-sub-title kr">1:1 ¹®ÀÇ</h2>
+			<h2 class="page-sub-title kr">1:1 ë¬¸ì˜</h2>
 			<div class="page-content-desc">
-				<span class="only-pc">Á¦Ç°, ÁÖ¹®, ¹è¼Û µî¿¡ °üÇÑ ¹®ÀÇ»çÇ×À» ³²°ÜÁÖ¼¼¿ä. ºü¸£°í Ä£ÀýÇÏ°Ô ¾È³»ÇØ µå¸³´Ï´Ù.</span>
-				<span class="only-mobile">Á¦Ç°, ÁÖ¹®, ¹è¼Û µî¿¡ °üÇÑ ¹®ÀÇ»çÇ×À» ³²°ÜÁÖ¼¼¿ä.</span>
+				<span class="only-pc">ì œí’ˆ, ì£¼ë¬¸, ë°°ì†¡ ë“±ì— ê´€í•œ ë¬¸ì˜ì‚¬í•­ì„ ë‚¨ê²¨ì£¼ì„¸ìš”. ë¹ ë¥´ê³  ì¹œì ˆí•˜ê²Œ ì•ˆë‚´í•´ ë“œë¦½ë‹ˆë‹¤.</span>
+				<span class="only-mobile">ì œí’ˆ, ì£¼ë¬¸, ë°°ì†¡ ë“±ì— ê´€í•œ ë¬¸ì˜ì‚¬í•­ì„ ë‚¨ê²¨ì£¼ì„¸ìš”.</span>
 			</div>
 
-			<form name="form1" method="post" action="insert_DB.asp" enctype="multipart/form-data">
-				<input type="hidden" name="choice" value="insert"/>
+			<form name="form1" method="post" action="/mypage/qna/write" enctype="multipart/form-data">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				<input type="hidden" name="member_id" value='<sec:authentication property="principal.username"/>'>
 				<table class="item-table type1 ask-write">
 					<tr>
-						<th>Áú¹®À¯Çü</th>
+						<th>ì§ˆë¬¸ìœ í˜•</th>
 						<td>
-							<select name="type" class="type2 kind" onChange="view_jumun(this.value);">
-								<option value="">¼±ÅÃÇÏ¼¼¿ä.</option>
-								<option value="1">ÀÏ¹Ý¹®ÀÇ</option>
-								<option value="2">ÁÖ¹®°ü·Ã ¹®ÀÇ</option>
+							<select name="oi_kind" class="type2 kind" onChange="view_jumun(this.value);">
+								<option value="N">ì¼ë°˜ë¬¸ì˜</option>
+								<option value="O">ì£¼ë¬¸ê´€ë ¨ ë¬¸ì˜</option>
 							</select>
 							<span id="jumun" name="jumun" style="display:none;">
-								<input type="text" name ="jumuncode" class="input1" readOnly>
-								<input type="hidden" name ="id">
-								<span class="ok type2 btn-type1" onClick="search_jumun();" style="cursor:pointer;">ÁÖ¹®¹øÈ£ Ã£±â</span>
+								<input type="number" name ="od_idx" class="input1 od_idx" readOnly>
+								<span class="ok type2 btn-type1" onClick="search_jumun();" style="cursor:pointer;">ì£¼ë¬¸ë²ˆí˜¸ ì°¾ê¸°</span>
 							</span>
 						</td>
 					</tr>
 					<tr>
-						<th>´äº¯ÀÌ¸ÞÀÏ</th>
-						<td>
-							
-						</td>
 					</tr>
 					<tr>
-						<th>Á¦¸ñ</th>
+						<th>ì œëª©</th>
 						<td>
-							<input type="text" name="subject" class="input2 subject" />
+							<input type="text"  name="oi_title" class="input2 title" style="width:90%"/>
 						</td>
-					</tr>
-					<tr id="qna-file-mobile">
-
 					</tr>
 				</table>
 				<div id="qna-body-pc" class="input-wrapper">
 					<script type="text/javascript" src="/_vir0001/easyEditor/easyEditor_euckrCustomer.js" charset="euc-kr"></script>
-<textarea name="content" id="content" class="input1 ask-body"></textarea>
 <script type="text/javascript" >
 var ed = new easyEditor("content");
 ed.cfg.Btn = ["font","size","bar",
@@ -111,11 +103,13 @@ ed.init();
 
 				</div>
 				<div id="qna-body-mobile" class="input-wrapper">
-					<textarea class="input1 ask-body" name="contentm" rows="10"></textarea>
+					<textarea class="input1 contents" name="oi_contents" rows="10" placeholder="ë‚´ìš© ìž…ë ¥"></textarea>
 				</div>
+				<div>ì²¨ë¶€ íŒŒì¼ : <input type="file" name="uploadFile"/></div>
+				
 				<div class="action-buttons">
-					<span class="cancel type1" onclick="history.back();" style="cursor:pointer;">Ãë¼Ò</span>
-					<span class="ok type2" onclick="this_submit();" style="cursor:pointer;">µî·Ï</span>
+					<span class="cancel type1" onclick="history.back();" style="cursor:pointer;">ì·¨ì†Œ</span>
+					<span class="ok type2" onclick="this_submit();" style="cursor:pointer;">ë“±ë¡</span>
 				</div>
 			</form>
 
@@ -125,15 +119,15 @@ ed.init();
 
 
 
-<jsp:include page="includes/footer.jsp"/>
+<jsp:include page="../includes/footer.jsp"/>
 
 	
 
 <script type="text/javascript" async src="//cdn-aitg.widerplanet.com/js/wp_astg_4.0.js"></script>
-<!-- WIDERPLANET  SCRIPT START 2018.5.21 (°øÅë)-->
+<!-- WIDERPLANET  SCRIPT START 2018.5.21 (ê³µí†µ)-->
 
 
-<!-- Enliple Common Tracker v3.6 [°ø¿ë] start -->
+<!-- Enliple Common Tracker v3.6 [ê³µìš©] start -->
 <script type="text/javascript">
 <!--
 function mobRf() {
@@ -155,39 +149,29 @@ function mobRf() {
 	form = document.form1;
 
 	function this_submit() {
-		if (form.type.value == "2" && form.jumuncode.value == "" ) {
-			alert("¹®ÀÇÇüÅÂ°¡ [ÁÖ¹®°ü·Ã ¹®ÀÇ]ÀÎ °æ¿ì ÁÖ¹®¹øÈ£Ã£±â¸¦ ÅëÇÏ¿© ÁÖ¹®¹øÈ£¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿À.");
-			form.jumuncode.focus();
+		if ($(".kind").val() == "O" && $(".od_idx").val() == "" ) {
+			alert("ë¬¸ì˜í˜•íƒœê°€ [ì£¼ë¬¸ê´€ë ¨ ë¬¸ì˜]ì¸ ê²½ìš° ì£¼ë¬¸ë²ˆí˜¸ì°¾ê¸°ë¥¼ í†µí•˜ì—¬ ì£¼ë¬¸ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
+			$(".od_idx").focus();
 			return false;
 		}
 
-		if (form.subject.value == "") {
-			alert ("Á¦¸ñÀ» ÀÛ¼ºÇØ ÁÖ½Ê½Ã¿À");
+		if ($(".title").val() == "") {
+			alert ("ì œëª©ì„ ìž‘ì„±í•´ ì£¼ì‹­ì‹œì˜¤");
 			form.subject.focus();
 			return false;
 		}
 
-		if (!isMobile) {
-			if (ed.getHtml() == "") {
-				alert("³»¿ëÀ» ÀÛ¼ºÇØ ÁÖ½Ê½Ã¿À");
-				return false;
-			}
-		}
-		else {
-			if (form.contentm.value == "") {
-				alert ("³»¿ëÀ» ÀÛ¼ºÇØ ÁÖ½Ê½Ã¿À");
-				return false;
-			} else {
-				form.content.value = form.contentm.value;
-			}
-		}
-
+		if ($(".contents").val()== "") {
+			alert ("ë‚´ìš©ì„ ìž‘ì„±í•´ ì£¼ì‹­ì‹œì˜¤");
+			return false;
+		} 
+		
 		form.submit();
 	}
 
 
 	function view_jumun(val){
-		if (val == 2) {
+		if (val == "O") {
 			document.getElementsByName("jumun")[0].style.display = "";
 		} else {
 			document.getElementsByName("jumun")[0].style.display = "none";
@@ -198,8 +182,9 @@ function mobRf() {
 
 
 	function search_jumun(){
-		window.open("/common/process/qanda/search_jumuncode.asp","jumunpop","width=750,height=600,scrollbars=yes,resizable");
+	 window.open("/mypage/order/search","jumunpop","width=600,height=600,scrollbars=yes,resizable");
 	}
+
 
 
 	$(function() {
@@ -211,7 +196,7 @@ function mobRf() {
 		else {
 			document.getElementById("qna-body-pc").style.display = "none";
 			document.getElementById("qna-body-mobile").style.display = "block";
-			document.getElementById("qna-file-mobile").innerHTML = "<th>ÆÄÀÏÃ·ºÎ</th><td><input type=\"file\" name=\"file\" /></td>";
+			document.getElementById("qna-file-mobile").innerHTML = "<th>íŒŒì¼ì²¨ë¶€</th><td><input type=\"file\" name=\"file\" /></td>";
 		}
 	});
 //-->

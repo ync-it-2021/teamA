@@ -17,5 +17,7 @@ public List<OneInquiryVO> getListWithPaging(Criteria cri);
 	
 	public int getTotalCount(Criteria cri);
 	
+	public Integer insertSelectKey(OneInquiryVO oi);
+	
 	public int update(OneInquiryVO oi);
 }
