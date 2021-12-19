@@ -22,7 +22,7 @@ public class IndexController {
 	@Autowired
 	private EventService evtService;	
 	
-	@GetMapping("/")
+	@GetMapping("")
 	public String index( Model model) {
 		log.info("Event......" + evtService.getList());
 		model.addAttribute("evt",evtService.getList());
