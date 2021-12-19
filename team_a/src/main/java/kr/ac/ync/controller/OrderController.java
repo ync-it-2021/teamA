@@ -3,6 +3,8 @@ package kr.ac.ync.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -81,6 +83,22 @@ public class OrderController {
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		model.addAttribute("list",service.getCartList(mb_id));
 		return "/mypage/shoppingBasket";
+	}
+	
+	@GetMapping("/search")
+	public String searchOrder(Criteria cri, Model model,Authentication authentication) {
+		UserDetails userDetails = (UserDetails)authentication.getPrincipal();
+		String member_id = userDetails.getUsername();
+		cri.setType("M");
+		cri.setKeyword(member_id);
+		log.info("list: " + cri);
+
+		int total = service.getTotal(cri);
+		log.info("total: " + total);
+		model.addAttribute("list", service.getListWithPaging(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		
+		return "/searchOrder";
 	}
 	
 }

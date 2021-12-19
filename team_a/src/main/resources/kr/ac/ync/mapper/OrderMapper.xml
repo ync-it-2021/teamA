@@ -6,9 +6,6 @@
 			<foreach item='type' collection="typeArr">
 				<trim prefix="OR">
 					<choose>
-						<when test="type == 'N'.toString()">
-							od_name LIKE '%'||#{keyword}||'%'
-						</when>
 						<when test="type == 'M'.toString()">
 							member_id LIKE '%'||#{keyword}||'%'
 						</when>
@@ -64,6 +61,7 @@
 				member_id,
 				od_date,
 				od_amount,
+				od_details,
 				od_status,
 				od_del
 		FROM	(SELECT /*+INDEX_DESC(orders XPKORDER) */
@@ -73,6 +71,7 @@
 					member_id,
 					od_date,
 					od_amount,
+					od_details,
 					od_status,
 					od_del	
       			FROM	orders
