@@ -27,13 +27,12 @@ public class CommonController {
 		log.info("logout: " + logout);
 
 		if (error != null) {
-			model.addAttribute("error", "Login Error Check Your Account");
-			return null;
+			model.addAttribute("err", "Y");
+			return "/login";
 		}
 
 		if (logout != null) {
-			model.addAttribute("logout", "Logout!!");
-			return "index";
+			return "redirect:/login";
 		}
 		return null;
 	}
