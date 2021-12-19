@@ -15,7 +15,7 @@ function make_select_code(choice,choice_array,name,class_name,add,wid,minusTag,m
 
 		if (!(add==undefined || add=="")) rValue.push('<option value="'+add.split("^")[0]+'" selected>'+add.split("^")[1]+'</option>')
 
-		this_array = eval(choice_array)
+		this_array = eval(choice_array);
 
 		for (var i=0 ; i<this_array.length ; i++) {
 			if (this_array[i][1].indexOf("0000")>0) {
@@ -637,6 +637,32 @@ MD_brand_reverse.push(new Array("4","MR","chk"))
 
 
 //팝업창 자동 오픈 관련(실제 사이트 URL을 입력하십시오.)
+Site_popup = new Array()
+Site_popup.push(new Array("furryfriends","3"))
+Site_popup.push(new Array("prodoggie","20"))
+Site_popup.push(new Array("komplett","21"))
+Site_popup.push(new Array("mars","22"))
+Site_popup.push(new Array("bestBreed","54"))
+Site_popup.push(new Array("eggfull","100"))
+Site_popup.push(new Array("carna4","101"))
+Site_popup.push(new Array("montraum","4"));
+
+
+
+//email 배열 없어서 오기택 만듬
+email = new Array();
+email.push(new Array("naver.com","naver.com"));
+email.push(new Array("gmail.com","gmail.com"));
+email.push(new Array("hanmail.net","hanmail.net"));
+email.push(new Array("nate.com","nate.com"));
+email.push(new Array("hotmail.com","hotmail.com"));
+email.push(new Array("empal.com","empal.com"));
+email.push(new Array("empas.com","empas.com"));
+email.push(new Array("dreamwiz.com","dreamwiz.com"));
+email.push(new Array("ync.ac.kr","ync.ac.kr"));
+
+
+
 Site_popup = new Array()
 Site_popup.push(new Array("furryfriends","3"))
 Site_popup.push(new Array("prodoggie","20"))
