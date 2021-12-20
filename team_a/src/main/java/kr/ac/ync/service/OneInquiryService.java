@@ -13,6 +13,9 @@ public interface OneInquiryService {
 	public int getTotal(Criteria cri);
 	// 글 상세보기
 	public OneInquiryVO get(int prd_idx);
+	
+	// 글 등록
+		public void register(OneInquiryVO oi);
 
 	// 글 수정
 	public boolean modify(OneInquiryVO oi);

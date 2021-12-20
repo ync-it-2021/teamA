@@ -48,7 +48,7 @@ public class CouponController {
 		log.info("total: " + total);
 		model.addAttribute("list", service.getListWithPaging(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
-		return "/mypage/mycoupon";
+		return "/mypage/myCoupon";
 	}
 	
 	@GetMapping( {"/get", "/modify"})

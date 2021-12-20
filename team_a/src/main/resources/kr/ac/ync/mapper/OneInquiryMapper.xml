@@ -7,14 +7,14 @@
 			<foreach item='type' collection="typeArr">
 				<trim prefix="OR">
 					<choose>
-						<when test="type == 'N'.toString()">
-							prd_name LIKE '%'||#{keyword}||'%'
+						<when test="type == 'M'.toString()">
+							member_id LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'T'.toString()">
+							oi_title LIKE '%'||#{keyword}||'%'
 						</when>
 						<when test="type == 'C'.toString()">
-							prd_name LIKE '%'||#{keyword}||'%'
-						</when>
-						<when test="type == 'K'.toString()">
-							prd_name LIKE '%'||#{keyword}||'%'
+							prd_contents LIKE '%'||#{keyword}||'%'
 						</when>
 						<when test="type == 'A'.toString()">
 						oi_reply IS NULL
@@ -66,6 +66,25 @@
 		]]>
 				
 	</select>
+	
+	<insert id="insertSelectKey">
+		INSERT INTO one_inquiry (oi_idx,
+								oi_title,
+								oi_contents,
+								oi_img,
+								oi_kind,
+								od_idx,
+								member_id
+								)
+					VALUES (	seq_one_inquiry.nextval,
+								#{oi_title},
+								#{oi_contents},
+								#{oi_img,jdbcType=VARCHAR},
+								#{oi_kind},
+								#{od_idx},
+								#{member_id}
+								 )
+	</insert>
 	
 	<update id="update">
 		UPDATE 	one_inquiry

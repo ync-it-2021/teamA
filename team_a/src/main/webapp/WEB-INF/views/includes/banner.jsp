@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+       <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,52 +13,55 @@
 		<div id="page-main">
 			<!-- 메인롤링배너 XML -->
 			<div id="main-banner">
+			<c:if test="${not empty evt}">
+				<c:forEach var="evt" items="${evt}">
+						<div class="item">
+							<div class="image only-pc" onclick="location.href='${evt.evt_move_uri}'"
+								style="cursor:pointer; background-image:url('/resources/upload/${evt.evt_main_img}')"></div>
+							<!-- { image for pc } -->
+	
+							<div class="image only-mobile" onclick="location.href='${evt.evt_move_uri}'"
+								style="background-image:url('/resources/upload/${evt.evt_main_img}')"></div>
+							<!-- { image for mobile } -->
+						</div>
+				</c:forEach>
+				
+				<c:if test="${fn:length(evt) == 1}">
+					<div class="item">
+						<div class="image only-pc" onclick="location.href='${evt.evt_move_uri}'"
+							style="cursor:pointer;background-image:url('/resources/upload/${evt.evt_main_img}')"></div>
+						<!-- { image for pc } -->
+
+						<div class="image only-mobile" onclick="location.href='${evt.evt_move_uri}'"
+							style="background-image:url('/resources/upload/${evt.evt_main_img}')"></div>
+						<!-- { image for mobile } -->
+					</div>
+				</c:if>
+			</c:if>
+			
+			<c:if test="${empty evt}">
 				<div class="item">
-					<div class="image only-pc" onclick="location.href='index.jsp'"
-						style="cursor:pointer;background-image:url('../resources/images/1_20211025am83150.jpg')"></div>
+					<div class="image only-pc" onclick="location.href='/'"
+						style="cursor:pointer;background-image:url('/resources/images/event_empty.jpg')"></div>
 					<!-- { image for pc } -->
 
-					<div class="image only-mobile" onclick="location.href='eventview3d62.html?idx=521'"
-						style="background-image:url('../resources/images/2_20211025am83150.jpg')"></div>
+					<div class="image only-mobile" onclick="location.href='/'"
+						style="background-image:url('/resources/images/event_empty.jpg')"></div>
 					<!-- { image for mobile } -->
 				</div>
+				
 				<div class="item">
-					<div class="image only-pc" onclick="location.href='eventview1798.html?idx=522'"
-						style="cursor:pointer;background-image:url('../resources/images/3_20211025am83150.jpg')"></div>
+					<div class="image only-pc" onclick="location.href='/'"
+						style="cursor:pointer;background-image:url('/resources/images/event_empty.jpg')"></div>
 					<!-- { image for pc } -->
 
-					<div class="image only-mobile" onclick="location.href='eventview1798.html?idx=522'"
-						style="background-image:url('../resources/images/4_20211025am83150.jpg')"></div>
+					<div class="image only-mobile" onclick="location.href='/'"
+						style="background-image:url('/resources/images/event_empty.jpg')"></div>
 					<!-- { image for mobile } -->
 				</div>
-				<div class="item">
-					<div class="image only-pc" onclick="location.href='eventviewbca9.html?idx=523'"
-						style="cursor:pointer;background-image:url('../resources/images/5_20211025am83150.jpg')"></div>
-					<!-- { image for pc } -->
-
-					<div class="image only-mobile" onclick="location.href='eventviewbca9.html?idx=523'"
-						style="background-image:url('../resources/images/6_20211025am83150.jpg')"></div>
-					<!-- { image for mobile } -->
-				</div>
-				<div class="item">
-					<div class="image only-pc" onclick="location.href='eventview297f.html?idx=519'"
-						style="cursor:pointer;background-image:url('../resources/images/7_20211025am83150.jpg')"></div>
-					<!-- { image for pc } -->
-
-					<div class="image only-mobile" onclick="location.href='eventview297f.html?idx=519'"
-						style="background-image:url('../resources/images/8_20211025am83150.jpg')"></div>
-					<!-- { image for mobile } -->
-				</div>
-				<div class="item">
-					<div class="image only-pc" onclick="location.href='eventview695e.html?idx=517'"
-						style="cursor:pointer;background-image:url('../resources/images/9_20211025am83150.jpg')"></div>
-					<!-- { image for pc } -->
-
-					<div class="image only-mobile" onclick="location.href='eventview695e.html?idx=517'"
-						style="background-image:url('../resources/images/10_20211025am83150.jpg')"></div>
-					<!-- { image for mobile } -->
-				</div>
+			</c:if>
 			</div>
+		</div>
 
 
 			<!-- 메인베너 스크립트 -->

@@ -19,6 +19,10 @@ $(document).ready(function(){
 			$(".welcome-member").html(data + " 고객님, 환영합니다.");
 		}
 	});
+
+	$(".member-nav").addClass("open-sub-menu");
+	
+						
 });
 
 </script>
@@ -38,10 +42,10 @@ $(document).ready(function(){
 <script language="javascript" src="../resources/js/_vir0001/code.js" charset="euc-kr"></script>
 
 <!--Content영역시작-->
-		<section>
+		<section class="section_style">
 			<div id="page-member-order-list" class="section-member pc-width">
 				
-	<jsp:include page="myPageNavigation.jsp"></jsp:include>
+	<jsp:include page="myPageNavigation.jsp"/>
 	
 	<div class="top-summary">
 		<p class="welcome-member"></p>
@@ -130,7 +134,6 @@ $(document).ready(function(){
 							<td colspan="5">주문하신 내역이 없습니다.</td>
 						</tr>
 						-->
-
 			<tr>
 				<td colspan="5" class="empty">주문하신 내역이 없습니다.</td>
 			</tr>

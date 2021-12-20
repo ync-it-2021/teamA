@@ -156,10 +156,25 @@
 	<section>
 		<div id="page-member-join-step2" class="section-member pc-width">
 			<div id="navigation-bar">
-				<span>Home</span> <span>Member</span> <span class="current">Join</span>
+				<script>	
+						let str = "";
+						var href_ = window.location.pathname
+						href_ = href_.substr(1);
+						var href_data = href_.split("/");
+						str +="<a href='/'> HOME </a>";
+						for(var s of href_data){
+							if(s == 'mypage') {
+								str +=" > <a href='/mypage/order'>"; 
+							}else{
+								str +=" > <a href=/'"+s+"'>"; 
+							};
+							str += s.toUpperCase() +" </a>";
+						}
+						$("#navigation-bar").html(str);
+					</script>
 			</div>
 
-			<h2 class="page-title">Join</h2>
+			<h2 class="page-title">회원가입</h2>
 			<div id="authText" name="authText"
 				style="display: none; margin: 5px 0;"></div>
 			<form name="frmReg" action="/member/join_write" method="post">
@@ -194,13 +209,13 @@
 							<td><input type="password" name="pwd1" maxlength="20"
 								class="input1" /> <span class="password-check"> 비밀번호 확인
 									<input type="password" name="pwd2" maxlength="20"
-									class="input1" />
+									class="input1"autocomplete="new-password"/>
 							</span></td>
 						</tr>
 						<tr class="password-check-mobile">
 							<th>비밀번호 확인</th>
 							<td><input type="password" name="pwd2_mobile" maxlength="20"
-								class="input1" /></td>
+								class="input1" autocomplete="new-password"/></td>
 						</tr>
 						<tr>
 							<th>이름</th>
@@ -232,7 +247,6 @@
 								maxlength="30" onkeydown="space_no()" onkeyup="space_no2()"
 								class="input1 email2" /> <select name="SelectEmail"
 								OnChange="ChangeEmail()" class="type1 email-select">
-									<script> make_select_code("select","email","SelectEmail","","^직접입력","","x")</script>
 									<option value="naver.com">naver.com</option>
 									<option value="gmail.com">gmail.com</option>
 									<option value="hanmail.net">hanmail.net</option>
@@ -255,10 +269,9 @@
 									<option value="kornet.nm.kr">kornet.nm.kr</option>
 									<option value="kebi.com">kebi.com</option>
 									<option value="lycos.com">lycos.com</option>
-									<option value="lycos.co.kr">lycos.co.kr</option>
-							</select> </select>
-
-
+									<option value="ync.ac.kr">ync.ac.kr</option>
+									<option class="notEmptyEmail" value="">직접입력</option>
+							</select>
 
 								<div class="next-line">
 									<input type="checkbox" name="bMail_rcv" value="1"

@@ -8,6 +8,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,7 +78,7 @@ public class MemberController {
 		member.setMember_birthday(request.getParameter("birth1")+"-"+request.getParameter("birth2")+"-"+request.getParameter("birth3"));
 		member.setMember_email(request.getParameter("email")+"@"+request.getParameter("email2"));
 		member.setMember_phone(request.getParameter("mobile1")+"-"+request.getParameter("mobile2")+"-"+request.getParameter("mobile3"));
-		member.setMember_address(request.getParameter("address1") + request.getParameter("address2") + request.getParameter("address3"));
+		member.setMember_address(request.getParameter("address1")+"," + request.getParameter("address2") +","+ request.getParameter("address3"));
 		member.setAuthList(list);
 		}else {
 			vo.setMember_id(member.getMember_id());
@@ -105,19 +108,22 @@ public class MemberController {
 	
 	
 	@PostMapping( "/modify" )
-	public String modify(MemberVO member, @ModelAttribute("cri") Criteria cri) {
+	public String modify(MemberVO member, @ModelAttribute("cri") Criteria cri,Authentication authentication) {
 		
-		
-		member.setMember_pass(pwencoder.encode(member.getMember_pass()));
-
+		UserDetails userDetails = (UserDetails)authentication.getPrincipal();
+		String auto = userDetails.getAuthorities().toString();
+		if(auto.equals("[ROLE_ADMIN]")) {
+			member.setMember_pass(pwencoder.encode(member.getMember_pass()));
+		}
 		log.info("/modify");
 		this.mapper.update(member);
 		return "redirect:/admin/member/get?mb_id=" + member.getMember_id();
 	}
+	
 	//프론트 회원탈퇴 이동 화면
 	@GetMapping( "/drawal" )
 	public String drawal() {
-		return "/mypage/member_Withdrawal";
+		return "/mypage/withdrawal";
 	}
 	
 	//회원 탈퇴
@@ -162,7 +168,19 @@ public class MemberController {
 //		return member_id;
 	}
 	
-	
+	//페스워드 확인
+	@GetMapping(value = "/passwordCheck",produces = "application/text; charset=UTF-8")
+	public @ResponseBody String passwordCheck( String member_id,String member_pass) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			log.info("cheking password.......");
+		 if(encoder.matches(member_pass, mapper.read(member_id).getMember_pass())) {
+			 log.info(" 비밀번호 확인 완료"); 
+			 return "Y";
+		 }else {
+			 log.info(" 비밀번호 틀림"); 
+			 return "N";
+		 }
+	}
 	
 	@GetMapping("/pwsearch")
 	public String member_search(HttpServletRequest request, MemberVO member ,RedirectAttributes rttr) {
@@ -170,7 +188,6 @@ public class MemberController {
 		System.out.print(ProcessGubun);
 
 		if (ProcessGubun.equals("A")) { // find ID
-			
 
 			String search_gu = request.getParameter("search_gu");
 
