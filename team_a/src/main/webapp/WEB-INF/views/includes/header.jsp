@@ -209,110 +209,24 @@
 
 		<nav class="wc-zone">
 			<ul id="pc-nav" class="pc-width clearfix only-pc">
-				<li class="brand-open brand"><a href="brandmain.html"><img src="../resources/images/txt_brand.png"
+				<li class="brand-open brand"><a href=""><img src="../resources/images/txt_brand.png"
 			alt="BRAND" /></a>
 				</li>
-				<li class="submenu-open menu1"><a href="shopmain95da.html?iniCategory=24&amp;thisCategory="><span
-							class="default">강아지 사료</span><span class="hover">강아지 사료</span></a></li>
-				<li class="submenu-open menu2"><a href="shopmain6e15.html?iniCategory=107&amp;thisCategory="><span
-							class="default">고양이 사료</span><span class="hover">고양이 사료</span></a></li>
-				<li class="submenu-open menu3"><a href="shopmainacb9.html?iniCategory=25&amp;thisCategory="><span
-							class="default">배변용품</span><span class="hover">배변용품</span></a></li>
-				<li class="submenu-open menu4"><a href="shopmain84ed.html?iniCategory=27&amp;thisCategory="><span
-							class="default">미용</span><span class="hover">미용</span></a></li>
-				<li class="submenu-open menu5"><a href="shopmaine79f.html?iniCategory=28&amp;thisCategory="><span
-							class="default">리빙/외출</span><span class="hover">리빙/외출</span></a></li>
-				<li class="submenu-open menu6"><a href="shopmain31f3.html?iniCategory=76&amp;thisCategory="><span
-							class="default">고양이 용품</span><span class="hover">고양이 용품</span></a></li>
+				<li class="submenu-open menu1"><a href="/product?prd_kind=1"><span
+							class="default">강아지</span><span class="hover">강아지 사료</span></a></li>
+				<li class="submenu-open menu2"><a href="/product?prd_kind=2"><span
+							class="default">고양이</span><span class="hover">고양이 사료</span></a></li>
+				<li class="submenu-open menu3"><a href="/product?prd_kind=3"><span
+							class="default">배변용품</span><span class="hover">애완패드</span></a></li>
+				<li class="submenu-open menu4"><a href="/product?prd_kind=4"><span
+							class="default">미용</span><span class="hover">미용 용품</span></a></li>
+				<li class="submenu-open menu5"><a href="/product?prd_kind=5"><span
+							class="default">리빙/외출</span><span class="hover">잡다</span></a></li>
+				<li class="submenu-open menu6"><a href="/product?prd_kind=6"><span
+							class="default">고양이 용품</span><span class="hover">고양이 전용</span></a></li>
 				
-				<li class="submenu-open menu7">
-					<div class="fb-icon-pc only-pc"></div><a href="eventviewfdd5.html?idx=350"
-						style="color:purple;"><span class="default">체험특가</span><span class="hover">체험특가</span></a>
-				</li>
+			
 			</ul>
-
-
-
-			<div id="pc-sub-category">
-				<div class="pc-width">
-					<div class="banner-wrapper">
-						<a href="eventviewe84a.html?idx=124"><img src="../resources/images/bnr_sub_category.jpg"
-								alt="MONTRAUM" /></a>
-					</div>
-					<ul class="menu1">
-
-						<li><a href="shopmain3398.html?iniCategory=24&amp;thisCategory=29">그레인프리</a></li>
-
-						<li><a href="shopmainde9a.html?iniCategory=24&amp;thisCategory=57">홀리스틱</a></li>
-
-						<li><a href="shopmain715b.html?iniCategory=24&amp;thisCategory=60">연령별</a></li>
-
-
-					</ul>
-
-					<ul class="menu2">
-
-						<li><a href="shopmain3798.html?iniCategory=107&amp;thisCategory=109">그레인프리</a></li>
-
-						<li><a href="shopmain410a.html?iniCategory=107&amp;thisCategory=110">홀리스틱</a></li>
-
-						<li><a href="shopmain271e.html?iniCategory=107&amp;thisCategory=111">연령별</a></li>
-
-
-					</ul>
-
-					<ul class="menu3">
-
-						<li><a href="shopmaina0d3.html?iniCategory=25&amp;thisCategory=30">트레이닝 패드</a></li>
-
-						<li><a href="shopmain673c.html?iniCategory=25&amp;thisCategory=31">노스멜 패드</a></li>
-
-						<li><a href="shopmaina2c1.html?iniCategory=25&amp;thisCategory=115">피크닉 패드</a></li>
-
-
-
-					</ul>
-
-					<ul class="menu4">
-
-						<li><a href="shopmain7b85.html?iniCategory=27&amp;thisCategory=102">콤</a></li>
-
-						<li><a href="shopmain60d5.html?iniCategory=27&amp;thisCategory=55">코트킹</a></li>
-
-						<li><a href="shopmainf38b.html?iniCategory=27&amp;thisCategory=52">브러쉬</a></li>
-
-					</ul>
-
-					<ul class="menu5">
-
-						<li><a href="shopmainf65c.html?iniCategory=28&amp;thisCategory=99">펫 백팩</a></li>
-
-						<li><a href="shopmain55e4.html?iniCategory=28&amp;thisCategory=81">펫 슬링백</a></li>
-
-						<li><a href="shopmain5903.html?iniCategory=28&amp;thisCategory=86">듀얼마약방석</a></li>
-
-
-					</ul>
-
-					<ul class="menu8">
-
-						<li><a href="shopmain830a.html?iniCategory=76&amp;thisCategory=113">화장실</a></li>
-
-						<li><a href="shopmain898e.html?iniCategory=76&amp;thisCategory=78">모래</a></li>
-
-						<li><a href="shopmainf3bd.html?iniCategory=76&amp;thisCategory=79">미용</a></li>
-
-					</ul>
-
-					<ul>
-
-					</ul>
-
-				</div>
-			</div>
-
-
-		</nav>
 
 	</header>
 	</body>

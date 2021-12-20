@@ -290,7 +290,7 @@
 					nav: true,
 					dots: false,
 					dotsEach: 2,
-					navText: ['<img src="../resources/images/btn_prev1.png">', '<img src="../resources/images/btn_next-2.png">'],
+					navText: ['<img src="../resources/images/btn_prevw.png">', '<img src="../resources/images/btn_next-2.png">'],
 					responsive: {
 						360: { margin: 0 },
 						1000: { margin: 20 }

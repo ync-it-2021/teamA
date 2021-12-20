@@ -80,41 +80,7 @@
 	<select id="pass_check" resultType="int">
  		SELECT COUNT(*) FROM member WHERE member_id LIKE #{member_id} AMD member_pass LIKE #{member_pass}
   	</select>
-  	
-  	<!-- 이메일 찾기 -->
-  	<select id="member_idsearch_email" resultType="String">
-  		select member_ID from member where member_name = #{member_name} AND member_email = #{member_email}
-  	
-  	</select>
-  	
-  	<!-- 핸드폰 찾기 -->
-  	<select id="member_idsearch_phone" resultType="String">
-  		select member_ID  from member where member_name = #{member_name} AND member_phone = #{member_phone}
-  	
-  	</select>
-  	
-  	<!-- 이메일 비밀번호 찾기 -->
-  	<select id="member_passsearch_email" resultType="String">
-  		select member_ID from member where member_id = #{member_id} AND member_name = #{member_name} AND member_email = #{member_email}
-  	
-  	</select>
-  	
-  	<!-- 핸드폰 비밀번호 찾기 -->
-  	<select id="member_passsearch_phone" resultType="String">
-  		select member_ID  from member where member_id = #{member_id} AND member_name = #{member_name} AND member_phone = #{member_phone}
-  	
-  	</select>
-  	
-  
-	<update id="member_passsearch_email_update">
-  		update  member set member_pass = #{member_pass} where member_id = #{member_id} AND member_name = #{member_name} AND member_email = #{member_email}
-  	
-  	</update>
-  	
-  	<update id="member_passsearch_phone_update">
-  		update  member set member_pass = #{member_pass} where member_id = #{member_id} AND member_name = #{member_name} AND member_phone = #{member_phone}
-  	
-  	</update>
+
 	<!--페이징 회원 출력-->
 	<select id="getListWithPaging" resultType="kr.ac.ync.domain.MemberVO">
 		<![CDATA[
