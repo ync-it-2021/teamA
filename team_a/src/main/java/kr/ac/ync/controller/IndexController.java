@@ -37,5 +37,20 @@ public class IndexController {
 	public String join() {
 	return "/join/join_agreement";
 	}
+	//reviewController가 RestController이기 때문에 indexController에 선언
+	@GetMapping("/mypage/review/my")
+	public String myReview() {
+	return "/mypage/myReview";
+	}
+	
+	@GetMapping("/mypage/review/write")
+	public String ReviewWrite() {
+	return "/mypage/review_input";
+	}
+	
+	@GetMapping("/search")
+	public String search() {
+		return "searchproduct";
+	}
 
 }
