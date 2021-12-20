@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.ync.domain.Criteria;
+import kr.ac.ync.domain.MemberReviewVO;
 import kr.ac.ync.domain.ReviewVO;
 import kr.ac.ync.service.ReviewService;
 import kr.ac.ync.util.UploadUtils;
@@ -38,10 +39,10 @@ public class ReviewController {
 	// 리뷰 생성 /로그인 상태
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/new", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> create(@RequestBody ReviewVO vo,MultipartFile[] uploadFile) {
-		
-		vo.setReview_img(UploadUtils.uploadFormPost(uploadFile[0], uploadPath));
-
+	public ResponseEntity<String> create(@RequestBody ReviewVO vo,MultipartFile uploadFile) {
+		if(uploadFile != null) {
+			vo.setReview_img(UploadUtils.uploadFormPost(uploadFile, uploadPath));
+		}
 		log.info("ReviewVO: " + vo);
 
 		int insertCount = service.register(vo);
@@ -100,7 +101,6 @@ public class ReviewController {
 	@GetMapping(value = "/member/pages/{id}/{page}", produces = { MediaType.APPLICATION_XML_VALUE,
 				MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<List<ReviewVO>> getList(@PathVariable("page") int page, @PathVariable("id") String member_id) {
-	
 	log.info("getList.................");
 	Criteria cri = new Criteria(page,10);
 	log.info(cri);
@@ -108,6 +108,19 @@ public class ReviewController {
 	log.info(service.getList(cri,member_id));
 	
 	return new ResponseEntity<>(service.getList(cri,member_id), HttpStatus.OK);
+	}
+	
+	//관리자 페이지 회원 작성 리뷰 페이징
+	@GetMapping(value = "/member/mypage/{id}", produces = { MediaType.APPLICATION_XML_VALUE,
+				MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<List<MemberReviewVO>> getListMypage( @PathVariable("id") String member_id) {
+		
+		
+			log.info("getList.................");
+			log.info("search id(member) : "+member_id);
+			log.info(service.getListMypage(member_id));
+			
+			return new ResponseEntity<>(service.getListMypage(member_id), HttpStatus.OK);
 	}
 
 }

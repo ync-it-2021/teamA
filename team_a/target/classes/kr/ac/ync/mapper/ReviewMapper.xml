@@ -10,24 +10,18 @@
 				 prd_idx,
 	 			 review_contents,
 		  		 member_id,
-		  <if test="#{order_idx} == ''">
 		  		 order_idx,
-		  </if>
-		  <if test="#{review_img} == ''">
 		  		 review_img,
-		  </if>
-		  		 review_point)
+		  		 review_point
+		  		 )
 		VALUES (seq_review.nextval,
 				#{prd_idx},
-	 			#{review_contents,
-		  		#{member_id,
-				<if test="#{not empty order_idx }">
+	 			#{review_contents},
+		  		#{member_id},
 		  		#{order_idx},
-		  		</if>
-		  		<if test="#{not empty review_img }">
-		  		#{review_img},
-		  		</if>
-		 		#{review_point})
+		  		#{review_img,jdbcType=VARCHAR},
+		 		#{review_point}
+		 		)
 	</insert>
 	
 	
@@ -107,11 +101,22 @@
 	   		WHERE	rn > (#{cri.pageNum} -1) * #{cri.amount}
 		]]>
 	</select>
-
-	<select id="getCountByMember" resultType="int">
-		<![CDATA[
-		SELECT count(review_idx) FROM review WHERE member_id LIKE #{member_id}
-		]]>
+	
+	<select id="MypagePrintList" resultType="kr.ac.ync.domain.MemberReviewVO">
+			SELECT  prd.prd_idx,
+			        prd.prd_name,
+			        od.od_idx,
+			        od.od_details,
+			        rv.review_idx,
+			        rv.review_contents,
+			        rv.review_date,
+			        rv.review_point
+			FROM    orders  od,
+			        review  rv,
+			        product prd
+			WHERE   od.od_idx = rv.order_idx
+			AND     od.prd_idx = prd.prd_idx
+	   		AND		od.member_id = #{member_id} 
 	</select>
 	
 </mapper>

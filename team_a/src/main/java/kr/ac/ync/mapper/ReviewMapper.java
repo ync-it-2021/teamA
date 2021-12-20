@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import kr.ac.ync.domain.Criteria;
+import kr.ac.ync.domain.MemberReviewVO;
 import kr.ac.ync.domain.ReviewVO;
 
 public interface ReviewMapper {
@@ -20,6 +21,8 @@ public interface ReviewMapper {
 	public List<ReviewVO> getListWithPaging(@Param("cri") Criteria cri, @Param("prd") int prd);
 	
 	public List<ReviewVO> getListByMemberWithPaging(@Param("cri") Criteria cri, @Param("member_id") String member_id);
+	
+	public List<MemberReviewVO> MypagePrintList(@Param("member_id") String member_id);
 
 	public int getCountByPrd(int prd);
 	

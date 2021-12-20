@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.ac.ync.domain.Criteria;
+import kr.ac.ync.domain.MemberReviewVO;
 import kr.ac.ync.domain.ReviewPageDTO;
 import kr.ac.ync.domain.ReviewVO;
 import kr.ac.ync.mapper.ProductMapper;
@@ -81,6 +82,12 @@ public class ReviewServiceImpl implements ReviewService {
 		return new ReviewPageDTO(
 				mapper.getCountByMember(member_id), 
 				mapper.getListByMemberWithPaging(cri,member_id));
+	}
+
+	@Override
+	public List<MemberReviewVO> getListMypage( String member_id) {
+		log.info("get Review List of a member " + member_id);
+		return mapper.MypagePrintList( member_id);
 	}
 
 }
