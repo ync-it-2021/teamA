@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.ync.domain.Criteria;
 import kr.ac.ync.domain.OneInquiryVO;
+import kr.ac.ync.domain.ProductVO;
 import kr.ac.ync.mapper.OneInquiryMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -31,6 +32,14 @@ public List<OneInquiryVO> getListWithPaging(Criteria cri) {
 public int getTotal(Criteria cri) {
 	log.info("get total count");
 	return mapper.getTotalCount(cri);
+}
+
+public void register(OneInquiryVO oi) {
+
+	log.info("register......" + oi);
+
+	mapper.insertSelectKey(oi);
+	
 }
 
 @Override

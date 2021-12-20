@@ -19,7 +19,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping({"/coupon/*","/admin/coupon/*"})
+@RequestMapping({"/mypage/mycoupon","/admin/coupon/*"})
 public class CouponController {
 
 	@Value("${globalConfig.uploadPath}")
@@ -38,12 +38,26 @@ public class CouponController {
 		model.addAttribute("list", service.getListWithPaging(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
+	
+	@GetMapping("")
+	public String myCouponList(Criteria cri, Model model) {
+		
+		log.info("list: " + cri);
+
+		int total = service.getTotal(cri);
+		log.info("total: " + total);
+		model.addAttribute("list", service.getListWithPaging(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		return "/mypage/myCoupon";
+	}
+	
 	@GetMapping( {"/get", "/modify"})
 	public void get(@RequestParam("cp") Long cp_idx, @ModelAttribute("cri") Criteria cri, Model model) {
 
 		log.info("/get");
 		model.addAttribute("cp", service.get(cp_idx));
 	}
+	//어드민만
 	@PostMapping( "/modify")
 	public String use(CouponVO cp, @ModelAttribute("cri") Criteria cri) {
 		
@@ -52,12 +66,12 @@ public class CouponController {
 		return "redirect:/admin/coupon/get?cp="+cp.getCp_idx();
 	}
 	
-	
+	//어드민만
 	@GetMapping("/register")
 	public void register() {
 
 	}
-		
+	//어드민만
 		@PostMapping("/register")
 		public String register (CouponVO cp, int total,RedirectAttributes rttr) {
 			for(int i = 0; i < total; i++) {
@@ -93,7 +107,7 @@ public class CouponController {
 			
 			return "redirect:/admin/coupon/list";
 		}
-		
+		//확인코드 계산용 코드 가공
 		public static String secretCode1(int temp) {
 			String num = "";
 			if(temp/1000 == 0) {
@@ -130,7 +144,7 @@ public class CouponController {
 			}
 			return num;
 		}
-		
+		//일반 코드 조합
 		public static String secretCode2(int temp) {
 			String num = "";
 			if(temp/1000 == 0) {

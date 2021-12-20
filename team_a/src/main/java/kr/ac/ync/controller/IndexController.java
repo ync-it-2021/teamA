@@ -22,21 +22,20 @@ public class IndexController {
 	@Autowired
 	private EventService evtService;	
 	
-	@GetMapping("/")
+	@GetMapping("")
 	public String index( Model model) {
-		
 		log.info("Event......" + evtService.getList());
 		model.addAttribute("evt",evtService.getList());
 		log.info("best......" + prdService.best_items());
 		model.addAttribute("best",prdService.best_items());
-		
+		log.info("new......" + prdService.new_items());
+		model.addAttribute("new_arrival",prdService.new_items());
 		return"index";
 	}
 	
-
-	@RequestMapping("/orderlist")
-	public String orderlist() {
-	return "orderlist";
+	@RequestMapping("/join")
+	public String join() {
+	return "/join/join_agreement";
 	}
-	
+
 }

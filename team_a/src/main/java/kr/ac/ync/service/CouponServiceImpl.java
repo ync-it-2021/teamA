@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import kr.ac.ync.domain.BestVO;
 import kr.ac.ync.domain.CouponVO;
 import kr.ac.ync.domain.Criteria;
 import kr.ac.ync.mapper.CouponMapper;

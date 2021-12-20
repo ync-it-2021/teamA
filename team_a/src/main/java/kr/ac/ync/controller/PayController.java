@@ -18,7 +18,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping({"/pay/*","/admin/pay/*"})
+@RequestMapping({"/mypage/pay*","/admin/pay/*"})
 public class PayController {
 	
 	@Autowired
@@ -34,6 +34,11 @@ public class PayController {
 		model.addAttribute("list", service.getListWithPaging(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
+	
+	
+		
+	
+	
 	@GetMapping( {"/get" , "/modify"})
 	public void get(@RequestParam("pay") int pay_idx, @ModelAttribute("cri") Criteria cri, Model model) {
 

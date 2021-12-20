@@ -22,7 +22,8 @@
 		</trim>
 	</sql>
 
-	<select id="best" resultType="kr.ac.ync.domain.BestVO">
+	<select id="best" resultType="kr.ac.ync.domain.ProductVO">
+	<![CDATA[
 	SELECT  prd_idx,
         	prd_img1,
         	prd_name
@@ -31,6 +32,34 @@
 	                    FROM        orders 
         	            WHERE       od_idx IN  (SELECT  od_idx
                                                 FROM    pay))
+    AND rownum  <=  12
+    ]]>
+	</select>
+	
+	<select id="newItem" resultType="kr.ac.ync.domain.ProductVO">
+	<![CDATA[
+	SELECT  prd_idx,
+        	prd_img1,
+            prd_register_date,
+            prd_amount,
+            prd_discount_date,
+        	prd_name
+	FROM    (SELECT /*+INDEX_DESC(product XPKPRODUCT) */
+		            rownum rn,
+		            prd_idx,
+		        	prd_img1,
+		            prd_register_date,
+		        	prd_amount,
+		            prd_discount_date,
+		        	prd_name
+            FROM    product
+            WHERE   8 >= rownum
+            ]]>
+          <!-- 	AND		prd_inventory > 0-->
+          <![CDATA[
+            )
+	ORDER BY prd_register_date DESC
+	]]>
 	</select>
 	
 	<select id="read" resultType="kr.ac.ync.domain.ProductVO">

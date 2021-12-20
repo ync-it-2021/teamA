@@ -1,43 +1,41 @@
     <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>   
-<!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-	<title>A_team_project</title>
-	<link rel="stylesheet" href="css/style.css" type="../resources/css/text/css">
-	<link rel="stylesheet" type="text/css" href="../resources/css/default.css" />
-	<link rel="stylesheet" type="text/css" href="../resources/css/layout.css" />
-	<link rel="stylesheet" type="text/css" href="../resources/css/commone67d.css?v=1.3" />
-	<link rel="stylesheet" type="text/css" href="../resources/css/mainffaf.css?v=1.4" />
-	<link rel="stylesheet" type="text/css" href="../resources/css/item-list.css" />
-	<link rel="stylesheet" type="text/css" href="../resources/css/item-view.css" />
-	<link rel="stylesheet" type="text/css" href="../resources/css/order-cart.css" />
-	<link rel="stylesheet" type="text/css" href="../resources/css/member.css" />
-	<link rel="stylesheet" type="text/css" href="../resources/css/brand.css" />
-	<link rel="stylesheet" type="text/css" href="../resources/css/communityc619.css?v=1.0" />
-	<link rel="stylesheet" type="text/css" href="../resources/css/guide.css" />
-	<link rel="stylesheet" type="text/css" href="../resources/css/event.css" />
-		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
 
-	<link rel="stylesheet" type="text/css" href="../resources/css/owl.carousel.css" />
-	<link rel="stylesheet" type="text/css" href="../resources/css/override.css" />
-	<link rel="stylesheet" type="text/css" href="../resources/css/popup.css" />
-	<link rel="stylesheet" type="text/css" href="../resources/css/main_add.css" />
+	<link rel="stylesheet" type="css/style.css" href="/resources/css/text/css">
+	<link rel="stylesheet" type="text/css" href="/resources/css/default.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/css/layout.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/css/commone67d.css?v=1.3" />
+	<link rel="stylesheet" type="text/css" href="/resources/css/mainffaf.css?v=1.4" />
+	<link rel="stylesheet" type="text/css" href="/resources/css/item-list.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/css/item-view.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/css/order-cart.css" />
 
+	<link rel="stylesheet" type="text/css" href="/resources/css/member.css?ver=1"/>
+	<link rel="stylesheet" type="text/css" href="/resources/css/brand.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/css/communityc619.css?v=1.0" />
+	<link rel="stylesheet" type="text/css" href="/resources/css/guide.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/css/event.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/css/owl.carousel.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/css/override.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/css/popup.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/css/main_add.css" />
+	<link rel="stylesheet" type="css/style.css" href="/resourceas/css/font-awesome.min.css"/>
 
-	<script type="text/javascript" src="../resources/js/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="../resources/js/owl.carousel.min.js"></script>
-	<script type="text/javascript" src="../resources/js/fastclick.js"></script>
-	<script language="javascript" src="../resources/js/common.js" charset="euc-kr"></script>
-	<script language="javascript" src="../resources/js/commonweb.js" charset="euc-kr"></script>
-	<script type="text/javascript" src="../resourceas/js/font-awesome.min"></script>
+	
+	<script type="text/javascript" src="/resources/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="/resources/js/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="/resources/js/fastclick.js"></script>
+	<script src="/resources/js/common.js" charset="UTF-8"></script>
+	<script src="/resources/js/commonweb.js" charset="UTF-8"></script>
+	
 	
 	<script>
 	$(document).ready(function () {
-		getList();
+			getList();
 	});
 	
 	function getList() {
@@ -61,9 +59,8 @@
 				console.log(str);
 				
 			},
-		error:function(request, status, error ){
-			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
+		error:function(){
+			
 		}
 		
 		});
@@ -95,7 +92,6 @@
 		});
 
 	</script>
-</head>
 <body>
 	<header>
 		<div class="only-pc">
@@ -105,14 +101,13 @@
 					
 					<sec:authorize access="isAuthenticated()">
 						<li><a href="/customLogout">LOGOUT</a></li>
-						<li><a href="/orderlist">MY PAGE</a></li>
-						<li><span><img src="../resources/images/mnb_wish_icon.png"></span><a href="wish">WISH LIST</a></li>
-						<li><span><img src="../resources/images/mnb_cart_icon.png"></span><a
-								href="shoppingbasket">CART</a></li>
+						<li><a href='/mypage/order'>MY PAGE</a></li>
+						<li><span><img src="../resources/images/mnb_wish_icon.png"></span><a href="/mypage/wish">WISH LIST</a></li>
+						<li><span><img src="../resources/images/mnb_cart_icon.png"></span><a href="/mypage/basket">CART</a></li>
 					</sec:authorize>
 					<sec:authorize access="isAnonymous()">
 						<li><a href="/login">LOGIN</a></li>
-						<li><a href="/member/join_write">JOIN</a></li>
+						<li><a href="/join">JOIN</a></li>
 					</sec:authorize>
 						
 				</ul>
@@ -122,18 +117,19 @@
 				<!-- <div id="sub"> -->
 				<div class="inner-header">
 					<ul style="margin-top: 15px; padding-right: 40px;" id="header-right" class="header-right float_right nav-right">
-
-						<li class="cart-icon "> <a class="nejongbo" href="orderlist.jsp"><img  src="../resources/images/user.png" ><p style="text-align:center;">MY</p></a>
-
+						<li class="cart-icon "> 
+						<a class="nejongbo" href='/mypage/order'>
+						<img  src="../resources/images/user.png" ></a>
+							<p style="text-align:center;">MY</p>
 							<div class="cart-hover">
 							<!--로그인 된 화면  -->
 							<sec:authorize access="isAuthenticated()">
 								<ul class="cotana">
-									<li><a href="orderlist.jsp" class="hel"><span>주문내역</span></a></li>
-									<li><a href="" class="hel"><span>배송</span></a></li>
-									<li><a href="wish.jsp" class="hel"><span>위시리스트</span></a></li>
-									<li><a href="qna.jsp" class="hel"><span>1:1문의</span></a></li>
-									<li><a href="myreview_view.jsp" class="hel"><span>my후기</span></a></li>
+									<li><a href="/order" class="hel"><span>주문내역</span></a></li>
+									<li><a href="#" class="hel"><span>배송</span></a></li>
+									<li><a href="#" class="hel"><span>위시리스트</span></a></li>
+									<li><a href="#" class="hel"><span>1:1문의</span></a></li>
+									<li><a href="#" class="hel"><span>my후기</span></a></li>
 								</ul>
 								</sec:authorize>
 								<!--로그인 안된 화면  -->
@@ -144,7 +140,7 @@
 								<div class="select-button">
 									<pre></pre>
 									<span > <a href="/login"  class="primary-btn view-card">로그인</a> </span>
-									<span> <a href="/member/join_write" class="primary-btn view-card">회원가입</a></span>
+									<span> <a href="/join" class="primary-btn view-card">회원가입</a></span>
 								</div>
 								</sec:authorize>
 							</div>
@@ -167,7 +163,7 @@
 						</li>
 
 						<li>
-						<a href="mycoupon.jsp">
+						<a href="/mypage/mycoupon">
 						<img src="../resources/images/cupone.png" style="margin-right:8px;"/>
 						</a>
 						<p style="text-align:center;">cupon</p>
@@ -318,8 +314,5 @@
 
 		</nav>
 
-
-
 	</header>
-</body>
-</html>
+	</body>

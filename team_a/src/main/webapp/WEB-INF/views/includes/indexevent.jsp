@@ -102,7 +102,7 @@
 					items: 1,
 					margin: 0,
 					dotsEach: 1,
-					navText: ['<img src="../resources/images/btn_prevw.png">', '<img src="../resources/images/btn_next-2.png">'],
+					navText: ['<img src="../resources/images/btn_prev1.png">', '<img src="../resources/images/btn_next-2.png">'],
 					dots: false,
 					responsive: {
 						360: { items: 1, margin: 0, dotsEach: 1, slideBy: 1 },
