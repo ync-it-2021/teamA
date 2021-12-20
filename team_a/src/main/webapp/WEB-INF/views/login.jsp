@@ -17,6 +17,10 @@
 	$(document).ready(function(){
 		alert("아이디 또는 비밀번호가 틀렸습니다!");
 	});
+	
+	
+	
+	
 	</script>
 		</c:if>
 		
@@ -82,7 +86,8 @@
 						<ul>
 							<li><a href="searchidinfo2ce3.html?ProcessGubun=A">아이디 찾기</a></li>
 							<li><a href="searchidinfo0a92.html?ProcessGubun=B">비밀번호 찾기</a></li>
-							<li><a href="/member/join_write">회원가입</a></li>
+							<li><a href="/join">회원가입</a></li>
+							<li><a href="/customLogin"><img src="/resources/images/setting.png" style="width:3%;"></a></li>
 						</ul>
 					</div>
 
@@ -96,7 +101,7 @@
 	<div class="intro">
 		<p class="txt-membership">MEMBERSHIP</p>
 		<p class="txt-program">PROGRAM</p>
-		<p class="txt-desc">몬트라움 회원만을 위한 차별화된 혜택을 경험하세요.</p>
+		<p class="txt-desc">Gift to pet 회원만을 위한 차별화된 혜택을 경험하세요.</p>
 	</div>
 
 	<ul class="benefits">

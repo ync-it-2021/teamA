@@ -19,8 +19,20 @@
 		function loginCheck() {
 			location.href = "/common/all_site/member/login.asp?refer_page=%2Fcommon%2Fprocess%2Fqanda%2Flist%2Easp"
 		}
+		
+		$(document).ready(function(){
+			$(".oi_list").on("click",function(e){
+				//console.log($(this).data("oi"));
+				window.location = "/mypage/qna/get?oi="+$(this).data("oi");
+			});
+		});
+		
+			
+		
+		
+		
 	</script>
-	<script type="text/javascript" src="../resources/js/top.js"></script>
+	<script type="text/javascript" src="/resources/js/top.js"></script>
 
 	<!--Content영역시작-->
 	<section class="section_style">
@@ -36,7 +48,7 @@
 				<div class="ask-list">
 				
 				
-				<table class="item-table type1">
+				<table  class="item-table type1">
 						<tr>
 							<th class="item-info"style="text-align: center;">번호</th>
 							<th class="order-no" style="width: 70%;text-align: center;">제목</th>
@@ -49,7 +61,7 @@
 						</tr>
 						-->
 					<c:forEach items="${list}" var="oi">
-						<tr>
+						<tr class="oi_list" data-oi='<c:out value="${oi.oi_idx}"/>'>
 							<td style="text-align: center;"><c:out value="${oi.oi_idx}"/></td>
 							<td style="text-align: center;"><c:out value="${oi.oi_title}"/></td>
 							<td style="text-align: center;"><fmt:formatDate pattern="yyyy-MM-dd" value="${oi.oi_date}" /></td>

@@ -21,7 +21,7 @@
       <div class="panel-heading">
       	 <div style="text-align: center;">
       	 	 <label style="float: left;">번호 : <c:out value="${oi.oi_idx}"/> </label>
-      	 	 <c:out value="${oi.oi_title}"/>
+      	 	  제목 : <c:out value="${oi.oi_title}"/>
       	 	  <label style="float: right;">작성자 : <c:out value="${oi.member_id}"/> </label>
       	  </div>
       </div>
@@ -41,12 +41,12 @@
         
         <!-- 업로드 이미지나 파일을 출력 -->
 	        <div class="form-group" ><label>첨부 이미지</label>
-	        <c:if test="${empty oi_img}"><div>없음</div></c:if>
-						<c:if test="${not empty oi_img}">
-							<div style="text-align: center; width: 250px;float: left;">
+	        <c:if test="${empty oi.oi_img}"><div>없음</div></c:if>
+						<c:if test="${not empty oi.oi_img}">
+							<div style="text-align: center; width: 250px;">
 								<div style="width: 100%;">
-									<a href="/resources/upload/${oi_img}" target="_blank">
-									<img src="/resources/upload/${oi_img}" id="thumb_1" width="200" height="200" style="margin: 25px;"></a>
+									<a href="/resources/upload/${oi.oi_img}" target="_blank">
+									<img src="/resources/upload/${oi.oi_img}" id="thumb_1" width="200" height="200" style="margin: 25px;"></a>
 								</div>
 							</div>
 				       </c:if>   
@@ -64,10 +64,17 @@
       <!-- /.panel-heading -->
      
       <div class="panel-body" >      
-      	<textarea rows="5" cols="100%" id="reply" placeholder="답장 내용" name="oi_reply"  readonly="readonly">${oi.oi_reply}</textarea>
+      	<c:if test="${empty oi.oi_reply }" >
+      		<textarea rows="5" cols="100%" id="reply" placeholder="답장 내용" name="oi_reply"></textarea>
+      	</c:if>
+      	<c:if test="${not empty oi.oi_reply }" >
+      		<textarea rows="5" cols="100%" id="reply" placeholder="답장 내용" name="oi_reply"  readonly="readonly">${oi.oi_reply}</textarea>
+      	</c:if>
       	  <div class="form-group">
           <label>작성 시간 : </label> <fmt:formatDate type="both" value="${oi.oi_reply_date}" />
-          <span id="reply_modify" style="font-size:small; float: right;">[수정하기] </span> 
+          <c:if test="${not empty oi.oi_reply }" >
+          	<span id="reply_modify" style="font-size:small; float: right;">[수정하기] </span> 
+          </c:if>
         </div>  
       </div>
       
@@ -126,6 +133,8 @@ $(document).ready(function() {
     
 	});
 });
+
+
 
 
 </script>

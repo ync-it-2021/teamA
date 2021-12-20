@@ -185,7 +185,9 @@
 		WHERE 	prd_idx =	#{prd_idx}
 	</update>	
 	
-
+	<update id="updateReviewCnt">
+		UPDATE product SET prd_review_cnt = prd_review_cnt + #{amount} WHERE prd_idx = #{prd_idx}
+	</update> 
 
 	
 		

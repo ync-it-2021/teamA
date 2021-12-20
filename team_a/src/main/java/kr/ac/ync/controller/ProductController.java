@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -151,6 +152,13 @@ public class ProductController {
 			rttr.addFlashAttribute("result", prd.getPrd_idx());
 
 			return "redirect:/admin/product/list";
+		}
+		
+		@GetMapping(value= "/get/name",produces = "application/text; charset=UTF-8" )
+		public@ResponseBody String getName(@RequestParam("prd") int prd_idx) {
+
+			log.info("/get");
+			return service.get(prd_idx).getPrd_name();
 		}
 }
 

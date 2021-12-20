@@ -89,7 +89,6 @@ public class OrderController {
 	public String searchOrder(Criteria cri, Model model,Authentication authentication) {
 		UserDetails userDetails = (UserDetails)authentication.getPrincipal();
 		String member_id = userDetails.getUsername();
-		cri.setType("M");
 		cri.setKeyword(member_id);
 		log.info("list: " + cri);
 

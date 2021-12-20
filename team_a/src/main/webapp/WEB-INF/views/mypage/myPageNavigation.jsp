@@ -21,11 +21,13 @@
 						str +="<a href='/'> HOME </a>";
 						for(var s of href_data){
 							if(s == 'mypage') {
+								
 								str +=" > <a href='/mypage/order'>"; 
-							}else{
+								str += s.toUpperCase() +" </a>";
+							}else if(s != 'my'){
 								str +=" > <a href=/'"+s+"'>"; 
-							};
-							str += s.toUpperCase() +" </a>";
+								str += s.toUpperCase() +" </a>";
+							}
 						}
 						
 						$("#navigation-bar").html(str);
@@ -47,7 +49,7 @@
 					break;
 					case "qna" : document.write("1:1문의");
 					break;
-					case "myreview":document.write("작성후기");
+					case "my":document.write("리뷰");
 					break;
 					case "drawal":document.write("회원탈퇴");
 					break;
@@ -70,7 +72,7 @@
 		</li>
 		<li ><a href='/mypage/modify?mb_id=<sec:authentication property="principal.username"/>'>개인정보수정</a></li>
 		<li class="hide-mobile"><a href="/mypage/qna">1:1문의</a></li>
-		<li><a href="/mypage/myreview">나의후기</a></li>
+		<li><a href="/mypage/review/my">나의후기</a></li>
 		<li><a href="/mypage/drawal">회원탈퇴</a></li>
 		<!-- class="active" -->
 	</ul>

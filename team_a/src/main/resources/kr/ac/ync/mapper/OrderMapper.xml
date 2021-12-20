@@ -12,6 +12,9 @@
 						<when test="type == 'P'.toString()">
 							prd_id LIKE '%'||#{keyword}||'%'
 						</when>
+						<when test="type == 'R'.toString()">
+							member_id LIKE '%'||#{keyword}||'%' AND od_status LIKE '배송 완료'
+						</when>
 					</choose>
 				</trim>
 			</foreach>

@@ -102,8 +102,8 @@
 					<sec:authorize access="isAuthenticated()">
 						<li><a href="/customLogout">LOGOUT</a></li>
 						<li><a href='/mypage/order'>MY PAGE</a></li>
-						<li><span><img src="../resources/images/mnb_wish_icon.png"></span><a href="/mypage/wish">WISH LIST</a></li>
-						<li><span><img src="../resources/images/mnb_cart_icon.png"></span><a href="/mypage/basket">CART</a></li>
+						<li><span><img src="/resources/images/mnb_wish_icon.png"></span><a href="/mypage/wish">WISH LIST</a></li>
+						<li><span><img src="/resources/images/mnb_cart_icon.png"></span><a href="/mypage/basket">CART</a></li>
 					</sec:authorize>
 					<sec:authorize access="isAnonymous()">
 						<li><a href="/login">LOGIN</a></li>
@@ -119,17 +119,17 @@
 					<ul style="margin-top: 15px; padding-right: 40px;" id="header-right" class="header-right float_right nav-right">
 						<li class="cart-icon "> 
 						<a class="nejongbo" href='/mypage/order'>
-						<img  src="../resources/images/user.png" ></a>
+						<img  src="/resources/images/user.png" ></a>
 							<p style="text-align:center;">MY</p>
 							<div class="cart-hover">
 							<!--로그인 된 화면  -->
 							<sec:authorize access="isAuthenticated()">
 								<ul class="cotana">
-									<li><a href="/order" class="hel"><span>주문내역</span></a></li>
+									<li><a href="/mypage/order" class="hel"><span>주문내역</span></a></li>
 									<li><a href="#" class="hel"><span>배송</span></a></li>
 									<li><a href="#" class="hel"><span>위시리스트</span></a></li>
-									<li><a href="#" class="hel"><span>1:1문의</span></a></li>
-									<li><a href="#" class="hel"><span>my후기</span></a></li>
+									<li><a href="/mypage/qna" class="hel"><span>1:1문의</span></a></li>
+									<li><a href="/mypage/review/my" class="hel"><span>my후기</span></a></li>
 								</ul>
 								</sec:authorize>
 								<!--로그인 안된 화면  -->
@@ -147,7 +147,7 @@
 
 <!-- 헤더 1차 수정 수정완료시 삭제합니다 .  -->
 						</li>
-					<li class="cart-icon "><a class="nejongbo" href="shoppingbasket.jsp"><img src="../resources/images/shopping-cart.png"style="margin-right:8px;"></a>
+					<li class="cart-icon "><a class="nejongbo" href="shoppingbasket.jsp"><img src="/resources/images/shopping-cart.png"style="margin-right:8px;"></a>
 						<p  style="text-align:center;"> CART </p>
 								<div class="cart-hover">
 								<sec:authorize access="isAuthenticated()">
@@ -164,7 +164,7 @@
 
 						<li>
 						<a href="/mypage/mycoupon">
-						<img src="../resources/images/cupone.png" style="margin-right:8px;"/>
+						<img src="/resources/images/cupone.png" style="margin-right:8px;"/>
 						</a>
 						<p style="text-align:center;">cupon</p>
 						</li>
@@ -173,14 +173,14 @@
 				</div>
 
 				<div style="margin-top: 10px;" id="top-logo" class="float_left"><a href="/"><img
-							src="../resources/images/img_logo_old2.png" alt="Montraum" /></a></div>
+							src="/resources/images/img_logo_old2.png" alt="Montraum" /></a></div>
 				<!-- 검색바 부분 입니다  -->
 				<div id="header-right" class="float_left">
 					<div class="top-search-wrapper2">
 						<form name="searchForm1" action="" onSubmit="return false; ">
 							<input type="text" id="search" name="search" class="input5" placeholder="검색어를 입력하세요."
 								onKeyUp="if(event.keyCode==13) search_submit1()" maxlength="150" />
-							<input type="image" src="../resources/images/blt_search.png" class="btn-search2" alt="검색버튼"
+							<input type="image" src="/resources/images/blt_search.png" class="btn-search2" alt="검색버튼"
 								onClick="search_submit1()" />
 						</form>
 						<script>
@@ -209,7 +209,7 @@
 
 		<nav class="wc-zone">
 			<ul id="pc-nav" class="pc-width clearfix only-pc">
-				<li class="brand-open brand"><a href="brandmain.html"><img src="../resources/images/txt_brand.png"
+				<li class="brand-open brand"><a href="brandmain.html"><img src="/resources/images/txt_brand.png"
 			alt="BRAND" /></a>
 				</li>
 				<li class="submenu-open menu1"><a href="shopmain95da.html?iniCategory=24&amp;thisCategory="><span
@@ -236,7 +236,7 @@
 			<div id="pc-sub-category">
 				<div class="pc-width">
 					<div class="banner-wrapper">
-						<a href="eventviewe84a.html?idx=124"><img src="../resources/images/bnr_sub_category.jpg"
+						<a href="eventviewe84a.html?idx=124"><img src="/resources/images/bnr_sub_category.jpg"
 								alt="MONTRAUM" /></a>
 					</div>
 					<ul class="menu1">

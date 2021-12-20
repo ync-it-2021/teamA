@@ -12,12 +12,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
-    	 $(".click_").on("click",function(e){
-    	    	console.log($(this).data("od_idx"));
-    	   	 $(opener.document).find(".od_idx").val($(this).data("od_idx"));
-    	    	window.close();
-    	    });
+    	if(${empty list}){
+    		alert("찾는 내용의 결과가 없습니다.");
+    		window.close();
+    	}
     	
+    	 $(".click_").on("click",function(e){
+    	   	 if($(opener.document).find(".prd_idx")){
+    	 		$(opener.document).find(".prd_idx").val($(this).data("prd_idx"));
+    			$(opener.document).find(".prd_name").val($(this).data("name"));
+    			$(opener.document).find(".od_idx").val($(this).data("od_idx")); 
+    			window.close();
+    	   	 }else{
+    	   		$(opener.document).find(".od_idx").val($(this).data("od_idx"));
+    	    	window.close();
+    	   	 }
+    	    });
     });
    
     </script>
@@ -26,7 +36,7 @@
 <table class="table table-striped table-bordered table-hover">
 	<thead>
 		<tr>
-			<th>주문번호</th>
+			<th>상품명</th>
 			<th>주문 내용</th>
 			<th>금액</th>
 			<th>주문일자</th>
@@ -35,8 +45,23 @@
 	</thead>
 
 	<c:forEach items="${list}" var="order">
-		<tr class="click_" data-od_idx='<c:out value="${order.od_idx}" />'>
-			<td><c:out value="${order.od_idx}" /></td>
+		<tr class="click_" data-od_idx='<c:out value="${order.od_idx}" />' data-prd_idx='<c:out value="${order.prd_idx}"/>'>
+			<td id="name">
+			<script>
+			$.ajax({
+   			 	url:"/product/get/name",
+  				 data:{prd:<c:out value="${order.prd_idx}"/>},
+  				 type:"get",
+  			 	success:function(data){
+  			 		$(".click_").attr("data-name",data);
+  			 	$("#name").html(data);
+  			 	},
+	   			 error:function(err){ 
+	   				 alert("에러");
+	   			 }
+  			 });
+			</script>
+			</td>
 			<td><c:out value="${order.od_details}" /></td>
 			<td><c:out value="${order.od_amount}" /></td>
 			<td><fmt:formatDate pattern="yyyy-MM-dd" value="${order.od_date}" /></td>

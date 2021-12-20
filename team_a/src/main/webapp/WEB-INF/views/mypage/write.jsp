@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <head>
 	<meta charset="UTF-8">
@@ -24,12 +26,33 @@
 		location.href="/common/all_site/member/login.asp?refer_page=%2Fcommon%2Fprocess%2Fqanda%2Fwrite%2Easp"
 	}
 </script>
+
+	<c:if test="${not empty oi}">
+		<script>
+		$(document).ready(function(){
+			$(".kind").val("${oi.oi_kind}");
+			<c:if test="${oi.oi_kind eq 'O'}">
+			$(".kind").val("${oi.oi_kind}");
+			view_jumun("O");
+			$(".od_idx").val("${oi.od_idx}");
+			</c:if>
+			$(".od_idx").val("${oi.oi_idx}");
+			$(".title").val("${oi.oi_title}").attr("readOnly","readOnly")
+			$(".contents").val("${oi.oi_contents}").attr("readOnly","readOnly");
+			$("#file_input").html("첨부 파일 : 없음");
+			<c:if test="${not empty oi.oi_img}">
+			$("#file_input").html("첨부 파일 : <a href='/resources/upload/${oi.oi_img}'>${oi.oi_img}</a>");
+			</c:if>
+		});
+		</script>
+	</c:if>
+
 <script language="javascript" src="../resources/images/top.js"></script>
 <!--Content영역시작-->
 <section class="section_style">
 	<div id="page-member-ask" class="section-member pc-width">
-		<div id="navigation-bar"><script>document.write(navistr)</script></div>
-		<h2 class="page-title"><script>document.write(siteTitle)</script></h2>
+		<div id="navigation-bar"></div>
+		<h2 class="page-title"></h2>
 		<!-- mypage 상단 시작 -->
 		
 	<div class="member-nav-wrapper">
@@ -103,9 +126,15 @@ ed.init();
 
 				</div>
 				<div id="qna-body-mobile" class="input-wrapper">
-					<textarea class="input1 contents" name="oi_contents" rows="10" placeholder="내용 입력"></textarea>
+					<textarea class="input1 contents" name="oi_contents" rows="5" placeholder="내용 입력"></textarea>
 				</div>
-				<div>첨부 파일 : <input type="file" name="uploadFile"/></div>
+				<div id="file_input">첨부 파일 : <input type="file" name="uploadFile" /></div>
+				<c:if test="${not empty oi.oi_reply}">
+					<h4 class="page-sub-title kr">  답변  <small> : <fmt:formatDate pattern="yyyy-MM-dd" value="${oi.oi_reply_date}" /></small></h4>
+					<div id="qna-body-mobile" class="input-wrapper">
+						<textarea class="input1 reply" name="oi_contents" rows="5" placeholder="답변 내용" readOnly><c:out value="${oi.oi_reply}"/></textarea>
+					</div>
+				</c:if>
 				
 				<div class="action-buttons">
 					<span class="cancel type1" onclick="history.back();" style="cursor:pointer;">취소</span>
@@ -138,11 +167,6 @@ function mobRf() {
 }
 //-->
 </script>
-
-
-
-
-
 
 <script type="text/javascript">
 
@@ -182,7 +206,7 @@ function mobRf() {
 
 
 	function search_jumun(){
-	 window.open("/mypage/order/search","jumunpop","width=600,height=600,scrollbars=yes,resizable");
+	 window.open("/mypage/order/search?type=M","jumunpop","width=600,height=600,scrollbars=yes,resizable");
 	}
 
 

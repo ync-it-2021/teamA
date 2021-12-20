@@ -45,7 +45,7 @@ public class OneInquiryController {
 		log.info("total: " + total);
 		model.addAttribute("list", service.getListWithPaging(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
-		return "mypage/qna";
+		return "/mypage/qna";
 	}
 	
 	@GetMapping("/list")
@@ -86,9 +86,9 @@ public class OneInquiryController {
 		log.info("/get");
 		model.addAttribute("oi", service.get(oi_idx));
 		if(auto.equals("[ROLE_MEMBER]")) {
-			return "/mypage/qna/write";
+			return "/mypage/write";
 		}
-		return "redirect:/admin/oi/get?oi="+oi_idx;
+		return null;
 	}
 	
 	
