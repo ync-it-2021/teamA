@@ -20,8 +20,25 @@ public class CommonController {
 		model.addAttribute("msg", "Access Denied");
 	}
 
-	@GetMapping({"/customLogin","/login"})
+	@GetMapping("/customLogin")
 	public String loginInput(String error, String logout, Model model) {
+
+		log.info("error: " + error);
+		log.info("logout: " + logout);
+
+		if (error != null) {
+			model.addAttribute("err", "Y");
+			return "/customLogin";
+		}
+
+		if (logout != null) {
+			return "redirect:/customLogin";
+		}
+		return null;
+	}
+	
+	@GetMapping("/login")
+	public String loginInput2(String error, String logout, Model model) {
 
 		log.info("error: " + error);
 		log.info("logout: " + logout);
